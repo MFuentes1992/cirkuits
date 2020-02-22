@@ -52,6 +52,7 @@
         <div>        
           <div class="text-about">
             <h1><strong>ABOUT US</strong></h1>
+            <br>           
             <div>
               <p>
                 Cirkuits is a team that offers the most comprehensive language development program ever.
@@ -59,7 +60,10 @@
                 the entire world to benefit from this experience with our cutting-edge tools and program.
               </p>
             </div>
+            <br>
+            <br>
             <h1><strong>Cirkuits Program</strong></h1>
+            <br>
             <div>
               <p>
                 We  provide several video games that will allow you the type of
@@ -84,7 +88,10 @@
                 efforts in every session.
               </p>
             </div>
+            <br>
+            <br>
             <h1><strong>Vision </strong></h1>
+            <br>
             <div>
               <p>
                 To become the global-standard in the language-learning sector by
@@ -97,14 +104,20 @@
                 we achieve this at Cirkuits with a structured series of games and activities
               </p>
             </div>
+            <br>
+            <br>
             <h1><strong>Mission</strong></h1>
+            <br>
             <div>
             <p>
               To provide our students with the most forward-thinking tools to help them
               learn a language as quickly as possible for as long as possible.
             </p>
           </div>
+          <br>
+          <br>
             <h1><strong>Values</strong></h1>
+            <br>
             <div>
               <p>
                 When taking a decision within the company we always ask “does this help accelerate and improve the students’ end result?
