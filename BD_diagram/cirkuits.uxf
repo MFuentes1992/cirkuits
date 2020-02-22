@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>20</y>
+      <w>140</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>plastic
+________
+id_tarjeta
+nombre_tarjeta
+ap_tarjeta
+numero_tarjeta
+mes_tarjeta
+anio_tarjeta
+cvc_tarjeta
+id_usuario</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>290</x>
+      <y>100</y>
+      <w>150</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>usuarios
+__________
+id_usuario
+nombre_usuario
+apellido_usuario
+alter_usuario
+password
+email_usuario
+nacimiento_usuario
+estatus_usuario
+fecha_registro
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>480</y>
+      <w>140</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>pago
+_______
+id_pago
+id_usuario
+id_tarjeta
+id_tipo
+fecha</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>230</y>
+      <w>140</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>cat_tipo_pago
+_____________
+id_tipo
+tipo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>350</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>cat_precios
+____________
+id_precio
+id_tipo
+precio
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>30</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cat_videogames
+______________
+id_videogame
+nombre</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>150</y>
+      <w>150</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>videogame_progress
+___________________
+id_progress
+id_videogame
+id_usuario
+nivel
+score</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1090</x>
+      <y>280</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Use case 1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>300</y>
+      <w>150</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>leaderboard
+id_leaderboard
+id_videogame
+id_usuario
+high_score</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

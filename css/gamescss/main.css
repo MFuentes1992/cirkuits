@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css?family=Shojumaru&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+body {
+margin:0;
+height: 100vh;
+background-color:	#BEBEBE;        
+}
+canvas{ 
+width:100%; 
+height:100%; 
+display: block;
+}
+h1{
+position: absolute;      
+width: 100%;
+margin-top: 50vh !important;
+text-align: center;
+color: white;
+font-family: 'Poppins', sans-serif;
+}
+#speachBox{
+position: absolute;
+border-style: solid;
+border-width: 5px;
+border-color: white;        
+width: 30%;
+height: 12%;
+margin-top: 70vh;
+margin-left: 35vw;
+text-align: center;
+visibility: hidden;
+}
+#speechBoxTense{
+  position: absolute;
+border-style: solid;
+border-width: 5px;
+border-color: white;        
+width: 50%;
+height: 12%;
+margin-top: 85vh;
+margin-left: 23vw;
+text-align: center;
+visibility: hidden;
+}
+#timeBarCointainer{
+position: absolute;
+border-style: solid;
+border-width: 2px;
+border-color: #fff;
+width: 30%;
+height: 25px;
+margin-top: 35%;
+margin-left: 35vw;
+text-align: center;
+visibility: hidden;
+padding: 2px;
+}
+#timeBarCointainerTense{
+  position: absolute;
+border-style: solid;
+border-width: 2px;
+border-color: #fff;
+width: 30%;
+height: 25px;
+margin-top: 80vh;
+margin-left: 35vw;
+text-align: center;
+visibility: hidden;
+padding: 2px;
+}
+#timeBar{
+position: relative;
+width: 100%;
+height: 100%;
+background-color: #ffffff;
+}
+#speachResult{
+font-family: 'Poppins', sans-serif;
+color: white;
+font-size: 2em;
+width: 100%;        
+}
+#autoGenerate{
+position: absolute;
+}   
+#HUD{
+position: absolute;
+width: 100%;
+height: 200px;
+padding-top: 2%;                
+}
+#HUDTense{
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  padding-top: 0%;  
+}
+#menuControls{
+position: relative;        
+display: inline-block;
+text-align: center;
+width: 20%;      
+color: #ffffff;
+font-size: 2em;
+} 
+#timerControl{
+position: relative;        
+display: inline-block;
+text-align: center;
+width: 55%;        
+color: #ffffff;
+font-family: 'Poppins', sans-serif;
+font-size: 2em;
+} 
+#livesControl{
+position: relative;        
+display: inline-block;
+text-align: left;
+width: 10%;
+font-size: 2em;
+color: #ffffff;
+} 
+#scoreControl{
+position: relative;        
+display: inline-block;
+text-align: right;
+width: 10%;
+font-size: 2em;
+color: #ffffff;
+font-family: 'Poppins', sans-serif;
+} 
+#UIPause{
+cursor: pointer;
+}
+#userName{
+color: #707070;
+}
+.pause-ico{
+color: #707070;
+font-size: 2em;
+}
+.pause-ico:hover{
+animation: rainbow 3.5s linear;
+animation-iteration-count: infinite;
+cursor: pointer;
+}
+.gameo-ico{
+color: #707070;
+font-size: 2em;
+}
+#pauseModalCenterTitle{
+animation: rainbow 3.5s linear;
+animation-iteration-count: infinite;
+}
+#gameOVerModalCenterTitle{
+animation: fire 2.5s reverse forwards;
+animation-iteration-count: infinite;
+}
+#levelClearModalCenterTitle{
+  animation: rainbow 3.5s linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fire{
+  100%,0% {
+    color: red;
+  }
+  50%{
+    color: orange;
+  }
+}
+
+@keyframes rainbow{
+  100%,0%{
+    color: rgb(32,199,215);
+  }
+  12%{
+    color: rgb(69,199,184);
+  }
+  24%{
+    color: rgb(5,164,225);
+  }
+  36%{
+    color: rgb(141,124,207);
+  }
+  48%{
+    color: rgb(184,119,193);
+  }
+  60%{
+    color: rgb(189,227,132);
+  }
+  72%{
+    color: rgb(95,106,112);
+  }
+  84%{
+    color: rgb(0,127,255);
+  }
+}  
+.pauseContainer{
+position: relative;
+width: 100%;
+height: 50px;
+}
+#pauseUserName{
+font-size: 2em;
+}
+.gameOverContainer{
+position: relative;
+width: 100%;
+height: 50px;
+} 
+.levelClearContainer{
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+.gameOverContainerStars{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+.levelClearContainerStars{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+/*.canvas{
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  margin: 2%;
+  margin-right: auto;
+  margin-top: 2%;
+  background-color:#fff;
+  
+}*/
+#canvas{
+  position: absolute;
+  width: 100%;
+  padding-left: 13%;
+  padding-top: 3%;
+}
+#renderCanvas{
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.text-inverted{
+  color: #000 !important;
+}
+
+.inverted{  
+  background-color: #000 !important;
+  
+}
+
+.inverted-border{
+  border-color: #000 !important;
+}
+
+/*/////////////////EXPLOSIONS////////////////////////*/
+
+.explosion {
+  position: absolute; /*/ required if positioned on click else 'relative'*/
+  width: 600px;
+  height: 600px;
+  pointer-events: none; /*/ make it clickable trhough*/
+  /*/ particle styling*/
+
+}
+
+.particle {
+  position: absolute; /*/ required  */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pop 1s reverse forwards; /*/ required*/
+}
+
+/*/ animation for particle fly away from the cursor*/
+@keyframes pop {
+  from {
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+  }
+}
+

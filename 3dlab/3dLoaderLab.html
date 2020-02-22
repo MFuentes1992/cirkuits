@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #canvas{
+            background: url(assets/Textures/backgroundEmpty.png) repeat;
+            /*display: block;*/
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <button onclick="createGeometry()">Create</button>
+    <button onclick="deleteGeometry()">Delete</button>
+</body>
+<script src="js/three.js" charset="utf-8"></script>
+<script src="js/MTLLoader.js" charset="utf-8"></script>
+<script src="js/OBJLoader.js" charset="utf-8"></script>
+<script src="js/OrbitControls.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var totalGeometries = 0;
+    var random = 0;
+    var canvas = document.getElementById("canvas");
+
+    var carModel3DGreen;
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
+    var renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias: true});
+    //Background color de la escena.
+    //renderer.setClearColor("#707070");
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.x = 1.5;
+    camera.position.y = 0.5;
+    camera.position.z = -4;
+
+    /*var light = new THREE.PointLight( 0xFFFFFF, 1, 100 );
+    light.position.set( 10, 10, 25 );
+    scene.add( light );*/
+
+	ambientLight = new THREE.AmbientLight(0xffffff, 1);
+	scene.add(ambientLight);
+	
+	light = new THREE.PointLight(0xffffff, 0.8, 18);
+	light.position.set(-3,6,-3);
+	light.castShadow = true;
+	light.shadow.camera.near = 0.1;
+	light.shadow.camera.far = 25;
+	scene.add(light);
+
+    /*var geometry = new THREE.BoxGeometry(1,1,1);
+    var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});                                
+    var mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);*/
+
+    var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
+    var material = new THREE.MeshBasicMaterial( {color: 0x2A2A2A, side: THREE.DoubleSide} );
+    var plane = new THREE.Mesh( geometry, material );
+    plane.rotation.x = -0.5*Math.PI;
+    scene.add( plane );
+
+    var geometryGrass = new THREE.PlaneGeometry( 300, 300, 32 );
+    var materialGrass = new THREE.MeshBasicMaterial( {color: 0x228B22, side: THREE.DoubleSide} );
+    var planeGrass = new THREE.Mesh( geometryGrass, materialGrass );
+    planeGrass.rotation.x = 0.5*Math.PI;
+    planeGrass.rotation.z = 0.8*Math.PI;
+    planeGrass.position.y = -1;
+    scene.add( planeGrass );      
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true; 
+
+    /*
+        TODO: Crear un for loop para llenar un arreglo con tres carros de color Verde, Amarillo, Rojo Y Blanco.
+        El for loop pre cargara las texturas y los modelos 3D para evitarnos el cargarlos en tiempo de ejecucion.
+    */  
+
+    /*
+        TODO: Implementar el metodo load de Three JS para cargar los elementos 3D y tener un evento que se dispare cuando este termina de cargar.
+    */
+
+    var mtlLoaderCar = new THREE.MTLLoader();
+    mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+    mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+    mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('/cirkuits/3dlab/assets/');
+        objLoader.load('raceCarGreen.obj', function (object) {
+            carModel3DGreen = object;
+            /*scene.add(object);
+            object.name = "car"+a;
+            object.rotation.y = 0.1*Math.PI;
+            object.position.x = 1.5 - a;
+            //object.position.y -= 60;
+            object.position.z = -2;*/
+    
+        });
+
+    }); 
+
+
+
+    var createGeometry = function(){
+        totalGeometries = [2,3];
+        random = totalGeometries[ Math.floor((Math.random() * 2)) ];
+        for (let a = 0; a < random; a++) {
+            var modelHelper = carModel3DGreen;            
+            modelHelper.name = "car"+a;
+            modelHelper.rotation.y = 0.1*Math.PI;
+            modelHelper.position.x = 1.5 - a;
+            //object.position.y -= 60;
+            modelHelper.position.z = -2;
+            scene.add(modelHelper);            
+        }
+    } 
+
+    var deleteGeometry = function(){
+        for (let b = 0; b < random; b++) {
+            var selectedObject = scene.getObjectByName("car"+b);
+            scene.remove( selectedObject );                        
+        }
+    }
+
+
+    let stepGarageBase = 0;
+    for (let index = 0; index < 5; index++) {
+            var mtlLoaderPitStopBase = new THREE.MTLLoader();
+            mtlLoaderPitStopBase.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderPitStopBase.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderPitStopBase.load('pitsGarage.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('pitsGarage.obj', function (object) {
+        
+                scene.add(object);
+                //object.rotation.y = 0.11*Math.PI;
+                object.position.x = 2.5 + stepGarageBase;
+                object.position.y = 0;
+                object.position.z = 8;
+                stepGarageBase--;
+            });
+    
+        });
+        
+    }
+    //Right Threes
+    for (let alfa = 0; alfa > -12; alfa--) {
+        let threeStepHelper = 0;
+            for (let beta = 0; beta < 10; beta ++){
+                var mtlLoaderThree = new THREE.MTLLoader();
+                mtlLoaderThree.setResourcePath('/cirkuits/cirkuits/3dlab/assets/');
+                mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
+                mtlLoaderThree.load('treeLarge.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                objLoader.load('treeLarge.obj', function (object) {
+            
+                    scene.add(object);
+                    //object.rotation.y = 0.11*Math.PI;
+                    object.position.x = 3 + threeStepHelper;
+                    object.position.y = 0;
+                    object.position.z = 8 + alfa;
+                    threeStepHelper += 0.5;
+                });
+    
+            });
+        }
+        
+    }
+
+    //Left Threes
+    for (let alfa = 0; alfa > -12; alfa--) {
+        let threeStepHelper = 0;
+            for (let beta = 0; beta < 10; beta ++){
+                var mtlLoaderThree = new THREE.MTLLoader();
+                mtlLoaderThree.setResourcePath('/cirkuits/cirkuits/3dlab/assets/');
+                mtlLoaderThree.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                mtlLoaderThree.load('treeLarge.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                objLoader.load('treeLarge.obj', function (object) {
+            
+                    scene.add(object);
+                    //object.rotation.y = 0.11*Math.PI;
+                    object.position.x = -3 + threeStepHelper;
+                    object.position.y = 0;
+                    object.position.z = 8 + alfa;
+                    threeStepHelper -= 0.5;
+                });
+    
+            });
+        }
+        
+    }    
+
+
+    let stepGarageRoof = 0;
+    for (let index = 0; index < 5; index++) {
+        var mtlLoaderPitRoof = new THREE.MTLLoader();
+        mtlLoaderPitRoof.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderPitRoof.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderPitRoof.load('pitsOfficeRoof.mtl', function (materials) {
+ 
+        materials.preload();
+ 
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('/cirkuits/3dlab/assets/');
+        objLoader.load('pitsOfficeRoof.obj', function (object) {
+    
+            scene.add(object);
+            //object.rotation.y = 0.11*Math.PI;
+            object.position.x = 2.5 + stepGarageRoof;
+            object.position.y = 0.7;
+            object.position.z = 8;
+            stepGarageRoof--;
+        });
+ 
+    });
+        
+    }
+    //Right Barrier
+    let barrierStepHelper = 0;
+    for(let gamma = 0; gamma < 12; gamma ++){
+        var mtlLoaderBarrierWall = new THREE.MTLLoader();
+        mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('barrierWall.obj', function (object) {
+        
+                scene.add(object);
+                object.rotation.y = 0.5*Math.PI;
+                object.position.x = 2.4;
+                object.position.y = 0;
+                object.position.z = -4 + gamma;
+        
+            });
+    
+        });
+    }
+    // Left Barrier
+    let barrierStepHelperLeft = 0;
+    for(let gamma = 0; gamma < 12; gamma ++){
+        var mtlLoaderBarrierWall = new THREE.MTLLoader();
+        mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('barrierWall.obj', function (object) {
+        
+                scene.add(object);
+                object.rotation.y = 0.5*Math.PI;
+                object.position.x = -2.4;
+                object.position.y = 0;
+                object.position.z = -4 + gamma;
+        
+            });
+    
+        });
+    }
+
+    for (let m = 0; m < 12; m++) {
+        var mtlLoaderFenceCurve = new THREE.MTLLoader();
+        mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('fenceCurved.obj', function (object) {
+        
+                scene.add(object);
+                object.rotation.y = -0.5*Math.PI;
+                object.position.x = 2.45;
+                object.position.y = 0;
+                object.position.z = -4 + m;
+        
+            });
+    
+        });
+        
+    }
+
+    for (let i = 0; i < 12; i++) {
+        var mtlLoaderFenceCurve = new THREE.MTLLoader();
+        mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('fenceCurved.obj', function (object) {
+        
+                scene.add(object);
+                object.rotation.y = 0.5*Math.PI;
+                object.position.x = -2.45;
+                object.position.y = 0;
+                object.position.z = -4 + i;
+        
+            });
+    
+        });
+        
+    }
+
+    window.addEventListener( 'resize', function(){
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        renderer.setSize( width, height );
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix( );
+    } );
+    
+    var update = function(){        	
+        controls.update();
+    };
+    var render = function(){
+        renderer.render( scene, camera );
+    };
+    var GameLoop = function(){
+        requestAnimationFrame( GameLoop );
+        update();
+        render();
+    };
+    GameLoop();
+</script>
+</html>

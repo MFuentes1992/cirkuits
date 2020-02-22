@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Coin Game</title>
+    <link rel="stylesheet" href="../css/fontawesome-free-5.8.1-web/css/all.css">
+    <link rel="stylesheet" href="../css/bootstrap-4.3.1/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/gamescss/main.css" />    
+  </head>
+  <body>
+    <div id="HUD">
+      <div id="menuControls">
+        <span id="UIMenu"><i class="fas fa-bars"></i></span>
+        <span id="UIPause"><i class="fas fa-pause-circle"></i></span>
+      </div>
+      <div id="timerControl">
+        <span><i class="fas fa-stopwatch"></i>&nbsp;<span id="UICountdown">00:00</span></span>
+      </div>
+      <div id="livesControl">
+        <span id="life3"><i class="fas fa-heart"></i></span>
+        <span id="life2"><i class="fas fa-heart"></i></span>
+        <span id="life1"><i class="fas fa-heart"></i></span>
+      </div>
+      <div id="scoreControl">
+        <span><i class="fas fa-trophy"></i>&nbsp;<span id="UIScore">9999</span></span>
+      </div>
+    </div>
+   <!-- <div id="quickHUDContainer">
+      <div id="quickHUD">4</div>
+    </div> -->
+    <h1 id="gameStartTimer">3</h1>
+    <div id="timeBarCointainer">
+      <div id="timeBar"></div>
+    </div>
+    <div id="speachBox">
+      <span id="speachResult">Voice input:</span>
+    </div>
+    <div id="smokeScreen" style="width: 100%; height:100%; background-color:	#707070; "> 
+      <!-- /////////////  SMOKE SCREEN WILL HELP US TO RENDER A SIMILAR BACKGROUND TO THE ACTUAL GAME ////////////////  -->
+    </div>
+    <!-- /////////// PAUSE MODAL ////////////////////// -->
+    <div class="modal fade" id="pauseModal" tabindex="-1" role="dialog" aria-labelledby="pauseModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="pauseModalCenterTitle">Pause</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="pauseContainer">
+                <span class="pause-ico">markCraft</span>
+            </div>            
+            <div class="pauseContainer">
+                <span  class="pause-ico"><i class="fas fa-trophy"></i>&nbsp;x<span id="pauseScore">0000</span></span>
+            </div>
+            <div class="pauseContainer">
+              <span id="pauseLife1" class="pause-ico"><i class="fas fa-heart"></i></span>
+              <span id="pauseLife2" class="pause-ico"><i class="fas fa-heart"></i></span>
+              <span id="pauseLife3" class="pause-ico"><i class="fas fa-heart"></i></span>
+            </div>            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary">Main menu</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Resume</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /////////// GAME OVER ////////////////////// -->
+    <div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-labelledby="gameOverModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="gameOVerModalCenterTitle">Game Over</h5>
+              <button type="button" class="close" onclick="reload()" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="gameOverContainer">
+                  <span class="gameo-ico">markCraft</span>
+              </div>            
+              <div class="gameOverContainer">
+                  <span  class="gameo-ico"><i class="fas fa-trophy"></i>&nbsp;x<span id="gameOverScore">0000</span></span>
+              </div>
+              <div class="gameOverContainer">
+                <span id="gameOverLife1" class="gameo-ico"><i class="fas fa-heart"></i></span>
+                <span id="gameOverLife2" class="gameo-ico"><i class="fas fa-heart"></i></span>
+                <span id="gameOverLife3" class="gameo-ico"><i class="fas fa-heart"></i></span>
+              </div>            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary">Main menu</button>
+              <button type="button" class="btn btn-primary" onclick="reload()">Try again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <script src="../js/games/three.js" charset="utf-8"></script>
+    <script src="../js/games/TweenMax.min.js" charset="utf-8"></script> 
+    <script src="../js/games/jquery-3.4.1.js" charset="utf-8"></script>
+    <script src="../js/jquery-1.12.3.min.js"></script>
+    <script src="../js/dist/bootstrap.min.js"></script>       
+    <script type="text/javascript">
+
+    //variables para el timer de cuenta regresiva - Inicio del juego.
+    var d = new Date();
+    d.setMinutes(d.getMinutes() + 1);
+    d.setSeconds(d.getSeconds() + 3);
+    var startDate = d.getTime();
+    var distance = 0;
+    var now = 0;
+    var minutes = 0;
+    var seconds = 59;
+    var realSeconds = 0;
+    var startGame = false;
+    var gameOver = false;
+    var gameStartTimer = document.getElementById("gameStartTimer");        
+    var gameStartCounter = 3;
+    var answerGap = 1;
+    var quickSeconds = 60;          
+    var lives = 3;
+    var score = 0;
+    var isSpeaking = false;
+    var penalty = false;
+    var speachBox = document.getElementById("speachBox");
+    var speachTextBox = document.getElementById("speachResult");
+    var timeBarContainer = document.getElementById("timeBarCointainer");
+    var timeBar = document.getElementById("timeBar");
+    var UIScore = document.getElementById("UIScore");
+    var UILife1 = document.getElementById("life1");
+    var UILife2 = document.getElementById("life2");
+    var UILife3 = document.getElementById("life3");
+    var pauseScore = document.getElementById("pauseScore");
+    var pauseLife1 = document.getElementById("pauseLife1");
+    var pauseLife2 = document.getElementById("pauseLife2");
+    var pauseLife3 = document.getElementById("pauseLife3");
+
+    var gameOverScore = document.getElementById("gameOverScore");
+    var gameOverLife1 = document.getElementById("gameOverLife1");
+    var gameOverLife2 = document.getElementById("gameOverLife2");
+    var gameOverLife3 = document.getElementById("gameOverLife3");
+
+    var UICountdown = document.getElementById("UICountdown");
+    var timmerRunning = false;
+    
+
+    //variables para las geometrias y logica del juego
+    var cameraPosArray = [30,5];
+    var cameraPos = 0;
+    var colorCanonical = "";
+    var colors = [ "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)",
+           "rgb(148,0,211)", "rgb(255,255,0)", "rgb(255,127,0)"];
+    var color = 0;
+    
+    const cameraFarClose = {
+      THOSE: 30,
+      THESE: 5
+    }
+
+    const colorsCanonical = {
+      RED: "RED",
+      GREEN: "GREEN",
+      BLUE: "BLUE",
+      PURPLE: "PURPLE",
+      YELLOW: "YELLOW",
+      ORANGE: "ORANGE"
+    }
+
+    //SPEECH RECOGNITION
+    var message = "";
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+
+    var grammar = '#JSGF V1.0;'
+    var recognition = new SpeechRecognition();
+    var speechRecognitionList = new SpeechGrammarList();
+    speechRecognitionList.addFromString(grammar, 1);
+    recognition.grammars = speechRecognitionList;
+    recognition.continuous = true;
+    recognition.lang = 'en-US';
+    recognition.interimResults = true;    
+    let finalTranscript = '';
+
+    recognition.onresult = function(event) {
+      let interimTranscript = '';
+      for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+      let transcript = event.results[i][0].transcript;
+      if (event.results[i].isFinal) {
+          isSpeaking = true;
+          finalTranscript = transcript;
+          message = 'Voice Input: ' + finalTranscript + '.';
+          speachTextBox.innerHTML = message;
+          if(!penalty)         
+            compareText(finalTranscript);
+      } else {
+          isSpeaking = true;
+          interimTranscript += transcript;
+        }
+      }
+    };
+
+    recognition.onend = function() {
+      //recognition.stop();
+      if(timmerRunning){
+          if(recognition.stop){
+          recognition.start();
+        }
+      }
+    };
+
+    recognition.onerror = function(event) {
+        message = 'Error occurred in recognition: ' + event.error;
+    }  
+    
+    //Create timer in the canvas section and update it
+      $( document ).ready(function(){
+        var myTween = new TimelineMax();
+        myTween.to(gameStartTimer, 1, {css:{scale:5, opacity:0}, ease:Quad.easeInOut, repeat:2});
+        var id = setInterval(function(){ 
+          gameStartTimer.innerHTML = --this.gameStartCounter;           
+          if(this.gameStartCounter <= 0){
+            clearInterval(id);                        
+            speachBox.style.visibility = "visible";
+            timeBarContainer.style.visibility = "visible";
+            timeBar.style.visibility = "visible";
+            createGeometry();
+            recognition.start();
+            //hide SmokeScreen
+            $("#smokeScreen").hide();
+          }
+        }, 1000);
+
+      });
+
+      //Creamos la escena y la camara para el escenario 3D
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      var renderer = new THREE.WebGLRenderer({antialias: true});
+      var raycaster = new THREE.Raycaster();
+      var mouse = new THREE.Vector2();
+      //Background color de la escena.
+      renderer.setClearColor("#707070");
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      //Enableling shadow rendering
+      renderer.shadowMap.enabled = true;
+			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      
+      //Metodo para hacer 'responsive' nuestro canvas
+      window.addEventListener( 'resize', function(){
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        renderer.setSize( width, height );
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix( );
+      } );
+
+      ////////// GAME lOGIC /////////////
+      var compareText = function(text){
+        var str = text;
+        var res = str.match(/those are/g);
+        var resAlfa = str.match(/these are/g);        
+        if(res != null && res.length >= 1 && cameraPos == cameraFarClose.THOSE && str.toUpperCase().includes(colorCanonical)){
+          score += 10;          
+        }else if(resAlfa != null && resAlfa.length >= 1 && cameraPos == cameraFarClose.THESE && str.toUpperCase().includes(colorCanonical)){
+            score += 10 + (4-answerGap); 
+            console.log("Sumando...");           
+            console.log("Color:"+colorCanonical);
+          }else{
+            lives --;
+            console.log("Restando...");
+            console.log("Color:"+colorCanonical);
+          }        
+        destroyGeometry();
+        createGeometry();
+        quickSeconds = seconds + 1;
+        isSpeaking = false;               
+      }
+
+      //Create boxes placed randomly             
+      var createGeometry = function(){ 
+
+        //Variables de inicializacion        
+        var totalGeometries = [2,3];
+        
+        var random = totalGeometries[ Math.floor((Math.random() * 2)) ];                
+        var posX = -3;
+        this.tl = new TimelineMax();
+        var ranPosition = Math.floor((Math.random() * 6))
+        color = colors[ranPosition];
+        switch(ranPosition){
+          case 0:
+            colorCanonical = "RED";
+          break;
+          case 1:
+            colorCanonical = "GREEN";
+          break;
+          case 2:
+            colorCanonical = "BLUE";
+          break;
+          case 3:
+            colorCanonical = "PURPLE";
+          break;
+          case 4:
+            colorCanonical = "YELLOW";
+          break;
+          case 5:
+            colorCanonical = "ORANGE";
+          break;
+          default:
+            colorCanonical = "RED";
+          break;
+        }
+
+        for(var gamma = 0; gamma < random; gamma ++){
+
+          var geometry = new THREE.BoxGeometry(1,1,1);
+          var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});          
+          material.color.set(color);                  
+          var mesh = new THREE.Mesh(geometry, material);                    
+          mesh.rotation.x = Math.PI*Math.random();
+          mesh.rotation.y = Math.PI*Math.random();
+          mesh.position.x = posX;
+          mesh.castShadow = true;                    
+          scene.add(mesh);
+          if(mesh.rotation.y > 0) { 
+              this.tl.to(mesh.rotation, .5, {y: 0, ease: Expo.easeOut}); 
+            }else{
+              this.tl.to(mesh.rotation, .5, {y: 0.5, ease: Expo.easeOut});                  
+          }
+          posX += 3;          
+        }
+        cameraPos = cameraPosArray[Math.floor((Math.random() * 2))];
+        camera.position.z = cameraPos;
+
+      }
+
+      var destroyGeometry = function(){
+        var meshes = new Array();
+        for(var alfa = 0; alfa < scene.children.length; alfa++){
+          if( scene.children[ alfa ] instanceof THREE.Mesh ){
+            meshes.push(scene.children[ alfa ]);           
+          } 
+        }
+
+        for(var beta = 0; beta < meshes.length; beta ++){
+          var meshHelper = meshes[ beta ];
+          if( meshHelper instanceof THREE.Mesh ){
+            scene.remove(meshHelper);            
+          }                      
+        }
+      }
+    
+      //Light
+      ambientLight = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(ambientLight);
+      
+      light = new THREE.PointLight(0xffffff, 0.8, 18);
+      light.position.set(-3,6,-3);
+      light.castShadow = true;
+      light.shadow.camera.near = 0.1;
+      light.shadow.camera.far = 25;
+      scene.add(light);
+
+
+      //game logic
+      var update = function(){
+        if(gameStartCounter <= 0){
+          startGame = true;
+          gameStartTimer.parentNode.removeChild(gameStartTimer);         
+          //gameStartTimer.style.visibility = 'hidden';
+          document.body.appendChild(renderer.domElement);
+          gameStartCounter = 3; // reiniciamos contador para que solo se agregue una vez el canvas del escenario 3D 
+          timmerRunning = true;                             
+        }
+        //Update Game HUD
+        UIScore.innerHTML = score;
+        if(lives == 3){
+          UILife1.style.visibility = 'visible';
+          UILife2.style.visibility = 'visible';
+          UILife3.style.visibility = 'visible';
+        }else if(lives == 2){
+          UILife1.style.visibility = 'hidden';
+          UILife2.style.visibility = 'visible';
+          UILife3.style.visibility = 'visible';
+        }else if(lives == 1){
+          UILife1.style.visibility = 'hidden';
+          UILife2.style.visibility = 'hidden';
+          UILife3.style.visibility = 'visible';
+        }else{
+          UILife1.style.visibility = 'hidden';
+          UILife2.style.visibility = 'hidden';
+          UILife3.style.visibility = 'hidden';
+        }
+
+        //Timer
+        // Get today's date and time
+        if(timmerRunning){
+          var now = new Date().getTime();
+          var distance = startDate - now;
+          minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          if(!isSpeaking)
+            answerGap = quickSeconds - seconds;
+          if(answerGap > 4){
+              answerGap = 1;
+              quickSeconds -= 4;              
+              destroyGeometry();
+              createGeometry();
+              lives--;
+              penalty = true;
+              //console.log("Restando...");
+          }else{
+            penalty = false;
+          }
+          
+          if(minutes == 0 && seconds == 0){
+            gameOver = true;
+          }
+        }
+
+
+
+        //conditional if game over
+        if(lives == 0){
+          gameOver = true;
+        }
+        //Displaying formatting
+        if(seconds < 10){
+          UICountdown.innerHTML = "0"+minutes+":0"+seconds;          
+        }else if(minutes < 10 && seconds >= 10){
+          UICountdown.innerHTML = "0"+minutes+":"+seconds;
+        }else{
+          UICountdown.innerHTML = minutes+":"+seconds;
+        }
+        //quickHUD.innerHTML = "0"+answerGap;
+        timeBar.style.width = ((5-answerGap)*100)/4 + '%';
+
+        //Checking for game over
+        if(gameOver){
+          timmerRunning = false;
+          recognition.abort();
+          $('#gameOverModal').modal('show');
+          gameOverScore.innerHTML = score;
+          if(lives == 3){
+            gameOverLife1.style.visibility = 'visible';
+            gameOverLife2.style.visibility = 'visible';
+            gameOverLife3.style.visibility = 'visible';
+          }else if(lives == 2){
+            gameOverLife3.style.visibility = 'hidden';
+            gameOverLife2.style.visibility = 'visible';
+            gameOverLife1.style.visibility = 'visible';
+          }else if(lives == 1){
+            gameOverLife3.style.visibility = 'hidden';
+            gameOverLife2.style.visibility = 'hidden';
+            gameOverLife1.style.visibility = 'visible';
+          }else{
+            gameOverLife3.style.visibility = 'hidden';
+            gameOverLife2.style.visibility = 'hidden';
+            gameOverLife1.style.visibility = 'hidden';
+          }           
+        }
+      };
+
+      //draw scene
+      var render = function(){
+        if(startGame)
+          renderer.render( scene, camera );
+          //
+      };
+
+      var GameLoop = function(){
+        requestAnimationFrame( GameLoop );
+        update();
+        render();
+      };
+
+      function mouseClick(event){
+        event.preventDefault();
+
+        //raycaster
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+
+        var intersects = raycaster.intersectObjects(scene.children, true);
+        for (var i = 0; i < intersects.length; i++) {
+                this.tl = new TimelineMax();               
+                if(intersects[i].object.rotation.y > 0) { 
+                  this.tl.to(intersects[i].object.rotation, .5, {y: 0, ease: Expo.easeOut}); 
+                 }else{
+                  this.tl.to(intersects[i].object.rotation, .5, {y: 0.5, ease: Expo.easeOut});                  
+                 }
+            }
+      }
+
+      window.addEventListener('click', mouseClick);
+      GameLoop();
+
+
+      //Jquery Events
+      $( "#UIPause" ).click(function(){
+        if(startGame){
+          pauseScore.innerHTML = score;
+          if(lives == 3){
+            pauseLife3.style.visibility = 'visible';
+            pauseLife2.style.visibility = 'visible';
+            pauseLife1.style.visibility = 'visible';
+          }else if(lives == 2){
+            pauseLife3.style.visibility = 'hidden';
+            pauseLife2.style.visibility = 'visible';
+            pauseLife1.style.visibility = 'visible';
+          }else if(lives == 1){
+            pauseLife3.style.visibility = 'hidden';
+            pauseLife2.style.visibility = 'hidden';
+            pauseLife1.style.visibility = 'visible';
+          }else{
+            pauseLife3.style.visibility = 'hidden';
+            pauseLife2.style.visibility = 'hidden';
+            pauseLife1.style.visibility = 'hidden';
+          }        
+          $('#pauseModal').modal('show');        
+          timmerRunning = false;
+          recognition.abort();
+        }
+      });
+
+      $('#pauseModal').on('hidden.bs.modal', function (e) {
+      // do something...
+        var d = new Date();
+        d.setMinutes(d.getMinutes() + minutes);
+        d.setSeconds(d.getSeconds() + seconds);
+        timmerRunning = true;
+        startDate = d.getTime();
+        recognition.start();
+      });
+
+
+
+      var reload = function(){
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

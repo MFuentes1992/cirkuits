@@ -1,0 +1,260 @@
+p {
+  color: #808080 !important;
+}
+
+
+.contenido
+{
+  position: relative;
+  margin: 75px 0px 0px 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.form
+{
+  position: relative;
+  margin: auto;
+  padding: 2%;
+  width: 100%;
+  text-align: center;
+}
+
+#regLogin
+{
+  position: relative;
+  margin-top: 2%;
+  width: 100%;
+  /*padding-right: 15%;*/
+  text-align: center;
+}
+
+/*******DASHBOARD********/
+#userSession
+{
+  position: relative;
+  width: 100%;
+  height: 5%;
+  margin-left: 10px;
+  margin-top: 70px;
+}
+/*******Usuario dashboard********/
+.contenidoUsuario
+{
+  position: relative;
+  width: 854px;
+  margin: auto;
+  background-color: 	#EEEEEE;
+}
+#userContent
+{
+  position: relative;
+  padding: 10px;
+}
+
+#subscription
+{
+  position: relative;
+  width: 80%;
+  height: 530px;
+  margin: auto;
+}
+
+/*******Payment********/
+.contenidoPayment
+{
+  position: relative;
+  width: 854px;
+  margin: auto;
+  background-color: 	#EEEEEE;
+}
+#paymentContent
+{
+  position: relative;
+  padding: 10px;
+}
+/*******Subscription********/
+.contenidoSubscription
+{
+  position: relative;
+  width: 854px;
+  margin: auto;
+  background-color: 	#EEEEEE;
+}
+
+#subscriptionContent
+{
+  position: relative;
+  padding: 10px;
+}
+
+#endDate
+{
+  position: relative;
+  width: 100%;
+  height: 100px;
+  border-radius: 3px;
+  border: 1px solid #EEE;
+  padding: auto;
+}
+
+#service
+{
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 3px;
+  border: 1px solid #EEE;
+  padding: auto;
+}
+
+#menu-neuroni
+{
+  background-color: red;
+  position: relative;
+  width: 854px;
+  height: 600px;
+  margin: auto;
+}
+#menu-neuronm
+{
+  background-color: blue;
+  position: relative;
+  width: 854px;
+  height: 600px;
+  margin: auto;
+}
+#menu-neurons
+{
+  background-color: green;
+  position: relative;
+  width: 854px;
+  height: 600px;
+  margin: auto;
+}
+
+#profile
+{
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+#userPhoto
+{
+  position: relative;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+#userInfo
+{
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+#userNameP
+{
+  position: relative;
+  width: 100%;
+  margin-top: 5%;
+  text-align: center;
+}
+#userExtra
+{
+  position: relative;
+  width: 65%;
+  margin-top: 2%;
+  margin-left: 35%;
+}
+#userProgress
+{
+  position: relative;
+  width: 100%;
+}
+
+#tleaderboard
+{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  height:800px;
+  text-align: center;
+  font-size: 18pt;
+}
+
+#tleaderboard table th{
+  text-align: center;
+}
+
+#tleaderboard table td{
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+@media screen and (min-width: 320px) and (max-width: 992px)
+{
+  .contenido
+  {
+    position: relative;
+    margin: 75px 0px 0px 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .form
+  {
+    position: relative;
+    margin: auto;
+    padding: 2%;
+    width: 100%;
+    text-align: center;
+  }
+
+  #regLogin
+  {
+    position: relative;
+    margin: 5% 0% 0% 0%;
+    width: 100%;
+    text-align: center;
+  }
+
+  #profile
+  {
+    position: relative;
+    width: 100%;
+    margin: auto;
+  }
+
+  #userPhoto
+  {
+    position: relative;
+    margin-top: 10%;
+    width: 100%;
+  }
+
+  #userAvatar
+  {
+    width: 128px;
+  }
+  #userExtra
+  {
+    position: relative;
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 0px;
+    text-align: center;
+  }
+  #userExtra > table{
+    width: 100%;
+  }
+  .data
+  {
+    display: none;
+  }
+  #userProgress
+  {
+    position: relative;
+    width: 80%;
+    margin: auto;
+  }
+}
