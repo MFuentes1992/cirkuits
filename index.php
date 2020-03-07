@@ -51,7 +51,7 @@
       <div class="row">
         <div>        
           <div class="text-about">
-            <h1><strong>ABOUT US</strong></h1>
+            <h1><strong>Cirkuits Team</strong></h1>
             <br>           
             <div>
               <p>
@@ -182,27 +182,61 @@
       insertBanner();
     });
 
+    var commonResponsive = swidth => {
+        $('.separator').css('visibility', 'hidden');
+        
+    }
+
+    var tabletResponsive = (swidth) =>{
+      commonResponsive(swidth);
+      $('#about-title').css('height','300px');
+      $('#about-title > h1').css('font-size',`${swidth*0.1}pt`);
+      $('.text-about').css('padding-left', '10%');
+      $('.text-about').css('padding-right', '10%');
+      $('.text-about').css('margin-top', '5%');
+    }
+    var mobileResponsive = (swidth) =>{
+      commonResponsive(swidth);
+      $('#about-title').css('height','200px');
+      $('#about-title').css('padding-top','50px');
+      $('.text-about').css('padding-left', '10%');
+      $('.text-about').css('padding-right', '10%');
+      $('.text-about').css('margin-top', '5%');
+      $('#about-title > h1').css('font-size',`${swidth/swidth}em`);
+      $('.img_logo').css('width', '200');
+      $('.img_logo').css('height', '80');
+      $('#login').remove();
+    }
     var insertBanner = function()
     {
       var SCREEN_WIDTH = $(window).width();
       var SCREEN_HEIGHT = $(window).height();
       //Getting and setting the banner
-      if(SCREEN_WIDTH >= 360 )
-      {
-        var bannerVideo = '<video autoplay = "true" loop ="true" muted id = "video-teaser">';
-        bannerVideo    += '<source src ="img/videos/video_promo.mp4" type = "video/mp4" />Your browser does not suppor video tag</video>';
-        $('#video').html(bannerVideo);
-      }else {
-        var banner = '<div id="banner" class="header-banner"></div>';
-        $('#video').html(banner);
-      }
+      var bannerVideo = '<video autoplay = "true" loop ="true" muted id = "video-teaser">';
+      bannerVideo    += '<source src ="img/videos/video_promo.mp4" type = "video/mp4" />Your browser does not suppor video tag</video>';
+      $('#video').html(bannerVideo);      
       //Getting and changing the banner width
       sliderWidth  = $('#video-teaser').width();
       console.log(sliderWidth); //Debug !warning
 
       $('.slider-container').width(sliderWidth*3+"px");
       $('.slide').width(sliderWidth+"px");
+
+      /** /////////////// RESPONSIVE ////////////// */
+
+      /**//////////////// TABLET (800 - 425) ////////// */
+      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
+        tabletResponsive(SCREEN_WIDTH);
+      }
+      /**//////////////// MOBILE (425 - 325) ////////// */
+      if(SCREEN_WIDTH <= 425){
+        mobileResponsive(SCREEN_WIDTH);
+      }
+
     }
+
+
+
 
     function scrollTo(id) {
       var aTag = $("p[id='"+id+"']");
