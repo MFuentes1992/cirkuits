@@ -120,7 +120,7 @@
             <br>
             <div>
               <p>
-                When taking a decision within the company we always ask “does this help accelerate and improve the students’ end result?
+                When taking a decision within the company we always ask "does this help accelerate and improve the students’ end result?"
               </p>
             </div>
           </div>
@@ -171,12 +171,29 @@
         </div>
       </footer>
     </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </div>
   <script type="text/javascript">
     var sliderWidth = 0;
     $(document).ready(function(){
       insertBanner();
     });
+    var mybutton = document.getElementById("myBtn");
+    window.onscroll = () => {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      //document.body.scrollTop = 0;
+      //document.documentElement.scrollTop = 0;
+      $('html,body').animate({ scrollTop: 0 }, 'slow');
+    }
 
     $(window).resize(function(){
       insertBanner();
@@ -190,7 +207,9 @@
     var tabletResponsive = (swidth) =>{
       commonResponsive(swidth);
       $('#about-title').css('height','300px');
+      $('#contact-title').css('height','300px');
       $('#about-title > h1').css('font-size',`${swidth*0.1}pt`);
+      $('#contact-title > h1').css('font-size',`${swidth*0.1}pt`);
       $('.text-about').css('padding-left', '10%');
       $('.text-about').css('padding-right', '10%');
       $('.text-about').css('margin-top', '5%');
@@ -198,14 +217,21 @@
     var mobileResponsive = (swidth) =>{
       commonResponsive(swidth);
       $('#about-title').css('height','200px');
+      $('#contact-title').css('height','200px');
       $('#about-title').css('padding-top','50px');
       $('.text-about').css('padding-left', '10%');
       $('.text-about').css('padding-right', '10%');
       $('.text-about').css('margin-top', '5%');
       $('#about-title > h1').css('font-size',`${swidth/swidth}em`);
+      $('#contact-title > h1').css('font-size',`${swidth*0.1}pt`);
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#login').remove();
+      $('#supportFooter').css('width','100%');
+      $('#contactoFooter').css('width', '100%');
+      $('#supportFooter').css('text-align','justify');
+      $('#supportFooter').css('margin-left','5%');
+      $('#supportFooter').css('margin-top','5%');
     }
     var insertBanner = function()
     {
