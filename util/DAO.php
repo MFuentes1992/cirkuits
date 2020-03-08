@@ -1,8 +1,8 @@
 <?php
 
   $dbHost = "localhost";
-  $dbUser = "mfuentes";
-  $dbPass = "des2tramp2dos2";
+  $dbUser = "root";
+  $dbPass = "";
   $dbName = "cirkuits";
 
   /*$dbHost = "localhost";

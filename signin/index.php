@@ -95,7 +95,7 @@ else {
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="col-md-8">
+        <div>
           <a href="<?=$url;?>" style="margin-left: 5%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
       </nav>
@@ -169,9 +169,9 @@ else {
             <span>
               <h4>Contact</h4>
             </span>
-            <span class="label"><i class="fas fa-mobile-alt"></i>+52 777 500 60 83</span>
+            <span class="label">+52 777 500 60 83</span>
             <br>
-            <span class="label"><i class="fas fa-inbox"></i>postal code: 63866</span>
+            <span class="label">postal code: 63866</span>
             <br>
             <span class="label">cirkuitsed@cirkuits.com.mx</span>
             <br>
@@ -197,11 +197,48 @@ else {
      $(document).ready( function(){
        $('#login_form').validationEngine();
        $('#logModal').modal('show');
+       responsiveEngine();
      } );
      var login = function()
      {
        $('#login_form').submit();
      }
+
+    var commonResponsive = swidth => {
+        $('.separator').css('visibility', 'hidden');
+        
+    }
+
+    var tabletResponsive = (swidth) =>{
+      commonResponsive(swidth);
+    }
+    var mobileResponsive = (swidth) =>{
+      commonResponsive(swidth);
+      $('.img_logo').css('width', '200');
+      $('.img_logo').css('height', '80');
+      $('#supportFooter').css('width','100%');
+      $('#contactoFooter').css('width', '100%');
+      $('#supportFooter').css('text-align','justify');
+      $('#supportFooter').css('margin-left','5%');
+      $('#supportFooter').css('margin-top','5%');
+    }
+
+    var responsiveEngine = () => {
+      var SCREEN_WIDTH = $(window).width();
+      var SCREEN_HEIGHT = $(window).height();
+      /** /////////////// RESPONSIVE ////////////// */
+
+      /**//////////////// TABLET (800 - 425) ////////// */
+      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
+        tabletResponsive(SCREEN_WIDTH);
+      }
+      /**//////////////// MOBILE (425 - 325) ////////// */
+      if(SCREEN_WIDTH <= 425){
+        mobileResponsive(SCREEN_WIDTH);
+      }
+    }
+
+
    </script>
  </body>
  </html>
