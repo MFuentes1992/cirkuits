@@ -95,7 +95,7 @@ else {
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div>
+        <div class="col-md-8" id="logoContainer">
           <a href="<?=$url;?>" style="margin-left: 5%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
       </nav>
@@ -204,7 +204,7 @@ else {
        $('#login_form').submit();
      }
 
-    var commonResponsive = swidth => {
+     var commonResponsive = swidth => {
         $('.separator').css('visibility', 'hidden');
         
     }
@@ -212,10 +212,11 @@ else {
     var tabletResponsive = (swidth) =>{
       commonResponsive(swidth);
     }
-    var mobileResponsive = (swidth) =>{
+   var mobileResponsive = (swidth) =>{
       commonResponsive(swidth);
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
+      $('#logoContainer').removeClass('col-md-8');
       $('#supportFooter').css('width','100%');
       $('#contactoFooter').css('width', '100%');
       $('#supportFooter').css('text-align','justify');

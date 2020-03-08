@@ -62,30 +62,24 @@
   <script src="<?=$url;?>js/reguser.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar navbar-brand">
-      <img src="<?=$url;?>img/logo2.png" alt="" />
-    </a>
-    <div class="collapse navbar-collapse" id="navbarNav" style="flex-direction: row-reverse !important;">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$url;?>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$url;?>about">Cirkuits</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$url;?>videogames">Video Games</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$url;?>signin">Sign In &nbsp;&nbsp;<i class="fas fa-sign-in-alt"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?=$url;?>signup">Sign Up &nbsp;&nbsp;<i class="fas fa-user-plus"></i></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
+          <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
+          <h5 class="text-white label">Sign in</h5>
+          <h5 class="text-white label">Sign up</h5>
+        </div>
+      </div>
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="col-md-8" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 5%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+        </div>
+      </nav>
+  </div>
   <div class="container-fluid">
 
     <div class="row">
@@ -187,25 +181,31 @@
 
     <div class="row">
       <!-- Footer -->
-      <footer class="footer col-md-12" style="position:relative">
+      <footer class="footer col-md-12" style="position:relative;">
         <div class="row">
-          <div class="foot-section col-md-4" id="contacto">
-            <span>+52 777 123 45 67</span>
+          <div class="foot-section" id="contactoFooter">
+            <span>
+              <h4>Contact</h4>
+            </span>
+            <span class="label">+52 777 500 60 83</span>
             <br>
-            <span>example@domain.com.mx</span>
+            <span class="label">postal code: 63866</span>
             <br>
-            <span>postal code: 63866</span>
+            <span class="label">cirkuitsed@cirkuits.com.mx</span>
             <br>
+            <span class="label">2019 www.cirkuits.com &copy;</span>
           </div>
-          <div class="foot-section col-md-4" id="copyright">
-            <span>2016 Cirkuits all rights reserved &copy;</span>
+          <div class="foot-section" id="supportFooter">
+            <span>
+              <h4>Soporte</h4>
+            </span>
+            <span class="label">Contact Us</span>
             <br>
-          </div>
-          <div class="foot-section social" id="social-1">
-            <a href="http://www.twitter.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fab fa-twitter-square"></i></span></a>
-            <a href="http://www.facebook.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fab fa-facebook"></i></span></a>
-            <a href="http://www.youtube.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fab fa-youtube"></i></span></a>
-            <a href="http://www.instagram.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fab fa-instagram"></i></span></a>
+            <span class="label">Help & FAQ</span>
+            <br>
+            <span class="label">Service Status</span>
+            <br>
+            <span class="label">Tech Requirements</span>
           </div>
         </div>
       </footer>
@@ -213,6 +213,42 @@
 
   </div>
   <script type="text/javascript">
+    var commonResponsive = swidth => {
+        $('.separator').css('visibility', 'hidden');
+        
+    }
+
+   var tabletResponsive = (swidth) =>{
+      commonResponsive(swidth);
+    }
+    var mobileResponsive = (swidth) =>{
+      commonResponsive(swidth);
+      $('.img_logo').css('width', '200');
+      $('.img_logo').css('height', '80');
+      $('#logoContainer').removeClass('col-md-8');
+      $('#supportFooter').css('width','100%');
+      $('#contactoFooter').css('width', '100%');
+      $('#supportFooter').css('text-align','justify');
+      $('#supportFooter').css('margin-left','5%');
+      $('#supportFooter').css('margin-top','5%');
+    }
+
+    var responsiveEngine = () => {
+      var SCREEN_WIDTH = $(window).width();
+      var SCREEN_HEIGHT = $(window).height();
+      /** /////////////// RESPONSIVE ////////////// */
+
+      /**//////////////// TABLET (800 - 425) ////////// */
+      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
+        tabletResponsive(SCREEN_WIDTH);
+      }
+      /**//////////////// MOBILE (425 - 325) ////////// */
+      if(SCREEN_WIDTH <= 425){
+        mobileResponsive(SCREEN_WIDTH);
+      }
+    }
+
+
     $(document).ready( function(){
       $('#reguser_form').validationEngine();
       $('#birthDate').datepicker({
@@ -223,6 +259,7 @@
         minDate: "-100Y",
         yearRange: "-100:-4"
       });
+      responsiveEngine();
     } );
     var register = function()
     {
