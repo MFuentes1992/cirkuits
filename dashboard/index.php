@@ -79,8 +79,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="col-md-2" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 5%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+        <div class="col-md-4" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 5%; float:right"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -136,7 +136,7 @@
                 </a>
               </div>
               <div class="menu-item col">
-                <a class="label txt-color-darkgray link-static" href="#">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
                   <span class="dash-ico" style="font-size: 3em;"><i class="fas fa-gamepad"></i></span> <br>
                   <span class="">Videogames</span>
                 </a>
@@ -204,6 +204,8 @@
       commonResponsive(swidth);
       $('#toggle').removeClass('col-md-1');
       $('#logoContainer').addClass('col-md-6');
+      $('#logoContainer').removeClass('col-md-4');
+      $('.img_logo').css('width', '256');
       $('#avatarContainer').removeClass('col-md-3');
       $('#avatarContainer').addClass('col-md-4');
     }
@@ -211,7 +213,7 @@
         commonResponsive(swidth);
         $('.img_logo').css('width', '200');
         $('.img_logo').css('height', '80');
-        $('#logoContainer').removeClass('col-md-2');
+        $('#logoContainer').removeClass('col-md-4');
         $('#toggle').removeClass('col-md-1');
         $('#avatarContainer').remove();
         $('#supportFooter').css('width','100%');
