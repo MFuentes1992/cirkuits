@@ -79,7 +79,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="col-md-4" id="logoContainer">
+        <div class="col-md-6" id="logoContainer">
           <a href="<?=$url;?>" style="margin-left: 5%; float:right"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
