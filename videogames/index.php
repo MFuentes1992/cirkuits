@@ -100,10 +100,6 @@
   <div class="container-fluid bg-black">
 
     <div class="row">
-
-    <!-- /////// About Us ////// -->
-      <div class="separator">
-      </div>
         <div class="swiper-container">
           <div class="swiper-wrapper">
           <div class="swiper-slide">Slide 1</div>
@@ -207,6 +203,7 @@
     }
 
     var swiper = new Swiper('.swiper-container', {
+      loop: true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',

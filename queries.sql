@@ -34,6 +34,7 @@ CREATE TABLE leaderboard (id_leaderboard INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     desc usuarios;
     
     select * from usuarios;
+    update usuarios set estatus_usuario = 2 where id_usuario = 2;
     
 INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,
       email_usuario, nacimiento_usuario, estatus_usuario, fecha_registro, fecha_actualizacion)  VALUES ('Marco','Fuentes','mfuentes','des2tramp2dos2','markfuentes1992@hotmail.com','2015-04-02',1,NOW(), NOW())
