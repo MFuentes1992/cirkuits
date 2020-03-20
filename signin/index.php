@@ -96,7 +96,7 @@ else {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 5%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
       </nav>
   </div>
@@ -163,7 +163,7 @@ else {
          </div>
        </div>
       <!-- Footer -->      
-      <footer class="footer col-md-12" style="position:relative;">
+      <footer class="footer col-md-12">
         <div class="row">
           <div class="foot-section" id="contactoFooter">
             <span>

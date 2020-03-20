@@ -80,7 +80,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 5%; float:right"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -194,6 +194,7 @@
       $(document).ready( function(){
         $('#logModal').modal('show');
         responsiveEngine();
+        console.log($(window).width());
       });
 
     var commonResponsive = swidth => {
@@ -232,6 +233,9 @@
       var SCREEN_WIDTH = $(window).width();
       var SCREEN_HEIGHT = $(window).height();
       /** /////////////// RESPONSIVE ////////////// */
+      if(SCREEN_WIDTH <= 1404){
+        $("#logoContainer > a").css('margin-left','37%');
+      }
 
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
