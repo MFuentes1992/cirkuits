@@ -61,16 +61,11 @@
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>subscription">Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url?>updatepayment/">Update payment</a>
+            <li id="resavatar" class="hidden">              
             </li>
-            <li id='reslogout' class="hidden">
-              <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-            </li>
-            <li id="resavatar" class="hidden">
-              <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> 
+            <li id='reslogout' class="hidden">              
             </li>
           </ul>
         </div>
@@ -81,8 +76,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-        <div class="col-md-4" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 5%; float:right"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+        <div class="col-md-6" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -243,7 +238,7 @@
     
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </div>
-  <script type="text/javascript">
+  <script type="text/javascript">    
       $(document).ready( function(){
         $('#logModal').modal('show');
         responsiveEngine();
@@ -266,7 +261,9 @@
         commonResponsive(swidth);
         $('.img_logo').css('width', '200');
         $('.img_logo').css('height', '80');
-        $('#logoContainer').removeClass('col-md-4');
+        $('#logoContainer').removeClass('col-md-6');
+        $("#logoContainer > a").css('margin-left','0%');
+        $('.contenido-dashboard').css('height', 'fit-content');
         $('#toggle').removeClass('col-md-1');
         $('#avatarContainer').remove();
         $('#supportFooter').css('width','100%');
@@ -276,16 +273,26 @@
         $('#supportFooter').css('margin-left','10%');
         $('#supportFooter').css('margin-top','5%');
         $('#resavatar').css('visibility','visible');
-        $('#reslogout').css('visibility','visible');
+        $('#reslogout').css('visibility','visible');                                     
         $('#menu').css('text-align', 'justify');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
+        $('#resavatar').removeClass('hidden');
+        $('#reslogout').removeClass('hidden');
         $('.text-center > h1').css('font-size', '1.5em');
-        $('.text-center > h1 > span').css('font-size', '1em');
+        $('.text-center > h1 > span').css('font-size', '1em');        
       }
       var responsiveEngine = () => {
       var SCREEN_WIDTH = $(window).width();
       var SCREEN_HEIGHT = $(window).height();
       /** /////////////// RESPONSIVE ////////////// */
-
+      if(SCREEN_WIDTH > 1024){
+        $("#reslogout > a").remove();
+        $("#resavatar > a").remove();
+      }
+      if(SCREEN_WIDTH <= 1404){
+        $("#logoContainer > a").css('margin-left','37%');
+      }        
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
         tabletResponsive(SCREEN_WIDTH);
@@ -298,6 +305,7 @@
 
     var swiper = new Swiper('.swiper-container', {
       loop: true,
+      slidesPerView: 1,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',

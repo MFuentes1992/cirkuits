@@ -59,16 +59,11 @@
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>subscription">Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url?>updatepayment/">Update payment</a>
+            <li id="resavatar" class="hidden">              
             </li>
-            <li id='reslogout' class="hidden">
-              <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-            </li>
-            <li id="resavatar" class="hidden">
-              <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> 
+            <li id='reslogout' class="hidden">              
             </li>
           </ul>
         </div>
@@ -214,8 +209,10 @@
         commonResponsive(swidth);
         $('.img_logo').css('width', '200');
         $('.img_logo').css('height', '80');
-        $('#logoContainer').removeClass('col-md-4');
+        $('#logoContainer').removeClass('col-md-6');
+        $("#logoContainer > a").css('margin-left','0%');
         $('#toggle').removeClass('col-md-1');
+        $('.contenido-dashboard').css('height', 'fit-content');
         $('#avatarContainer').remove();
         $('#supportFooter').css('width','100%');
         $('#contactoFooter').css('width', '100%');
@@ -223,8 +220,10 @@
         $('#supportFooter').css('text-align','justify');
         $('#supportFooter').css('margin-left','10%');
         $('#supportFooter').css('margin-top','5%');
-        $('#resavatar').css('visibility','visible');
-        $('#reslogout').css('visibility','visible');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
+        $('#resavatar').removeClass('hidden');
+        $('#reslogout').removeClass('hidden');
         $('#menu').css('text-align', 'justify');
         $('.text-center > h1').css('font-size', '1.5em');
         $('.text-center > h1 > span').css('font-size', '1em');
@@ -233,6 +232,10 @@
       var SCREEN_WIDTH = $(window).width();
       var SCREEN_HEIGHT = $(window).height();
       /** /////////////// RESPONSIVE ////////////// */
+      if(SCREEN_WIDTH > 1024){
+        $("#reslogout > a").remove();
+        $("#resavatar > a").remove();
+      }
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','37%');
       }
