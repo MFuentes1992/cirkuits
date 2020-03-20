@@ -99,23 +99,117 @@
 
   <div class="container-fluid bg-black">
 
-    <div class="row">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-          <div class="swiper-slide">Slide 1</div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
-          <div class="swiper-slide">Slide 6</div>
-          <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
-          <div class="swiper-slide">Slide 9</div>
+    <div class="videogame-body">
+      <div class="row">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>
+                    <i class="fas fa-microphone"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Speech Recognition</h2>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>
+                    <i class="fas fa-coins"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Chip Game</h2>
+                </div>
+              </div>              
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-user-alt"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>To Be</h2>
+                </div>              
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-hands"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>To Have</h2>
+                </div>                
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-comments"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>To Say</h2>
+                </div>               
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-gamepad"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Be / Have / Say</h2>
+                </div>                
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-users"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Extended subjects</h2>
+                </div>               
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-user-astronaut"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Extended subjects + possessive adjectives</h2>
+                </div>                
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-people-carry"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Extended subjects + object pronouns</h2>
+                </div>               
+              </div>
+              <div class="swiper-slide">
+                <div style="width:100%;">
+                  <h1>                                    
+                    <i class="fas fa-street-view"></i>
+                  </h1>
+                </div>
+                <div style="width:100%;">
+                  <h2>Extended subjects + reflexive pronouns</h2>
+                </div>               
+              </div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
-          <!-- Add Arrows -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
+      </div>
+    </div>
     <!--/////// Contact ///// -->     
       <!-- Footer -->
       <footer class="footer col-md-12" style="position:relative;">
@@ -146,7 +240,7 @@
           </div>
         </div>
       </footer>
-    </div>
+    
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </div>
   <script type="text/javascript">
