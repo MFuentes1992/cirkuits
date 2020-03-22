@@ -151,6 +151,7 @@ p {
   position: relative;
   margin: auto;
   width: 100%;
+  color: #FFF;
 }
 #userNameP
 {
@@ -162,9 +163,8 @@ p {
 #userExtra
 {
   position: relative;
-  width: 65%;
-  margin-top: 2%;
-  margin-left: 35%;
+  width: 60%;
+  margin: auto;
 }
 #userProgress
 {
@@ -239,17 +239,13 @@ p {
   #userExtra
   {
     position: relative;
-    width: 100%;
-    margin-top: 2%;
-    margin-left: 0px;
-    text-align: center;
+    width: 80%;
+    margin: auto;
+    text-align: justify;
   }
   #userExtra > table{
     width: 100%;
-  }
-  .data
-  {
-    display: none;
+    padding-left: 10%;
   }
   #userProgress
   {

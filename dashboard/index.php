@@ -75,7 +75,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -237,7 +237,7 @@
         $("#resavatar > a").remove();
       }
       if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','37%');
+        $("#logoContainer > a").css('margin-left','45%');
       }
 
       /**//////////////// TABLET (800 - 425) ////////// */
