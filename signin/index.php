@@ -83,22 +83,20 @@ else {
  </head>
  <body>
   <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
-          <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
-          <h5 class="text-white label">Sign in</h5>
-          <h5 class="text-white label">Sign up</h5>
-        </div>
-      </div>
-      <nav class="navbar sticky-top navbar-dark bg-dark">
+  <nav class="navbar sticky-top navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
+          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
         </div>
       </nav>
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark" style="padding-left: 1.5rem">
+          <h5 class="text-white label"><a class="text-white label" href="../">Home</a></h5>
+          <h5 class="text-white label"><a class="text-white label" href="../signup">Sign up</a></h5>
+        </div>
+      </div>
   </div>
    <div class="container-fluid-signin">
 
@@ -163,7 +161,7 @@ else {
          </div>
        </div>
       <!-- Footer -->      
-      <footer class="footer col-md-12">
+      <footer class="footer-sigin col-md-12">
         <div class="row">
           <div class="foot-section" id="contactoFooter">
             <span>
