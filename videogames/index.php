@@ -54,8 +54,26 @@
 <body>
 
     <div class="pos-f-t">
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="col-md-1" id="toggle">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="col-md-6" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+        </div>
+        <div class="col-md-3" id="avatarContainer">
+          <div class="line" style="margin-top:20px;">
+            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
+          </div>
+          <div class="line">
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+          </div>
+        </div>
+      </nav>    
       <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
+        <div class="bg-dark" style="padding-left:1.5rem;">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
@@ -70,24 +88,6 @@
           </ul>
         </div>
       </div>
-      <nav class="navbar sticky-top navbar-dark bg-dark">
-        <div class="col-md-1" id="toggle">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
-        </div>
-        <div class="col-md-3" id="avatarContainer">
-          <div class="line" style="margin-top:20px;">
-            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
-          </div>
-          <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-          </div>
-        </div>
-      </nav>
     </div>
 
 
@@ -275,7 +275,7 @@
         $('#resavatar').css('visibility','visible');
         $('#reslogout').css('visibility','visible');                                     
         $('#menu').css('text-align', 'justify');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
         $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
         $('#resavatar').removeClass('hidden');
         $('#reslogout').removeClass('hidden');
@@ -291,7 +291,7 @@
         $("#resavatar > a").remove();
       }
       if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','37%');
+        $("#logoContainer > a").css('margin-left','45%');
       }        
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){

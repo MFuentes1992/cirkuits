@@ -199,6 +199,12 @@ p {
   display: none;
 }
 
+#user-content{
+  position: relative;
+  width: 60%;
+  margin: auto;
+}
+
 @media screen and (min-width: 320px) and (max-width: 992px)
 {
   .contenido

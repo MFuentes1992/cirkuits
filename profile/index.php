@@ -38,44 +38,28 @@ if(isset($_SESSION["user"]))
  <!DOCTYPE html>
  <html lang="en">
  <head>
- <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="<?=$url;?>css/bootstrap-4.3.1/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="<?=$url;?>css/cirkuits.css" />
-    <link rel="stylesheet" href="<?=$url;?>css/master.css" />
-    <link rel="stylesheet" href="<?=$url;?>css/jquery-ui.css" />
-    <link rel="stylesheet" href="<?=$url;?>css/fontawesome-free-5.8.1-web/css/all.css">
-    <link rel="stylesheet" href="<?=$url;?>css/validationEngine.jquery.css" />
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
-    <script src="<?=$url;?>js/jquery-1.12.3.min.js"></script>
-    <script src="<?=$url;?>js/dist/bootstrap.min.js"></script>
-    <script src="<?=$url;?>js/jquery-ui.js"></script>
-    <script src="<?=$url;?>js/jquery.validationEngine-es.js"></script>
-    <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="<?=$url;?>css/bootstrap-4.3.1/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/cirkuits.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/master.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/jquery-ui.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/fontawesome-free-5.8.1-web/css/all.css">
+  <link rel="stylesheet" href="<?=$url;?>css/validationEngine.jquery.css" />
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+  <script src="<?=$url;?>js/jquery-1.12.3.min.js"></script>
+  <script src="<?=$url;?>js/dist/bootstrap.min.js"></script>
+  <script src="<?=$url;?>js/jquery-ui.js"></script>
+  <script src="<?=$url;?>js/jquery.validationEngine-es.js"></script>
+  <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
  </head>
  <body>
     <div class="pos-f-t">
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
-            </li>
-            <li id="resavatar" class="hidden">              
-            </li>
-            <li id='reslogout' class="hidden">              
-            </li>
-          </ul>
-        </div>
-      </div>
       <nav class="navbar sticky-top navbar-dark bg-dark">
         <div class="col-md-1" id="toggle">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,10 +74,26 @@ if(isset($_SESSION["user"]))
             <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
           </div>
           <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
           </div>
         </div>
       </nav>
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark" style="padding-left:1.5rem;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
+            </li>
+            <li id="resavatar" class="hidden">              
+            </li>
+            <li id='reslogout' class="hidden">              
+            </li>
+          </ul>
+        </div>
+      </div>
    </div>
    <div class="container-fluid">
      <div class="row">
@@ -101,7 +101,7 @@ if(isset($_SESSION["user"]))
          <br>
          <div id="profile">
            <div id="userPhoto" class="">
-             <img id="userAvatar" src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" style="top:-10px" />
+             <img id="userAvatar" src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" style="top:-10px" width="100" height="100" />
            </div>
            <div id="userInfo" class="">
              <div id="userNameP">
@@ -266,7 +266,7 @@ if(isset($_SESSION["user"]))
         $('#supportFooter').css('text-align','justify');
         $('#supportFooter').css('margin-left','10%');
         $('#supportFooter').css('margin-top','5%');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
         $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
         $('#resavatar').removeClass('hidden');
         $('#reslogout').removeClass('hidden');

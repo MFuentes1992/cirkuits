@@ -27,7 +27,7 @@ if(isset($_SESSION["user"]))
       if(isset($_POST["Insert"]))
       {
         $query_update_info = sprintf("UPDATE usuarios SET
-        nombre_usuario = %s, apellido_usuario = %s, alter_usuario = %s, password = %s,
+        nombre_usuario = %s, apellido_usuario = %s, alter_usuario = %s, password_usuario = %s,
         email_usuario = %s, nacimiento_usuario = %s WHERE id_usuario = %s",
         GetSQLValueString($conexion, $nombre, "text"),
         GetSQLValueString($conexion, $apellido, "text"),
@@ -54,61 +54,65 @@ if(isset($_SESSION["user"]))
  <!DOCTYPE html>
  <html lang="en" manifest="offline.appcache">
  <head>
-   <!-- Standardised web app manifest -->
-   <meta charset="UTF-8">
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-   <title>PROFILE</title>
-   <link rel="manifest" href="appmanifest.json" />
-   <link rel="stylesheet" href="<?=$url;?>css/bootstrap.css" />
-   <link rel="stylesheet" href="<?=$url;?>css/cirkuits.css" />
-   <link rel="stylesheet" href="<?=$url;?>css/master.css" />
-   <link rel="stylesheet" href="<?=$url;?>css/jquery-ui.css" />
-   <link rel="stylesheet" href="<?=$url;?>css/font-awesome-4.6.3/css/font-awesome.min.css">
-   <link rel="stylesheet" href="<?=$url;?>css/validationEngine.jquery.css" />
-   <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-   <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
-   <script src="<?=$url;?>js/jquery-1.12.3.min.js"></script>
-   <script src="<?=$url;?>js/bootstrap.min.js"></script>
-   <script src="<?=$url;?>js/jquery-ui.js"></script>
-   <script src="<?=$url;?>js/jquery.validationEngine-es.js"></script>
-   <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
-
+ <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="<?=$url;?>css/bootstrap-4.3.1/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/cirkuits.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/master.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/jquery-ui.css" />
+  <link rel="stylesheet" href="<?=$url;?>css/fontawesome-free-5.8.1-web/css/all.css">
+  <link rel="stylesheet" href="<?=$url;?>css/validationEngine.jquery.css" />
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+  <script src="<?=$url;?>js/jquery-1.12.3.min.js"></script>
+  <script src="<?=$url;?>js/dist/bootstrap.min.js"></script>
+  <script src="<?=$url;?>js/jquery-ui.js"></script>
+  <script src="<?=$url;?>js/jquery.validationEngine-es.js"></script>
+  <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
  </head>
  <body>
-   <nav class="navbar navbar-default navbar-fixed-top menu">
-     <div class="container-fluid">
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#cirkuitsNavbar">
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a href="<?=$url;?>dashboard" class="navbar-brand"><img src="<?=$url;?>img/logo2.png" alt="Logo Cirkuits" class="img-navbar"/></a>
-       </div>
-       <div class="collapse navbar-collapse" id="cirkuitsNavbar">
-         <ul class="nav navbar-nav navbar-right">
-           <li><a href="<?=$url;?>dashboard"><strong>Dashboard</strong></a></li>
-           <li><a href="<?=$url;?>subscription"><strong>Subscription</strong></a></li>
-           <li><a href="<?=$url?>updatepayment/"><strong>Update payment</strong></a></li>
-           <li><a href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/person-flat.png" alt="avatar.png" class="img img-rounded" width="32px" style="top:-10px" /> </a></li>
-           <li><a href="<?=$url;?>profile"><strong><?php echo $_SESSION["user"]["alter_usuario"] ?></strong></a></li>
-           <li><a href="<?=$url;?>exit.php"><span class="label label-danger">Log out</span></a></li>
-         </ul>
-       </div>
-     </div>
-   </nav>
+  <div class="pos-f-t">
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="col-md-1" id="toggle">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="col-md-6" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
+        </div>
+        <div class="col-md-3" id="avatarContainer">
+          <div class="line" style="margin-top:20px;">
+            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
+          </div>
+          <div class="line">
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+          </div>
+        </div>
+      </nav>
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark" style="padding-left:1.5rem;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
+            </li>
+            <li id="resavatar" class="hidden">              
+            </li>
+            <li id='reslogout' class="hidden">              
+            </li>
+          </ul>
+        </div>
+      </div>
+   </div>
    <div class="container-fluid">
      <div class="row">
-       <div class="contenido">
-         <div class="text-center">
-           <br>
-           <br>
-           <h1>Edit profile</h1>
-         </div>
-       </div>
        <div id="user-content">
          <form id="edituser_form" class="" action="" method="post">
            <div class="form form-group">
@@ -140,7 +144,7 @@ if(isset($_SESSION["user"]))
              <input type="password" class="form-control"
              data-validation-engine="validate[required,custom[email]]"
              data-errormessage-value-missing="Password is required"
-             name="password" id="password" value="<?= $row_user_data["password"]?>" disabled />
+             name="password" id="password" value="<?= $row_user_data["password_usuario"]?>" disabled />
            </div>
            <div class="form form-group">
              <input type="text" class="form-control"
@@ -177,29 +181,35 @@ if(isset($_SESSION["user"]))
      <br>
      <br>
      <div class="row">
-       <!-- Footer -->
-       <footer class="footer col-md-12" style="position:relative;">
-         <div class="row">
-           <div class="foot-section col-md-4" id="contacto">
-             <span>+52 777 123 45 67</span>
-             <br>
-             <span>example@domain.com.mx</span>
-             <br>
-             <span>postal code: 63866</span>
-             <br>
-           </div>
-           <div class="foot-section col-md-4" id="copyright">
-             <span>2016 Cirkuits all rights reserved &copy;</span>
-             <br>
-           </div>
-           <div class="foot-section social" id="social-1">
-             <a href="http://www.twitter.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fa fa-twitter" aria-hidden="true"></i></span></a>
-             <a href="http://www.facebook.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fa fa-facebook" aria-hidden="true"></i></span></a>
-             <a href="http://www.youtube.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fa fa-youtube" aria-hidden="true"></i></span></a>
-             <a href="http://www.instagram.com" target="_blank"><span style="font-size:28pt; color:#FFF;"><i class="fa fa-instagram" aria-hidden="true"></i></span></a>
-           </div>
-         </div>
-       </footer>
+        <!-- Footer -->
+        <footer class="footer col-md-12" style="position:relative;">
+          <div class="row">
+            <div class="foot-section" id="contactoFooter">
+              <span>
+                <h4>Contact</h4>
+              </span>
+              <span class="label">+52 777 500 60 83</span>
+              <br>
+              <span class="label">postal code: 63866</span>
+              <br>
+              <span class="label">cirkuitsed@cirkuits.com.mx</span>
+              <br>
+              <span class="label">2019 www.cirkuits.com &copy;</span>
+            </div>
+            <div class="foot-section" id="supportFooter">
+              <span>
+                <h4>Soporte</h4>
+              </span>
+              <span class="label">Contact Us</span>
+              <br>
+              <span class="label">Help & FAQ</span>
+              <br>
+              <span class="label">Service Status</span>
+              <br>
+              <span class="label">Tech Requirements</span>
+            </div>
+          </div>
+        </footer>
      </div>
    </div>
    <script>
