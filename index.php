@@ -16,21 +16,22 @@
 </head>
 <body>
   <div class="pos-f-t">
+  <nav class="navbar sticky-top navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <img class="img_logo" src="img/horizontal_alt.png" alt="cirkuits logo" width="210" height="100"/>
+      <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
+    </nav>
     <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark p-4">
+      <div class="bg-dark" style="padding-left: 1.5rem">
         <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
         <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
         <h5 class="text-white label">Sign in</h5>
         <h5 class="text-white label">Sign up</h5>
       </div>
     </div>
-    <nav class="navbar sticky-top navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <img class="img_logo" src="img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/>
-      <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
-    </nav>
+
   </div>
   <div class="container-fluid bg-black">
     <div class="row">
@@ -43,85 +44,96 @@
     <div class="row">
 
     <!-- /////// About Us ////// -->
-      <div class="separator">
-      </div>
+      <!-- <div class="separator">
+      </div> -->
       <div id="about-title">
         <h1>ABOUT</h1>
       </div>
       <div class="row">
         <div>        
-          <div class="text-about">
-            <h1><strong>Cirkuits Team</strong></h1>
-            <br>           
-            <div>
-              <p>
-                Cirkuits is a team that offers the most comprehensive language development program ever.
-                We have been working for years to generate the best results possible in our classrooms and now we have a sleek and brilliant online platform that will permit
-                the entire world to benefit from this experience with our cutting-edge tools and program.
-              </p>
+          <div class="text-about">                                
+            <div class="two-col-container" id="twoColContainer">
+              <div class="column-three" style="margin-right:2%;">
+                <div class="linear-gradient">
+                  <h1><strong>Cirkuits Team</strong></h1>
+                </div>
+                <p class="primary-color">
+                  Cirkuits is a team that offers the most comprehensive language development program ever.
+                  We have been working for years to generate the best results possible in our classrooms and now we have a sleek and brilliant online platform that will permit
+                  the entire world to benefit from this experience with our cutting-edge tools and program.
+                </p>
+              </div>                        
+              <div class="column-six">
+                <h1><strong>Cirkuits Program</strong></h1>
+                <p>
+                  We  provide several video games that will allow you the type of
+                  familiarity with English that will produce proper and
+                  consistent oral expression.
+                  They make for great tools alongside any English learning program, however,
+                  if paired with our Cirkuits online classroom training,
+                  we can offer you results no one even comes close to.
+                  Find out more on our Cirkuits tab. Forget ambiguous levels!
+                  We do away with the traditional basic,  intermediate,
+                  advanced structure.
+                  The Cirkuits Program focuses on the English tenses themselves as the basis
+                  for advancement. You start with the most used English tense: the simple present,
+                  then you move on to the simple past followed by the present perfect.
+                  The simple, continuous and perfect tenses comprise the Cirkuits International
+                  Business program. Once 90% of your spoken sentences are correctly structured in
+                  the Simple Present tense then you advance to the Simple past and repeat the process until you have mastered each level.
+                  Mastery of each tense requires from 1-3 months depending on your existing level of
+                  development. Once you finish the Cirkuits Program you will have the language
+                  skills to be able to work in any English-speaking country. We turn your spoken production
+                  into numbers (eg. correct sentences vs. incorrect sentences) and allow you to analyze your
+                  efforts in every session.
+                </p>
+              </div>              
             </div>
-            <br>
-            <br>
-            <h1><strong>Cirkuits Program</strong></h1>
-            <br>
-            <div>
-              <p>
-                We  provide several video games that will allow you the type of
-                familiarity with English that will produce proper and
-                consistent oral expression.
-                They make for great tools alongside any English learning program, however,
-                if paired with our Cirkuits online classroom training,
-                we can offer you results no one even comes close to.
-                Find out more on our Cirkuits tab. Forget ambiguous levels!
-                We do away with the traditional basic,  intermediate,
-                advanced structure.
-                The Cirkuits Program focuses on the English tenses themselves as the basis
-                for advancement. You start with the most used English tense: the simple present,
-                then you move on to the simple past followed by the present perfect.
-                The simple, continuous and perfect tenses comprise the Cirkuits International
-                Business program. Once 90% of your spoken sentences are correctly structured in
-                the Simple Present tense then you advance to the Simple past and repeat the process until you have mastered each level.
-                Mastery of each tense requires from 1-3 months depending on your existing level of
-                development. Once you finish the Cirkuits Program you will have the language
-                skills to be able to work in any English-speaking country. We turn your spoken production
-                into numbers (eg. correct sentences vs. incorrect sentences) and allow you to analyze your
-                efforts in every session.
-              </p>
-            </div>
-            <br>
-            <br>
-            <h1><strong>Vision </strong></h1>
-            <br>
-            <div>
-              <p>
-                To become the global-standard in the language-learning sector by
-                charting the course for the first unconscious-competence training model.
-                <br>
-                <strong>What is unconscious competence?</strong>
-                <br>
-                Unconscious competence involves the ability to do something without needing
-                to think about it. Any speech pattern can be internalized and automated;
-                we achieve this at Cirkuits with a structured series of games and activities
-              </p>
-            </div>
-            <br>
-            <br>
-            <h1><strong>Mission</strong></h1>
-            <br>
-            <div>
-            <p>
-              To provide our students with the most forward-thinking tools to help them
-              learn a language as quickly as possible for as long as possible.
-            </p>
-          </div>
-          <br>
-          <br>
-            <h1><strong>Values</strong></h1>
-            <br>
-            <div>
-              <p>
-                When taking a decision within the company we always ask "does this help accelerate and improve the students’ end result?"
-              </p>
+            <div class="three-col-container">
+              <!-- MISION -->                                          
+              <div class="column">
+                <div class="circle-container">
+                  <div class="circle">
+                    <span class="primary-color"><i class="fas fa-users"></i></span>
+                  </div>
+                </div>
+                <h1><strong>Mission</strong></h1>
+                <p>
+                  To provide our students with the most forward-thinking tools to help them
+                  learn a language as quickly as possible for as long as possible.
+                </p>
+              </div>
+              <!--  VISION --> 
+              <div class="column">
+                <div class="circle-container">
+                  <div class="circle">
+                    <span class="primary-color"><i class="fas fa-eye"></i></span>
+                  </div>
+                </div>                
+                <h1><strong>Vision </strong></h1>
+                <p>
+                  To become the global-standard in the language-learning sector by
+                  charting the course for the first unconscious-competence training model.
+                  <br>
+                  <strong>What is unconscious competence?</strong>
+                  <br>
+                  Unconscious competence involves the ability to do something without needing
+                  to think about it. Any speech pattern can be internalized and automated;
+                  we achieve this at Cirkuits with a structured series of games and activities
+                </p>                                                              
+              </div>
+              <!-- VALUES -->
+              <div class="column">
+                <div class="circle-container">
+                  <div class="circle">
+                    <span class="primary-color"><i class="fas fa-star"></i></span>
+                  </div>
+                </div>                
+                <h1><strong>Values</strong></h1>
+                <p>
+                  When taking a decision within the company we always ask "does this help accelerate and improve the students’ end result?"
+                </p>
+              </div>                             
             </div>
           </div>
         </div>
