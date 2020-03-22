@@ -730,8 +730,52 @@ h1, h2, h3 {
   color: #FFF;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px)
+@media screen and (min-width: 300px) and (max-width: 800px)
 {
+  .three-col-container{
+    position: relative;
+    width: 100%;
+    display: block;
+    border-width: 3px;
+    border-style: solid;
+    border-image: 
+    linear-gradient(
+      to bottom, 
+      red, 
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+  }
+  .column{
+    position: relative;
+    width: 80%;  
+    margin-left: 10%;
+    margin-right: 1%;
+    word-wrap: break-word;  
+  }
+
+  .about-title{
+    height: 100px;
+  }
+
+  .two-col-container{
+    position: relative;
+    width: 100%;
+    margin-bottom: 10%;
+    display: inline;
+  }
+
+  .column-three{
+    position: relative;
+    width: 100%;
+    background-color: #FFF;
+    top: -50px;
+  }
+
+  .column-six{
+    position: relative;
+    width: 100%;
+  }
+
   .foot-section > a{
     font-size: 7pt;
   }

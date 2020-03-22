@@ -27,8 +27,8 @@
       <div class="bg-dark" style="padding-left: 1.5rem">
         <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
         <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
-        <h5 class="text-white label">Sign in</h5>
-        <h5 class="text-white label">Sign up</h5>
+        <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
+        <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
       </div>
     </div>
 
@@ -228,14 +228,14 @@
     }
     var mobileResponsive = (swidth) =>{
       commonResponsive(swidth);
-      $('#about-title').css('height','200px');
-      $('#contact-title').css('height','200px');
+      $('#about-title').css('height','150px');
+      $('#contact-title').css('height','150px');
       $('#about-title').css('padding-top','50px');
       $('.text-about').css('padding-left', '10%');
       $('.text-about').css('padding-right', '10%');
       $('.text-about').css('margin-top', '5%');
-      $('#about-title > h1').css('font-size',`${swidth/swidth}em`);
-      $('#contact-title > h1').css('font-size',`${swidth*0.1}pt`);
+      $('#about-title > h1').css('font-size','2.5rem');
+      $('#contact-title > h1').css('font-size','2.5rem');
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#login').remove();
