@@ -237,7 +237,12 @@ else {
       }
     }
 
-
+    var _submit = document.getElementById("passowrd");
+    _submit.addEventListener("keyup", function(event){
+        if(event.keyCode === 13){
+          $('#login_form').submit();
+        }
+    });
    </script>
  </body>
  </html>

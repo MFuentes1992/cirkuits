@@ -163,8 +163,12 @@ p {
 #userExtra
 {
   position: relative;
-  width: 60%;
+  width: 25%;
   margin: auto;
+}
+#userExtra > table{
+  position: relative;
+  width: 100%;
 }
 #userProgress
 {
@@ -191,6 +195,10 @@ p {
   padding-bottom: 1em;
 }
 
+.hide{
+  display: none;
+}
+
 @media screen and (min-width: 320px) and (max-width: 992px)
 {
   .contenido
@@ -199,8 +207,12 @@ p {
     margin: 20px 0px 0px 0px;
     padding: 0px;
     width: 100%;
+    height: 768px;
   }
-
+  .full-width{
+    width: 100%;
+    text-align: center;
+  }
   .form
   {
     position: relative;

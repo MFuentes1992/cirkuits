@@ -25,24 +25,6 @@ if(isset($_SESSION["user"]))
       {
         $row_user_data = mysqli_fetch_assoc($result_user_data);
       }
-
-      $query_user_progress_v1 = sprintf("SELECT * FROM videogame_progress VP INNER JOIN cat_videogames CV ON VP.id_videogame = CV.id_videogame WHERE id_usuario = %s AND VP.id_videogame = 1",
-      GetSQLValueString($conexion,$idUsuario, "int"));
-      $result_user_progress_v1 = mysqli_query($conexion, $query_user_progress_v1) or die(mysqli_error($conexion));
-
-      $row_user_progress_v1 = mysqli_fetch_assoc($result_user_progress_v1);
-
-      $query_user_progress_v2 = sprintf("SELECT * FROM videogame_progress VP INNER JOIN cat_videogames CV ON VP.id_videogame = CV.id_videogame WHERE id_usuario = %s AND VP.id_videogame = 2",
-      GetSQLValueString($conexion,$idUsuario, "int"));
-      $result_user_progress_v2 = mysqli_query($conexion, $query_user_progress_v2) or die(mysqli_error($conexion));
-
-      $row_user_progress_v2 = mysqli_fetch_assoc($result_user_progress_v2);
-
-      $query_user_progress_v3 = sprintf("SELECT * FROM videogame_progress VP INNER JOIN cat_videogames CV ON VP.id_videogame = CV.id_videogame WHERE id_usuario = %s AND VP.id_videogame = 3",
-      GetSQLValueString($conexion,$idUsuario, "int"));
-      $result_user_progress_v3 = mysqli_query($conexion, $query_user_progress_v3) or die(mysqli_error($conexion));
-
-      $row_user_progress_v3 = mysqli_fetch_assoc($result_user_progress_v3);
     }
     else {
       header("location:".$url."singin");
@@ -126,7 +108,7 @@ if(isset($_SESSION["user"]))
              </div>
              <div id="userExtra">
                <table>
-                 <tr>
+                 <tr>                   
                    <td>
                     <a href="<?=$url;?>edit" class="badge badge-warning" style="font-size:12pt;">
                       <span style="font-size:14pt;">
@@ -136,16 +118,15 @@ if(isset($_SESSION["user"]))
                     </a>                    
                    </td>
                    <td>                     
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left data"><?= $row_user_data["nombre_usuario"]?></span>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left data"><?= $row_user_data["apellido_usuario"]?></span>
+                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["nombre_usuario"]?></span>
+                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["apellido_usuario"]?></span>
                    </td>
                  </tr>
-                 <tr>
+                 <tr>            
                    <td>
                      <span style="font-size:14pt; font-weight:bold; text-align: justify;">User Name:</span>
                    </td>
-                   <td>
-                     &nbsp;
+                   <td>                     
                      <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["alter_usuario"]?></span>
                    </td>
                  </tr>
@@ -153,30 +134,66 @@ if(isset($_SESSION["user"]))
                    <td>
                      <span style="font-size:14pt; font-weight:bold; text-align: justify;">Email:</span>
                    </td>
-                   <td>
-                     &nbsp;
+                   <td>                     
                      <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["email_usuario"]?></span>
                    </td>
                  </tr>
-                 <tr>
+                 <tr>                   
                    <td>
                      <span style="font-size:14pt; font-weight:bold; text-align: justify;">Birth Date:</span>
                    </td>
-                   <td>
-                     &nbsp;
+                   <td>                     
                      <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["nacimiento_usuario"]?></span>
                    </td>
                  </tr>
-                 <tr>
+                 <tr>                   
                    <td>
                      <span style="font-size:14pt; font-weight:bold; text-align: justify;">Member Since:</span>
                    </td>
-                   <td>
-                     &nbsp;
+                   <td>                     
                      <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["fecha_registro"]?></span>
                    </td>
                  </tr>
                </table>
+               <div class="row hide" id="responsive-body">
+                  <div class="full-width">
+                    <a href="<?=$url;?>edit" class="badge badge-warning" style="font-size:12pt;">
+                        <span style="font-size:14pt;">
+                          <i class="fas fa-pencil-alt"></i>
+                          <span>Edit info </span>
+                        </span>
+                    </a>                 
+                  </div>
+                  <div class="full-width">
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["nombre_usuario"]?></span>
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["apellido_usuario"]?></span>               
+                  </div>
+                  <div class="full-width">
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">User Name:</span>
+                  </div>
+                  <div class="full-width">
+                    <span style="color:#cccccc;"><?= $row_user_data["alter_usuario"]?></span>
+                  </div>
+                  <div class="full-width">
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Email:</span>
+                  </div>
+                  <div class="full-width">
+                    <span style="color:#cccccc;"><?= $row_user_data["email_usuario"]?></span>
+                  </div>
+                  <div class="full-width">
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Birth Date:</span>
+                  </div>
+                  <div class="full-width">
+                    <span style="color:#cccccc;"><?= $row_user_data["nacimiento_usuario"]?></span>
+                  </div>
+                  <div class="full-width">
+                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Member Since:</span>
+                  </div>
+                  <div class="full-width">
+                    <span style="color:#cccccc;"><?= $row_user_data["fecha_registro"]?></span>
+                  </div>                  
+               </div>
+               <!-- userExtra -->
              </div>             
            </div>
          </div>
@@ -256,17 +273,29 @@ if(isset($_SESSION["user"]))
         $('#menu').css('text-align', 'justify');
         $('.text-center > h1').css('font-size', '1.5em');
         $('.text-center > h1 > span').css('font-size', '1em');
+        $('#userExtra > table').remove();
+        $("#responsive-body").removeClass("hide");        
       }
       var responsiveEngine = () => {
       var SCREEN_WIDTH = $(window).width();
       var SCREEN_HEIGHT = $(window).height();
       /** /////////////// RESPONSIVE ////////////// */
+      if(SCREEN_WIDTH > 3800){
+        $("#logoContainer > a").css('margin-left','60%');
+      }
+      if(SCREEN_WIDTH > 1800 && SCREEN_WIDTH <= 3800){
+        $("#logoContainer > a").css('margin-left','55%');
+      }
       if(SCREEN_WIDTH > 1024){
         $("#reslogout > a").remove();
         $("#resavatar > a").remove();
       }
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
+      }
+
+      if(SCREEN_WIDTH > 700){
+        $("#responsive-body").addClass("hide"); 
       }
 
       /**//////////////// TABLET (800 - 425) ////////// */
