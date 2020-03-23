@@ -52,8 +52,26 @@
   </head>
   <body>
     <div class="pos-f-t">
+      <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="col-md-1" id="toggle">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="col-md-6" id="logoContainer">
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+        </div>
+        <div class="col-md-3" id="avatarContainer">
+          <div class="line" style="margin-top:20px;">
+            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
+          </div>
+          <div class="line">
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+          </div>
+        </div>
+      </nav>
       <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
+        <div class="bg-dark" style="padding-left:1.5rem;">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
@@ -68,52 +86,8 @@
           </ul>
         </div>
       </div>
-      <nav class="navbar sticky-top navbar-dark bg-dark">
-        <div class="col-md-1" id="toggle">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="340" height="128"/></a>
-        </div>
-        <div class="col-md-3" id="avatarContainer">
-          <div class="line" style="margin-top:20px;">
-            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
-          </div>
-          <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-          </div>
-        </div>
-      </nav>
     </div>
-
-
-
     <div class="container-fluid-dashboard">
-
-      <!-- Modal for displaying message -->
-      <?php if($payment == 1) { ?>
-      <div class="modal fade bs-example-modal-sm" id="logModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-       <div class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h4 class="modal-title txt-color-darkgray">Payment</h4>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="ico-close-add"><span aria-hidden="true">&times;</span></button>
-           </div>
-           <div class="modal-body txt-color-darkgray">
-             <span style="font-size: 3em; margin-right:0.5em;"> <i class="fas fa-exclamation-triangle"></i> </span>Please add a Credit Card to proceed.
-           </div>
-           <div class="modal-footer">
-             <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-close-add">Close</button>
-           </div>
-         </div>
-       </div>
-     </div>
-     <?php } ?>
-
-
-
       <div class="row">
         <div class="contenido-dashboard">
           <div class="text-center" style="margin-bottom:2%;">
@@ -209,7 +183,7 @@
         $("#resavatar > a").remove();
       }
       if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','37%');
+        $("#logoContainer > a").css('margin-left','45%');
       }
 
       /**//////////////// TABLET (800 - 425) ////////// */
