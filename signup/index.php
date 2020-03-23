@@ -18,10 +18,13 @@
     $password  = !empty($_POST["password"]) ? GetSQLValueString($conexion, $_POST["password"], "text") : "NULL";
     $email     = !empty($_POST["email"]) ? GetSQLValueString($conexion, $_POST["email"], "text") : "NULL";
     $birthDate = !empty($_POST["birthDate"]) ? GetSQLValueString($conexion, $_POST["birthDate"], "html") : "NULL";
+    $telUsuario = !empty($_POST["telUsuario"]) ? GetSQLValueString($conexion, $_POST["telUsuario"], "text") : "NULL";
+    $celUsuario = !empty($_POST["celUsuario"]) ? GetSQLValueString($conexion, $_POST["celUsuario"], "text") : "NULL";
+    $avatar = "'default'";
 
     if(check_user($email) <= 0)
     {
-      $result = insert_user($name, $lstName, $userName, $password, $email, $birthDate, 1);
+      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 1, $avatar);
       $id_usuario = mysqli_insert_id($conexion);
       if($result > 0)
       {
@@ -145,6 +148,23 @@
               data-errormessage-value-missing="Email is required"
               placeholder="Confirm E-mail" />
             </div>
+
+            <div class="form form-group">
+              <!--<label>Confirm e-mail</label>-->
+              <input type="text" class="form-control" name="telUsuario" id="telUsuario"
+              data-validation-engine="validate[required]"
+              data-errormessage-value-missing="Phone is required"
+              placeholder="Telephone" />
+            </div>
+
+            <div class="form form-group">
+              <!--<label>Confirm e-mail</label>-->
+              <input type="text" class="form-control" name="celUsuario" id="celUsuario"
+              data-validation-engine="validate[required]"
+              data-errormessage-value-missing="Mobile phone is required"
+              placeholder="Mobile phone" />
+            </div>            
+
             <div class="form form-group">
               <!--<label>Birth Date</label>-->
               <input type="text" class="form-control datepicker"
