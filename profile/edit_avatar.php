@@ -13,8 +13,8 @@ if(!$idUsuario){
   $query_update_info = sprintf("UPDATE usuarios SET
   avatar_usuario = %s WHERE id_usuario = %s",
   GetSQLValueString($conexion, $avatar, "text"),
-  GetSQLValueString($conexion, $idUsuario, "int"));
-  echo $avatar;
-  //$result_update_usuario = mysqli_query($conexion, $query_update_info) or die(mysqli_error($conexion));
+  GetSQLValueString($conexion, $idUsuario, "int"));  
+  $result_update_usuario = mysqli_query($conexion, $query_update_info) or die(mysqli_error($conexion));
+  Echo $result_update_usuario;
 }
  ?>

@@ -231,7 +231,12 @@ p {
   width: 10%;
   margin-left: 12%;
 }
-
+.btn-save-avatar{
+  position: relative;
+  width: 40%;
+  margin: auto;
+  margin-top: 2%;
+}
 @media screen and (min-width: 320px) and (max-width: 992px)
 {
   .contenido

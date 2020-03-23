@@ -67,7 +67,7 @@ if(isset($_SESSION["user"]))
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
+          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -156,16 +156,18 @@ if(isset($_SESSION["user"]))
                         <input type="radio" id="rad8" name="avatar" value="profile8" /><label for="rad2">Select</label>
                     </div>
                 </div>
-                <div>
-                    <input type="hidden" name="iduser" id="iduser" value="<?=$_SESSION["user"]["id_usuario"]?>">
-                    <button onClick="saveAvatar()">Save Avatar</button>
-                </div>
                 <div id="userInfo" class="">
                     <div id="userNameP">
                     </div>
                     <div id="userExtra">                                             
                     </div>             
                 </div>
+                </div>
+                <div class="row">
+                  <div class="btn-save-avatar">
+                    <input type="hidden" name="iduser" id="iduser" value="<?=$_SESSION["user"]["id_usuario"]?>">
+                    <button onClick="saveAvatar()" class="btn btn-info">Save Avatar</button>
+                  </div>
                 </div>
         </div>
      </div>
@@ -201,6 +203,7 @@ if(isset($_SESSION["user"]))
         </footer>
      </div>
    </div>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>   
    <script>
       $(document).ready( function(){
         $('#logModal').modal('show');
@@ -285,7 +288,20 @@ if(isset($_SESSION["user"]))
         data: { avatar: $("input[name='avatar']:checked").val(), update: "true", idUsuario: $('#iduser').val() }
         })
         .done(function( msg ) {
-            alert( "Data Saved: " + msg );
+          if(msg == 1){
+            Swal.fire(
+              'Avatar Saved!',
+              'Please log out and back into the application to ensure you are seeing the latest configuration.',
+              'success'
+            );
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: '<a href>Why do I have this issue?</a>'
+            });
+          }
         });
     }
 
