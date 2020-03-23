@@ -205,6 +205,33 @@ p {
   margin: auto;
 }
 
+.full-width{
+  width: 100%;
+  text-align: center;
+}
+
+.contenido-avatar{
+  position: relative;
+  margin: 40px 0px 0px 0px;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.avatar-showcase{
+  position: relative;
+  width: 80%;
+  display: inline-flex;
+  margin: auto;
+  text-align: center;
+}
+
+.photo{
+  position: relative;
+  width: 10%;
+  margin-left: 12%;
+}
+
 @media screen and (min-width: 320px) and (max-width: 992px)
 {
   .contenido
@@ -214,10 +241,6 @@ p {
     padding: 0px;
     width: 100%;
     height: 768px;
-  }
-  .full-width{
-    width: 100%;
-    text-align: center;
   }
   .form
   {

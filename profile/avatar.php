@@ -96,111 +96,78 @@ if(isset($_SESSION["user"]))
       </div>
    </div>
    <div class="container-fluid">
-     <div class="row">
-       <div class="contenido">
-         <br>
-         <div id="profile">
-           <div id="userPhoto" class="">
-             <img id="userAvatar" src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" style="top:-10px" width="100" height="100" />
-             <div class="full-width">
-                <a href="avatar.php">Change</a>
-             </div>
-           </div>
-           <div id="userInfo" class="">
-             <div id="userNameP">
-             </div>
-             <div id="userExtra">
-               <table>
-                 <tr>                   
-                   <td>
-                    <a href="<?=$url;?>edit" class="badge badge-warning" style="font-size:12pt;">
-                      <span style="font-size:14pt;">
-                        <i class="fas fa-pencil-alt"></i>
-                        <span>Edit info </span>
-                      </span>
-                    </a>                    
-                   </td>
-                   <td>                     
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["nombre_usuario"]?></span>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["apellido_usuario"]?></span>
-                   </td>
-                 </tr>
-                 <tr>            
-                   <td>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;">User Name:</span>
-                   </td>
-                   <td>                     
-                     <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["alter_usuario"]?></span>
-                   </td>
-                 </tr>
-                 <tr>
-                   <td>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;">Email:</span>
-                   </td>
-                   <td>                     
-                     <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["email_usuario"]?></span>
-                   </td>
-                 </tr>
-                 <tr>                   
-                   <td>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;">Birth Date:</span>
-                   </td>
-                   <td>                     
-                     <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["nacimiento_usuario"]?></span>
-                   </td>
-                 </tr>
-                 <tr>                   
-                   <td>
-                     <span style="font-size:14pt; font-weight:bold; text-align: justify;">Member Since:</span>
-                   </td>
-                   <td>                     
-                     <span style="font-size:14pt; font-weight:regular; text-align: justify;"><?= $row_user_data["fecha_registro"]?></span>
-                   </td>
-                 </tr>
-               </table>
-               <div class="row hide" id="responsive-body">
-                  <div class="full-width">
-                    <a href="<?=$url;?>edit" class="badge badge-warning" style="font-size:12pt;">
-                        <span style="font-size:14pt;">
-                          <i class="fas fa-pencil-alt"></i>
-                          <span>Edit info </span>
-                        </span>
-                    </a>                 
-                  </div>
-                  <div class="full-width">
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["nombre_usuario"]?></span>
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;" class="text-left"><?= $row_user_data["apellido_usuario"]?></span>               
-                  </div>
-                  <div class="full-width">
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">User Name:</span>
-                  </div>
-                  <div class="full-width">
-                    <span style="color:#cccccc;"><?= $row_user_data["alter_usuario"]?></span>
-                  </div>
-                  <div class="full-width">
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Email:</span>
-                  </div>
-                  <div class="full-width">
-                    <span style="color:#cccccc;"><?= $row_user_data["email_usuario"]?></span>
-                  </div>
-                  <div class="full-width">
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Birth Date:</span>
-                  </div>
-                  <div class="full-width">
-                    <span style="color:#cccccc;"><?= $row_user_data["nacimiento_usuario"]?></span>
-                  </div>
-                  <div class="full-width">
-                    <span style="font-size:14pt; font-weight:bold; text-align: justify;">Member Since:</span>
-                  </div>
-                  <div class="full-width">
-                    <span style="color:#cccccc;"><?= $row_user_data["fecha_registro"]?></span>
-                  </div>                  
-               </div>
-               <!-- userExtra -->
-             </div>             
-           </div>
-         </div>
-       </div>
+     <div class="row">        
+         <div class="contenido-avatar">
+                <br>
+                <div class="avatar-showcase">
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile1.png" alt="profile1.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad1" name="avatar" value="profile1" checked /><label for="rad1">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile2.png" alt="profile2.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad2" name="avatar" value="profile2" /><label for="rad2">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile3.png" alt="profile3.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad3" name="avatar" value="profile3" /><label for="rad3">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile4.png" alt="profile4.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad4" name="avatar" value="profile4" /><label for="rad4">Select</label>
+                    </div>
+                </div>
+                <div id="userInfo" class="">
+                    <div id="userNameP">
+                    </div>
+                    <div id="userExtra">                                             
+                    </div>             
+                </div>
+                </div>
+                <div class="avatar-showcase">
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile5.png" alt="profile5.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad5" name="avatar" value="profile5" /><label for="rad5">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile6.png" alt="profile6.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad6" name="avatar" value="profile6" /><label for="rad6">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile7.png" alt="profile7.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad7" name="avatar" value="profile7" /><label for="rad7">Select</label>
+                    </div>
+                </div>
+                <div class="photo">
+                    <img src="<?=$url;?>img/avatars/profile8.png" alt="profile8.png" class="img img-rounded" style="top:-10px" width="100" height="100" />             
+                    <div class="full-width">
+                        <input type="radio" id="rad8" name="avatar" value="profile8" /><label for="rad2">Select</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" name="iduser" id="iduser" value="<?=$_SESSION["user"]["id_usuario"]?>">
+                    <button onClick="saveAvatar()">Save Avatar</button>
+                </div>
+                <div id="userInfo" class="">
+                    <div id="userNameP">
+                    </div>
+                    <div id="userExtra">                                             
+                    </div>             
+                </div>
+                </div>
+        </div>
      </div>
      <div class="row">
         <!-- Footer -->
@@ -310,6 +277,18 @@ if(isset($_SESSION["user"]))
         mobileResponsive(SCREEN_WIDTH);
       }
     }
+
+    var saveAvatar = ()=>{
+        $.ajax({
+        method: "POST",
+        url: "edit_avatar.php",
+        data: { avatar: $("input[name='avatar']:checked").val(), update: "true", idUsuario: $('#iduser').val() }
+        })
+        .done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+    }
+
     </script>
  </body>
  </html>
