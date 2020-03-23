@@ -21,10 +21,11 @@
     $telUsuario = !empty($_POST["telUsuario"]) ? GetSQLValueString($conexion, $_POST["telUsuario"], "text") : "NULL";
     $celUsuario = !empty($_POST["celUsuario"]) ? GetSQLValueString($conexion, $_POST["celUsuario"], "text") : "NULL";
     $avatar = "'default'";
+    $isAdmin = 0;
 
     if(check_user($email) <= 0)
     {
-      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 1, $avatar);
+      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 1, $isAdmin, $avatar);
       $id_usuario = mysqli_insert_id($conexion);
       if($result > 0)
       {
