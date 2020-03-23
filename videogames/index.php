@@ -68,7 +68,7 @@
             <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
           </div>
           <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
           </div>
         </div>
       </nav>    
@@ -79,7 +79,7 @@
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>payment/">Payment and Subscription</a>
             </li>
             <li id="resavatar" class="hidden">              
             </li>
@@ -275,7 +275,7 @@
         $('#resavatar').css('visibility','visible');
         $('#reslogout').css('visibility','visible');                                     
         $('#menu').css('text-align', 'justify');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
         $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
         $('#resavatar').removeClass('hidden');
         $('#reslogout').removeClass('hidden');

@@ -74,7 +74,7 @@ if(isset($_SESSION["user"]))
             <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
           </div>
           <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
+            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
           </div>
         </div>
       </nav>
@@ -85,7 +85,7 @@ if(isset($_SESSION["user"]))
               <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>subscription">Payment and Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>payment/">Payment and Subscription</a>
             </li>
             <li id="resavatar" class="hidden">              
             </li>
@@ -101,7 +101,7 @@ if(isset($_SESSION["user"]))
          <br>
          <div id="profile">
            <div id="userPhoto" class="">
-             <img id="userAvatar" src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" style="top:-10px" width="100" height="100" />
+             <img id="userAvatar" src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" style="top:-10px" width="100" height="100" />
              <div class="full-width">
                 <a href="avatar.php">Change</a>
              </div>
@@ -269,7 +269,7 @@ if(isset($_SESSION["user"]))
         $('#supportFooter').css('text-align','justify');
         $('#supportFooter').css('margin-left','10%');
         $('#supportFooter').css('margin-top','5%');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/default.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
+        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
         $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
         $('#resavatar').removeClass('hidden');
         $('#reslogout').removeClass('hidden');
