@@ -110,11 +110,11 @@
               <div class="swiper-slide">
                 <div style="width:100%;">
                   <h1>
-                    <i class="fas fa-coins"></i>
+                   <a href="../coins/"> <i class="fas fa-coins"></i></a>
                   </h1>
                 </div>
                 <div style="width:100%;">
-                  <h2>Chip Game</h2>
+                  <a href="../coins/"><h2>Chip Game</h2></a>
                 </div>
               </div>              
               <div class="swiper-slide">
