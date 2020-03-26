@@ -88,7 +88,7 @@ else {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
+          <a href="<?=$url;?>"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
         </div>
       </nav>
       <div class="collapse" id="navbarToggleExternalContent">
@@ -209,12 +209,14 @@ else {
 
     var tabletResponsive = (swidth) =>{
       commonResponsive(swidth);
+      $("#logoContainer > a").css('margin-left','0%');
     }
    var mobileResponsive = (swidth) =>{
       commonResponsive(swidth);
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#logoContainer').removeClass('col-md-8');
+      $("#logoContainer > a").css('margin-left','0%');
       $('#supportFooter').css('width','100%');
       $('#contactoFooter').css('width', '100%');
       $('#supportFooter').css('text-align','justify');
@@ -235,6 +237,11 @@ else {
       if(SCREEN_WIDTH <= 425){
         mobileResponsive(SCREEN_WIDTH);
       }
+
+      if(SCREEN_WIDTH >= 1404){
+        $("#logoContainer > a").css('margin-left','15%');
+      } 
+
     }
 
     var _submit = document.getElementById("passowrd");

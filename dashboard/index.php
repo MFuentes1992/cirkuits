@@ -238,6 +238,8 @@
       }
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
+      }else if(SCREEN_WIDTH => 1404){
+        $("#logoContainer > a").css('margin-left','54%');
       }
 
       /**//////////////// TABLET (800 - 425) ////////// */

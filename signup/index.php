@@ -239,12 +239,14 @@
 
    var tabletResponsive = (swidth) =>{
       commonResponsive(swidth);
+      $("#logoContainer > a").css('margin-left','0%');
     }
     var mobileResponsive = (swidth) =>{
       commonResponsive(swidth);
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#logoContainer').removeClass('col-md-8');
+      $("#logoContainer > a").css('margin-left','0%');
       $('#supportFooter').css('width','100%');
       $('#contactoFooter').css('width', '100%');
       $('#supportFooter').css('text-align','justify');
@@ -265,6 +267,9 @@
       if(SCREEN_WIDTH <= 425){
         mobileResponsive(SCREEN_WIDTH);
       }
+      if(SCREEN_WIDTH >= 1404){
+        $("#logoContainer > a").css('margin-left','15%');
+      } 
     }
 
 

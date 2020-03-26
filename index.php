@@ -20,7 +20,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <img class="img_logo" src="img/horizontal_alt.png" alt="cirkuits logo" width="210" height="100"/>
+      <img class="img_logo" src="img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/>
       <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
     </nav>
     <div class="collapse" id="navbarToggleExternalContent">

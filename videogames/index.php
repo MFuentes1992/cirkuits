@@ -110,11 +110,11 @@
               <div class="swiper-slide">
                 <div style="width:100%;">
                   <h1>
-                   <a href="../coins/"> <i class="fas fa-coins"></i></a>
+                   <a href="../coins/" class="nav-link white"> <i class="fas fa-coins"></i></a>
                   </h1>
                 </div>
                 <div style="width:100%;">
-                  <a href="../coins/"><h2>Chip Game</h2></a>
+                  <a href="../coins/" class="nav-link white"><h2>Chip Game</h2></a>
                 </div>
               </div>              
               <div class="swiper-slide">
@@ -291,7 +291,9 @@
       }
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
-      }        
+      } else if(SCREEN_WIDTH >= 1404){
+        $("#logoContainer > a").css('margin-left','54%');
+      }      
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
         tabletResponsive(SCREEN_WIDTH);
