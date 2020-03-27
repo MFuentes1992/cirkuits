@@ -237,7 +237,9 @@ else {
       if(SCREEN_WIDTH <= 425){
         mobileResponsive(SCREEN_WIDTH);
       }
-
+      if(SCREEN_WIDTH <= 1404){
+        $("#logoContainer > a").css('margin-left','10%');
+      } 
       if(SCREEN_WIDTH >= 1404){
         $("#logoContainer > a").css('margin-left','15%');
       } 

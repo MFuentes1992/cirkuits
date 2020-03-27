@@ -72,7 +72,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
+          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
         </div>
       </nav>
       <div class="collapse" id="navbarToggleExternalContent">
