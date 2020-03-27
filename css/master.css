@@ -229,7 +229,7 @@ p {
 .photo{
   position: relative;
   width: 10%;
-  margin-left: 12%;
+  margin-left: 14%;
 }
 .btn-save-avatar{
   position: relative;
@@ -237,8 +237,32 @@ p {
   margin: auto;
   margin-top: 2%;
 }
-@media screen and (min-width: 320px) and (max-width: 992px)
+
+@media screen and (min-width: 540px) and (max-width:768px){
+  .photo{
+    position: relative;
+    width: 10%;
+    margin-left: 10%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 540px)
 {
+
+  .avatar-showcase{
+    position: relative;
+    width: 100%;
+    display: inline-flex;
+    margin: auto;
+    text-align: center;
+  }
+
+  .photo{
+    position: relative;
+    width: 10%;
+    margin-left: 9%;
+  }
+
   .contenido
   {
     position: relative;
