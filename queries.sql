@@ -32,7 +32,8 @@ CREATE TABLE leaderboard (id_leaderboard INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     show tables;
     
     desc usuarios;
-    
+    insert into cat_videogames (nombre) values ('ball game');
+    insert into videogame_progress (id_videogame, id_usuario, nivel, score) values (1,1,1,0);
     select * from usuarios;
     update usuarios set estatus_usuario = 2 where id_usuario = 2;
     
