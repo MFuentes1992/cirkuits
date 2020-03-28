@@ -32,7 +32,7 @@
     <div id="speachBox">
       <span id="speachResult">Voice input:</span>
     </div>
-    <div id="smokeScreen" style="width: 100%; height:100%; background-color:	#707070; "> 
+    <div id="smokeScreen" style="width: 100%; height:100%; background-color:	#0098D1; "> 
       <!-- /////////////  SMOKE SCREEN WILL HELP US TO RENDER A SIMILAR BACKGROUND TO THE ACTUAL GAME ////////////////  -->
     </div>
     <!-- /////////// LEVEL CLEAR ////////////////////// -->
@@ -92,15 +92,13 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <script src="js/three.js" charset="utf-8"></script>
+    </div> 
+    <script src="js/three.min.js" charset="utf-8"></script>    
     <script src="js/TweenMax.min.js" charset="utf-8"></script> 
     <script src="js/jquery-3.4.1.js" charset="utf-8"></script>
     <script src="../js/jquery-1.12.3.min.js"></script>
     <script src="../js/dist/bootstrap.min.js"></script>       
-    <script type="text/javascript">
-
+    <script type="text/javascript"> 
     //variables para el timer de cuenta regresiva - Inicio del juego.
     var d = new Date();
     d.setMinutes(d.getMinutes() + 1);
@@ -110,8 +108,8 @@
     var now = 0;
     var minutes = 0;  // Variable used for displaying the amount of minutes in the HUD
     var seconds = 0; // Variable used for displaying the amount of seconds in the HUD
-    var timmerGameTimeMinutes = 2 // Amount of minutes
-    var timmerGameTimeSeconds = 10 // Variable for store the level count down  
+    var timmerGameTimeMinutes = 1; // Amount of minutes
+    var timmerGameTimeSeconds = 500; // Variable for store the level count down  
     var timeBarWidth = 100; // Total lenght of the Time Bar
     var timeBarID = 0; // Sotored Id from the interval function
     var speechTimmerTime = 40; // Single amount of the general Timeframe
@@ -121,7 +119,7 @@
     var gameOver = false; //Flag that will be activate once the user lost all his lives
     var levelClear = false; // Flag that will be activated once the game timmer is over           
     var gameStartCounter = 3; //Counter for the initial countdown                 
-    var lives = 3; // Amount of opportunities
+    var lives = 999; // Amount of opportunities
     var score = 0; //General score
     var isSpeaking = false; // Flag that is being activated when the mic is hearing something    
     var gameStartTimer = document.getElementById("gameStartTimer"); // Initial countdown
@@ -152,7 +150,7 @@
     
 
     //variables para las geometrias y logica del juego
-    var cameraPosArray = [30,5];
+    var cameraPosArray = [120,60];
     var cameraPos = 0;
     var colorCanonical = "";
     var colors = [ "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)",
@@ -160,8 +158,8 @@
     var color = 0;
     
     const cameraFarClose = {
-      THOSE: 30,
-      THESE: 5
+      THOSE: 120,
+      THESE: 60
     }
 
     const colorsCanonical = {
@@ -226,7 +224,7 @@
           gameStartTimer.innerHTML = --this.gameStartCounter;           
           if(this.gameStartCounter <= 0){
             //When timer hits 0's then we are good to begin the game
-            clearInterval(id);    
+            clearInterval(id);               
             timeBarID = starBarAnimation();                        
             speachBox.style.visibility = "visible";
             timeBarContainer.style.visibility = "visible";
@@ -247,7 +245,7 @@
       var raycaster = new THREE.Raycaster();
       var mouse = new THREE.Vector2();
       //Background color de la escena.
-      renderer.setClearColor("#707070");
+      renderer.setClearColor("#0098D1");
       renderer.setSize( window.innerWidth, window.innerHeight );
       //Enableling shadow rendering
       renderer.shadowMap.enabled = true;
@@ -281,14 +279,48 @@
         isSpeaking = false;               
       }
 
+      //Light
+      //ambientLight = new THREE.AmbientLight(0x636363, 1);
+      //scene.add(ambientLight);
+      var dlight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+		  dlight.position.set( 0, 50, 60 ).normalize();
+			scene.add( dlight );
+      //Light Sphere
+      var sphere = new THREE.SphereBufferGeometry( 0.25, 16, 8 );
+      //Individual lights for each ball
+      var light1 = new THREE.PointLight(0xffffff, 2.5, 100, 4.0);
+      light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) ) );
+      light1.position.set(-3,1,60);
+      light1.castShadow = true;
+      light1.shadow.camera.near = 25;
+      light1.shadow.camera.far = 100;
+      //scene.add(light1);
+      //Individual lights for each ball
+      var light2 = new THREE.PointLight(0xffffff, 2.5, 100, 4.0);
+      light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) ) );
+      light2.position.set(-3,1,60);
+      light2.castShadow = true;
+      light2.shadow.camera.near = 25;
+      light2.shadow.camera.far = 100;
+      //scene.add(light2);
+
+      light1.position.x =   -30;
+      light1.position.y =  2;
+      light1.position.z =  0;
+
+      light2.position.x =   10;
+      light2.position.y =  2;
+      light2.position.z =  0;
+
+
       //Create boxes placed randomly             
       var createGeometry = function(){ 
 
         //Variables de inicializacion        
         var totalGeometries = [2,3];
         
-        var random = totalGeometries[ Math.floor((Math.random() * 2)) ];                
-        var posX = -3;
+        var random = totalGeometries[ Math.floor((Math.random() * 1)) ];                
+        var posX = -20;
         this.tl = new TimelineMax();
         var ranPosition = Math.floor((Math.random() * 6))
         color = colors[ranPosition];
@@ -318,21 +350,30 @@
 
         for(var gamma = 0; gamma < random; gamma ++){
 
-          var geometry = new THREE.BoxGeometry(1,1,1);
-          var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});          
+          //var geometry = new THREE.BoxGeometry(1,1,1);
+          var geometry = new THREE.SphereGeometry( 5, 32, 32 );
+          //var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});  
+          var material = new THREE.MeshStandardMaterial({color: 0xFF00FF, roughness: 1.5, metalness: 0.1});  
+          /*var material = new THREE.MeshStandardMaterial( {
+            vertexColors: true,
+            roughness: 0.0,
+            color: 0xFF00FF,
+            flatShading: true,
+            side: THREE.DoubleSide
+				  } );  */                
           material.color.set(color);                  
           var mesh = new THREE.Mesh(geometry, material);                    
           mesh.rotation.x = Math.PI*Math.random();
           mesh.rotation.y = Math.PI*Math.random();
           mesh.position.x = posX;
-          mesh.castShadow = true;                    
+          //mesh.castShadow = true;                    
           scene.add(mesh);
           if(mesh.rotation.y > 0) { 
               this.tl.to(mesh.rotation, .5, {y: 0, ease: Expo.easeOut}); 
             }else{
               this.tl.to(mesh.rotation, .5, {y: 0.5, ease: Expo.easeOut});                  
           }
-          posX += 3;          
+          posX += 40;
         }
         cameraPos = cameraPosArray[Math.floor((Math.random() * 2))];
         camera.position.z = cameraPos;
@@ -355,18 +396,6 @@
         }
       }
     
-      //Light
-      ambientLight = new THREE.AmbientLight(0xffffff, 1);
-      scene.add(ambientLight);
-      
-      light = new THREE.PointLight(0xffffff, 0.8, 18);
-      light.position.set(-3,6,-3);
-      light.castShadow = true;
-      light.shadow.camera.near = 0.1;
-      light.shadow.camera.far = 25;
-      scene.add(light);
-
-
       //game logic
       var update = function(){
         if(gameStartCounter <= 0){
@@ -402,8 +431,8 @@
         if(timmerRunning){
           var now = new Date().getTime();
           var distance = startDate - now;
-          minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * timmerGameTimeSeconds)) / 1000); // TimerGame Time is the amount of seconds       
+          minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
+          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
