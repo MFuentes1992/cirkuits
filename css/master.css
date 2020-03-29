@@ -327,6 +327,18 @@ p {
   background-image: url('../img/videogames/records_hover.png'); 
   cursor: pointer;
 }
+.super-game-container{
+  position: relative;
+  width: 80%;
+  height: 500px;
+  margin: auto;
+  background-color: #343A40;;
+}
+iframe{
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
 @media screen and (min-width: 320px) and (max-width: 540px)
 {
 

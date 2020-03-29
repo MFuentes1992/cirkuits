@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Coin Game</title>
-    <link rel="stylesheet" href="../css/fontawesome-free-5.8.1-web/css/all.css">
-    <link rel="stylesheet" href="../css/bootstrap-4.3.1/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/gamescss/main.css">      
+    <link rel="stylesheet" href="../../css/fontawesome-free-5.8.1-web/css/all.css">
+    <link rel="stylesheet" href="../../css/bootstrap-4.3.1/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../css/gamescss/main.css">      
   </head>
   <body>
     <div id="HUD">
@@ -17,9 +17,9 @@
         <span><i class="fas fa-stopwatch"></i>&nbsp;<span id="UICountdown">00:00</span></span>
       </div>
       <div id="livesControl">
-        <span id="life3"><i class="fas fa-heart"></i></span>
-        <span id="life2"><i class="fas fa-heart"></i></span>
         <span id="life1"><i class="fas fa-heart"></i></span>
+        <span id="life2"><i class="fas fa-heart"></i></span>
+        <span id="life3"><i class="fas fa-heart"></i></span>                
       </div>
       <div id="scoreControl">
         <span><i class="fas fa-gem"></i>&nbsp;<span id="UIScore">0</span></span>
@@ -93,11 +93,11 @@
             </div>
         </div>
     </div> 
-    <script src="js/three.min.js" charset="utf-8"></script>    
-    <script src="js/TweenMax.min.js" charset="utf-8"></script> 
-    <script src="js/jquery-3.4.1.js" charset="utf-8"></script>
-    <script src="../js/jquery-1.12.3.min.js"></script>
-    <script src="../js/dist/bootstrap.min.js"></script>       
+    <script src="../js/three.min.js" charset="utf-8"></script>    
+    <script src="../js/TweenMax.min.js" charset="utf-8"></script> 
+    <script src="../js/jquery-3.4.1.js" charset="utf-8"></script>
+    <script src="../../js/jquery-1.12.3.min.js"></script>
+    <script src="../../js/dist/bootstrap.min.js"></script>       
     <script type="text/javascript"> 
     //variables para el timer de cuenta regresiva - Inicio del juego.
     var d = new Date();
@@ -119,7 +119,7 @@
     var gameOver = false; //Flag that will be activate once the user lost all his lives
     var levelClear = false; // Flag that will be activated once the game timmer is over           
     var gameStartCounter = 3; //Counter for the initial countdown                 
-    var lives = 999; // Amount of opportunities
+    var lives = 3; // Amount of opportunities
     var score = 0; //General score
     var isSpeaking = false; // Flag that is being activated when the mic is hearing something    
     var gameStartTimer = document.getElementById("gameStartTimer"); // Initial countdown
@@ -150,7 +150,7 @@
     
 
     //variables para las geometrias y logica del juego
-    var cameraPosArray = [120,60];
+    var cameraPosArray = [120,40];
     var cameraPos = 0;
     var colorCanonical = "";
     var colors = [ "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)",
@@ -158,8 +158,8 @@
     var color = 0;
     
     const cameraFarClose = {
-      THOSE: 120,
-      THESE: 60
+      THOSE: 60,
+      THESE: 30
     }
 
     const colorsCanonical = {
@@ -282,43 +282,13 @@
       //Light
       //ambientLight = new THREE.AmbientLight(0x636363, 1);
       //scene.add(ambientLight);
-      var dlight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+      var dlight = new THREE.DirectionalLight( 0xffffff, 1.5 );
 		  dlight.position.set( 0, 50, 60 ).normalize();
 			scene.add( dlight );
-      //Light Sphere
-      var sphere = new THREE.SphereBufferGeometry( 0.25, 16, 8 );
-      //Individual lights for each ball
-      var light1 = new THREE.PointLight(0xffffff, 2.5, 100, 4.0);
-      light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) ) );
-      light1.position.set(-3,1,60);
-      light1.castShadow = true;
-      light1.shadow.camera.near = 25;
-      light1.shadow.camera.far = 100;
-      //scene.add(light1);
-      //Individual lights for each ball
-      var light2 = new THREE.PointLight(0xffffff, 2.5, 100, 4.0);
-      light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) ) );
-      light2.position.set(-3,1,60);
-      light2.castShadow = true;
-      light2.shadow.camera.near = 25;
-      light2.shadow.camera.far = 100;
-      //scene.add(light2);
-
-      light1.position.x =   -30;
-      light1.position.y =  2;
-      light1.position.z =  0;
-
-      light2.position.x =   10;
-      light2.position.y =  2;
-      light2.position.z =  0;
-
-
       //Create boxes placed randomly             
       var createGeometry = function(){ 
-
         //Variables de inicializacion        
-        var totalGeometries = [2,3];
-        
+        var totalGeometries = [2,3];        
         var random = totalGeometries[ Math.floor((Math.random() * 1)) ];                
         var posX = -20;
         this.tl = new TimelineMax();
@@ -353,20 +323,13 @@
           //var geometry = new THREE.BoxGeometry(1,1,1);
           var geometry = new THREE.SphereGeometry( 5, 32, 32 );
           //var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});  
-          var material = new THREE.MeshStandardMaterial({color: 0xFF00FF, roughness: 1.5, metalness: 0.1});  
-          /*var material = new THREE.MeshStandardMaterial( {
-            vertexColors: true,
-            roughness: 0.0,
-            color: 0xFF00FF,
-            flatShading: true,
-            side: THREE.DoubleSide
-				  } );  */                
+          var material = new THREE.MeshStandardMaterial({color: 0xFF00FF, roughness: 1.5, metalness: 0.1});               
           material.color.set(color);                  
           var mesh = new THREE.Mesh(geometry, material);                    
           mesh.rotation.x = Math.PI*Math.random();
           mesh.rotation.y = Math.PI*Math.random();
           mesh.position.x = posX;
-          //mesh.castShadow = true;                    
+          mesh.castShadow = true;                    
           scene.add(mesh);
           if(mesh.rotation.y > 0) { 
               this.tl.to(mesh.rotation, .5, {y: 0, ease: Expo.easeOut}); 
@@ -465,13 +428,22 @@
           renderLevelClear();          
           levelClear = false;
         }
+        //Update Geometry
+        for(var alfa = 0; alfa < scene.children.length; alfa++){
+          if( scene.children[ alfa ] instanceof THREE.Mesh ){
+            var time = performance.now() * 0.001;
+            scene.children[ alfa ].position.y = Math.sin( time ) * (5*(alfa+1)) + 5;
+				    //scene.children[ alfa ].rotation.x = time * 0.5;
+				    //scene.children[ alfa ].rotation.z = time * 0.51;         
+          } 
+        }
       };
 
       //draw scene
       var render = function(){
         if(startGame)
           renderer.render( scene, camera );
-          //
+          // 
       };
 
       var GameLoop = function(){
