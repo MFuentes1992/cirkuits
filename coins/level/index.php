@@ -98,21 +98,21 @@
                     <tr>                        
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] == 1){?>
-                            <div class="level-number">1</div>
+                            <div class="level-number" onClick="reload(1)">1</div>
                             <?php } else {?>
                             <div class="level-number-lock"></div>
                             <?php }?>
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] == 2){?>
-                            <div class="level-number">2</div>
+                            <div class="level-number" onClick="reload(2)">2</div>
                             <?php } else {?>
                             <div class="level-number-lock"></div>
                             <?php }?>                                
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] == 3){?>
-                            <div class="level-number">3</div>
+                            <div class="level-number" onClick="reload(3)">3</div>
                             <?php } else {?>
                             <div class="level-number-lock"></div>                                
                             <?php }?>
@@ -123,8 +123,8 @@
             <div>
                 <table class="table-footer">
                       <tr>                          
-                          <td><div class="level-footer" id="leaderboard"></div></td>
-                          <td><div class="level-footer" id="play"></div></td>
+                          <td><div class="level-footer" id="leaderboard" onClick="leaderBoard()"></div></td>
+                          <td><div class="level-footer" id="play" onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)"></div></td>
                       </tr>
                 </table>
             </div>            
@@ -238,6 +238,14 @@
         prevEl: '.swiper-button-prev',
       },
     });
+
+    var reload = level => {
+      alert(level);
+    }
+
+    var leaderBoard = () =>{
+      alert("Go to Leaderboard")
+    }
   </script>
 </body>
 </html>
