@@ -1,3 +1,29 @@
+<?php
+  include_once("../../util/utilities.php");
+  header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+  header("Cache-Control: post-check=0, pre-check=0", false);
+  header("Pragma: no-cache");
+  session_start();
+  if(isset($_SESSION["user"]))
+  {
+    if(isset($_SESSION["user"]["estatus_usuario"]))
+    {
+      if($_SESSION["user"]["estatus_usuario"] == 1)
+      {
+        /*Disabeling user payment*/
+        header("Location:".$url."payment");        
+      }
+      else if($_SESSION["user"]["estatus_usuario"] == 2){
+        $payment = 2;
+      }
+      else {
+        header("location:".$url."signin");
+      }
+    }
+  }else {
+    header("location:".$url."signin");
+  }
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -64,6 +90,11 @@
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary">Main menu</button>
                   <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
+                  <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
+                  <input type="hidden" id="VideogameID" value="1">
+                  <input type="hidden" id="CurrentLevel" value="1">
+                  <input type="hidden" id="NextLevel" value="2">
+                  <input type="hidden" id="Score">
               </div>
           </div>
       </div>
@@ -395,7 +426,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 10)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
@@ -427,6 +458,7 @@
           timmerRunning = false;
           renderLevelClear();          
           levelClear = false;
+          SaveData();
         }
         //Update Geometry
         for(var alfa = 0; alfa < scene.children.length; alfa++){
@@ -476,6 +508,8 @@
     const renderLevelClear = () =>{
       timmerRunning = false;
       recognition.abort();
+      var modalScore = document.getElementById("Score");
+      modalScore.setAttribute('value', score);
       $('#levelClearModal').modal('show');
       let fireWorksInterval = setInterval( ()=>{
         explode(rand(0, document.documentElement.clientWidth), rand(0, document.documentElement.clientHeight));  
@@ -557,6 +591,30 @@
     }
     var reload = function(){
         location.reload();
+    }
+    var SaveData = function(){
+      var _data = {
+        UserID: $("#UserID").val(),
+        VideogameID: $("#VideogameID").val(),
+        CurrentLevel: $("#CurrentLevel").val(),
+        NextLevel: $("#NextLevel").val(),
+        Score: $("#Score").val()
+      }
+      console.log(data);
+      $.ajax({
+        method: "POST",
+        data: _data,
+        url: "../MagiSave.php"
+      }).done(function(msg){
+        if(msg === -1){
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Problem saving your data!',
+              footer: '<a href>Why do I have this issue?</a>'
+            });
+        }
+      });
     }
     </script>
   </body>

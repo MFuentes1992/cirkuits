@@ -90,8 +90,8 @@
     </div>
     <div class="container-fluid bg-black">
         <div class="super-game-container">
-            <a href="game.html">Go Fullscreen -></a>
-            <iframe src="game.html" frameborder="0" scrolling="no"></iframe>
+            <a href="game.php">Go Fullscreen -></a>
+            <iframe src="game.php" frameborder="0" scrolling="no"></iframe>
             <h1 class="hidden">Please change to a lap top or desktop computer</h1>
         </div>
     </div>

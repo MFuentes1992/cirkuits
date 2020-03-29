@@ -5,7 +5,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-$avatar        = (isset($_POST["avatar"]) ? $_POST["avatar"]   : "default");
+$avatar = (isset($_POST["avatar"]) ? $_POST["avatar"]   : "default");
 $idUsuario = (isset($_POST["idUsuario"])) ? $_POST["idUsuario"] : false;
 if(!$idUsuario){
   echo "Couldn't get user ID";
