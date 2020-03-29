@@ -263,7 +263,7 @@ p {
   padding: 5%;
 }
 .level-number{
-  font-size: 24pt;
+  font-size: 42pt;
   font-weight: bold;
   color: #FFF;
   width: 100px;
@@ -282,13 +282,49 @@ p {
 }
 .level-number:hover{
   cursor: pointer;
+  background-image: url('../img/videogames/round_hover.png');
 }
 .level-table{
   position: relative;
   width: 100%;  
   text-align: center;
 }
-
+.level-select-footer{
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: chartreuse;
+}
+.table-footer{
+  position: relative;
+  width: 100%;  
+  height: 100px;
+  text-align: center;  
+  
+}
+#play{
+  position: relative;
+  top: -50px;
+  width: 100px;
+  height: 100px;
+  background-image: url('../img/videogames/play.png');
+  background-size: 100% 100%;
+}
+#play:hover{
+  background-image: url('../img/videogames/play_hover.png');  
+}
+#leaderboard{
+  position: relative;
+  top: -50px;
+  width: 100px;
+  height: 100px;
+  float: right;
+  background-image: url('../img/videogames/records.png');
+  background-size: 100% 100%;
+}
+#leaderboard:hover{
+  background-image: url('../img/videogames/records_hover.png'); 
+}
 @media screen and (min-width: 320px) and (max-width: 540px)
 {
 

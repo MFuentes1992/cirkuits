@@ -119,10 +119,15 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="level-select-footer">
-                <table></table>
-            </div>
+            </div>            
+            <div>
+                <table class="table-footer">
+                      <tr>                          
+                          <td><div class="level-footer" id="leaderboard"></div></td>
+                          <td><div class="level-footer" id="play"></div></td>
+                      </tr>
+                </table>
+            </div>            
         </div>
     </div>
     <!--/////// Contact ///// -->     
