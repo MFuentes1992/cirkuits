@@ -85,11 +85,13 @@
                       <span id="levelClearStar1" class="gameo-ico"><i class="far fa-star"></i></span>                        
                       <span id="levelClearStar2" class="gameo-ico"><i class="far fa-star"></i></span>
                       <span id="levelClearStar3" class="gameo-ico"><i class="far fa-star"></i></span>
-                  </div>            
+                  </div> 
+                  <div id="DataSaved">
+                  </div>           
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary">Main menu</button>
-                  <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
+                  <button type="button" class="btn btn-secondary" onclick="ReloadSessionData()">Main menu</button>
+                  <button type="button" class="btn btn-primary" onclick="ReloadSessionData()">Try again</button>
                   <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
                   <input type="hidden" id="VideogameID" value="1">
                   <input type="hidden" id="CurrentLevel" value="1">
@@ -118,8 +120,8 @@
                     </div>         
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">Main menu</button>
-                    <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
+                    <button type="button" class="btn btn-secondary" onclick="">Main menu</button>
+                    <button type="button" class="btn btn-primary" onclick="location.reload()">Try again</button>
                 </div>
             </div>
         </div>
@@ -128,7 +130,8 @@
     <script src="../js/TweenMax.min.js" charset="utf-8"></script> 
     <script src="../js/jquery-3.4.1.js" charset="utf-8"></script>
     <script src="../../js/jquery-1.12.3.min.js"></script>
-    <script src="../../js/dist/bootstrap.min.js"></script>       
+    <script src="../../js/dist/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>         
     <script type="text/javascript"> 
     //variables para el timer de cuenta regresiva - Inicio del juego.
     var d = new Date();
@@ -189,8 +192,8 @@
     var color = 0;
     
     const cameraFarClose = {
-      THOSE: 60,
-      THESE: 30
+      THOSE: 120,
+      THESE: 40
     }
 
     const colorsCanonical = {
@@ -426,7 +429,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 10)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
@@ -591,7 +594,7 @@
     }
     var reload = function(){
         location.reload();
-    }
+    }    
     var SaveData = function(){
       var _data = {
         UserID: $("#UserID").val(),
@@ -600,21 +603,28 @@
         NextLevel: $("#NextLevel").val(),
         Score: $("#Score").val()
       }
-      console.log(data);
+      console.log(_data);
       $.ajax({
         method: "POST",
         data: _data,
         url: "../MagiSave.php"
       }).done(function(msg){
-        if(msg === -1){
+        console.log(msg);
+        if(msg == -1){
           Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Problem saving your data!',
               footer: '<a href>Why do I have this issue?</a>'
             });
+        }else if(msg == 1){
+          $("#DataSaved").append('Data Saved!');
+            console.log("Data Saved");
         }
       });
+    }
+    var ReloadSessionData = function(){
+      location.replace('http://localhost/Cirkuits/coins/SessionManager.php/"')
     }
     </script>
   </body>

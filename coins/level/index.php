@@ -97,14 +97,14 @@
                 <table class="level-table">
                     <tr>                        
                         <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] == 1){?>
+                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 1){?>
                             <div class="level-number" onClick="reload(1)">1</div>
                             <?php } else {?>
                             <div class="level-number-lock"></div>
                             <?php }?>
                         </td>
                         <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] == 2){?>
+                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 2){?>
                             <div class="level-number" onClick="reload(2)">2</div>
                             <?php } else {?>
                             <div class="level-number-lock"></div>
