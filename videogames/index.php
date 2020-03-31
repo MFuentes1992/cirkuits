@@ -110,11 +110,11 @@
               <div class="swiper-slide">
                 <div style="width:100%;">
                   <h1>
-                   <a href="../coins/level/" class="nav-link white"><i class="fas fa-futbol"></i></a>
+                   <a href="../ball/level/" class="nav-link white"><i class="fas fa-futbol"></i></a>
                   </h1>
                 </div>
                 <div style="width:100%;">
-                  <a href="../coins/level/" class="nav-link white"><h2>Ball Game</h2></a>
+                  <a href="../ball/level/" class="nav-link white"><h2>Ball Game</h2></a>
                 </div>
               </div>              
               <div class="swiper-slide">
