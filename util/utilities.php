@@ -21,9 +21,7 @@
     $strQuery = sprintf("INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,
       email_usuario, tel_usuario, cel_usuario, nacimiento_usuario, estatus_usuario, isAdmin, fecha_registro, fecha_actualizacion, avatar_usuario)  VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW(), NOW(), %s)",
     $name,$lstName,$userName,$password,$email,$telUsuario,$celUsuario,$birthDate,$estatus, $isAdmin,$avatar);
-
     $result = mysqli_query($GLOBALS["conexion"], $strQuery);
-
     return $result;
   }
 

@@ -25,14 +25,25 @@
 
     if(check_user($email) <= 0)
     {
-      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 1, $isAdmin, $avatar);
+      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 2, $isAdmin, $avatar);
       $id_usuario = mysqli_insert_id($conexion);
       if($result > 0)
       {
         session_start();
-        $str_query = "SELECT * FROM usuarios where id_usuario = ".$id_usuario;
+        $str_query =  sprintf("SELECT * FROM usuarios where alter_usuario = %s AND password_usuario = %s",
+        $userName, $password);
         $select_user = mysqli_query($conexion, $str_query);
         $row = mysqli_fetch_assoc($select_user);
+        //Filling up initial data
+        $strProgress = sprintf('INSERT INTO videogame_progress (id_videogame, id_usuario, nivel, stars, score) VALUES (%s,%s,%s,%s,%s)', 1,$row['id_usuario'],1,0,0);
+        $insert_vprogress = mysqli_query($conexion, $strProgress);
+        if($insert_vprogress){
+          $select_vprogress = sprintf("SELECT id_progress FROM videogame_progress WHERE id_usuario = %s", $row['id_usuario']);
+          $rawQuery = mysqli_query($conexion, $select_vprogress);
+          $vprogress_data = mysqli_fetch_assoc($rawQuery);
+          $strLeaderboard = sprintf('INSERT INTO leaderboard (id_progress, high_score) VALUES (%s,%s)', $vprogress_data['id_progress'],0);
+          $resultLeader = mysqli_query($conexion, $strLeaderboard);
+        }        
         $_SESSION["user"] = $row;
         header("Location:".$url."dashboard");
       }
