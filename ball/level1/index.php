@@ -174,7 +174,7 @@
       }
       var responsiveEngine = () => {
       var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
+      var SCREEN_HEIGHT = $(window).height();      
       /** /////////////// RESPONSIVE ////////////// */
       if(SCREEN_WIDTH > 1024){
         $("#reslogout > a").remove();
@@ -194,7 +194,19 @@
         mobileResponsive(SCREEN_WIDTH);
       }
     }
-
+    window.document.addEventListener('ansible', handleEvent, false);
+    function handleEvent(e){
+        switch(e.detail.msg){
+          case 1:
+            location.replace('http://localhost/Cirkuits/ball/NextLevelManager.php/"');
+          break;
+          case 2:
+            location.replace('http://localhost/Cirkuits/ball/MainMenuManager.php/"');
+          break;
+          default:
+          break;
+        }
+    }
   </script>
 </body>
 </html>

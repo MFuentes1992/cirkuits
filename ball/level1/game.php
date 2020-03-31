@@ -90,8 +90,8 @@
                   </div>           
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" onclick="ReloadSessionData()">Main menu</button>
-                  <button type="button" class="btn btn-primary" onclick="ReloadSessionData()">Try again</button>
+                  <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
+                  <button type="button" class="btn btn-primary" onclick="NextLevel()">Next Level</button>
                   <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
                   <input type="hidden" id="VideogameID" value="1">
                   <input type="hidden" id="CurrentLevel" value="1">
@@ -120,7 +120,7 @@
                     </div>         
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="">Main menu</button>
+                    <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
                     <button type="button" class="btn btn-primary" onclick="location.reload()">Try again</button>
                 </div>
             </div>
@@ -429,7 +429,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 10)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
@@ -618,13 +618,24 @@
               footer: '<a href>Why do I have this issue?</a>'
             });
         }else if(msg == 1){
-          $("#DataSaved").append('Data Saved!');
-            console.log("Data Saved");
+          $("#DataSaved").append('Data Saved!');            
         }
       });
     }
-    var ReloadSessionData = function(){
-      location.replace('http://localhost/Cirkuits/coins/SessionManager.php/"')
+    /*///////////////////////COMUNICATION BETWEEN IFRAME AND PARENT///////////////////////////// */
+    const AnsibleMessage ={
+      NEXTLEVEL: 1,
+      MAINMENU: 2      
+    }
+    var ansibleNextLevel = { msg: 1};
+    var NextLevel = function(){      
+      var _event = new CustomEvent('ansible', {detail: ansibleNextLevel});
+      window.parent.document.dispatchEvent(_event);
+    }
+    var ansibleMainMenu = { msg: 2 };
+    var MainMenu = function(){
+      var _event = new CustomEvent('ansible', {detail: ansibleMainMenu});
+      window.parent.document.dispatchEvent(_event);
     }
     </script>
   </body>
