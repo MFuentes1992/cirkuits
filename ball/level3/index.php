@@ -89,45 +89,10 @@
       </div>
     </div>
     <div class="container-fluid bg-black">
-        <div class="level-selector">
-            <div class="level-selector-title">
-                <img src="../../img/videogames/levelselect.png" width="400" alt="level select">
-            </div>
-            <div class="level-level">
-                <table class="level-table">
-                    <tr>                        
-                        <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 1){?>
-                            <div class="level-number" onClick="reload(1)">1</div>
-                            <?php } else {?>
-                            <div class="level-number-lock"></div>
-                            <?php }?>
-                        </td>
-                        <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 2){?>
-                            <div class="level-number" onClick="reload(2)">2</div>
-                            <?php } else {?>
-                            <div class="level-number-lock"></div>
-                            <?php }?>                                
-                        </td>
-                        <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] == 3){?>
-                            <div class="level-number" onClick="reload(3)">3</div>
-                            <?php } else {?>
-                            <div class="level-number-lock"></div>                                
-                            <?php }?>
-                        </td>
-                    </tr>
-                </table>
-            </div>            
-            <div>
-                <table class="table-footer">
-                      <tr>                          
-                          <td><div class="level-footer" id="leaderboard" onClick="leaderBoard()"></div></td>
-                          <td><div class="level-footer" id="play" onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)"></div></td>
-                      </tr>
-                </table>
-            </div>            
+        <div class="super-game-container">
+            <a href="game.php">Go Fullscreen -></a>
+            <iframe src="game.php" frameborder="0" scrolling="no"></iframe>
+            <h1 class="hidden">Please change to a lap top or desktop computer</h1>
         </div>
     </div>
     <!--/////// Contact ///// -->     
@@ -209,7 +174,7 @@
       }
       var responsiveEngine = () => {
       var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
+      var SCREEN_HEIGHT = $(window).height();      
       /** /////////////// RESPONSIVE ////////////// */
       if(SCREEN_WIDTH > 1024){
         $("#reslogout > a").remove();
@@ -229,22 +194,18 @@
         mobileResponsive(SCREEN_WIDTH);
       }
     }
-
-    var swiper = new Swiper('.swiper-container', {
-      loop: true,
-      slidesPerView: 1,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
-
-    var reload = level => {
-      location.replace("http://localhost/Cirkuits/ball/level"+level+"/");
-    }
-
-    var leaderBoard = () =>{
-      alert("Go to Leaderboard")
+    window.document.addEventListener('ansible', handleEvent, false);
+    function handleEvent(e){
+        switch(e.detail.msg){
+          case 1:
+            location.replace('http://localhost/Cirkuits/ball/NextLevelManager.php/"');
+          break;
+          case 2:
+            location.replace('http://localhost/Cirkuits/ball/MainMenuManager.php/"');
+          break;
+          default:
+          break;
+        }
     }
   </script>
 </body>
