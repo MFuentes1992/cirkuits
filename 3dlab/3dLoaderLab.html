@@ -22,7 +22,7 @@
 <script src="js/OBJLoader.js" charset="utf-8"></script>
 <script src="js/OrbitControls.js" charset="utf-8"></script>
 <script type="text/javascript">
-    var totalGeometries = 0;
+    var totalGeometries = 2;
     var random = 0;
     var canvas = document.getElementById("canvas");
 
@@ -32,17 +32,13 @@
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
     var renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias: true});
     //Background color de la escena.
-    //renderer.setClearColor("#707070");
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild(renderer.domElement);
 
     camera.position.x = 1.5;
     camera.position.y = 0.5;
     camera.position.z = -4;
-
-    /*var light = new THREE.PointLight( 0xFFFFFF, 1, 100 );
-    light.position.set( 10, 10, 25 );
-    scene.add( light );*/
+    camera.rotation.y = -1*Math.PI;
 
 	ambientLight = new THREE.AmbientLight(0xffffff, 1);
 	scene.add(ambientLight);
@@ -53,11 +49,6 @@
 	light.shadow.camera.near = 0.1;
 	light.shadow.camera.far = 25;
 	scene.add(light);
-
-    /*var geometry = new THREE.BoxGeometry(1,1,1);
-    var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});                                
-    var mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);*/
 
     var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
     var material = new THREE.MeshBasicMaterial( {color: 0x2A2A2A, side: THREE.DoubleSide} );
@@ -73,61 +64,137 @@
     planeGrass.position.y = -1;
     scene.add( planeGrass );      
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    /*var controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.25;
-    controls.enableZoom = true; 
+    controls.enableZoom = true;*/
 
     /*
         TODO: Crear un for loop para llenar un arreglo con tres carros de color Verde, Amarillo, Rojo Y Blanco.
-        El for loop pre cargara las texturas y los modelos 3D para evitarnos el cargarlos en tiempo de ejecucion.
+        El for loop pre-cargara las texturas y los modelos 3D para evitarnos el cargarlos en tiempo de ejecucion.
     */  
 
     /*
         TODO: Implementar el metodo load de Three JS para cargar los elementos 3D y tener un evento que se dispare cuando este termina de cargar.
     */
+    //////////////////// LOADING GREEN CARS ////////////////////////////
+    const carArrayGreen = new Array();
+    for(var greenCars = 0; greenCars <= totalGeometries; greenCars ++){
+        var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
 
-    var mtlLoaderCar = new THREE.MTLLoader();
-    mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-    mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
-    mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
+            materials.preload();
 
-        materials.preload();
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('raceCarGreen.obj', function (object) {
+                carArrayGreen.push(object);
+            });
+        }); 
+    }
+    //////////////////// LOADING YELLOW CARS ////////////////////////////
+    const carArrayYellow = new Array();
+    for(var yellowCars = 0; yellowCars <= totalGeometries; yellowCars ++){
+        var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarOrange.mtl', function (materials) {
 
-        var objLoader = new THREE.OBJLoader();
-        objLoader.setMaterials(materials);
-        objLoader.setPath('/cirkuits/3dlab/assets/');
-        objLoader.load('raceCarGreen.obj', function (object) {
-            carModel3DGreen = object;
-            /*scene.add(object);
-            object.name = "car"+a;
-            object.rotation.y = 0.1*Math.PI;
-            object.position.x = 1.5 - a;
-            //object.position.y -= 60;
-            object.position.z = -2;*/
-    
-        });
+            materials.preload();
 
-    }); 
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('raceCarOrange.obj', function (object) {
+                carArrayYellow.push(object);
+            });
+        }); 
+    }
+    //////////////////// LOADING RED CARS ////////////////////////////
+    const carArrayRed = new Array();
+    for(var redCars = 0; redCars <= totalGeometries; redCars ++){
+        var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarRed.mtl', function (materials) {
 
+            materials.preload();
 
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('raceCarRed.obj', function (object) {
+                carArrayRed.push(object);
+            });
+        }); 
+    }
+    //////////////////// LOADING BLANCO CARS ////////////////////////////
+    const carArrayWhite = new Array();
+    for(var whiteCars = 0; whiteCars <= totalGeometries; whiteCars ++){
+        var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarWhite.mtl', function (materials) {
 
-    var createGeometry = function(){
-        totalGeometries = [2,3];
-        random = totalGeometries[ Math.floor((Math.random() * 2)) ];
-        for (let a = 0; a < random; a++) {
-            var modelHelper = carModel3DGreen;            
-            modelHelper.name = "car"+a;
-            modelHelper.rotation.y = 0.1*Math.PI;
-            modelHelper.position.x = 1.5 - a;
-            //object.position.y -= 60;
-            modelHelper.position.z = -2;
-            scene.add(modelHelper);            
-        }
-    } 
+            materials.preload();
+
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('raceCarWhite.obj', function (object) {
+                carArrayWhite.push(object);
+            });
+        }); 
+    }
+    var colorStep = 1;
+    var createGeometry = function(){        
+        var coeficient = 0;  
+        switch(colorStep){
+            case 1:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayGreen[a].name = "car"+a;
+                    carArrayGreen[a].rotation.y = 0.1*Math.PI;
+                    carArrayGreen[a].position.x = 1.5 - a;
+                    carArrayGreen[a].position.z = -2;
+                    scene.add(carArrayGreen[a]);            
+                }
+            break;
+            case 2:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayYellow[a].name = "car"+a;
+                    carArrayYellow[a].rotation.y = 0.1*Math.PI;
+                    carArrayYellow[a].position.x = 1.5 - a;
+                    carArrayYellow[a].position.z = -2;
+                    scene.add(carArrayYellow[a]);            
+                }            
+            break;
+            case 3:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayRed[a].name = "car"+a;
+                    carArrayRed[a].rotation.y = 0.1*Math.PI;
+                    carArrayRed[a].position.x = 1.5 - a;
+                    carArrayRed[a].position.z = -2;
+                    scene.add(carArrayRed[a]);            
+                }             
+            break;
+            case 4:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayWhite[a].name = "car"+a;
+                    carArrayWhite[a].rotation.y = 0.1*Math.PI;
+                    carArrayWhite[a].position.x = 1.5 - a;
+                    carArrayWhite[a].position.z = -2;
+                    scene.add(carArrayWhite[a]);            
+                }             
+            break;
+        }   
+        colorStep = colorStep < 4 ? colorStep + 1 : 1;          
+    }
 
     var deleteGeometry = function(){
-        for (let b = 0; b < random; b++) {
+        for (let b = 0; b <= 2; b++) {
             var selectedObject = scene.getObjectByName("car"+b);
             scene.remove( selectedObject );                        
         }
@@ -164,7 +231,7 @@
         let threeStepHelper = 0;
             for (let beta = 0; beta < 10; beta ++){
                 var mtlLoaderThree = new THREE.MTLLoader();
-                mtlLoaderThree.setResourcePath('/cirkuits/cirkuits/3dlab/assets/');
+                mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
                 mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
                 mtlLoaderThree.load('treeLarge.mtl', function (materials) {
         
@@ -172,7 +239,7 @@
         
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                objLoader.setPath('/cirkuits/3dlab/assets/');
                 objLoader.load('treeLarge.obj', function (object) {
             
                     scene.add(object);
@@ -193,15 +260,15 @@
         let threeStepHelper = 0;
             for (let beta = 0; beta < 10; beta ++){
                 var mtlLoaderThree = new THREE.MTLLoader();
-                mtlLoaderThree.setResourcePath('/cirkuits/cirkuits/3dlab/assets/');
-                mtlLoaderThree.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
+                mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
                 mtlLoaderThree.load('treeLarge.mtl', function (materials) {
         
                 materials.preload();
         
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/cirkuits/3dlab/assets/');
+                objLoader.setPath('/cirkuits/3dlab/assets/');
                 objLoader.load('treeLarge.obj', function (object) {
             
                     scene.add(object);
@@ -353,7 +420,7 @@
     } );
     
     var update = function(){        	
-        controls.update();
+        //controls.update();
     };
     var render = function(){
         renderer.render( scene, camera );
