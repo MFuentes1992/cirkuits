@@ -28,7 +28,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Coin Game</title>
+    <title>Cars Game</title>
     <link rel="stylesheet" href="../../css/fontawesome-free-5.8.1-web/css/all.css">
     <link rel="stylesheet" href="../../css/bootstrap-4.3.1/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../../css/gamescss/main.css">      
@@ -189,7 +189,7 @@
 
     //variables para las geometrias y logica del juego
     var totalGeometries = 2;
-    var carPosArray = [1, -2];
+    var carPosArray = [1, -2, 1, -2, -2, 1, 1, 1, -2, -2];
     
     const carFarClose = {
       THOSE: 1,
@@ -623,7 +623,7 @@
 
       //Create boxes placed randomly             
       var createGeometry = function(){ 
-        carPos = carPosArray[Math.floor((Math.random() * 2))]; 
+        carPos = carPosArray[Math.floor((Math.random() * 10))]; 
         var coeficient = 0;  
         switch(colorStep){
             case 1:
@@ -713,7 +713,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 10)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
@@ -746,15 +746,6 @@
           renderLevelClear();          
           levelClear = false;
           SaveData();
-        }
-        //Update Geometry
-        for(var alfa = 0; alfa < scene.children.length; alfa++){
-          if( scene.children[ alfa ] instanceof THREE.Mesh ){
-            var time = performance.now() * 0.001;
-            scene.children[ alfa ].position.y = Math.sin( time ) * (5*(alfa+1)) + 5;
-				    //scene.children[ alfa ].rotation.x = time * 0.5;
-				    //scene.children[ alfa ].rotation.z = time * 0.51;         
-          } 
         }
       };
 
