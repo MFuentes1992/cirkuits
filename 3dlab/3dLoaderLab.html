@@ -158,7 +158,7 @@
                     carArrayGreen[a].name = "car"+a;
                     carArrayGreen[a].rotation.y = 0.1*Math.PI;
                     carArrayGreen[a].position.x = 1.5 - a;
-                    carArrayGreen[a].position.z = -2;
+                    carArrayGreen[a].position.z = 1;
                     scene.add(carArrayGreen[a]);            
                 }
             break;
@@ -167,7 +167,7 @@
                     carArrayYellow[a].name = "car"+a;
                     carArrayYellow[a].rotation.y = 0.1*Math.PI;
                     carArrayYellow[a].position.x = 1.5 - a;
-                    carArrayYellow[a].position.z = -2;
+                    carArrayYellow[a].position.z = 1;
                     scene.add(carArrayYellow[a]);            
                 }            
             break;
@@ -176,7 +176,7 @@
                     carArrayRed[a].name = "car"+a;
                     carArrayRed[a].rotation.y = 0.1*Math.PI;
                     carArrayRed[a].position.x = 1.5 - a;
-                    carArrayRed[a].position.z = -2;
+                    carArrayRed[a].position.z = 1;
                     scene.add(carArrayRed[a]);            
                 }             
             break;
@@ -185,7 +185,7 @@
                     carArrayWhite[a].name = "car"+a;
                     carArrayWhite[a].rotation.y = 0.1*Math.PI;
                     carArrayWhite[a].position.x = 1.5 - a;
-                    carArrayWhite[a].position.z = -2;
+                    carArrayWhite[a].position.z = 1;
                     scene.add(carArrayWhite[a]);            
                 }             
             break;
@@ -200,7 +200,7 @@
         }
     }
 
-
+    //// GARAGE ///////////////////////
     let stepGarageBase = 0;
     for (let index = 0; index < 5; index++) {
             var mtlLoaderPitStopBase = new THREE.MTLLoader();

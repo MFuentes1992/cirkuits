@@ -131,6 +131,8 @@
     <script src="../js/jquery-3.4.1.js" charset="utf-8"></script>
     <script src="../../js/jquery-1.12.3.min.js"></script>
     <script src="../../js/dist/bootstrap.min.js"></script>
+    <script src="../../3dlab/js/MTLLoader.js" charset="utf-8"></script>
+    <script src="../../3dlab/js/OBJLoader.js" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>         
     <script type="text/javascript"> 
     //variables para el timer de cuenta regresiva - Inicio del juego.
@@ -140,6 +142,8 @@
     var startDate = d.getTime();
     var distance = 0;
     var now = 0;
+    var carPos = -2;
+    var colorStep = 1;
     var minutes = 0;  // Variable used for displaying the amount of minutes in the HUD
     var seconds = 0; // Variable used for displaying the amount of seconds in the HUD
     var timmerGameTimeMinutes = 1; // Amount of minutes
@@ -184,25 +188,19 @@
     
 
     //variables para las geometrias y logica del juego
-    var cameraPosArray = [120,40];
-    var cameraPos = 0;
-    var colorCanonical = "";
-    var colors = [ "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)",
-           "rgb(148,0,211)", "rgb(255,255,0)", "rgb(255,127,0)"];
-    var color = 0;
+    var totalGeometries = 2;
+    var carPosArray = [1, -2];
     
-    const cameraFarClose = {
-      THOSE: 120,
-      THESE: 40
+    const carFarClose = {
+      THOSE: 1,
+      THESE: -2
     }
 
     const colorsCanonical = {
       RED: "RED",
       GREEN: "GREEN",
-      BLUE: "BLUE",
-      PURPLE: "PURPLE",
-      YELLOW: "YELLOW",
-      ORANGE: "ORANGE"
+      BLUE: "WHITE",      
+      YELLOW: "YELLOW"      
     }
 
     //SPEACH RECOGNITION
@@ -272,19 +270,329 @@
 
       });
 
-      //Creamos la escena y la camara para el escenario 3D
+      //Creamos la escena y la camara para el escenario 3D      
       var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
       var renderer = new THREE.WebGLRenderer({antialias: true});
-      var raycaster = new THREE.Raycaster();
-      var mouse = new THREE.Vector2();
       //Background color de la escena.
-      renderer.setClearColor("#343A40");
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      //Enableling shadow rendering
-      renderer.shadowMap.enabled = true;
-			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.setSize( window.innerWidth, window.innerHeight ); 
+      ///////// CAMERA POSITION ////////////////////
+      camera.position.x = 1.5;
+      camera.position.y = 0.5;
+      camera.position.z = -4;
+      camera.rotation.y = -1*Math.PI;  
+
+      //////// LIGHTS AND PLANES ////////////
+      ambientLight = new THREE.AmbientLight(0xffffff, 1);
+	    scene.add(ambientLight);
+	
+      light = new THREE.PointLight(0xffffff, 0.8, 18);
+      light.position.set(-3,6,-3);
+      light.castShadow = true;
+      light.shadow.camera.near = 0.1;
+      light.shadow.camera.far = 25;
+      scene.add(light);
+
+      var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
+      var material = new THREE.MeshBasicMaterial( {color: 0x2A2A2A, side: THREE.DoubleSide} );
+      var plane = new THREE.Mesh( geometry, material );
+      plane.rotation.x = -0.5*Math.PI;
+      scene.add( plane );
+
+      var geometryGrass = new THREE.PlaneGeometry( 300, 300, 32 );
+      var materialGrass = new THREE.MeshBasicMaterial( {color: 0x228B22, side: THREE.DoubleSide} );
+      var planeGrass = new THREE.Mesh( geometryGrass, materialGrass );
+      planeGrass.rotation.x = 0.5*Math.PI;
+      planeGrass.rotation.z = 0.8*Math.PI;
+      planeGrass.position.y = -1;
+      scene.add( planeGrass );   
+
+      ////////////////// LOAD ALL MATERIALS ////////////////////////////
+      //////////////////// LOADING GREEN CARS ////////////////////////////
+      const carArrayGreen = new Array();
+      for(var greenCars = 0; greenCars <= totalGeometries; greenCars ++){
+          var mtlLoaderCar = new THREE.MTLLoader();
+          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
+
+              materials.preload();
+
+              var objLoader = new THREE.OBJLoader();
+              objLoader.setMaterials(materials);
+              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.load('raceCarGreen.obj', function (object) {
+                  carArrayGreen.push(object);
+              });
+          }); 
+      }
+      //////////////////// LOADING YELLOW CARS ////////////////////////////
+      const carArrayYellow = new Array();
+      for(var yellowCars = 0; yellowCars <= totalGeometries; yellowCars ++){
+          var mtlLoaderCar = new THREE.MTLLoader();
+          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.load('raceCarOrange.mtl', function (materials) {
+
+              materials.preload();
+
+              var objLoader = new THREE.OBJLoader();
+              objLoader.setMaterials(materials);
+              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.load('raceCarOrange.obj', function (object) {
+                  carArrayYellow.push(object);
+              });
+          }); 
+      }
+      //////////////////// LOADING RED CARS ////////////////////////////
+      const carArrayRed = new Array();
+      for(var redCars = 0; redCars <= totalGeometries; redCars ++){
+          var mtlLoaderCar = new THREE.MTLLoader();
+          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.load('raceCarRed.mtl', function (materials) {
+
+              materials.preload();
+
+              var objLoader = new THREE.OBJLoader();
+              objLoader.setMaterials(materials);
+              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.load('raceCarRed.obj', function (object) {
+                  carArrayRed.push(object);
+              });
+          }); 
+      }
+      //////////////////// LOADING BLANCO CARS ////////////////////////////
+      const carArrayWhite = new Array();
+      for(var whiteCars = 0; whiteCars <= totalGeometries; whiteCars ++){
+          var mtlLoaderCar = new THREE.MTLLoader();
+          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.load('raceCarWhite.mtl', function (materials) {
+
+              materials.preload();
+
+              var objLoader = new THREE.OBJLoader();
+              objLoader.setMaterials(materials);
+              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.load('raceCarWhite.obj', function (object) {
+                  carArrayWhite.push(object);
+              });
+          }); 
+      }        
       
+      //////////// CREATE THE 3D WORLD ///////////////////////////////
+        //// GARAGE ///////////////////////
+        let stepGarageBase = 0;
+        for (let index = 0; index < 5; index++) {
+                var mtlLoaderPitStopBase = new THREE.MTLLoader();
+                mtlLoaderPitStopBase.setResourcePath('/cirkuits/3dlab/assets/');
+                mtlLoaderPitStopBase.setPath('/cirkuits/3dlab/assets/');
+                mtlLoaderPitStopBase.load('pitsGarage.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/3dlab/assets/');
+                objLoader.load('pitsGarage.obj', function (object) {
+            
+                    scene.add(object);
+                    //object.rotation.y = 0.11*Math.PI;
+                    object.position.x = 2.5 + stepGarageBase;
+                    object.position.y = 0;
+                    object.position.z = 8;
+                    stepGarageBase--;
+                });
+        
+            });
+            
+        }
+        //Right Threes
+        for (let alfa = 0; alfa > -12; alfa--) {
+            let threeStepHelper = 0;
+                for (let beta = 0; beta < 10; beta ++){
+                    var mtlLoaderThree = new THREE.MTLLoader();
+                    mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
+                    mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
+                    mtlLoaderThree.load('treeLarge.mtl', function (materials) {
+            
+                    materials.preload();
+            
+                    var objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.setPath('/cirkuits/3dlab/assets/');
+                    objLoader.load('treeLarge.obj', function (object) {
+                
+                        scene.add(object);
+                        //object.rotation.y = 0.11*Math.PI;
+                        object.position.x = 3 + threeStepHelper;
+                        object.position.y = 0;
+                        object.position.z = 8 + alfa;
+                        threeStepHelper += 0.5;
+                    });
+        
+                });
+            }
+            
+        }
+
+        //Left Threes
+        for (let alfa = 0; alfa > -12; alfa--) {
+            let threeStepHelper = 0;
+                for (let beta = 0; beta < 10; beta ++){
+                    var mtlLoaderThree = new THREE.MTLLoader();
+                    mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
+                    mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
+                    mtlLoaderThree.load('treeLarge.mtl', function (materials) {
+            
+                    materials.preload();
+            
+                    var objLoader = new THREE.OBJLoader();
+                    objLoader.setMaterials(materials);
+                    objLoader.setPath('/cirkuits/3dlab/assets/');
+                    objLoader.load('treeLarge.obj', function (object) {
+                
+                        scene.add(object);
+                        //object.rotation.y = 0.11*Math.PI;
+                        object.position.x = -3 + threeStepHelper;
+                        object.position.y = 0;
+                        object.position.z = 8 + alfa;
+                        threeStepHelper -= 0.5;
+                    });
+        
+                });
+            }
+            
+        }    
+
+
+        let stepGarageRoof = 0;
+        for (let index = 0; index < 5; index++) {
+            var mtlLoaderPitRoof = new THREE.MTLLoader();
+            mtlLoaderPitRoof.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderPitRoof.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderPitRoof.load('pitsOfficeRoof.mtl', function (materials) {
+    
+            materials.preload();
+    
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('pitsOfficeRoof.obj', function (object) {
+        
+                scene.add(object);
+                //object.rotation.y = 0.11*Math.PI;
+                object.position.x = 2.5 + stepGarageRoof;
+                object.position.y = 0.7;
+                object.position.z = 8;
+                stepGarageRoof--;
+            });
+    
+        });
+            
+        }
+        //Right Barrier
+        let barrierStepHelper = 0;
+        for(let gamma = 0; gamma < 12; gamma ++){
+            var mtlLoaderBarrierWall = new THREE.MTLLoader();
+            mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/3dlab/assets/');
+                objLoader.load('barrierWall.obj', function (object) {
+            
+                    scene.add(object);
+                    object.rotation.y = 0.5*Math.PI;
+                    object.position.x = 2.4;
+                    object.position.y = 0;
+                    object.position.z = -4 + gamma;
+            
+                });
+        
+            });
+        }
+        // Left Barrier
+        let barrierStepHelperLeft = 0;
+        for(let gamma = 0; gamma < 12; gamma ++){
+            var mtlLoaderBarrierWall = new THREE.MTLLoader();
+            mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/3dlab/assets/');
+                objLoader.load('barrierWall.obj', function (object) {
+            
+                    scene.add(object);
+                    object.rotation.y = 0.5*Math.PI;
+                    object.position.x = -2.4;
+                    object.position.y = 0;
+                    object.position.z = -4 + gamma;
+            
+                });
+        
+            });
+        }
+
+        for (let m = 0; m < 12; m++) {
+            var mtlLoaderFenceCurve = new THREE.MTLLoader();
+            mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/3dlab/assets/');
+                objLoader.load('fenceCurved.obj', function (object) {
+            
+                    scene.add(object);
+                    object.rotation.y = -0.5*Math.PI;
+                    object.position.x = 2.45;
+                    object.position.y = 0;
+                    object.position.z = -4 + m;
+            
+                });
+        
+            });
+            
+        }
+
+        for (let i = 0; i < 12; i++) {
+            var mtlLoaderFenceCurve = new THREE.MTLLoader();
+            mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
+            mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
+            mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
+        
+                materials.preload();
+        
+                var objLoader = new THREE.OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.setPath('/cirkuits/3dlab/assets/');
+                objLoader.load('fenceCurved.obj', function (object) {
+            
+                    scene.add(object);
+                    object.rotation.y = 0.5*Math.PI;
+                    object.position.x = -2.45;
+                    object.position.y = 0;
+                    object.position.z = -4 + i;
+            
+                });
+        
+            });
+            
+        }
+
       //Metodo para hacer 'responsive' nuestro canvas
       window.addEventListener( 'resize', function(){
         var width = window.innerWidth;
@@ -299,9 +607,9 @@
         var str = text;
         var res = str.match(/those are/g);
         var resAlfa = str.match(/these are/g);        
-        if(res != null && res.length >= 1 && cameraPos == cameraFarClose.THOSE && str.toUpperCase().includes(colorCanonical)){
+        if(res != null && res.length >= 1 && carPos == carFarClose.THOSE && str.toUpperCase().includes(colorCanonical)){
           score += 10;          
-        }else if(resAlfa != null && resAlfa.length >= 1 && cameraPos == cameraFarClose.THESE && str.toUpperCase().includes(colorCanonical)){
+        }else if(resAlfa != null && resAlfa.length >= 1 && carPos == carFarClose.THESE && str.toUpperCase().includes(colorCanonical)){
             score += 10                        
           }else{
             lives --;                        
@@ -313,83 +621,59 @@
         isSpeaking = false;               
       }
 
-      //Light
-      //ambientLight = new THREE.AmbientLight(0x636363, 1);
-      //scene.add(ambientLight);
-      var dlight = new THREE.DirectionalLight( 0xffffff, 1.5 );
-		  dlight.position.set( 0, 50, 60 ).normalize();
-			scene.add( dlight );
       //Create boxes placed randomly             
       var createGeometry = function(){ 
-        //Variables de inicializacion        
-        var totalGeometries = [2,3];        
-        var random = totalGeometries[ Math.floor((Math.random() * 1)) ];                
-        var posX = -20;
-        this.tl = new TimelineMax();
-        var ranPosition = Math.floor((Math.random() * 6))
-        color = colors[ranPosition];
-        switch(ranPosition){
-          case 0:
-            colorCanonical = "RED";
-          break;
-          case 1:
-            colorCanonical = "GREEN";
-          break;
-          case 2:
-            colorCanonical = "BLUE";
-          break;
-          case 3:
-            colorCanonical = "PURPLE";
-          break;
-          case 4:
-            colorCanonical = "YELLOW";
-          break;
-          case 5:
-            colorCanonical = "ORANGE";
-          break;
-          default:
-            colorCanonical = "RED";
-          break;
-        }
-
-        for(var gamma = 0; gamma < random; gamma ++){
-
-          //var geometry = new THREE.BoxGeometry(1,1,1);
-          var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-          //var material = new THREE.MeshLambertMaterial({color: 0xFF00FF});  
-          var material = new THREE.MeshStandardMaterial({color: 0xFF00FF, roughness: 1.5, metalness: 0.1});               
-          material.color.set(color);                  
-          var mesh = new THREE.Mesh(geometry, material);                    
-          mesh.rotation.x = Math.PI*Math.random();
-          mesh.rotation.y = Math.PI*Math.random();
-          mesh.position.x = posX;
-          mesh.castShadow = true;                    
-          scene.add(mesh);
-          if(mesh.rotation.y > 0) { 
-              this.tl.to(mesh.rotation, .5, {y: 0, ease: Expo.easeOut}); 
-            }else{
-              this.tl.to(mesh.rotation, .5, {y: 0.5, ease: Expo.easeOut});                  
-          }
-          posX += 40;
-        }
-        cameraPos = cameraPosArray[Math.floor((Math.random() * 2))];
-        camera.position.z = cameraPos;
-
+        carPos = carPosArray[Math.floor((Math.random() * 2))]; 
+        var coeficient = 0;  
+        switch(colorStep){
+            case 1:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayGreen[a].name = "car"+a;
+                    carArrayGreen[a].rotation.y = 0.1*Math.PI;
+                    carArrayGreen[a].position.x = 1.5 - a;
+                    carArrayGreen[a].position.z = carPos;
+                    scene.add(carArrayGreen[a]); 
+                    colorCanonical = "GREEN";           
+                }
+            break;
+            case 2:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayYellow[a].name = "car"+a;
+                    carArrayYellow[a].rotation.y = 0.1*Math.PI;
+                    carArrayYellow[a].position.x = 1.5 - a;
+                    carArrayYellow[a].position.z = carPos;
+                    scene.add(carArrayYellow[a]);  
+                    colorCanonical = "YELLOW";          
+                }            
+            break;
+            case 3:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayRed[a].name = "car"+a;
+                    carArrayRed[a].rotation.y = 0.1*Math.PI;
+                    carArrayRed[a].position.x = 1.5 - a;
+                    carArrayRed[a].position.z = carPos;
+                    scene.add(carArrayRed[a]); 
+                    colorCanonical = "RED";           
+                }             
+            break;
+            case 4:
+                for (let a = 0; a <= totalGeometries; a++) {
+                    carArrayWhite[a].name = "car"+a;
+                    carArrayWhite[a].rotation.y = 0.1*Math.PI;
+                    carArrayWhite[a].position.x = 1.5 - a;
+                    carArrayWhite[a].position.z = carPos;
+                    scene.add(carArrayWhite[a]);  
+                    colorCanonical = "WHITE";          
+                }             
+            break;
+        }   
+        colorStep = colorStep < 4 ? colorStep + 1 : 1;                  
       }
 
       var destroyGeometry = function(){
-        var meshes = new Array();
-        for(var alfa = 0; alfa < scene.children.length; alfa++){
-          if( scene.children[ alfa ] instanceof THREE.Mesh ){
-            meshes.push(scene.children[ alfa ]);           
-          } 
-        }
-
-        for(var beta = 0; beta < meshes.length; beta ++){
-          var meshHelper = meshes[ beta ];
-          if( meshHelper instanceof THREE.Mesh ){
-            scene.remove(meshHelper);            
-          }                      
+        for (let b = 0; b <= 2; b++) {
+            var selectedObject = scene.getObjectByName("car"+b);
+            scene.remove( selectedObject );                        
         }
       }
     
