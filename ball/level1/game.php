@@ -39,13 +39,13 @@
         <span id="UIMenu" style="visibility: hidden;"><i class="fas fa-bars"></i></span>
         <span id="UIPause" style="visibility: hidden;"><i class="fas fa-pause-circle"></i></span>
       </div>
-      <div id="timerControl">
-        <span><i class="fas fa-stopwatch"></i>&nbsp;<span id="UICountdown">00:00</span></span>
-      </div>
       <div id="livesControl">
         <span id="life1"><i class="fas fa-heart"></i></span>
         <span id="life2"><i class="fas fa-heart"></i></span>
         <span id="life3"><i class="fas fa-heart"></i></span>                
+      </div>
+      <div id="timerControl">
+        <span><i class="fas fa-stopwatch"></i>&nbsp;<span id="UICountdown">00:00</span></span>
       </div>
       <div id="scoreControl">
         <span><i class="fas fa-gem"></i>&nbsp;<span id="UIScore">0</span></span>
@@ -276,6 +276,7 @@
       var renderer = new THREE.WebGLRenderer({antialias: true});
       //Background color de la escena.
       renderer.setSize( window.innerWidth, window.innerHeight ); 
+      renderer.setClearColor("#62C7CB");
       ///////// CAMERA POSITION ////////////////////
       camera.position.x = 1.5;
       camera.position.y = 0.5;
