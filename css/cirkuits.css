@@ -7,12 +7,20 @@
   font-family: 'corbel bold';
   src: url('../fonts/corbel/CORBELB.TTF');
 }
-
+@font-face{
+  font-family: 'PressStart';
+  src: url('../fonts/Press_Start_2P/PressStart2P-Regular.TTF');
+}
 body
 {
   font-family: 'Comfortaa', cursive;
   color: #989292;
   background-color: #343A40;
+}
+
+.press-start{
+  font-family: 'PressStart';
+  font-size: 32pt;
 }
 
 .videogame-section-body{
@@ -25,7 +33,12 @@ body
   z-index: 100002;
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
-
+.thesethose-section-container{
+  position: absolute;
+  height: 969px;
+  z-index: 100002;
+  background-color: rgba(255, 255, 255, 0.2) !important;  
+}
 .bg-black{
   background-color: #343A40;
 }

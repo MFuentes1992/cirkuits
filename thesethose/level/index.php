@@ -55,9 +55,15 @@
     <script src="<?=$url;?>js/jquery.validationEngine-es.js"></script>
     <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
     <script src="<?=$url;?>js/swiper-5.3.6/package/js/swiper.min.js"></script>
+    <style>
+        #canvas{
+            background: radial-gradient(circle, rgba(165,253,29,1) 0%, rgba(9,177,73,1) 57%);
+            /*display: block;*/
+            filter: blur(4px);
+        }
+    </style>
 </head>
 <body>
-
     <div class="pos-f-t">
       <nav class="navbar sticky-top navbar-dark bg-dark">
         <div class="col-md-1" id="toggle">
@@ -94,33 +100,33 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid bg-black">
+    <div class="container-fluid thesethose-section-container">
         <div class="level-selector">
             <div class="level-selector-title">
-                <img src="../../img/videogames/levelselect.png" width="400" alt="level select">
+                <h1 class="press-start">LEVEL SELECT</h1>
             </div>
             <div class="level-level">
                 <table class="level-table">
                     <tr>                        
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] >= 1){?>
-                            <div class="level-number" onClick="reload(1)">1</div>
+                              <button onClick="reload(1)" class="btn btn-info" style="width: 200px;">Level 1</button>
                             <?php } else {?>
-                            <div class="level-number-lock"></div>
+                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] >= 2){?>
-                            <div class="level-number" onClick="reload(2)">2</div>
+                              <button onClick="reload(2)" class="btn btn-info" style="width: 200px;">Level 2</button>
                             <?php } else {?>
-                            <div class="level-number-lock"></div>
+                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>                                
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] == 3){?>
-                            <div class="level-number" onClick="reload(3)">3</div>
+                              <button onClick="reload(3)" class="btn btn-info" style="width: 200px;">Level 3</button>
                             <?php } else {?>
-                            <div class="level-number-lock"></div>                                
+                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                     </tr>
@@ -129,46 +135,23 @@
             <div>
                 <table class="table-footer">
                       <tr>                          
-                          <td><div class="level-footer" id="leaderboard" onClick="leaderBoard()"></div></td>
-                          <td><div class="level-footer" id="play" onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)"></div></td>
+                          <td>
+                            <button onClick="leaderBoard()" class="btn btn-primary" style="width: 200px;">Leaderboard</button>
+                          </td>
+                          <td>
+                            <button  onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)" class="btn btn-primary" style="width: 200px;">Continue</button>                          
+                          </td>
                       </tr>
                 </table>
             </div>            
         </div>
-    </div>
-    <!--/////// Contact ///// -->     
-      <!-- Footer -->
-      <footer class="footer col-md-12" style="position:relative;">
-        <div class="row">
-          <div class="foot-section" id="contactoFooter">
-            <span>
-              <h4>Contact</h4>
-            </span>
-            <span class="label">+52 777 500 60 83</span>
-            <br>
-            <span class="label">postal code: 63866</span>
-            <br>
-            <span class="label">cirkuitsed@cirkuits.com.mx</span>
-            <br>
-            <span class="label">2019 www.cirkuits.com &copy;</span>
-          </div>
-          <div class="foot-section" id="supportFooter">
-            <span>
-              <h4>Soporte</h4>
-            </span>
-            <span class="label">Contact Us</span>
-            <br>
-            <span class="label">Help & FAQ</span>
-            <br>
-            <span class="label">Service Status</span>
-            <br>
-            <span class="label">Tech Requirements</span>
-          </div>
-        </div>
-      </footer>
-    
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    </div>    
+    <canvas id="canvas"></canvas>
   </div>
+  <script src="../js/three.js" charset="utf-8"></script>
+  <script src="../js/MTLLoader.js" charset="utf-8"></script>
+  <script src="../js/OBJLoader.js" charset="utf-8"></script>
+  <script src="../js/OrbitControls.js" charset="utf-8"></script>
   <script type="text/javascript">    
       $(document).ready( function(){
         $('#logModal').modal('show');
@@ -252,6 +235,71 @@
     var leaderBoard = () =>{
       alert("Go to Leaderboard")
     }
+
+    ///////////// 3D /////////////////////
+    var canvas = document.getElementById("canvas");
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
+    var renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias: true});
+    //Background color de la escena.
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild(renderer.domElement);
+
+    camera.position.x = 1.5;
+    camera.position.y = 0.5;
+    camera.position.z = 0;    
+
+    ambientLight = new THREE.AmbientLight(0xffffff, 1);
+	  scene.add(ambientLight);
+	
+	  light = new THREE.PointLight(0xffffff, 0.8, 18);
+	  light.position.set(-3,6,-3);
+	  light.castShadow = true;
+	  light.shadow.camera.near = 0.1;
+	  light.shadow.camera.far = 25;
+	  scene.add(light);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
+
+    //////////////////// LOADING YELLOW CARS ////////////////////////////        
+    var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarOrange.mtl', function (materials) {
+
+            materials.preload();
+
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials(materials);
+            objLoader.setPath('/cirkuits/3dlab/assets/');
+            objLoader.load('raceCarOrange.obj', function (object) {
+              scene.add(object); 
+            });
+        }); 
+
+    window.addEventListener( 'resize', function(){
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        renderer.setSize( width, height );
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix( );
+    } );
+    
+    var update = function(){        	
+        controls.update();
+    };
+    var render = function(){
+        renderer.render( scene, camera );
+    };
+    var GameLoop = function(){
+        requestAnimationFrame( GameLoop );
+        update();
+        render();
+    };
+    GameLoop();
   </script>
 </body>
 </html>
