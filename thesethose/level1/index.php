@@ -94,39 +94,7 @@
             <iframe src="game.php" frameborder="0" scrolling="no"></iframe>
             <h1 class="hidden">Please change to a lap top or desktop computer</h1>
         </div>
-    </div>
-    <!--/////// Contact ///// -->     
-      <!-- Footer -->
-      <footer class="footer col-md-12" style="position:relative;">
-        <div class="row">
-          <div class="foot-section" id="contactoFooter">
-            <span>
-              <h4>Contact</h4>
-            </span>
-            <span class="label">+52 777 500 60 83</span>
-            <br>
-            <span class="label">postal code: 63866</span>
-            <br>
-            <span class="label">cirkuitsed@cirkuits.com.mx</span>
-            <br>
-            <span class="label">2019 www.cirkuits.com &copy;</span>
-          </div>
-          <div class="foot-section" id="supportFooter">
-            <span>
-              <h4>Soporte</h4>
-            </span>
-            <span class="label">Contact Us</span>
-            <br>
-            <span class="label">Help & FAQ</span>
-            <br>
-            <span class="label">Service Status</span>
-            <br>
-            <span class="label">Tech Requirements</span>
-          </div>
-        </div>
-      </footer>
-    
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    </div>            
   </div>
   <script type="text/javascript">    
       $(document).ready( function(){
@@ -198,10 +166,10 @@
     function handleEvent(e){
         switch(e.detail.msg){
           case 1:
-            location.replace('http://localhost/Cirkuits/ball/NextLevelManager.php/"');
+            location.replace('http://localhost/Cirkuits/thesethose/NextLevelManager.php/"');
           break;
           case 2:
-            location.replace('http://localhost/Cirkuits/ball/MainMenuManager.php/"');
+            location.replace('http://localhost/Cirkuits/thesethose/MainMenuManager.php/"');
           break;
           default:
           break;

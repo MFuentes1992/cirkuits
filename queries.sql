@@ -38,9 +38,9 @@ CREATE TABLE leaderboard (id_leaderboard INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     update usuarios set estatus_usuario = 2 where id_usuario = 5;
     desc leaderboard;
     select * from videogame_progress vp 
-		inner join  leaderboard lb on vp.id_progress = lb.id_progress where vp.id_usuario = 8;
+		inner join  leaderboard lb on vp.id_progress = lb.id_progress where vp.id_usuario = 1;
 	update leaderboard set high_score = 0 where id_progress = 1;
-    update videogame_progress set nivel = 1, score = 0 where id_usuario = 1;
+    update videogame_progress set nivel = 2, score = 0 where id_usuario = 1;
     select * from videogame_progress;
     select * from leaderboard;
 INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,

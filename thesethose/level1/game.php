@@ -58,7 +58,7 @@
     <div id="speachBox">
       <span id="speachResult">Voice input:</span>
     </div>
-    <div id="smokeScreen" style="width: 100%; height:100%; background-color:	#343A40; "> 
+    <div id="smokeScreen"> 
       <!-- /////////////  SMOKE SCREEN WILL HELP US TO RENDER A SIMILAR BACKGROUND TO THE ACTUAL GAME ////////////////  -->
     </div>
     <!-- /////////// LEVEL CLEAR ////////////////////// -->
