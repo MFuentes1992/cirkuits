@@ -14,6 +14,6 @@
         {
             $_SESSION["uprogressv1"] =  mysqli_fetch_assoc($resul);
         }
-        header("Location:".$url."ball/level".$_SESSION["uprogressv1"]["nivel"]."/");
+        header("Location:".$url."thesethose/level".$_SESSION["uprogressv1"]["nivel"]."/");
     }
 ?>  

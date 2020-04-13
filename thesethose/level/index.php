@@ -246,7 +246,7 @@
     });
 
     var reload = level => {
-      location.replace("http://localhost/Cirkuits/ball/level"+level+"/");
+      location.replace("http://localhost/Cirkuits/thesethose/level"+level+"/");
     }
 
     var leaderBoard = () =>{
