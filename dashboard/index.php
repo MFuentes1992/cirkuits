@@ -59,7 +59,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -74,10 +74,22 @@
         <div class="bg-dark" style="padding-left:1.5rem;">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
+              <a class="nav-link white" href="<?=$url;?>dashboard"><i class="fas fa-window-maximize"></i>&nbsp;Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>payment/">Payment and Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>payment/"><i class="far fa-credit-card"></i>&nbsp;Payment and Subscription</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>videos/"><i class="fas fa-film"></i>&nbsp;Videos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>videogames/"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>materials/"><i class="far fa-file-pdf"></i>&nbsp;Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>support/"><i class="far fa-comments"></i>&nbsp;support</a>
             </li>
             <li id="resavatar" class="hidden">              
             </li>

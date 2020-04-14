@@ -87,10 +87,22 @@
         <div class="bg-dark" style="padding-left:1.5rem;">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>dashboard">Dashboard</a>
+              <a class="nav-link white" href="<?=$url;?>dashboard"><i class="fas fa-window-maximize"></i>&nbsp;Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>payment/">Payment and Subscription</a>
+              <a class="nav-link white" href="<?=$url;?>payment/"><i class="far fa-credit-card"></i>&nbsp;Payment and Subscription</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>videos/"><i class="fas fa-film"></i>&nbsp;Videos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>videogames/"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>materials/"><i class="far fa-file-pdf"></i>&nbsp;Materials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link white" href="<?=$url;?>support/"><i class="far fa-comments"></i>&nbsp;support</a>
             </li>
             <li id="resavatar" class="hidden">              
             </li>
@@ -110,23 +122,23 @@
                     <tr>                        
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] >= 1){?>
-                              <button onClick="reload(1)" class="btn btn-info" style="width: 200px;">Level 1</button>
+                              <button onClick="reload(1)" class="btn btn-primary" style="width: 200px;">LEVEL 1</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-outline-light" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] >= 2){?>
-                              <button onClick="reload(2)" class="btn btn-info" style="width: 200px;">Level 2</button>
+                              <button onClick="reload(2)" class="btn btn-primary" style="width: 200px;">LEVEL 2</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-outline-light" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>                                
                         </td>
                         <td>
                             <?php if($_SESSION["uprogressv1"]["nivel"] == 3){?>
-                              <button onClick="reload(3)" class="btn btn-info" style="width: 200px;">Level 3</button>
+                              <button onClick="reload(3)" class="btn btn-primary" style="width: 200px;">LEVEL 3</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-info" style="width: 200px;">Locked &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-outline-light" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                     </tr>
@@ -134,12 +146,15 @@
             </div>            
             <div>
                 <table class="table-footer">
-                      <tr>                          
+                      <tr>  
                           <td>
-                            <button onClick="leaderBoard()" class="btn btn-primary" style="width: 200px;">Leaderboard</button>
+                            <button onClick="goBack()" class="btn btn-primary" style="width: 200px;">GAME MENU</button>
+                          </td>                        
+                          <td>
+                            <button onClick="leaderBoard()" class="btn btn-primary" style="width: 200px;">LEADERBOARD</button>
                           </td>
                           <td>
-                            <button  onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)" class="btn btn-primary" style="width: 200px;">Continue</button>                          
+                            <button  onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)" class="btn btn-primary" style="width: 200px;">CONTINUE</button>                          
                           </td>
                       </tr>
                 </table>
@@ -235,7 +250,9 @@
     var leaderBoard = () =>{
       alert("Go to Leaderboard")
     }
-
+    function goBack() {
+      window.history.back();
+    }
     ///////////// 3D /////////////////////
     var canvas = document.getElementById("canvas");
     var scene = new THREE.Scene();
@@ -263,7 +280,8 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.25;
     controls.enableZoom = true;
-
+    var loaded = false;
+    var selectedObject;
     //////////////////// LOADING YELLOW CARS ////////////////////////////        
     var mtlLoaderCar = new THREE.MTLLoader();
         mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
@@ -276,7 +294,10 @@
             objLoader.setMaterials(materials);
             objLoader.setPath('/cirkuits/3dlab/assets/');
             objLoader.load('raceCarOrange.obj', function (object) {
+              object.name = "car";
               scene.add(object); 
+              loaded = true;
+              selectedObject = scene.getObjectByName("car")
             });
         }); 
 
@@ -289,7 +310,10 @@
     } );
     
     var update = function(){        	
-        controls.update();
+        controls.update(); 
+        var time = performance.now() * 0.001;
+        if(loaded)
+          selectedObject.rotation.y = time * 0.5;
     };
     var render = function(){
         renderer.render( scene, camera );
