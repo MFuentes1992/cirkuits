@@ -183,37 +183,6 @@ if(isset($_SESSION["user"]))
                 </div>
         </div>
      </div>
-     <div class="row">
-        <!-- Footer -->
-        <footer class="footer col-md-12" style="position:relative;">
-          <div class="row">
-            <div class="foot-section" id="contactoFooter">
-              <span>
-                <h4>Contact</h4>
-              </span>
-              <span class="label">+52 777 500 60 83</span>
-              <br>
-              <span class="label">postal code: 63866</span>
-              <br>
-              <span class="label">cirkuitsed@cirkuits.com.mx</span>
-              <br>
-              <span class="label">2019 www.cirkuits.com &copy;</span>
-            </div>
-            <div class="foot-section" id="supportFooter">
-              <span>
-                <h4>Soporte</h4>
-              </span>
-              <span class="label">Contact Us</span>
-              <br>
-              <span class="label">Help & FAQ</span>
-              <br>
-              <span class="label">Service Status</span>
-              <br>
-              <span class="label">Tech Requirements</span>
-            </div>
-          </div>
-        </footer>
-     </div>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>   
    <script>

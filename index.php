@@ -150,12 +150,24 @@
           <br>
           <textarea name="field3" placeholder="Type your Message"></textarea>
           <br>
-          <input type="submit" value="Send" />
+          <button><i class="fas fa-paper-plane"></i></button>
         </form>
         </div>      
       <!-- Footer -->
       <footer class="footer col-md-12" style="position:relative;">
         <div class="row">
+          <div class="foot-section" id="logoAndSocial">
+            <div>
+              <img src="img/cirkuits education_bw.png" alt="cirkuits logo Black & White" width="128">
+            </div>              
+            <ul class="list-horizontal">
+              <li class="white icon"><i class="fab fa-facebook-f"></i></li>
+              <li class="white icon"><i class="fab fa-youtube"></i></li>
+              <li class="white icon"><i class="fas fa-envelope-open"></i></li>
+            </ul>
+            <p>Powered by Three Js &nbsp; &nbsp;<i class="fas fa-dice-d6"></i></p>
+            <p>MarkCraft labs &nbsp; &nbsp;<i class="fas fa-flask"></i></p>
+          </div>
           <div class="foot-section" id="contactoFooter">
             <span>
               <h4>Contact</h4>
@@ -182,8 +194,11 @@
           </div>
         </div>
       </footer>
+      <div style="position:relative; width: 100%;">
+        <p style="text-align:center; color #FFF; font-family:'Jokey';">Made with &nbsp;<i class="fas fa-laptop-code"></i>&nbsp; by MarkCraft </p>
+      </div>
     </div>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button>
   </div>
   <script type="text/javascript">
     var sliderWidth = 0;

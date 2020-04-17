@@ -2,6 +2,18 @@ p {
   color: #808080 !important;
 }
 
+@font-face{
+  font-family: 'Jokey';
+  src: url('../fonts/Jokey/JockeyOne-Regular.ttf');
+}
+@font-face{
+  font-family: 'Jura';
+  src: url('../fonts/Jura/Jura-VariableFont_wght.ttf');
+}
+@font-face{
+  font-family: 'Play';
+  src: url('../fonts/Play/Play-Regular.ttf');
+}
 
 .contenido
 {
@@ -9,6 +21,7 @@ p {
   margin: 40px 0px 0px 0px;
   padding: 0px;
   width: 100%;
+  font-family: 'Play';
 }
 
 .form
@@ -18,6 +31,7 @@ p {
   padding: 2%;
   width: 100%;
   text-align: center;
+  font-family: 'Play';
 }
 
 #regLogin
@@ -25,8 +39,9 @@ p {
   position: relative;
   margin-top: 2%;
   width: 100%;
-  /*padding-right: 15%;*/
+  margin-bottom: 2%;
   text-align: center;
+  font-family: 'Play';
 }
 
 /*******DASHBOARD********/

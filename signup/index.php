@@ -201,7 +201,7 @@
           </form>
         </div>
         <div id="btn-register">
-          <button type="button" name="btnLogin" id="btn-register" onclick="register()" class="btn btn-success">Register</button>
+          <button type="button" name="btnLogin" id="btn-register" onclick="register()" class="btn btn-outline-info">Register</button>
         </div>
       </div>
       <div class="" id="regLogin">
@@ -213,6 +213,18 @@
       <!-- Footer -->
       <footer class="footer col-md-12" style="position:relative;">
         <div class="row">
+          <div class="foot-section" id="logoAndSocial">
+            <div>
+              <img src="../img/cirkuits education_bw.png" alt="cirkuits logo Black & White" width="128">
+            </div>              
+            <ul class="list-horizontal">
+              <li class="white icon"><i class="fab fa-facebook-f"></i></li>
+              <li class="white icon"><i class="fab fa-youtube"></i></li>
+              <li class="white icon"><i class="fas fa-envelope-open"></i></li>
+            </ul>
+            <p class="white">Powered by Three Js &nbsp; &nbsp;<i class="fas fa-dice-d6"></i></p>
+            <p class="white">MarkCraft labs &nbsp; &nbsp;<i class="fas fa-flask"></i></p>
+          </div>
           <div class="foot-section" id="contactoFooter">
             <span>
               <h4>Contact</h4>
@@ -239,6 +251,9 @@
           </div>
         </div>
       </footer>
+      <div style="position:relative; width: 100%;">
+        <p style="text-align:center; color #FFF; font-family:'Jokey';">Made with &nbsp;<i class="fas fa-laptop-code"></i>&nbsp; by MarkCraft </p>
+      </div>
     </div>
 
   </div>

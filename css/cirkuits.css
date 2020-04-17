@@ -11,13 +11,28 @@
   font-family: 'PressStart';
   src: url('../fonts/Press_Start_2P/PressStart2P-Regular.TTF');
 }
+@font-face{
+  font-family: 'Jokey';
+  src: url('../fonts/Jokey/JockeyOne-Regular.ttf');
+}
+@font-face{
+  font-family: 'Jura';
+  src: url('../fonts/Jura/Jura-VariableFont_wght.ttf');
+}
+@font-face{
+  font-family: 'Play';
+  src: url('../fonts/Play/Play-Regular.ttf');
+}
 body
 {
   font-family: 'Comfortaa', cursive;
   color: #989292;
   background-color: #343A40;
+  overflow-x: hidden;
 }
-
+.icon{
+  font-size: 18pt;
+}
 .press-start{
   font-family: 'PressStart';
   font-size: 32pt;
@@ -45,14 +60,12 @@ body
 
 h1, h2, h3 {
   color: #f2eee5;
-  font-family: 'corbel bold';
+  font-family: 'Jura';
 }
-
-
 
 .label{
   text-decoration: none;
-  font-family: 'corbel';
+  font-family: 'Play';
 }
 
 .label:hover{
@@ -172,7 +185,7 @@ h1, h2, h3 {
 {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
 }
 
 .img-navbar
@@ -278,11 +291,10 @@ h1, h2, h3 {
 }
 .footer
 {
-  position: fixed;
+  position: relative;
   width: 100%;
-  height: 20%;
-  bottom: -55px;
-  background-color: #343a40;
+  height: 400px;  
+  background-color: #000;
   color: #FFF;
   display: inline-block;
   margin-bottom: 2%;  
@@ -462,11 +474,20 @@ h1, h2, h3 {
   text-align: center;
 }
 
+#btn-log
+{
+  position: relative;
+  width: 100%;
+  font-family: 'Play';
+}
+
 #btn-register
 {
   position: relative;
   margin: auto;
   text-align: center;
+  width: 200px;
+  font-family: 'Play';
 }
 
 .separator{
@@ -484,7 +505,7 @@ h1, h2, h3 {
   margin-top: 2%;
   margin-bottom: 5%;
   font-size: 14pt;
-  font-family: 'corbel';
+  font-family: 'Play';
   
 }
 
@@ -577,16 +598,17 @@ h1, h2, h3 {
 }
 
 .form-style-6 input[type="submit"],
-.form-style-6 input[type="button"]{
+.form-style-6 button{
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-  width: 50%;
-  margin-left: 25%;
-	padding: 3%;
-	background-color: #FFE53B;
-  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
-	border-bottom: 1px solid #FFE53B;
+  width: 20%;
+  padding: 1%;
+  margin:auto;	
+  font-size: 18pt;
+  background-color: #FFE53B;
+  border-radius: 50px;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);	
 	border-top-style: none;
 	border-right-style: none;
 	border-left-style: none;	
@@ -597,17 +619,55 @@ h1, h2, h3 {
 	background-color: #FFE53B;
 }
 
+.facebook-blue{
+  color: #FFF;
+}
+
+#logoAndSocial{
+  position: relative;
+  width: 45%;
+  padding-top: 3%;
+  padding-left: 5%;
+}
+
+.list-horizontal{
+  position: relative;
+  list-style-type: none;
+  display: inline-block;
+  padding-inline-start: 0px !important;
+}
+
+.list-horizontal > li {
+  float: left;
+  margin: 15px;
+}
+
+#logoAndSocial > p {
+  font-family: 'Jokey';
+  text-align: justify;
+  margin-left: 15px;
+}
 
 #contactoFooter{
   text-align: justify;
-  width: 70%;
-  margin-left: 5%;
+  width: 45%;
+  font-family: 'Play';
+  padding-top: 3%;  
 }
 
+#contactoFooter > h4{
+  font-family: 'Jokey';
+}
 
 #supportFooter{
-  width: 20%;
-  text-align: right;
+  width: 10%;
+  text-align: justify;
+  font-family: 'Play';
+  padding-top: 3%;
+}
+
+#supportFooter > h4{
+  font-family: 'Jokey';
 }
 
 #myBtn {
