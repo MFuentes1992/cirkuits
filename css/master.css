@@ -356,7 +356,9 @@ iframe{
   height: 100%;
   overflow-y: hidden;
 }
-
+td{
+  padding-left: 25px;
+}
 @media screen and (min-width: 1600px){
   .super-game-container{
     position: relative;

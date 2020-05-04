@@ -132,21 +132,21 @@ if(isset($_SESSION["user"]))
              data-validation-engine="validate[required, custom[onlyLetterSp]]"
              data-errormessage-value-missing="Name is required"
              data-errormessage-custom-error="Invalid, let me give you a hint: Andrew"
-             name="name" id="name"  value="<?= $row_user_data["nombre_usuario"]?>" disabled />
+             name="name" id="name"  value="<?= $row_user_data["nombre_usuario"]?>"  />
            </div>
            <div class = "form form-group">
              <input type ="text" class="form-control"
              data-validation-engine="validate[required, custom[onlyLetterSp]]"
              data-errormessage-value-missing="Last name is required"
              data-errormessage-custom-error="Invalid, let me give you a hint: Garfield"
-             name="lastName" id="lastName"  value="<?= $row_user_data["apellido_usuario"]?>" disabled />
+             name="lastName" id="lastName"  value="<?= $row_user_data["apellido_usuario"]?>"  />
            </div>
            <div class="form form-group">
              <input type="text" class="form-control"
              data-validation-engine="validate[required, custom[onlyLetterNumber]]"
              data-errormessage-value-missing="User name is required"
              data-errormessage-custom-error="Invalid, let me give you a hint: Awwwgarfiel"
-             name="userName" id="userName" value="<?= $row_user_data["alter_usuario"]?>" disabled
+             name="userName" id="userName" value="<?= $row_user_data["alter_usuario"]?>" 
              onblur="verify_user()"
              data-toggle="popover" title="Warning"
              data-placement="right"
@@ -156,14 +156,14 @@ if(isset($_SESSION["user"]))
              <input type="password" class="form-control"
              data-validation-engine="validate[required,custom[email]]"
              data-errormessage-value-missing="Password is required"
-             name="password" id="password" value="<?= $row_user_data["password_usuario"]?>" disabled />
+             name="password" id="password" value="<?= $row_user_data["password_usuario"]?>"  />
            </div>
            <div class="form form-group">
              <input type="text" class="form-control"
              data-validation-engine="validate[required,custom[email]]"
              data-errormessage-value-missing="Email is required"
              data-errormessage-custom-error="Invalid, let me give you a hint: someone@nowhere.com"
-             name="email" id="email" value="<?= $row_user_data["email_usuario"]?>" disabled
+             name="email" id="email" value="<?= $row_user_data["email_usuario"]?>" 
              data-toggle="popover" title="Warning"
              data-placement="right"
              data-content="Email already in use"
@@ -174,86 +174,20 @@ if(isset($_SESSION["user"]))
              data-validation-engine="validate[required]"
              data-errormessage-value-missing="Birth date is required"
              data-errormessage-custom-error="Invalid, let me give you a hint: 1992-10-21"
-             name="birthDate" id="birthDate"  value="<?= $row_user_data["nacimiento_usuario"]?>" disabled />
+             name="birthDate" id="birthDate"  value="<?= $row_user_data["nacimiento_usuario"]?>"  />
            </div>
            <input type="hidden" name="Insert" value="1">
            <input type="hidden" name="iduser" id="idusere" value="<?=$_SESSION["user"]["id_usuario"]?>">
            <div class="text-center">
-           <div class="btn-group btn-group-lg" id="btn-group" role="group">
-           <input type="button" class="btn btn-success" onclick="edit_user()" value="Modificar" />
-           <input type="button" class="btn btn-success" onclick="salir()" value="Back" />
-           </div>
+           <input type="submit" class="btn btn-outline-success" value="Save" />
+           <button class="btn btn-outline-success" id="cancel" value="Cancel">Cancel</button>
            </div>
          </form>
        </div>
      </div>
-     <br>
-     <br>
-     <br>
-     <br>
-     <br>
-     <div class="row">
-        <!-- Footer -->
-        <footer class="footer col-md-12" style="position:relative;">
-          <div class="row">
-            <div class="foot-section" id="contactoFooter">
-              <span>
-                <h4>Contact</h4>
-              </span>
-              <span class="label">+52 777 500 60 83</span>
-              <br>
-              <span class="label">postal code: 63866</span>
-              <br>
-              <span class="label">cirkuitsed@cirkuits.com.mx</span>
-              <br>
-              <span class="label">2019 www.cirkuits.com &copy;</span>
-            </div>
-            <div class="foot-section" id="supportFooter">
-              <span>
-                <h4>Soporte</h4>
-              </span>
-              <span class="label">Contact Us</span>
-              <br>
-              <span class="label">Help & FAQ</span>
-              <br>
-              <span class="label">Service Status</span>
-              <br>
-              <span class="label">Tech Requirements</span>
-            </div>
-          </div>
-        </footer>
-     </div>
    </div>
    <script>
    $(document).ready( function(){ $('#updateuser_form').validationEngine(); $('#birthDate').datepicker({changeYear:true}); } );
-   function edit_user()
-   {
-     $('#name').prop('disabled', false);
-     $('#lastName').prop('disabled', false);
-     $('#userName').prop('disabled', false);
-     $('#email').prop('disabled', false);
-     $('#email').prop('disabled', false);
-     $('#birthDate').prop('disabled', false);
-     $('#password').prop('disabled', false);
-     $('#btn-group').html(
-       '<input type="submit" class="btn btn-success" value="Save" /><input type="submit" class="btn btn-success" value="Cancel" onclick="cancel_user()" />'
-     );
-   }
-
-   function cancel_user()
-   {
-     $('#name').prop('disabled', true);
-     $('#lastName').prop('disabled', true);
-     $('#userName').prop('disabled', true);
-     $('#email').prop('disabled', true);
-     $('#birthDate').prop('disabled', true);
-     $('#password').prop('disabled', true);
-
-     $('#btn-group').html(
-       '<input type="button" class="btn btn-success" onclick="edit_user()" value="Modificar" /><input type="button" class="btn btn-success" onclick="salir()" value="Back" />'
-     );
-   }
-
    var verify_user = function()
    {
      var data = {
@@ -314,13 +248,15 @@ if(isset($_SESSION["user"]))
    function salir()
    {
      //window.history.back();
-     window.location.href="<?=$url?>profile"
+     
    }
-
+   $('#cancel').click(function(){
+    $('#edituser_form').attr('onsubmit','return false');
+    window.location.assign("http://localhost/cirkuits/profile");
+   });
    $(document).ready( function(){
         $('#logModal').modal('show');
-        responsiveEngine();
-        console.log($(window).width());
+        responsiveEngine();        
       });
 
     var commonResponsive = swidth => {
@@ -392,12 +328,6 @@ if(isset($_SESSION["user"]))
         mobileResponsive(SCREEN_WIDTH);
       }
     }
-
-
-
-
-
-
    </script>
  </body>
  </html>
