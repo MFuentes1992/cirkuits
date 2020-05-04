@@ -15,6 +15,12 @@
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){
         $payment = 2;
+        $strQuery = sprintf("Select * from cat_videogames");
+        $rawResult = mysqli_query($conexion, $strQuery) or die(mysqli_error($conexion));
+        $videogames = array();
+        while($row = mysqli_fetch_assoc($rawResult)){
+          array_push($videogames, $row);
+        }        
       }
       else {
         header("location:".$url."signin");
@@ -104,106 +110,18 @@
       <div class="row">
           <div class="swiper-container">
             <div class="swiper-wrapper">
+            <?php for($counter = 0; $counter < count($videogames); $counter++) {?>
               <div class="swiper-slide">
                 <div style="width:100%;">
                   <h1>
-                    <i class="fas fa-microphone"></i>
+                    <i class="<?= $videogames[$counter]['icono'] ?>"></i>
                   </h1>
                 </div>
                 <div style="width:100%;">
-                  <h2>Speech Recognition</h2>
+                <a href="../<?= $videogames[$counter]['url'] ?>" class="nav-link white"><h2><?= $videogames[$counter]['nombre'] ?></h2></a>
                 </div>
               </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>
-                   <a href="../thesethose/level/" class="nav-link white"><i class="fas fa-futbol"></i></a>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <a href="../thesethose/level/" class="nav-link white"><h2>Ball Game</h2></a>
-                </div>
-              </div>              
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-user-alt"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>To Be</h2>
-                </div>              
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-hands"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>To Have</h2>
-                </div>                
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-comments"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>To Say</h2>
-                </div>               
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-gamepad"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>Be / Have / Say</h2>
-                </div>                
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-users"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>Extended subjects</h2>
-                </div>               
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-user-astronaut"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>Extended subjects + possessive adjectives</h2>
-                </div>                
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-people-carry"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>Extended subjects + object pronouns</h2>
-                </div>               
-              </div>
-              <div class="swiper-slide">
-                <div style="width:100%;">
-                  <h1>                                    
-                    <i class="fas fa-street-view"></i>
-                  </h1>
-                </div>
-                <div style="width:100%;">
-                  <h2>Extended subjects + reflexive pronouns</h2>
-                </div>               
-              </div>
+            <?php }?>
             </div>
             <!-- Add Arrows -->
             <div class="swiper-button-next"></div>
