@@ -21,22 +21,29 @@ CREATE TABLE pago (id_pago INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, id_usuar
     
 CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre text, icono text, url text);
-    
-CREATE TABLE videogame_progress (id_progress INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-	id_videogame integer not null, id_usuario integer not null, nivel_actual integer, estrellas integer not null,  highscore   integer, foreign key(id_videogame)references cat_videogames(id_videogame), foreign key(id_usuario)references usuarios(id_usuario));
-    
-CREATE TABLE leaderboard (id_leaderboard INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-	id_progress integer not null, high_score integer,
-    foreign key(id_progress)references videogame_progress(id_progress));
+	#////////////////////////////// GAME LOGIC /////////////////////////////////////
+	CREATE TABLE cat_levels (id_level INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre TEXT);
+
+	CREATE TABLE videogame_level(id_videogame_level INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_videogame INTEGER NOT NULL, id_level INTEGER NOT NULL, id_usuario INTEGER NOT NULL, IsLocked INTEGER,
+	 FOREIGN KEY(id_videogame) REFERENCES cat_videogames, FOREIGN KEY(id_level) REFERENCES cat_levels, FOREIGN KEY(id_usuario) REFERENCES  usuarios);
+
+	CREATE TABLE level_progress(id_progress INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_videogame_level INTEGER, score INTEGER, high_score INTEGER, estrellas INTEGER, FOREIGN KEY(id_videogame_level) REFERENCES videogame_level);
+	#////////////////////////////// GAME LOGIC /////////////////////////////////////    
     
     show tables;
     #////////////////////////////////////////////// FINISH BUILDING DATABASE //////////////////////////////////////////////////////////////////////////
     desc usuarios;
-    insert into cat_videogames (nombre, icono, url) values ('These / Those: Car game', 'fas fa-flag-checkered', 'thesethose/level/');
+    desc cat_videogames;
+    insert into cat_videogames (nombre, icono, url) values ('Tense Master: To be', 'fas fa-street-view', '#');
+    insert into cat_levels (nombre) values ('Nivel 10');
     insert into videogame_progress (id_videogame, id_usuario, nivel, stars, score) values (1,1,1,0,0);
     INSERT INTO leaderboard (id_progress, high_score) values (1,0);
     
-    select * from cat_videogames;    
+    select * from cat_videogames;
+    select * from cat_levels;
     update cat_videogames set icono = 'fas fa-street-view' where id_videogame = 10;
     
     select * from usuarios;
