@@ -35,17 +35,34 @@
         $select_user = mysqli_query($conexion, $str_query);
         $row = mysqli_fetch_assoc($select_user);
         //Filling up initial data
-        $strProgress = sprintf('INSERT INTO videogame_progress (id_videogame, id_usuario, nivel, stars, score) VALUES (%s,%s,%s,%s,%s)', 1,$row['id_usuario'],1,0,0);
-        $insert_vprogress = mysqli_query($conexion, $strProgress);
-        if($insert_vprogress){
-          $select_vprogress = sprintf("SELECT id_progress FROM videogame_progress WHERE id_usuario = %s", $row['id_usuario']);
-          $rawQuery = mysqli_query($conexion, $select_vprogress);
-          $vprogress_data = mysqli_fetch_assoc($rawQuery);
-          $strLeaderboard = sprintf('INSERT INTO leaderboard (id_progress, high_score) VALUES (%s,%s)', $vprogress_data['id_progress'],0);
-          $resultLeader = mysqli_query($conexion, $strLeaderboard);
-        }        
-        $_SESSION["user"] = $row;
-        header("Location:".$url."dashboard");
+        /*//////////////////////////// FILLING SPEECH RECOGNITION (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
+        $strSPProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 1, $row['id_usuario'],0);
+        $strSPProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 2, $row['id_usuario'],1);
+        $strSPProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 3, $row['id_usuario'],1);
+        $insert_SProgress1 = mysqli_query($conexion, $strSPProgress1);
+        $insert_SProgress2 = mysqli_query($conexion, $strSPProgress2);
+        $insert_SProgress3 = mysqli_query($conexion, $strSPProgress3);
+        /*//////////////////////////// FILLING THESE/THOSE (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
+        $strTTProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 1, $row['id_usuario'],0);
+        $strTTProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 2, $row['id_usuario'],1);
+        $strTTProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 3, $row['id_usuario'],1);
+        $insert_TTprogress1 = mysqli_query($conexion, $strTTProgress1);
+        $insert_TTprogress2 = mysqli_query($conexion, $strTTProgress2);
+        $insert_TTprogress3 = mysqli_query($conexion, $strTTProgress3);
+        /*//////////////////////////// FILLING TO BE - TENSE MASTER (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
+        $strTBProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 1, $row['id_usuario'],0);
+        $strTBProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 2, $row['id_usuario'],0);
+        $strTBProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 3, $row['id_usuario'],0);
+        $insert_TBprogress1 = mysqli_query($conexion, $strTBProgress1);
+        $insert_TBprogress2 = mysqli_query($conexion, $strTBProgress2);
+        $insert_TBprogress3 = mysqli_query($conexion, $strTBProgress3);
+        if($insert_SProgress1 && $insert_SProgress2 && $insert_SProgress3 &&
+            $insert_TTprogress1 && $insert_TTprogress2 && $insert_TTprogress3 ){
+          $_SESSION["user"] = $row;
+          header("Location:".$url."dashboard");
+        } else{
+          header("Location:".$url."error.php");
+        }    
       }
     }
   }
@@ -101,9 +118,7 @@
           <br>
           <h1>Sign up</h1>
         </div>
-      </div>
-      <br>
-      <div class="form-wrapper">
+        <div class="form-wrapper">
         <div class="form">
           <form action="" method="post" id="reguser_form" onsubmit="return validaForm()">
             <div class="form form-group">
@@ -203,10 +218,14 @@
         <div id="btn-register">
           <button type="button" name="btnLogin" id="btn-register" onclick="register()" class="btn btn-outline-info">Register</button>
         </div>
-      </div>
+      </div>  
       <div class="" id="regLogin">
         <span>Already registred?</span><span style="margin-left:0.5%;"><a href="<?=$url;?>signin" class="label label-success">Sign in</a></span>
+      </div>      
       </div>
+      <br>
+
+
     </div>
 
     <div class="row">
@@ -272,12 +291,8 @@
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#logoContainer').removeClass('col-md-8');
-      $("#logoContainer > a").css('margin-left','0%');
-      $('#supportFooter').css('width','100%');
+      $("#logoContainer > a").css('margin-left','0%');      
       $('#contactoFooter').css('width', '100%');
-      $('#supportFooter').css('text-align','justify');
-      $('#supportFooter').css('margin-left','5%');
-      $('#supportFooter').css('margin-top','5%');
     }
 
     var responsiveEngine = () => {

@@ -368,7 +368,16 @@ td{
     background-color: #343A40;;
   } 
 }
-@media screen and (min-width: 320px) and (max-width: 540px)
+
+@media screen and (min-width: 450px) and (max-width: 800px){
+  #userExtra {
+    position: relative;
+    width: 45%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 450px)
 {
 
   .avatar-showcase{
@@ -388,9 +397,9 @@ td{
   .contenido
   {
     position: relative;
-    margin: 20px 0px 0px 0px;
+    margin: auto;
     padding: 0px;
-    width: 100%;
+    width: 80%;
     height: 768px;
   }
   .form

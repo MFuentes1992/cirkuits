@@ -32,11 +32,20 @@ else {
         $_SESSION["user"]       = $row;
         $idUsuario = $_SESSION["user"]["id_usuario"];
 
-        $query_user_progress_v1 = sprintf("SELECT * FROM videogame_progress VP INNER JOIN cat_videogames CV ON VP.id_videogame = CV.id_videogame WHERE id_usuario = %s AND VP.id_videogame = 1",
-        GetSQLValueString($conexion,$idUsuario, "int"));
-        $result_user_progress_v1 = mysqli_query($conexion, $query_user_progress_v1) or die(mysqli_error($conexion));
+        $strSpeechRecognition = sprintf("SELECT count(*) as levels FROM videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+        $idUsuario, 0, 1);
+        $strTheseThose = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+        $idUsuario, 0, 2);
+        $strToBe = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+        $idUsuario, 0, 3);
 
-        $_SESSION["uprogressv1"] = $row_user_progress_v1 = mysqli_fetch_assoc($result_user_progress_v1);
+        $resultSpeechRecognition = mysqli_query($conexion, $strSpeechRecognition)or die(mysqli_error($conexion));
+        $resultTheseThose = mysqli_query($conexion, $strTheseThose)or die(mysqli_error($conexion));
+        $resultToBe = mysqli_query($conexion, $strToBe)or die(mysqli_error($conexion));
+
+        $_SESSION["SpeechRecognitionLevels"] = mysqli_fetch_assoc($resultSpeechRecognition);
+        $_SESSION["TheseThoseLevels"] = mysqli_fetch_assoc($resultTheseThose);
+        $_SESSION["ToBeLevels"] = mysqli_fetch_assoc($resultToBe);
 
         header("Location:".$url."dashboard");
       } else {
@@ -115,40 +124,40 @@ else {
            <br>
            <br>
            <h1>Sign in</h1>
+              <div class="form-wrapper">
+                  <div class="form">
+                    <form action="" method="post" id="login_form">
+                      <div class="form form-group">
+                        <input type="email" class="form-control" name="email" id="email"
+                        data-validation-engine="validate[required, custom[email]]"
+                        data-errormessage-value-missing="email is required"
+                        data-errormessage-custom-error="Invalid, let me give you a hint: someone@nowhere.com"
+                        placeholder="e-mail" />
+                      </div>
+                      <div class="form form-group">
+                        <input type="password" class="form-control" name="password" id="passowrd"
+                        data-validation-engine="validate[required]"
+                        data-validation-engine="validate[required, custom[email]]"
+                        data-errormessage-value-missing="password is required"
+                        placeholder="password" />
+                      </div>
+                      <!--<input type="submit" name="submit" value="Sign" class="btn btn-success btn-lg">
+                      <br>
+                      <div class="" id="regLogin">
+                        <span>Not registred yet?</span><h3><a href="reguser.php" class="label label-success">Sign up</a></h3>
+                      </div>-->
+                    </form>
+                  </div>
+                  <div id="btn-login">
+                    <button type="button" name="btnLogin" id="btn-log" onclick="login()" class="btn btn-outline-info">Sign In</button>
+                  </div>
+              </div>
+              <div id="regLogin">
+                <span>Not registred yet?</span><span style="margin-left:0.5%;"><a href="<?=$url?>signup" class="label">Sign up</a></span>
+              </div>
+            </div>
          </div>
-         <br>
-         <div class="form-wrapper">
-             <div class="form">
-               <form action="" method="post" id="login_form">
-                 <div class="form form-group">
-                   <input type="email" class="form-control" name="email" id="email"
-                   data-validation-engine="validate[required, custom[email]]"
-                   data-errormessage-value-missing="email is required"
-                   data-errormessage-custom-error="Invalid, let me give you a hint: someone@nowhere.com"
-                   placeholder="e-mail" />
-                 </div>
-                 <div class="form form-group">
-                   <input type="password" class="form-control" name="password" id="passowrd"
-                   data-validation-engine="validate[required]"
-                   data-validation-engine="validate[required, custom[email]]"
-                   data-errormessage-value-missing="password is required"
-                   placeholder="password" />
-                 </div>
-                 <!--<input type="submit" name="submit" value="Sign" class="btn btn-success btn-lg">
-                 <br>
-                 <div class="" id="regLogin">
-                   <span>Not registred yet?</span><h3><a href="reguser.php" class="label label-success">Sign up</a></h3>
-                 </div>-->
-               </form>
-             </div>
-             <div id="btn-login">
-               <button type="button" name="btnLogin" id="btn-log" onclick="login()" class="btn btn-outline-info">Sign In</button>
-             </div>
-         </div>
-         <div id="regLogin">
-           <span>Not registred yet?</span><span style="margin-left:0.5%;"><a href="<?=$url?>signup" class="label">Sign up</a></span>
-         </div>
-       </div>
+
    </div>
          <!-- Footer -->
          <footer class="footer col-md-12" style="position:relative;">
@@ -219,12 +228,8 @@ else {
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
       $('#logoContainer').removeClass('col-md-8');
-      $("#logoContainer > a").css('margin-left','0%');
-      $('#supportFooter').css('width','100%');
+      $("#logoContainer > a").css('margin-left','0%');      
       $('#contactoFooter').css('width', '100%');
-      $('#supportFooter').css('text-align','justify');
-      $('#supportFooter').css('margin-left','5%');
-      $('#supportFooter').css('margin-top','5%');
     }
 
     var responsiveEngine = () => {

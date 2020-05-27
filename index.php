@@ -16,7 +16,7 @@
 </head>
 <body>
   <div class="pos-f-t">
-  <nav class="navbar sticky-top navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,7 +31,6 @@
         <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
       </div>
     </div>
-
   </div>
   <div class="container-fluid bg-black">
     <div class="row">
@@ -53,7 +52,7 @@
         <div>        
           <div class="text-about">                                
             <div class="two-col-container" id="twoColContainer">
-              <div class="column-three" style="margin-right:2%;">
+              <div class="column-three">
                 <div class="linear-gradient">
                   <h1><strong>Cirkuits Team</strong></h1>
                 </div>
@@ -246,19 +245,12 @@
       $('#about-title').css('height','150px');
       $('#contact-title').css('height','150px');
       $('#about-title').css('padding-top','50px');
-      $('.text-about').css('padding-left', '10%');
-      $('.text-about').css('padding-right', '10%');
-      $('.text-about').css('margin-top', '5%');
       $('#about-title > h1').css('font-size','2.5rem');
       $('#contact-title > h1').css('font-size','2.5rem');
       $('.img_logo').css('width', '200');
       $('.img_logo').css('height', '80');
-      $('#login').remove();
-      $('#supportFooter').css('width','100%');
-      $('#contactoFooter').css('width', '100%');
-      $('#supportFooter').css('text-align','justify');
-      $('#supportFooter').css('margin-left','5%');
-      $('#supportFooter').css('margin-top','5%');
+      $('#login').remove();      
+      $('#contactoFooter').css('width', '100%');                  
     }
     var insertBanner = function()
     {
