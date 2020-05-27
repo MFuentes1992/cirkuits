@@ -552,6 +552,7 @@ h1, h2, h3 {
   background: linear-gradient(90deg,#ff8a00,#e52e71);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .form-style-6{
