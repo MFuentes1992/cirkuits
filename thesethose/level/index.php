@@ -16,11 +16,6 @@
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){
         $payment = 2;
-        $query_user_progress_v1 = sprintf("SELECT * FROM videogame_progress VP INNER JOIN cat_videogames CV ON VP.id_videogame = CV.id_videogame WHERE id_usuario = %s AND VP.id_videogame=1",
-        GetSQLValueString($conexion,$_SESSION["user"]["id_usuario"], "int"));
-        $result_user_progress_v1 = mysqli_query($conexion, $query_user_progress_v1) or die(mysqli_error($conexion));
-
-        $_SESSION["uprogressv1"] = $row_user_progress_v1 = mysqli_fetch_assoc($result_user_progress_v1);
       }
       else {
         header("location:".$url."signin");
@@ -122,21 +117,21 @@
                 <table class="level-table">
                     <tr>                        
                         <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 1){?>
+                            <?php if($_SESSION["TheseThoseLevels"]["levels"] >= 1){?>
                               <button onClick="reload(1)" class="btn btn-primary" style="width: 200px;">LEVEL 1</button>
                             <?php } else {?>
                               <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                         <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] >= 2){?>
+                            <?php if($_SESSION["TheseThoseLevels"]["levels"] >= 2){?>
                               <button onClick="reload(2)" class="btn btn-primary" style="width: 200px;">LEVEL 2</button>
                             <?php } else {?>
                               <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>                                
                         </td>
                         <td>
-                            <?php if($_SESSION["uprogressv1"]["nivel"] == 3){?>
+                            <?php if($_SESSION["TheseThoseLevels"]["levels"] == 3){?>
                               <button onClick="reload(3)" class="btn btn-primary" style="width: 200px;">LEVEL 3</button>
                             <?php } else {?>
                               <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
@@ -155,7 +150,7 @@
                             <button onClick="leaderBoard()" class="btn btn-primary" style="width: 200px;">LEADERBOARD</button>
                           </td>
                           <td>
-                            <button  onClick="reload(<?php echo $_SESSION["uprogressv1"]["nivel"] ?>)" class="btn btn-primary" style="width: 200px;">CONTINUE</button>                          
+                            <button  onClick="reload(<?php echo $_SESSION["TheseThoseLevels"]["levels"] ?>)" class="btn btn-primary" style="width: 200px;">CONTINUE</button>                          
                           </td>
                       </tr>
                 </table>

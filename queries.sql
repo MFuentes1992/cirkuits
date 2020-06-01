@@ -37,28 +37,28 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     #////////////////////////////////////////////// FINISH BUILDING DATABASE //////////////////////////////////////////////////////////////////////////
     desc usuarios;
     desc cat_videogames;
+    desc level_progress;
+    desc 
     insert into cat_videogames (nombre, icono, url) values ('Tense Master: To be', 'fas fa-street-view', '#');
     insert into cat_levels (nombre) values ('Nivel 10');
-    insert into videogame_progress (id_videogame, id_usuario, nivel, stars, score) values (1,1,1,0,0);
+    insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,1,1,0);
+    insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,2,1,1);
+    insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,3,1,1);
     INSERT INTO leaderboard (id_progress, high_score) values (1,0);
     
     select * from cat_videogames;
     select * from cat_levels;
+    select * from videogame_level;
+    select * from level_progress;
+    select count(*) as total from level_progress where id_videogame_level = 1;
+    desc videogame_level;
+    desc level_progress;
+    select count(*) as levels from videogame_level where id_usuario = 1 and isLocked = 0;
     update cat_videogames set icono = 'fas fa-street-view' where id_videogame = 10;
-    
-    select * from usuarios;
+
     update usuarios set estatus_usuario = 2 where id_usuario = 1;
-    
-    desc leaderboard;
-    select * from videogame_progress vp 
-		inner join  leaderboard lb on vp.id_progress = lb.id_progress where vp.id_usuario = 1;
-        
-	update leaderboard set high_score = 0 where id_progress = 1;
-    update videogame_progress set nivel = 2, score = 0 where id_usuario = 1;
-    select * from videogame_progress;
-    select MAX(Nivel) from videogame_progress;
-    select * from leaderboard;
-    
+    select * from usuarios;
+    SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 2
     
 INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,
       email_usuario, nacimiento_usuario, estatus_usuario, isAdmin, tel_usuario, cel_usuario, fecha_registro, fecha_actualizacion, avatar_usuario)  VALUES ('Marco','Fuentes','mfuentes','des2tramp2dos2','markfuentes1992@hotmail.com','2015-04-02',1,1,'1777340','7775006083',NOW(), NOW(), 'creator')

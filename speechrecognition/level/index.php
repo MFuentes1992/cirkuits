@@ -160,7 +160,7 @@
   <script src="../../js/jquery-1.12.3.min.js" charset="utf-8"></script>
   <script type="text/javascript">    
     var reload = level => {
-      location.replace("http://localhost/Cirkuits/thesethose/level"+level+"/");
+      location.replace("http://localhost/Cirkuits/speechrecognition/level"+level+"/");
     }
 
     var leaderBoard = () =>{

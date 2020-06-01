@@ -10,6 +10,8 @@ canvas{
 width:100%; 
 height:100%; 
 display: block;
+overflow-y: hidden;
+overflow-x: hidden;
 }
 h1{
 position: absolute;      
@@ -19,6 +21,10 @@ text-align: center;
 color: white;
 font-family: 'Poppins', sans-serif;
 }
+#speechRecognition{
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(225,88,245,1) 0%, rgba(238,31,171,1) 0%, rgba(232,30,95,1) 0%, rgba(156,217,214,1) 100%);  
+}
+
 #speachBox{
 position: fixed;
 bottom: 0;
@@ -81,6 +87,17 @@ color: white;
 font-size: 2em;
 width: 100%;        
 }
+
+#verb-container{
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+  margin: auto; 
+  margin-top: 40vh;
+}
 #autoGenerate{
 position: absolute;
 }   
@@ -94,7 +111,7 @@ padding-top: 2%;
   position: absolute;
   width: 100%;
   height: 200px;
-  padding-top: 0%;  
+  top:0px;
 }
 #menuControls{
 position: relative;        
@@ -239,15 +256,15 @@ height: 50px;
   
 }*/
 #canvas{
-  position: absolute;
-  width: 100%;
-  padding-left: 13%;
-  padding-top: 3%;
+  position: relative;
+  width: 100%;  
 }
 #renderCanvas{
-  position: absolute;
-  width: 1280px;
-  height: 720px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(225,88,245,1) 0%, rgba(238,31,171,1) 0%, rgba(232,30,95,1) 0%, rgba(156,217,214,1) 100%);  
+  z-index: -1;
 }
 
 .hide{
@@ -275,7 +292,8 @@ height: 50px;
   height: 600px;
   pointer-events: none; /*/ make it clickable trhough*/
   /*/ particle styling*/
-
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .particle {
