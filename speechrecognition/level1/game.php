@@ -82,8 +82,8 @@
                         <h2 id="levelClearModalCenterTitle" style="text-align: center;">LEVEL CLEAR</h2>
                     </div>            
                     <div class="levelClearContainer">
-                        <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                        <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="levelClearScore">0</span></span>
+                        <section id="level-clear-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                        <aside id="level-clear-userGems"><span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="levelClearScore">0</span></span></aside>
                     </div>
                     <div class="levelClearContainerStars">
                         <span id="levelClearStar1Completed" class="gameo-ico"><i class="fas fa-star"></i></span>
@@ -148,7 +148,7 @@
     var lives = 3;
     ///TIMMER VARIABLES ///
     var minutes = 0; //Level duration in minutes
-    var seconds = 10; // Level duration in seconds
+    var seconds = 3; // Level duration in seconds
     const slideDuration = 5000; //Slide duration given in miliseconds
     var timmerID = 0;
     var totalAmountOfTimeSpeeking = 0;
