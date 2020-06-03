@@ -177,10 +177,10 @@
     function handleEvent(e){
         switch(e.detail.msg){
           case 1:
-            location.replace('http://localhost/Cirkuits/thesethose/NextLevelManager.php/"');
+            location.replace('http://localhost/Cirkuits/util/NextLevelManager.php?game=2');
           break;
           case 2:
-            location.replace('http://localhost/Cirkuits/thesethose/MainMenuManager.php/"');
+            location.replace('http://localhost/Cirkuits/thesethose/level/');
           break;
           default:
           break;

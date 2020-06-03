@@ -123,7 +123,7 @@
                     </div>            
                     <div class="gameOverContainer">
                         <section id="game-over-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
-                       <aside id="game-over-userGems"> <span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="gameOverScore">x0</span></span></aside>
+                        <aside id="game-over-userGems"> <span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="gameOverScore">x0</span></span></aside>
                     </div>          
                 </div>
                 <div class="modal-footer">

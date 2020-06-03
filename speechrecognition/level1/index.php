@@ -177,7 +177,7 @@
     function handleEvent(e){
         switch(e.detail.msg){
           case 1:
-            location.replace('http://localhost/Cirkuits/util/NextLevelManager.php?game=1/');
+            location.replace('http://localhost/Cirkuits/util/NextLevelManager.php?game=1');
           break;
           case 2:
             location.replace('http://localhost/Cirkuits/speechrecognition/level/');

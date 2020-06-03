@@ -16,6 +16,10 @@
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){
         $payment = 2;
+        $strTheseThose = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+        $_SESSION["user"]["id_usuario"], 0, 2);
+        $resultTheseThose = mysqli_query($conexion, $strTheseThose)or die(mysqli_error($conexion));
+        $_SESSION["TheseThoseLevels"] = mysqli_fetch_assoc($resultTheseThose);
       }
       else {
         header("location:".$url."signin");

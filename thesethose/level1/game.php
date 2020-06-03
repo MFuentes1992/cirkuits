@@ -75,8 +75,8 @@
                       <h2 id="levelClearModalCenterTitle" style="text-align: center;">LEVEL CLEAR</h2>
                   </div>            
                   <div class="levelClearContainer">
-                      <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                      <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="levelClearScore">0</span></span>
+                      <section id="level-clear-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                      <aside id="level-clear-userGems"><span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="levelClearScore">0</span></span></aside>
                   </div>
                   <div class="levelClearContainerStars">
                       <span id="levelClearStar1Completed" class="gameo-ico"><i class="fas fa-star"></i></span>
@@ -90,12 +90,12 @@
                   </div>           
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
-                  <button type="button" class="btn btn-primary" onclick="NextLevel()">Next Level</button>
+                  <button type="button" class="btn btn-outline-secondary" onclick="MainMenu()">Main menu</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="location.reload()">Try again</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="NextLevel()">Next Level</button>
                   <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
-                  <input type="hidden" id="VideogameID" value="1">
-                  <input type="hidden" id="CurrentLevel" value="1">
-                  <input type="hidden" id="NextLevel" value="2">
+                  <input type="hidden" id="VideogameID" value="2">
+                  <input type="hidden" id="CurrentLevel" value="1">                  
                   <input type="hidden" id="Score">
               </div>
           </div>
@@ -115,8 +115,8 @@
                         <h2 id="gameOVerModalCenterTitle" style="text-align: center;">GAME OVER</h2>
                     </div>            
                     <div class="gameOverContainer"> 
-                        <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                        <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="gameOverScore">0</span></span>
+                        <section id="game-over-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                        <aside id="game-over-userGems"> <span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="gameOverScore">x0</span></span></aside>
                     </div>         
                 </div>
                 <div class="modal-footer">
@@ -873,17 +873,18 @@
     }    
     var SaveData = function(){
       var _data = {
-        UserID: $("#UserID").val(),
-        VideogameID: $("#VideogameID").val(),
-        CurrentLevel: $("#CurrentLevel").val(),
-        NextLevel: $("#NextLevel").val(),
-        Score: $("#Score").val()
+        UserID: parseInt($("#UserID").val()),
+        VideogameID: parseInt($("#VideogameID").val()),
+        CurrentLevel: parseInt($("#CurrentLevel").val()),
+        Pass: 1,
+        Score: score,
+        Estrellas: lives
       }
       console.log(_data);
       $.ajax({
         method: "POST",
         data: _data,
-        url: "../MagiSave.php"
+        url: "../../util/MagiSave.php"
       }).done(function(msg){
         console.log(msg);
         if(msg == -1){
