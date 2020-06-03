@@ -284,6 +284,15 @@ height: 50px;
   border-color: #000 !important;
 }
 
+#DataSaved{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  background: -webkit-linear-gradient(#09E447, #04972E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /*/////////////////EXPLOSIONS////////////////////////*/
 
 .explosion {

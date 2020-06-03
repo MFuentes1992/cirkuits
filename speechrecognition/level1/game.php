@@ -97,6 +97,9 @@
                         <input type="hidden" id="CurrentLevel" value="1">                        
                     </div>            
                 </div>
+                <div>
+                    <h3 id="DataSaved"></h3>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary">Main menu</button>
                     <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
@@ -546,14 +549,14 @@
         url: "../../util/MagiSave.php"
       }).done(function(msg){
         console.log(msg);
-        if(msg == -1){
+        if(parseInt( msg ) === -1){
           Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: 'Problem saving your data!',
               footer: '<a href>Why do I have this issue?</a>'
             });
-        }else if(msg == 1){
+        }else if(parseInt( msg ) === 1){
           $("#DataSaved").append('Data Saved!');            
         }
       });

@@ -58,7 +58,14 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
 
     update usuarios set estatus_usuario = 2 where id_usuario = 1;
     select * from usuarios;
-    SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 2
+    SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 2;
+    
+    SELECT id_videogame_level FROM videogame_level WHERE id_level = 1 AND id_usuario = 1 AND id_videogame = 1;
+    SELECT count(*) AS total FROM level_progress WHERE id_videogame_level = 1;
+    SELECT estrellas, high_score FROM level_progress WHERE id_videogame_level = 1;
+    
+    UPDATE videogame_level SET isLocked = 1 WHERE id_videogame = 1 AND id_usuario = 1 AND id_level = 2;
+    INSERT INTO level_progress (id_videogame_level, score, high_score, estrellas) VALUES (1, 30, 30, 3);
     
 INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,
       email_usuario, nacimiento_usuario, estatus_usuario, isAdmin, tel_usuario, cel_usuario, fecha_registro, fecha_actualizacion, avatar_usuario)  VALUES ('Marco','Fuentes','mfuentes','des2tramp2dos2','markfuentes1992@hotmail.com','2015-04-02',1,1,'1777340','7775006083',NOW(), NOW(), 'creator')

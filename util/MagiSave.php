@@ -37,18 +37,17 @@
             $strQueryEstrellaHScore = sprintf("SELECT estrellas, high_score FROM level_progress WHERE id_videogame_level = %s;", 
             GetSQLValueString($conexion, $videogame_level_id, "int"));
             $rawVP = mysqli_query($conexion, $strQueryEstrellaHScore)or die(mysqli_error($conexion));
-            $estrellas_record = mysqli_fetch_assoc($rawVP)["estrellas"];
-            $hscore_record = mysqli_fetch_assoc($rawVP)["high_score"];
+            $resultVP = mysqli_fetch_assoc($rawVP);            
             
-            $updateEstrellas = $Estrellas > $estrellas_record ? $Estrellas : $estrellas_record;
-            $hscore_record = $Score > $hscore_record ? $Score : $hscore_record;
-
+            $updateEstrellas = intval( $Estrellas ) > intval( $resultVP["estrellas"] ) ? $Estrellas : $resultVP["estrellas"];
+            $hscore_record = intval( $Score ) > intval( $resultVP["high_score"] ) ? $Score : $resultVP["high_score"];
+                        
             $strUpdateVP = sprintf("UPDATE level_progress SET score = %s, high_score = %s, estrellas = %s WHERE id_videogame_level = %s;", 
             GetSQLValueString($conexion, $Score, "int"), GetSQLValueString($conexion, $hscore_record, "int"), 
             GetSQLValueString($conexion, $updateEstrellas, "int"), GetSQLValueString($conexion, $videogame_level_id, "int"));
             $resultVP = mysqli_query($conexion, $strUpdateVP)or die(mysqli_error($conexion));
             if($resultVP){
-                echo 'Success';
+                echo '1';
             }
 
         }else {
@@ -56,8 +55,8 @@
             GetSQLValueString($conexion, $videogame_level_id, "int"), GetSQLValueString($conexion, $Score, "int"), GetSQLValueString($conexion, $Score, "int"), GetSQLValueString($conexion, $Estrellas, "int"));
             $result = mysqli_query($conexion, $queryInsert)or die(mysqli_error($conexion));
             if($result){
-                echo 'success';
+                echo '1';
             }
         }
-    }else echo "Failed!";
+    }else echo "-1";
 ?>
