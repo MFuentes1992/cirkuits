@@ -16,9 +16,6 @@ if(isset($_SESSION["user"]))
     else if($_SESSION["user"]["estatus_usuario"] == 2){
 
       $videogame = isset($_GET["id"]) ? $_GET["id"] : 1;
-      $query_get_hscore = sprintf("SELECT high_score,id_usuario FROM leaderboard WHERE id_videogame = %s ORDER BY high_score DESC LIMIT 10",
-      GetSQLValueString($conexion, $videogame, "int"));
-      $result_hscore = mysqli_query($conexion, $query_get_hscore)or die(mysqli_error($conexion));
 
     }
     else {

@@ -51,7 +51,7 @@
 
   </head>
   <body>
-    <div class="pos-f-t">
+  <div class="pos-f-t">
       <nav class="navbar sticky-top navbar-dark bg-dark">
         <div class="col-md-1" id="toggle">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,9 +91,9 @@
             <li class="nav-item">
               <a class="nav-link white" href="<?=$url;?>support/"><i class="far fa-comments"></i>&nbsp;support</a>
             </li>
-            <li id='reslogout' class="hidden">              
-            </li>
             <li id="resavatar" class="hidden">              
+            </li>
+            <li id='reslogout' class="hidden">              
             </li>
           </ul>
         </div>
@@ -110,37 +110,6 @@
             <h1><a href="" class="nav-link white">Upload voucher</a> </h1>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <!-- Footer -->
-        <footer class="footer col-md-12" style="position:relative;">
-          <div class="row">
-            <div class="foot-section" id="contactoFooter">
-              <span>
-                <h4>Contact</h4>
-              </span>
-              <span class="label">+52 777 500 60 83</span>
-              <br>
-              <span class="label">postal code: 63866</span>
-              <br>
-              <span class="label">cirkuitsed@cirkuits.com.mx</span>
-              <br>
-              <span class="label">2019 www.cirkuits.com &copy;</span>
-            </div>
-            <div class="foot-section" id="supportFooter">
-              <span>
-                <h4>Soporte</h4>
-              </span>
-              <span class="label">Contact Us</span>
-              <br>
-              <span class="label">Help & FAQ</span>
-              <br>
-              <span class="label">Service Status</span>
-              <br>
-              <span class="label">Tech Requirements</span>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
     <script>
@@ -196,6 +165,8 @@
       }
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
+      }else if(SCREEN_WIDTH => 1404){
+        $("#logoContainer > a").css('margin-left','54%');
       }
 
       /**//////////////// TABLET (800 - 425) ////////// */
