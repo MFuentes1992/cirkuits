@@ -28,31 +28,30 @@
       $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 2, $isAdmin, $avatar);
       $id_usuario = mysqli_insert_id($conexion);
       if($result > 0)
-      {
-        session_start();
+      {        
         $str_query =  sprintf("SELECT * FROM usuarios where alter_usuario = %s AND password_usuario = %s",
         $userName, $password);
         $select_user = mysqli_query($conexion, $str_query);
         $row = mysqli_fetch_assoc($select_user);
         //Filling up initial data
         /*//////////////////////////// FILLING SPEECH RECOGNITION (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
-        $strSPProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 1, $row['id_usuario'],0);
-        $strSPProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 2, $row['id_usuario'],1);
-        $strSPProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 1, 3, $row['id_usuario'],1);
+        $strSPProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 1, 1, $row['id_usuario'],0);
+        $strSPProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 1, 2, $row['id_usuario'],1);
+        $strSPProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 1, 3, $row['id_usuario'],1);
         $insert_SProgress1 = mysqli_query($conexion, $strSPProgress1);
         $insert_SProgress2 = mysqli_query($conexion, $strSPProgress2);
         $insert_SProgress3 = mysqli_query($conexion, $strSPProgress3);
         /*//////////////////////////// FILLING THESE/THOSE (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
-        $strTTProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 1, $row['id_usuario'],0);
-        $strTTProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 2, $row['id_usuario'],1);
-        $strTTProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 2, 3, $row['id_usuario'],1);
+        $strTTProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 2, 1, $row['id_usuario'],0);
+        $strTTProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 2, 2, $row['id_usuario'],1);
+        $strTTProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 2, 3, $row['id_usuario'],1);
         $insert_TTprogress1 = mysqli_query($conexion, $strTTProgress1);
         $insert_TTprogress2 = mysqli_query($conexion, $strTTProgress2);
         $insert_TTprogress3 = mysqli_query($conexion, $strTTProgress3);
         /*//////////////////////////// FILLING TO BE - TENSE MASTER (id_videogame, id_level, id_usuario, IsLocked)/////////////////////////////////*/
-        $strTBProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 1, $row['id_usuario'],0);
-        $strTBProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 2, $row['id_usuario'],0);
-        $strTBProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s,%s)', 3, 3, $row['id_usuario'],0);
+        $strTBProgress1 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 3, 1, $row['id_usuario'],0);
+        $strTBProgress2 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 3, 2, $row['id_usuario'],0);
+        $strTBProgress3 = sprintf('INSERT INTO videogame_level (id_videogame, id_level, id_usuario, IsLocked) VALUES (%s,%s,%s,%s)', 3, 3, $row['id_usuario'],0);
         $insert_TBprogress1 = mysqli_query($conexion, $strTBProgress1);
         $insert_TBprogress2 = mysqli_query($conexion, $strTBProgress2);
         $insert_TBprogress3 = mysqli_query($conexion, $strTBProgress3);

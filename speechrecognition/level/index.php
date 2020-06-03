@@ -16,6 +16,21 @@
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){
         $payment = 2;
+            /**//////////////////////// GET THE LEVEL SESSION ///////////////////////// */
+            $strSpeechRecognition = sprintf("SELECT count(*) as levels FROM videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+            $_SESSION["user"]["id_usuario"], 0, 1);
+            $strTheseThose = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+            $_SESSION["user"]["id_usuario"], 0, 2);
+            $strToBe = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+            $_SESSION["user"]["id_usuario"], 0, 3);
+    
+            $resultSpeechRecognition = mysqli_query($conexion, $strSpeechRecognition)or die(mysqli_error($conexion));
+            $resultTheseThose = mysqli_query($conexion, $strTheseThose)or die(mysqli_error($conexion));
+            $resultToBe = mysqli_query($conexion, $strToBe)or die(mysqli_error($conexion));
+    
+            $_SESSION["SpeechRecognitionLevels"] = mysqli_fetch_assoc($resultSpeechRecognition);
+            $_SESSION["TheseThoseLevels"] = mysqli_fetch_assoc($resultTheseThose);
+            $_SESSION["ToBeLevels"] = mysqli_fetch_assoc($resultToBe);
       }
       else {
         header("location:".$url."signin");
