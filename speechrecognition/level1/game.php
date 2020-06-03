@@ -83,7 +83,7 @@
                     </div>            
                     <div class="levelClearContainer">
                         <section id="level-clear-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
-                        <aside id="level-clear-userGems"><span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="levelClearScore">0</span></span></aside>
+                        <aside id="level-clear-userGems"><span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="levelClearScore">0</span></span></aside>
                     </div>
                     <div class="levelClearContainerStars">
                         <span id="levelClearStar1Completed" class="gameo-ico"><i class="fas fa-star"></i></span>
@@ -101,8 +101,9 @@
                     <h3 id="DataSaved"></h3>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">Main menu</button>
-                    <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Levels</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.reload();">Try again</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="NextLevel()">Next Level</button>
                 </div>
             </div>
         </div>
@@ -121,13 +122,13 @@
                         <h2 id="gameOVerModalCenterTitle" style="text-align: center;">GAME OVER</h2>
                     </div>            
                     <div class="gameOverContainer">
-                        <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                        <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="gameOverScore">0</span></span>
+                        <section id="game-over-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                       <aside id="game-over-userGems"> <span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="gameOverScore">x0</span></span></aside>
                     </div>          
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">Main menu</button>
-                    <button type="button" class="btn btn-primary" onclick="location.reload();">Try again</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Levels</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.reload();">Try again</button>
                 </div>
             </div>
         </div>
@@ -562,6 +563,24 @@
       });
     }
 
+
+
 }());
+
+    /*///////////////////////COMUNICATION BETWEEN IFRAME AND PARENT///////////////////////////// */
+    const AnsibleMessage ={
+      NEXTLEVEL: 1,
+      MAINMENU: 2      
+    }
+    var ansibleNextLevel = { msg: 1};
+    var NextLevel = function(){      
+      var _event = new CustomEvent('ansible', {detail: ansibleNextLevel});
+      window.parent.document.dispatchEvent(_event);
+    }
+    var ansibleMainMenu = { msg: 2 };
+    var MainMenu = function(){
+      var _event = new CustomEvent('ansible', {detail: ansibleMainMenu});
+      window.parent.document.dispatchEvent(_event);
+    }
 </script>
 </html>

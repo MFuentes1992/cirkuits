@@ -174,6 +174,11 @@ cursor: pointer;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#gameOverScore{
+  background: #707070;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 #pauseModalCenterTitle{
 animation: rainbow 3.5s linear;
 animation-iteration-count: infinite;
@@ -259,11 +264,27 @@ height: 50px;
   text-align: center;
   font-size: 16pt;
 }
+#game-over-userGems{
+  position: relative;
+  float: right;
+  width: 50%;
+  text-align: center;
+}
+
+#game-over-userName{
+  position: relative;
+  float: left;
+  width: 50%;
+  text-align: center;
+  font-size: 16pt;
+}
 #level-clear-userGems{
   position: relative;
   float: right;
   width: 50%;
+  text-align: center;
 }
+
 #canvas{
   position: relative;
   width: 100%;  
