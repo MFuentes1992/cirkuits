@@ -46,11 +46,66 @@ body
   background: rgba(0, 0, 0, 1) !important;
 }
 
+.leaderboard-section-body{
+  position: relative;
+  background: linear-gradient(90deg, rgba(113,6,136,1) 38%, rgba(231,3,156,1) 86%);
+}
+
 .videogame-section-container{
   position: absolute;
   height: 100%;
   z-index: 100002;
   background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.leaderboard-section-container{
+  position: relative;
+  background: linear-gradient(90deg, rgba(113,6,136,1) 38%, rgba(231,3,156,1) 86%);  
+}
+
+.leaderboard-container{
+  position: relative;
+  width: 60%;
+  margin: auto;
+  height: 100%;
+}
+.leaderboard-item{
+  position: relative;
+  width: 95%;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 10px 0px 10px 0px ;
+  display: flexbox;
+  height: 200px;
+  margin-bottom: 5%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.item-picture{
+  position: relative;
+  width: 20%;
+  float: left;
+  display: flex;
+  text-align: center;
+  padding-left: 25px;
+  padding-top: 25px;
+}
+.item-data{
+  position: relative;
+  width: 80%;
+  float: right;
+  display: flex;
+  color: #FFF;
+  font-weight: 700;
+  padding-top: 100px;
+}
+.item-name{
+  position: relative;
+  width: 50%;
+  text-align: center;
+}
+.item-hscore{
+  position: relative;
+  width: 50%;
+  text-align: center;
 }
 .thesethose-section-container{
   position: absolute;
@@ -867,6 +922,11 @@ video {
   object-fit: cover;
 }
 
+#leaderboard-title{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
 
 /*///////////////////// LAPTOPS ///////////////////////*/
 @media screen and (min-width: 1600px) and (max-width: 2400px)
