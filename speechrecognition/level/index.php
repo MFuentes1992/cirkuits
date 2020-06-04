@@ -179,7 +179,7 @@
     }
 
     var leaderBoard = () =>{
-      alert("Go to Leaderboard")
+      location.replace("http://localhost/Cirkuits/leaderboard?game=1");
     }
     function goBack() {
       window.history.back();
