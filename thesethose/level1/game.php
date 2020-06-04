@@ -90,7 +90,7 @@
                   </div>           
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" onclick="MainMenu()">Main menu</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Main menu</button>
                   <button type="button" class="btn btn-outline-primary" onclick="location.reload()">Try again</button>
                   <button type="button" class="btn btn-outline-primary" onclick="NextLevel()">Next Level</button>
                   <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
@@ -120,8 +120,8 @@
                     </div>         
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
-                    <button type="button" class="btn btn-primary" onclick="location.reload()">Try again</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Main menu</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.reload()">Try again</button>
                 </div>
             </div>
         </div>
@@ -714,7 +714,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 10)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 30)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }

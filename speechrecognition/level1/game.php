@@ -97,8 +97,7 @@
                         <input type="hidden" id="CurrentLevel" value="1">                        
                     </div>            
                 </div>
-                <div>
-                    <h3 id="DataSaved"></h3>
+                <div id="DataSaved">                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Levels</button>
