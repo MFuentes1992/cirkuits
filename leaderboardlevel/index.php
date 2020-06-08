@@ -16,26 +16,19 @@
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){
         $payment = 2;
-        $videogameName = "";
-        if(isset($_GET["game"]) && isset($_GET["level"])){
-          $strQueryVideogame = sprintf("SELECT nombre from cat_videogames WHERE id_videogame = %s",
+        $levelGameName = array();
+        if(isset($_GET["game"])){
+          $_game = $_GET["game"];
+          $strQueryLevelGame = sprintf("SELECT cat_levels.id_level, cat_levels.nombre FROM cat_levels 
+              INNER JOIN videogame_level 
+              ON videogame_level.id_level =  cat_levels.id_level 
+              WHERE id_usuario = %s AND id_videogame = %s;",
+          GetSQLValueString($conexion, $_SESSION["user"]["id_usuario"], "int"),
           GetSQLValueString($conexion, $_GET["game"], 'int'));
-          $rawVideogame = mysqli_query($conexion, $strQueryVideogame)or die(mysqli_error($conexion));
-          $resultVideogame = mysqli_fetch_assoc($rawVideogame);
-          $videogameName = $resultVideogame["nombre"]; 
-
-          $arrayLeaderboard = array();
-          $strQueryHScore = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
-            INNER JOIN videogame_level 
-            ON level_progress.id_videogame_level = videogame_level.id_videogame_level
-            INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
-            WHERE id_videogame = %s AND id_level = %s ORDER BY high_score DESC LIMIT 10;",
-            GetSQLValueString($conexion, $_GET["game"], "int" ),
-            GetSQLValueString($conexion, $_GET["level"], "int"));
-          $rawLeaderboard = mysqli_query($conexion, $strQueryHScore) or die(mysqli_error($conexion));
-          while($row = mysqli_fetch_assoc($rawLeaderboard)){
-            array_push($arrayLeaderboard, $row);
-          }          
+          $rawLevelGame = mysqli_query($conexion, $strQueryLevelGame)or die(mysqli_error($conexion));          
+          while($row = mysqli_fetch_assoc($rawLevelGame)){
+            array_push($levelGameName, $row);
+          }
         }else{
           header("location:".$url."videogames");
         }
@@ -125,25 +118,16 @@
     </div>
   <div class="container-fluid leaderboard-section-container">
     <br>
-    <h1 class="leaderboard-title">Leaderboard:&nbsp;<?=$videogameName?></h1>    
-    <br>
+    <h1 class="leaderboard-title">Leaderboard:&nbsp;Choose a level</h1>    
+    <br>    
+    <?php foreach($levelGameName as $levelName) {?>
     <div class="leaderboard-container">
-        <?php foreach($arrayLeaderboard as $person){ ?>
-        <div class="leaderboard-item">
-          <div class="item-picture">
-            <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
-          </div>
-          <div class="item-data">
-            <div class="item-name">
-              <?= $person["nombre_usuario"] ?>
-            </div>
-            <div class="item-hscore">
-              <?=$person["high_score"]?>
-            </div>
-          </div>
+        <div class="leaderboard-item-level" onClick='gotoLeaderboard(<?=$levelName["id_level"]?>)'>
+            <h3><?=$levelName["nombre"]?></h3>
+            <input type="hidden" name="game" id="game" value="<?=$_game?>">
         </div>
-        <?php }?>
     </div>
+    <?php } ?>
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>
   <script type="text/javascript">    
@@ -212,6 +196,11 @@
         mobileResponsive(SCREEN_WIDTH);
       }
     }   
+
+    const gotoLeaderboard = id_level => {
+      let game = $('#game').val();
+      window.location.replace("http://localhost/Cirkuits/leaderboard/?game=1&level=1");
+    }
   </script>
 </body>
 </html>

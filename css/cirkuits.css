@@ -78,7 +78,21 @@ body
   margin-bottom: 5%;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
-
+.leaderboard-item-level{
+  position: relative;
+  width: 95%;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 10px 10px 10px 10px ;
+  display: flexbox;
+  height: 200px;
+  margin-bottom: 5%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding-top: 5%;
+}
+.leaderboard-item-level:hover{
+  cursor: pointer;
+}
 .item-picture{
   position: relative;
   width: 20%;
@@ -922,7 +936,7 @@ video {
   object-fit: cover;
 }
 
-#leaderboard-title{
+.leaderboard-title{
   position: relative;
   width: 100%;
   text-align: center;
@@ -954,6 +968,24 @@ video {
     font-family: Play;
     font-size: 14pt;
   }
+
+  .leaderboard-item-level{
+    position: relative;
+    width: 95%;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px 10px 10px 10px ;
+    display: flexbox;
+    height: 200px;
+    margin-bottom: 5%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding-top: 12%;
+  }
+  .leaderboard-item-level:hover{
+    cursor: pointer;
+  }
+
+
 }
 
 
