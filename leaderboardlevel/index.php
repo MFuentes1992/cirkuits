@@ -199,7 +199,7 @@
 
     const gotoLeaderboard = id_level => {
       let game = $('#game').val();
-      window.location.replace("http://localhost/Cirkuits/leaderboard/?game=1&level=1");
+      window.location.replace(`http://localhost/Cirkuits/leaderboard/?game=${game}&level=${id_level}`);
     }
   </script>
 </body>

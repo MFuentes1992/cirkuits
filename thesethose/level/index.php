@@ -248,7 +248,7 @@
     }
 
     var leaderBoard = () =>{
-      location.replace("http://localhost/Cirkuits/leaderboard?game=2");
+      location.replace("http://localhost/Cirkuits/leaderboardlevel?game=2");
     }
     function goBack() {
       window.history.back();
