@@ -46,19 +46,35 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,3,1,1);
     INSERT INTO leaderboard (id_progress, high_score) values (1,0);
     
+    select * from usuarios;
     select * from cat_videogames;
     select * from cat_levels;
-    select * from videogame_level;
-    select * from level_progress;
-    select count(*) as total from level_progress where id_videogame_level = 1;
+    select * from videogame_level where id_usuario = 1 and id_videogame = 1;
+    select * from level_progress where id_videogame_level = 7;
+    select count(*) as total from level_progress where id_videogame_level = 8;
     desc videogame_level;
     desc level_progress;
-    select count(*) as levels from videogame_level where id_usuario = 1 and isLocked = 0;
+    SELECT count(*) as levels FROM videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 1;
     update cat_videogames set icono = 'fas fa-street-view' where id_videogame = 10;
 
     update usuarios set estatus_usuario = 2 where id_usuario = 1;
-    select * from usuarios;
+    
     SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 2;
+    
+    
+    SELECT cat_levels.id_level, cat_levels.nombre FROM cat_levels 
+		INNER JOIN videogame_level 
+			ON videogame_level.id_level =  cat_levels.id_level 
+				WHERE id_usuario = 1 AND id_videogame = 1;
+    
+	################## Get the Score and High Score from table #########################
+    SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
+		INNER JOIN videogame_level 
+			ON level_progress.id_videogame_level = videogame_level.id_videogame_level
+            INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
+            WHERE id_videogame = 1 AND id_level = 1 ORDER BY high_score DESC LIMIT 1;
+    ################## Get the Score and High Score from table #########################
+    
     
     SELECT id_videogame_level FROM videogame_level WHERE id_level = 1 AND id_usuario = 1 AND id_videogame = 1;
     SELECT count(*) AS total FROM level_progress WHERE id_videogame_level = 1;

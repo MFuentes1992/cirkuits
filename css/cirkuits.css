@@ -40,7 +40,7 @@ body
 .press-start-speech{
   font-family: 'PressStart';
   font-size: 32pt;
-  color: #009688 !important;
+  color: #FFF !important;
 }
 .videogame-section-body{
   background: rgba(0, 0, 0, 1) !important;
@@ -130,11 +130,10 @@ body
 .speech-section-container{
   position: absolute;
   height: 600px;
-  z-index: 100002;
-  background-color: rgba(255, 255, 255, 0.2) !important;  
+  z-index: 100002;  
 }
 #speech-background{
-  background-image: url('../img/bg/backgroundColorGrass.png');  
+  /*background-image: url('../img/bg/backgroundColorGrass.png');  */
 }
 .bg-black{
   background-color: #343A40;
