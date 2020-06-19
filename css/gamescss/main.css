@@ -21,9 +21,9 @@ text-align: center;
 color: white;
 font-family: 'Poppins', sans-serif;
 }
-#speechRecognition{
+/*#speechRecognition{
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(225,88,245,1) 0%, rgba(238,31,171,1) 0%, rgba(232,30,95,1) 0%, rgba(156,217,214,1) 100%);  
-}
+}*/
 
 #speachBox{
 position: fixed;
@@ -39,15 +39,15 @@ visibility: hidden;
 }
 #speechBoxTense{
   position: absolute;
-border-style: solid;
-border-width: 5px;
-border-color: white;        
-width: 50%;
-height: 12%;
-margin-top: 85vh;
-margin-left: 23vw;
-text-align: center;
-visibility: hidden;
+  border-style: solid;
+  border-width: 5px;
+  border-color: white;        
+  width: 50%;
+  height: fit-content;
+  margin-top: 85vh;
+  margin-left: 23vw;
+  text-align: center;
+  visibility: hidden;
 }
 #timeBarCointainer{
 position: absolute;
@@ -166,17 +166,20 @@ cursor: pointer;
 .gameo-ico{
   background: linear-gradient(180deg,#007AC5 0%, #9ACFF0 100%);;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 2em;
 }
 #levelClearScore{
   background: #707070;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 #gameOverScore{
   background: #707070;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 #pauseModalCenterTitle{
@@ -293,7 +296,7 @@ height: 50px;
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(225,88,245,1) 0%, rgba(238,31,171,1) 0%, rgba(232,30,95,1) 0%, rgba(156,217,214,1) 100%);  
+  /*background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(225,88,245,1) 0%, rgba(238,31,171,1) 0%, rgba(232,30,95,1) 0%, rgba(156,217,214,1) 100%);  */
   z-index: -1;
 }
 
@@ -320,12 +323,14 @@ height: 50px;
   text-align: center;
   background: -webkit-linear-gradient(#09E447, #04972E);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .fa-star{
   background: linear-gradient(180deg,rgba(255,89,0,1) 0%, rgba(255,241,30,1) 100%);;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 /*/////////////////EXPLOSIONS////////////////////////*/
