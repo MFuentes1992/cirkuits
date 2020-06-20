@@ -41,8 +41,8 @@
     <link rel="stylesheet" href="<?=$url;?>css/fontawesome-free-5.8.1-web/css/all.css">
     <link rel="stylesheet" href="<?=$url;?>css/validationEngine.jquery.css" />
     <link rel="stylesheet" href="<?=$url;?>/js/swiper-5.3.6/package/css/swiper.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet"> -->
     <script src="<?=$url;?>js/jquery-1.12.3.min.js"></script>
     <script src="<?=$url;?>js/dist/bootstrap.min.js"></script>
     <script src="<?=$url;?>js/jquery-ui.js"></script>
