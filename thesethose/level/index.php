@@ -56,7 +56,8 @@
     <script src="<?=$url;?>js/swiper-5.3.6/package/js/swiper.min.js"></script>
     <style>
         #canvas{
-            background: radial-gradient(circle, rgba(165,253,29,1) 0%, rgba(9,177,73,1) 57%);
+            background: rgb(6,6,6);
+            background: linear-gradient(360deg, rgba(6,6,6,1) 0%, rgba(167,4,42,1) 53%, rgba(255,0,52,1) 80%, rgba(255,0,0,1) 100%);
             /*display: block;*/
             filter: blur(4px);
             height:600px;
@@ -122,23 +123,23 @@
                     <tr>                        
                         <td>
                             <?php if($_SESSION["TheseThoseLevels"]["levels"] >= 1){?>
-                              <button onClick="reload(1)" class="btn btn-primary" style="width: 200px;">LEVEL 1</button>
+                              <button onClick="reload(1)" class="btn btn-outline-light" style="width: 200px;">LEVEL 1</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-secondary" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                         <td>
                             <?php if($_SESSION["TheseThoseLevels"]["levels"] >= 2){?>
-                              <button onClick="reload(2)" class="btn btn-primary" style="width: 200px;">LEVEL 2</button>
+                              <button onClick="reload(2)" class="btn btn-outline-light" style="width: 200px;">LEVEL 2</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-secondary" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>                                
                         </td>
                         <td>
                             <?php if($_SESSION["TheseThoseLevels"]["levels"] == 3){?>
-                              <button onClick="reload(3)" class="btn btn-primary" style="width: 200px;">LEVEL 3</button>
+                              <button onClick="reload(3)" class="btn btn-outline-light" style="width: 200px;">LEVEL 3</button>
                             <?php } else {?>
-                              <button disabled class="btn btn-outline-danger" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
+                              <button disabled class="btn btn-secondary" style="width: 200px;">LOCKED &nbsp;<i class="fas fa-lock"></i></button>
                             <?php }?>
                         </td>
                     </tr>
@@ -148,22 +149,22 @@
                 <table class="table-footer">
                       <tr>  
                           <td>
-                            <button onClick="goBack()" class="btn btn-primary" style="width: 200px;">GAME MENU</button>
+                            <button onClick="goBack()" class="btn btn-outline-light" style="width: 200px;">GAME MENU</button>
                           </td>                        
                           <td>
-                            <button onClick="leaderBoard()" class="btn btn-primary" style="width: 200px;">LEADERBOARD</button>
+                            <button onClick="leaderBoard()" class="btn btn-outline-light" style="width: 200px;">LEADERBOARD</button>
                           </td>
                           <td>
-                            <button  onClick="reload(<?php echo $_SESSION["TheseThoseLevels"]["levels"] ?>)" class="btn btn-primary" style="width: 200px;">CONTINUE</button>                          
+                            <button  onClick="reload(<?php echo $_SESSION["TheseThoseLevels"]["levels"] ?>)" class="btn btn-outline-light" style="width: 200px;">CONTINUE</button>                          
                           </td>
                       </tr>
                 </table>
             </div>            
         </div>
-    </div>    
-    <canvas id="canvas"></canvas>
+    </div>        
   </div>
   <script src="../js/three.js" charset="utf-8"></script>
+  <script src="../js/TweenMax.min.js" charset="utf-8"></script>
   <script src="../js/MTLLoader.js" charset="utf-8"></script>
   <script src="../js/OBJLoader.js" charset="utf-8"></script>
   <script src="../js/OrbitControls.js" charset="utf-8"></script>
@@ -254,76 +255,260 @@
       window.history.back();
     }
     ///////////// 3D /////////////////////
-    var canvas = document.getElementById("canvas");
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
-    var renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias: true});
-    //Background color de la escena.
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild(renderer.domElement);
+    var renderer = new THREE.WebGLRenderer({antialias:true});
+      renderer.setSize( window.innerWidth, window.innerHeight );
 
-    camera.position.x = 1.5;
-    camera.position.y = 0.5;
-    camera.position.z = 0;    
+      if (window.innerWidth > 800) {
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.shadowMap.needsUpdate = true;
+        //renderer.toneMapping = THREE.ReinhardToneMapping;
+        //console.log(window.innerWidth);
+      };
+      //---
 
-    ambientLight = new THREE.AmbientLight(0xffffff, 1);
-	  scene.add(ambientLight);
-	
-	  light = new THREE.PointLight(0xffffff, 0.8, 18);
-	  light.position.set(-3,6,-3);
-	  light.castShadow = true;
-	  light.shadow.camera.near = 0.1;
-	  light.shadow.camera.far = 25;
-	  scene.add(light);
+      document.body.appendChild( renderer.domElement );
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
-    controls.enableZoom = true;
-    var loaded = false;
-    var selectedObject;
-    //////////////////// LOADING YELLOW CARS ////////////////////////////        
-    var mtlLoaderCar = new THREE.MTLLoader();
-        mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-        mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
-        mtlLoaderCar.load('raceCarOrange.mtl', function (materials) {
+      window.addEventListener('resize', onWindowResize, false);
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+      };
 
-            materials.preload();
+      var camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 500 );
 
-            var objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials);
-            objLoader.setPath('/cirkuits/3dlab/assets/');
-            objLoader.load('raceCarOrange.obj', function (object) {
-              object.name = "car";
-              scene.add(object); 
-              loaded = true;
-              selectedObject = scene.getObjectByName("car")
+      //camera.position.set(0, 0, 14);
+      camera.position.x = 0;
+      camera.position.y = 0.5;
+      camera.position.z = 12;
+      //camera.rotation.y = -1*Math.PI; 
+
+      var scene = new THREE.Scene();
+      var city = new THREE.Object3D();
+      var smoke = new THREE.Object3D();
+      var town = new THREE.Object3D();
+
+      var createCarPos = true;
+      var uSpeed = 0.001;
+      
+      //---------------------------------------------------------------- MODEL OF CARS      
+      var mtlLoaderCar = new THREE.MTLLoader();
+          mtlLoaderCar.setResourcePath('/Cirkuits/3dlab/assets/');
+          mtlLoaderCar.setPath('/Cirkuits/3dlab/assets/');
+          mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
+
+              materials.preload();
+
+              var objLoader = new THREE.OBJLoader();
+              objLoader.setMaterials(materials);
+              objLoader.setPath('/Cirkuits/3dlab/assets/');
+              objLoader.load('raceCarGreen.obj', function (object) {
+                object.name = "car";
+                object.rotation.y = -0.8*Math.PI;
+                object.position.x = 0;
+                object.position.z = 5;
+                //object.scale.set(0.5, 0.5, 0.5); //-------------------- Scaling object
+                scene.add(object);                                                          
+              });
+          });     
+
+      //----------------------------------------------------------------- FOG background
+
+      var setcolor = 0xF02050;
+      //var setcolor = 0xF2F111;
+      //var setcolor = 0xFF6347;
+
+      scene.background = new THREE.Color(setcolor);
+      scene.fog = new THREE.Fog(setcolor, 10, 16);
+      //scene.fog = new THREE.FogExp2(setcolor, 0.05);
+      //----------------------------------------------------------------- RANDOM Function
+      function mathRandom(num = 8) {
+        var numValue = - Math.random() * num + Math.random() * num;
+        return numValue;
+      };
+      //----------------------------------------------------------------- CHANGE bluilding colors
+      var setTintNum = true;
+      function setTintColor() {
+        if (setTintNum) {
+          setTintNum = false;
+          var setColor = 0x000000;
+        } else {
+          setTintNum = true;
+          var setColor = 0x000000;
+        };
+        //setColor = 0x222222;
+        return setColor;
+      };
+
+      //----------------------------------------------------------------- CREATE City
+
+      function init() {
+        var segments = 2;
+        for (var i = 1; i<20; i++) {
+          var geometry = new THREE.CubeGeometry(1,0,0,segments,segments,segments);
+          var material = new THREE.MeshStandardMaterial({
+            color:setTintColor(),
+            wireframe:false,
+            shading: THREE.SmoothShading,            
+            side:THREE.DoubleSide});
+          var wmaterial = new THREE.MeshLambertMaterial({
+            color:0xFFFFFF,
+            wireframe:true,
+            transparent:true,
+            opacity: 0.03,
+            side:THREE.DoubleSide
             });
-        }); 
 
-    window.addEventListener( 'resize', function(){
-        var width = window.innerWidth;
-        var height = window.innerHeight;
-        renderer.setSize( width, height );
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix( );
-    } );
-    
-    var update = function(){        	
+          var cube = new THREE.Mesh(geometry, material);
+          var wire = new THREE.Mesh(geometry, wmaterial);
+          var floor = new THREE.Mesh(geometry, material);
+          var wfloor = new THREE.Mesh(geometry, wmaterial);
+          
+          cube.add(wfloor);
+          cube.castShadow = true;
+          cube.receiveShadow = true;
+          cube.rotationValue = 0.1+Math.abs(mathRandom(8));
+                    
+          floor.scale.y = 0.05;
+          cube.scale.y = 0.1+Math.abs(mathRandom(8));
+          
+          var cubeWidth = 0.9;
+          cube.scale.x = cube.scale.z = cubeWidth+mathRandom(1-cubeWidth);          
+          cube.position.x = Math.round(mathRandom());          
+          cube.position.z = -1;
+          
+          floor.position.set(cube.position.x, 0, cube.position.z)
+          
+          town.add(floor);
+          town.add(cube);
+        };
+        //----------------------------------------------------------------- Particular
+        
+        var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
+        var gparticular = new THREE.CircleGeometry(0.01, 3);
+        var aparticular = 5;
+        
+        for (var h = 1; h<100; h++) {
+          var particular = new THREE.Mesh(gparticular, gmaterial);
+          particular.position.set(mathRandom(aparticular), mathRandom(aparticular),mathRandom(aparticular));
+          particular.rotation.set(mathRandom(),mathRandom(),mathRandom());
+          smoke.add(particular);
+        };
+        
+        var pmaterial = new THREE.MeshPhongMaterial({
+          color:0x000000,
+          side:THREE.DoubleSide,
+          roughness: 10,
+          metalness: 0.6,
+          opacity:0.9,
+          transparent:true});
+        var pgeometry = new THREE.PlaneGeometry(60,60);
+        var pelement = new THREE.Mesh(pgeometry, pmaterial);
+        pelement.rotation.x = -90 * Math.PI / 180;
+        pelement.position.y = -0.001;
+        pelement.receiveShadow = true;
+        //pelement.material.emissive.setHex(0xFFFFFF + Math.random() * 100000);
+
+        city.add(pelement);
+      };
+
+      //----------------------------------------------------------------- MOUSE function
+      //----------------------------------------------------------------- Lights
+      var ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.8);
+      var lightFront = new THREE.SpotLight(0xFFFFFF, 1, 1);
+      var lightBack = new THREE.PointLight(0xFFFFFF, 0.5);
+        
+      lightFront.rotation.x = 45 * Math.PI / 180;
+      lightFront.rotation.z = -45 * Math.PI / 180;
+      lightFront.position.set(5, 5, 5);
+      lightFront.castShadow = true;
+      lightFront.shadow.mapSize.width = 6000;
+      lightFront.shadow.mapSize.height = lightFront.shadow.mapSize.width;
+      lightFront.penumbra = 0.1;
+      lightBack.position.set(0,6,0);
+
+      smoke.position.y = 2;
+
+      scene.add(ambientLight);
+      city.add(lightFront);
+      scene.add(lightBack);
+      scene.add(city);
+      city.add(smoke);
+      city.add(town);
+
+      //----------------------------------------------------------------- GRID Helper
+      var gridHelper = new THREE.GridHelper( 60, 120, 0xFF0000, 0x000000);
+      city.add( gridHelper );
+
+      //----------------------------------------------------------------- LINES world
+
+      var createCars = function(cScale = 2, cPos = 20, cColor = 0xFFFF00) {
+        var cMat = new THREE.MeshToonMaterial({color:cColor, side:THREE.DoubleSide});
+        var cGeo = new THREE.CubeGeometry(1, cScale/40, cScale/40);
+        var cElem = new THREE.Mesh(cGeo, cMat);
+        var cAmp = 3;
+        
+        if (createCarPos) {
+          createCarPos = false;
+          cElem.position.x = -cPos;
+          cElem.position.z = (mathRandom(cAmp));
+
+          TweenMax.to(cElem.position, 3, {x:cPos, repeat:-1, yoyo:true, delay:mathRandom(3)});
+        } else {
+          createCarPos = true;
+          cElem.position.x = (mathRandom(cAmp));
+          cElem.position.z = -cPos;
+          cElem.rotation.y = 90 * Math.PI / 180;
+        
+          TweenMax.to(cElem.position, 5, {z:cPos, repeat:-1, yoyo:true, delay:mathRandom(3), ease:Power1.easeInOut});
+        };
+        cElem.receiveShadow = true;
+        cElem.castShadow = true;
+        cElem.position.y = Math.abs(mathRandom(5));
+        city.add(cElem);
+      };
+
+      var generateLines = function() {
+        for (var i = 0; i<60; i++) {
+          createCars(0.1, 20);
+        };
+      };
+
+      //----------------------------------------------------------------- CAMERA position
+
+      var cameraSet = function() {
+        createCars(0.1, 20, 0xFFFFFF);        
+      };
+
+      //----------------------------------------------------------------- ANIMATE
+
+      var animate = function() {
+        var time = Date.now() * 0.00005;
+        requestAnimationFrame(animate);
+
+        for ( let i = 0, l = town.children.length; i < l; i ++ ) {
+          var object = town.children[ i ];
+        }
+        
+        smoke.rotation.y += 0.01;
+        smoke.rotation.x += 0.01;                
+        renderer.render( scene, camera );  
+      }
+
+      //----------------------------------------------------------------- START functions
+      generateLines();
+      init();
+      animate();
+
+      /*var update = function(){        	
         controls.update(); 
         var time = performance.now() * 0.001;
         if(loaded)
           selectedObject.rotation.y = time * 0.5;
-    };
-    var render = function(){
-        renderer.render( scene, camera );
-    };
-    var GameLoop = function(){
-        requestAnimationFrame( GameLoop );
-        update();
-        render();
-    };
-    GameLoop();
+    };*/
   </script>
 </body>
 </html>
+
+

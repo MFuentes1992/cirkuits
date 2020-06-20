@@ -125,16 +125,16 @@ body
   position: absolute;
   height: 969px;
   z-index: 100002;
-  background-color: rgba(255, 255, 255, 0.2) !important;  
+  /*background-color: rgba(255, 255, 255, 0.2) !important;  */
 }
 .speech-section-container{
   position: absolute;
   height: 600px;
   z-index: 100002;  
 }
-#speech-background{
-  /*background-image: url('../img/bg/backgroundColorGrass.png');  */
-}
+/*#speech-background{
+  background-image: url('../img/bg/backgroundColorGrass.png');  
+}*/
 .bg-black{
   background-color: #343A40;
 }
