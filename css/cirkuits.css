@@ -898,6 +898,7 @@ h1, h2, h3 {
 .column-six{
   position: relative;
   width: 60%;
+  word-break: break-word;
   margin-left: 2%;
 }
 .linear-gradient{
