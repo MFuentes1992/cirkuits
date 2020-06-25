@@ -118,7 +118,7 @@
                   </h1>
                 </div>
                 <div style="width:100%;">
-                <a href="../<?= $videogames[$counter]['url'] ?>" class="nav-link white"><h2><?= $videogames[$counter]['nombre'] ?></h2></a>
+                <div data-url="<?= $videogames[$counter]['url'] ?>" class="nav-link white glow game"><h2><?= $videogames[$counter]['nombre'] ?></h2></div>
                 </div>
               </div>
             <?php }?>
@@ -129,14 +129,41 @@
           </div>
       </div>
     </div>
+    <!-- ------------------------------------------------------------------------------------ Audio -->
+    <audio id="game-select-audio">      
+      <source src="../sounds/next_game.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="enter-game-audio">      
+      <source src="../sounds/enter_the_game.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="game-selected-audio">      
+      <source src="../sounds/game_selected.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <!--/////// Contact ///// -->         
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>
-  <script type="text/javascript">    
+  <script type="text/javascript">  
+      //-------------------------------- Sound variables
+      let enterGame = null;  
+      let nextGameAudio = null;
+      let gameSelect = null;
+
       $(document).ready( function(){
         $('#logModal').modal('show');
         responsiveEngine();
+        enterGame = document.getElementById('enter-game-audio');
+        nextGameAudio = document.getElementById('game-select-audio');
+        gameSelect = document.getElementById('game-selected-audio');
+        enterGame.play();
+        gameSelect.addEventListener("ended", function(){
+          let _url = $('.game').data('url');
+          console.log(`http://localhost/Cirkuits/${_url}`);
+          //location.replace(`http://localhost/Cirkuits/${_url}`);
+        });
       });
 
     var commonResponsive = swidth => {
@@ -208,6 +235,20 @@
         prevEl: '.swiper-button-prev',
       },
     });
+    
+    
+    $('.swiper-button-next').click(function(){
+      nextGameAudio.play();
+    });
+
+    $('.swiper-button-prev').click(function(){
+      nextGameAudio.play();
+    });
+
+    $('.game').click(function(){
+      gameSelect.play();
+    });
+
 
   // Three JS Template
   var renderer = new THREE.WebGLRenderer({antialias:true});
@@ -267,6 +308,7 @@
   }
 
   //------------------------------------------------------------- INIT
+  let cubes = new Array();
   function init() {
     for (var i = 0; i<30; i++) {
       var geometry = new THREE.IcosahedronGeometry(1);
@@ -279,7 +321,7 @@
       cube.castShadow = true;
       cube.receiveShadow = true;
       
-      var newScaleValue = mathRandom(0.3);
+      var newScaleValue = mathRandom(0.1);
       
       cube.scale.set(newScaleValue,newScaleValue,newScaleValue);
       //---
@@ -288,7 +330,9 @@
       cube.rotation.z = mathRandom(180 * Math.PI / 180);
       //
       cube.position.set(cube.positionX, cube.positionY, cube.positionZ);
-      modularGruop.add(cube);
+      //modularGruop.add(cube);
+      scene.add(cube);
+      cubes.push(cube);
     }
   }
 
@@ -382,7 +426,11 @@
   window.addEventListener('mousedown', onMouseDown, false);
   window.addEventListener('mouseup', onMouseUp, false);
   window.addEventListener('mousemove', onMouseMove, false);
-
+  //------------------------------------------------------------- Update (Rotate cubes)
+  const rotateCubes = cube => {
+    cube.rotation.y -= 0.01 ;
+    cube.rotation.x -= 0.003 ;
+  }
   //------------------------------------------------------------- RENDER
   var uSpeed = 0.1;
   function animate() {
@@ -397,22 +445,9 @@
       //---
       //newObject.position.y = Math.sin(time) * 3;
     };
-    
-    for (var i = 0, l = modularGruop.children.length; i<l; i++) {
-      var newCubes = modularGruop.children[i];
-      newCubes.rotation.x += 0.008;
-      newCubes.rotation.y += 0.005;
-      newCubes.rotation.z += 0.003;
-      //---
-      newCubes.position.x = Math.sin(time * newCubes.positionZ) * newCubes.positionY;
-      newCubes.position.y = Math.cos(time * newCubes.positionX) * newCubes.positionZ;
-      newCubes.position.z = Math.sin(time * newCubes.positionY) * newCubes.positionX;
-    }
-    //---
+    cubes.map(rotateCubes);
     particularGruop.rotation.y += 0.005;
     //---
-    modularGruop.rotation.y -= ((mouse.x * 4) + modularGruop.rotation.y) * uSpeed;
-    modularGruop.rotation.x -= ((-mouse.y * 4) + modularGruop.rotation.x) * uSpeed;
     camera.lookAt(scene.position);
     renderer.render( scene, camera );  
   }
