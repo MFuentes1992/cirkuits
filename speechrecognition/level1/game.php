@@ -433,7 +433,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
     var lives = 3;
     ///TIMMER VARIABLES ///
     var minutes = 0; //Level duration in minutes
-    var seconds = 3600; // Level duration in seconds
+    var seconds = 60; // Level duration in seconds
     const slideDuration = 5000; //Slide duration given in miliseconds
     var timmerID = 0;
     var totalAmountOfTimeSpeeking = 0;

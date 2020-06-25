@@ -555,7 +555,7 @@
         isSpeaking = false;               
       }
 
-      //Create boxes placed randomly             
+      //------------------------------------------------------------------------ Creating the car           
       var createGeometry = function(){ 
         carPos = carPosArray[Math.floor((Math.random() * 10))]; 
         var coeficient = 0;  
@@ -564,7 +564,7 @@
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayGreen[a].name = "car"+a;
                     carArrayGreen[a].rotation.y = -0.8*Math.PI;
-                    carArrayGreen[a].position.x = 0;
+                    carArrayGreen[a].position.x = -1 + a;
                     carArrayGreen[a].position.z = carPos;
                     carArrayGreen[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayGreen[a]); 
@@ -575,7 +575,7 @@
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayYellow[a].name = "car"+a;
                     carArrayYellow[a].rotation.y = -0.8*Math.PI;
-                    carArrayYellow[a].position.x = 0;
+                    carArrayYellow[a].position.x = -1 + a;
                     carArrayYellow[a].position.z = carPos;
                     carArrayYellow[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayYellow[a]);  
@@ -586,7 +586,7 @@
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayRed[a].name = "car"+a;
                     carArrayRed[a].rotation.y = -0.8*Math.PI;
-                    carArrayRed[a].position.x = 0;
+                    carArrayRed[a].position.x = -1 + a;
                     carArrayRed[a].position.z = carPos;
                     carArrayRed[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayRed[a]); 
@@ -597,7 +597,7 @@
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayWhite[a].name = "car"+a;
                     carArrayWhite[a].rotation.y = -0.8*Math.PI;
-                    carArrayWhite[a].position.x = 0;
+                    carArrayWhite[a].position.x = -1 + a;
                     carArrayWhite[a].position.z = carPos;
                     carArrayWhite[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayWhite[a]);  
@@ -687,7 +687,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 30)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }

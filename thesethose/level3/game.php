@@ -51,7 +51,7 @@
         <span><i class="fas fa-gem"></i>&nbsp;<span id="UIScore">0</span></span>
       </div>
     </div>
-    <h1 id="gameStartTimer">3</h1>
+    <h1 id="gameStartTimer">Loading...</h1>
     <div id="timeBarCointainer">
       <div id="timeBar"></div>
     </div>
@@ -75,8 +75,8 @@
                       <h2 id="levelClearModalCenterTitle" style="text-align: center;">LEVEL CLEAR</h2>
                   </div>            
                   <div class="levelClearContainer">
-                      <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                      <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="levelClearScore">0</span></span>
+                      <section id="level-clear-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                      <aside id="level-clear-userGems"><span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="levelClearScore">0</span></span></aside>
                   </div>
                   <div class="levelClearContainerStars">
                       <span id="levelClearStar1Completed" class="gameo-ico"><i class="fas fa-star"></i></span>
@@ -90,12 +90,12 @@
                   </div>           
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
-                  <button type="button" class="btn btn-primary" onclick="NextLevel()">Next Level</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Main menu</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="location.reload()">Try again</button>
+                  <button type="button" class="btn btn-outline-primary" onclick="NextLevel()">Next Level</button>
                   <input type="hidden" id="UserID" value="<?php echo $_SESSION["user"]["id_usuario"]?>">
-                  <input type="hidden" id="VideogameID" value="1">
-                  <input type="hidden" id="CurrentLevel" value="1">
-                  <input type="hidden" id="NextLevel" value="2">
+                  <input type="hidden" id="VideogameID" value="2">
+                  <input type="hidden" id="CurrentLevel" value="1">                  
                   <input type="hidden" id="Score">
               </div>
           </div>
@@ -115,13 +115,13 @@
                         <h2 id="gameOVerModalCenterTitle" style="text-align: center;">GAME OVER</h2>
                     </div>            
                     <div class="gameOverContainer"> 
-                        <span id="userName" style="display: block; float: left; font-size: 2em; margin-left: 18%;">User</span>
-                        <span  class="gameo-ico" style="display: block; float: right; margin-right: 18%;"><i class="fas fa-gem"></i>&nbsp;x&nbsp;<span id="gameOverScore">0</span></span>
+                        <section id="game-over-userName"><span id="userName"><?php echo $_SESSION["user"]["nombre_usuario"]?>&nbsp;<?php echo $_SESSION["user"]["apellido_usuario"]?></span></section>
+                        <aside id="game-over-userGems"> <span  class="gameo-ico"><i class="fas fa-gem"></i>&nbsp;&nbsp;<span id="gameOverScore">x0</span></span></aside>
                     </div>         
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="MainMenu()">Main menu</button>
-                    <button type="button" class="btn btn-primary" onclick="location.reload()">Try again</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="MainMenu()">Levels</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="location.reload()">Try again</button>
                 </div>
             </div>
         </div>
@@ -136,6 +136,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>         
     <script type="text/javascript"> 
     //variables para el timer de cuenta regresiva - Inicio del juego.
+    var greenCarLoaded = false;
+    var yellowCarLoaded = false;
+    var whiteCarLoaded = false;
+    var redCarLoaded = false;
+    var loadingObj = true;
     var d = new Date();
     d.setMinutes(d.getMinutes() + 1);
     d.setSeconds(d.getSeconds() + 3);
@@ -189,7 +194,7 @@
 
     //variables para las geometrias y logica del juego
     var totalGeometries = 2;
-    var carPosArray = [1, -2, 1, -2, -2, 1, 1, 1, -2, -2];
+    var carPosArray = [7, 0, 7, 0, 7, 0, 7, 0, 7, 0];
     
     const carFarClose = {
       THOSE: 1,
@@ -247,70 +252,11 @@
     recognition.onerror = function(event) {
         message = 'Error occurred in recognition: ' + event.error;
     }  
-    
-    //Create timer in the canvas section and update it
-      $( document ).ready(function(){
-        var myTween = new TimelineMax();
-        myTween.to(gameStartTimer, 1, {css:{scale:5, opacity:0}, ease:Quad.easeInOut, repeat:2});
-        var id = setInterval(function(){ 
-          gameStartTimer.innerHTML = --this.gameStartCounter;           
-          if(this.gameStartCounter <= 0){
-            //When timer hits 0's then we are good to begin the game
-            clearInterval(id);               
-            timeBarID = starBarAnimation();                        
-            speachBox.style.visibility = "visible";
-            timeBarContainer.style.visibility = "visible";
-            timeBar.style.visibility = "visible";
-            createGeometry();
-            recognition.start();
-            //hide SmokeScreen
-            $("#smokeScreen").hide();
-          }
-        }, 1000);
 
-      });
-
-      //Creamos la escena y la camara para el escenario 3D      
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 3000 );
-      var renderer = new THREE.WebGLRenderer({antialias: true});
-      //Background color de la escena.
-      renderer.setSize( window.innerWidth, window.innerHeight ); 
-      renderer.setClearColor("#62C7CB");
-      ///////// CAMERA POSITION ////////////////////
-      camera.position.x = 1.5;
-      camera.position.y = 0.5;
-      camera.position.z = -4;
-      camera.rotation.y = -1*Math.PI;  
-
-      //////// LIGHTS AND PLANES ////////////
-      ambientLight = new THREE.AmbientLight(0xffffff, 1);
-	    scene.add(ambientLight);
-	
-      light = new THREE.PointLight(0xffffff, 0.8, 18);
-      light.position.set(-3,6,-3);
-      light.castShadow = true;
-      light.shadow.camera.near = 0.1;
-      light.shadow.camera.far = 25;
-      scene.add(light);
-
-      var geometry = new THREE.PlaneGeometry( 5, 20, 32 );
-      var material = new THREE.MeshBasicMaterial( {color: 0x2A2A2A, side: THREE.DoubleSide} );
-      var plane = new THREE.Mesh( geometry, material );
-      plane.rotation.x = -0.5*Math.PI;
-      scene.add( plane );
-
-      var geometryGrass = new THREE.PlaneGeometry( 300, 300, 32 );
-      var materialGrass = new THREE.MeshBasicMaterial( {color: 0x228B22, side: THREE.DoubleSide} );
-      var planeGrass = new THREE.Mesh( geometryGrass, materialGrass );
-      planeGrass.rotation.x = 0.5*Math.PI;
-      planeGrass.rotation.z = 0.8*Math.PI;
-      planeGrass.position.y = -1;
-      scene.add( planeGrass );   
-
-      ////////////////// LOAD ALL MATERIALS ////////////////////////////
-      //////////////////// LOADING GREEN CARS ////////////////////////////
+      //--------------------------------------------------------------------------- Loading 3D Obj
+      //--------------------------------------------------------------------------- Green Cars
       const carArrayGreen = new Array();
+      let loadedCounter = 0;
       for(var greenCars = 0; greenCars <= totalGeometries; greenCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
           mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
@@ -324,11 +270,12 @@
               objLoader.setPath('/cirkuits/3dlab/assets/');
               objLoader.load('raceCarGreen.obj', function (object) {
                   carArrayGreen.push(object);
+                  loadedCounter ++;
               });
           }); 
       }
-      //////////////////// LOADING YELLOW CARS ////////////////////////////
-      const carArrayYellow = new Array();
+      //--------------------------------------------------------------------------- Yellow Cars
+      const carArrayYellow = new Array();      
       for(var yellowCars = 0; yellowCars <= totalGeometries; yellowCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
           mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
@@ -342,10 +289,11 @@
               objLoader.setPath('/cirkuits/3dlab/assets/');
               objLoader.load('raceCarOrange.obj', function (object) {
                   carArrayYellow.push(object);
+                  loadedCounter ++;
               });
           }); 
       }
-      //////////////////// LOADING RED CARS ////////////////////////////
+      //--------------------------------------------------------------------------- Red Cars
       const carArrayRed = new Array();
       for(var redCars = 0; redCars <= totalGeometries; redCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
@@ -360,10 +308,11 @@
               objLoader.setPath('/cirkuits/3dlab/assets/');
               objLoader.load('raceCarRed.obj', function (object) {
                   carArrayRed.push(object);
+                  loadedCounter ++;
               });
           }); 
       }
-      //////////////////// LOADING BLANCO CARS ////////////////////////////
+      //--------------------------------------------------------------------------- White Cars
       const carArrayWhite = new Array();
       for(var whiteCars = 0; whiteCars <= totalGeometries; whiteCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
@@ -378,221 +327,205 @@
               objLoader.setPath('/cirkuits/3dlab/assets/');
               objLoader.load('raceCarWhite.obj', function (object) {
                   carArrayWhite.push(object);
+                  loadedCounter ++;
               });
           }); 
       }        
       
-      //////////// CREATE THE 3D WORLD ///////////////////////////////
-        //// GARAGE ///////////////////////
-        let stepGarageBase = 0;
-        for (let index = 0; index < 5; index++) {
-                var mtlLoaderPitStopBase = new THREE.MTLLoader();
-                mtlLoaderPitStopBase.setResourcePath('/cirkuits/3dlab/assets/');
-                mtlLoaderPitStopBase.setPath('/cirkuits/3dlab/assets/');
-                mtlLoaderPitStopBase.load('pitsGarage.mtl', function (materials) {
-        
-                materials.preload();
-        
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/3dlab/assets/');
-                objLoader.load('pitsGarage.obj', function (object) {
-            
-                    scene.add(object);
-                    //object.rotation.y = 0.11*Math.PI;
-                    object.position.x = 2.5 + stepGarageBase;
-                    object.position.y = 0;
-                    object.position.z = 8;
-                    stepGarageBase--;
-                });
-        
-            });
-            
-        }
-        //Right Threes
-        for (let alfa = 0; alfa > -12; alfa--) {
-            let threeStepHelper = 0;
-                for (let beta = 0; beta < 10; beta ++){
-                    var mtlLoaderThree = new THREE.MTLLoader();
-                    mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
-                    mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
-                    mtlLoaderThree.load('treeLarge.mtl', function (materials) {
-            
-                    materials.preload();
-            
-                    var objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.setPath('/cirkuits/3dlab/assets/');
-                    objLoader.load('treeLarge.obj', function (object) {
-                
-                        scene.add(object);
-                        //object.rotation.y = 0.11*Math.PI;
-                        object.position.x = 3 + threeStepHelper;
-                        object.position.y = 0;
-                        object.position.z = 8 + alfa;
-                        threeStepHelper += 0.5;
-                    });
-        
-                });
-            }
-            
-        }
+    //Create timer in the canvas section and update it
+     /* $( document ).ready(function(){
+        if( loadingObj ){
+          gameStartTimer.innerHTML = "Loading...";
+        }else{
+          
+        }           
+      });*/
 
-        //Left Threes
-        for (let alfa = 0; alfa > -12; alfa--) {
-            let threeStepHelper = 0;
-                for (let beta = 0; beta < 10; beta ++){
-                    var mtlLoaderThree = new THREE.MTLLoader();
-                    mtlLoaderThree.setResourcePath('/cirkuits/3dlab/assets/');
-                    mtlLoaderThree.setPath('/cirkuits/3dlab/assets/');
-                    mtlLoaderThree.load('treeLarge.mtl', function (materials) {
-            
-                    materials.preload();
-            
-                    var objLoader = new THREE.OBJLoader();
-                    objLoader.setMaterials(materials);
-                    objLoader.setPath('/cirkuits/3dlab/assets/');
-                    objLoader.load('treeLarge.obj', function (object) {
-                
-                        scene.add(object);
-                        //object.rotation.y = 0.11*Math.PI;
-                        object.position.x = -3 + threeStepHelper;
-                        object.position.y = 0;
-                        object.position.z = 8 + alfa;
-                        threeStepHelper -= 0.5;
-                    });
-        
-                });
-            }
-            
-        }    
+      //Creamos la escena y la camara para el escenario 3D      
+      var scene = new THREE.Scene();
+      var city = new THREE.Object3D();
+      var smoke = new THREE.Object3D();
+      var town = new THREE.Object3D();      
+      var camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 500 );
+      var renderer = new THREE.WebGLRenderer({antialias:true});
+      //Background color de la escena.
+      renderer.setSize( window.innerWidth, window.innerHeight ); 
+      if (window.innerWidth > 800) {
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.shadowMap.needsUpdate = true;
+        //renderer.toneMapping = THREE.ReinhardToneMapping;
+        //console.log(window.innerWidth);
+      }; 
+      document.body.appendChild( renderer.domElement );     
+      
+      //------------------------------------------------------------------------ Camera Position
+      camera.position.x = 0;
+      camera.position.y = 0.5;
+      camera.position.z = 12;
 
+      var createCarPos = true;
+      var uSpeed = 0.001;
+      //----------------------------------------------------------------------- BackgroundColor and Fog Color
+      var setcolor = 0xF02050;
+      //var setcolor = 0xF2F111;
+      //var setcolor = 0xFF6347;
 
-        let stepGarageRoof = 0;
-        for (let index = 0; index < 5; index++) {
-            var mtlLoaderPitRoof = new THREE.MTLLoader();
-            mtlLoaderPitRoof.setResourcePath('/cirkuits/3dlab/assets/');
-            mtlLoaderPitRoof.setPath('/cirkuits/3dlab/assets/');
-            mtlLoaderPitRoof.load('pitsOfficeRoof.mtl', function (materials) {
-    
-            materials.preload();
-    
-            var objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials);
-            objLoader.setPath('/cirkuits/3dlab/assets/');
-            objLoader.load('pitsOfficeRoof.obj', function (object) {
-        
-                scene.add(object);
-                //object.rotation.y = 0.11*Math.PI;
-                object.position.x = 2.5 + stepGarageRoof;
-                object.position.y = 0.7;
-                object.position.z = 8;
-                stepGarageRoof--;
-            });
-    
-        });
-            
-        }
-        //Right Barrier
-        let barrierStepHelper = 0;
-        for(let gamma = 0; gamma < 12; gamma ++){
-            var mtlLoaderBarrierWall = new THREE.MTLLoader();
-            mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
-            mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
-            mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
-        
-                materials.preload();
-        
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/3dlab/assets/');
-                objLoader.load('barrierWall.obj', function (object) {
-            
-                    scene.add(object);
-                    object.rotation.y = 0.5*Math.PI;
-                    object.position.x = 2.4;
-                    object.position.y = 0;
-                    object.position.z = -4 + gamma;
-            
-                });
-        
-            });
-        }
-        // Left Barrier
-        let barrierStepHelperLeft = 0;
-        for(let gamma = 0; gamma < 12; gamma ++){
-            var mtlLoaderBarrierWall = new THREE.MTLLoader();
-            mtlLoaderBarrierWall.setResourcePath('/cirkuits/3dlab/assets/');
-            mtlLoaderBarrierWall.setPath('/cirkuits/3dlab/assets/');
-            mtlLoaderBarrierWall.load('barrierWall.mtl', function (materials) {
-        
-                materials.preload();
-        
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/3dlab/assets/');
-                objLoader.load('barrierWall.obj', function (object) {
-            
-                    scene.add(object);
-                    object.rotation.y = 0.5*Math.PI;
-                    object.position.x = -2.4;
-                    object.position.y = 0;
-                    object.position.z = -4 + gamma;
-            
-                });
-        
-            });
-        }
+      scene.background = new THREE.Color(setcolor);
+      scene.fog = new THREE.Fog(setcolor, 10, 16);
+      //----------------------------------------------------------------- RANDOM Function
+      function mathRandom(num = 8) {
+        var numValue = - Math.random() * num + Math.random() * num;
+        return numValue;
+      };
+      //----------------------------------------------------------------- CHANGE bluilding colors
+      var setTintNum = true;
+      function setTintColor() {
+        if (setTintNum) {
+          setTintNum = false;
+          var setColor = 0x000000;
+        } else {
+          setTintNum = true;
+          var setColor = 0x000000;
+        };
+        //setColor = 0x222222;
+        return setColor;
+      };   
+      
+      //----------------------------------------------------------------- CREATE City
 
-        for (let m = 0; m < 12; m++) {
-            var mtlLoaderFenceCurve = new THREE.MTLLoader();
-            mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
-            mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
-            mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
-        
-                materials.preload();
-        
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/3dlab/assets/');
-                objLoader.load('fenceCurved.obj', function (object) {
-            
-                    scene.add(object);
-                    object.rotation.y = -0.5*Math.PI;
-                    object.position.x = 2.45;
-                    object.position.y = 0;
-                    object.position.z = -4 + m;
-            
-                });
-        
+      function createBuildings() {
+        var segments = 2;
+        for (var i = 1; i<20; i++) {
+          var geometry = new THREE.CubeGeometry(1,0,0,segments,segments,segments);
+          var material = new THREE.MeshStandardMaterial({
+            color:setTintColor(),
+            wireframe:false,
+            shading: THREE.SmoothShading,            
+            side:THREE.DoubleSide});
+          var wmaterial = new THREE.MeshLambertMaterial({
+            color:0xFFFFFF,
+            wireframe:true,
+            transparent:true,
+            opacity: 0.03,
+            side:THREE.DoubleSide
             });
-            
-        }
 
-        for (let i = 0; i < 12; i++) {
-            var mtlLoaderFenceCurve = new THREE.MTLLoader();
-            mtlLoaderFenceCurve.setResourcePath('/cirkuits/3dlab/assets/');
-            mtlLoaderFenceCurve.setPath('/cirkuits/3dlab/assets/');
-            mtlLoaderFenceCurve.load('fenceCurved.mtl', function (materials) {
+          var cube = new THREE.Mesh(geometry, material);
+          var wire = new THREE.Mesh(geometry, wmaterial);
+          var floor = new THREE.Mesh(geometry, material);
+          var wfloor = new THREE.Mesh(geometry, wmaterial);
+          
+          cube.add(wfloor);
+          cube.castShadow = true;
+          cube.receiveShadow = true;
+          cube.rotationValue = 0.1+Math.abs(mathRandom(8));
+                    
+          floor.scale.y = 0.05;
+          cube.scale.y = 0.1+Math.abs(mathRandom(8));
+          
+          var cubeWidth = 0.9;
+          cube.scale.x = cube.scale.z = cubeWidth+mathRandom(1-cubeWidth);          
+          cube.position.x = Math.round(mathRandom());          
+          cube.position.z = -1;
+          
+          floor.position.set(cube.position.x, 0, cube.position.z)
+          
+          town.add(floor);
+          town.add(cube);
+        };  
+        //----------------------------------------------------------------- Particular
         
-                materials.preload();
+        var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
+        var gparticular = new THREE.CircleGeometry(0.01, 3);
+        var aparticular = 5;
         
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath('/cirkuits/3dlab/assets/');
-                objLoader.load('fenceCurved.obj', function (object) {
-            
-                    scene.add(object);
-                    object.rotation.y = 0.5*Math.PI;
-                    object.position.x = -2.45;
-                    object.position.y = 0;
-                    object.position.z = -4 + i;
-            
-                });
+        for (var h = 1; h<100; h++) {
+          var particular = new THREE.Mesh(gparticular, gmaterial);
+          particular.position.set(mathRandom(aparticular), mathRandom(aparticular),mathRandom(aparticular));
+          particular.rotation.set(mathRandom(),mathRandom(),mathRandom());
+          smoke.add(particular);
+        };
         
-            });
-            
-        }
+        var pmaterial = new THREE.MeshPhongMaterial({
+          color:0x000000,
+          side:THREE.DoubleSide,
+          roughness: 10,
+          metalness: 0.6,
+          opacity:0.9,
+          transparent:true});
+        var pgeometry = new THREE.PlaneGeometry(60,60);
+        var pelement = new THREE.Mesh(pgeometry, pmaterial);
+        pelement.rotation.x = -90 * Math.PI / 180;
+        pelement.position.y = -0.001;
+        pelement.receiveShadow = true;
+        //pelement.material.emissive.setHex(0xFFFFFF + Math.random() * 100000);
+
+        city.add(pelement);
+      };            
+      //----------------------------------------------------------------- Lights
+      var ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.8);
+      var lightFront = new THREE.SpotLight(0xFFFFFF, 1, 1);
+      var lightBack = new THREE.PointLight(0xFFFFFF, 0.5);
+        
+      lightFront.rotation.x = 45 * Math.PI / 180;
+      lightFront.rotation.z = -45 * Math.PI / 180;
+      lightFront.position.set(5, 5, 5);
+      lightFront.castShadow = true;
+      lightFront.shadow.mapSize.width = 6000;
+      lightFront.shadow.mapSize.height = lightFront.shadow.mapSize.width;
+      lightFront.penumbra = 0.1;
+      lightBack.position.set(0,6,0);
+
+      smoke.position.y = 2;
+
+      scene.add(ambientLight);
+      city.add(lightFront);
+      scene.add(lightBack);
+      scene.add(city);
+      city.add(smoke);
+      city.add(town); 
+      //----------------------------------------------------------------- GRID Helper
+      var gridHelper = new THREE.GridHelper( 60, 120, 0xFF0000, 0x000000);
+      city.add( gridHelper );
+      //----------------------------------------------------------------- LINES world
+
+        var createCars = function(cScale = 2, cPos = 20, cColor = 0xFFFF00) {
+        var cMat = new THREE.MeshToonMaterial({color:cColor, side:THREE.DoubleSide});
+        var cGeo = new THREE.CubeGeometry(1, cScale/40, cScale/40);
+        var cElem = new THREE.Mesh(cGeo, cMat);
+        var cAmp = 3;
+        
+        if (createCarPos) {
+          createCarPos = false;
+          cElem.position.x = -cPos;
+          cElem.position.z = (mathRandom(cAmp));
+
+          TweenMax.to(cElem.position, 3, {x:cPos, repeat:-1, yoyo:true, delay:mathRandom(3)});
+        } else {
+          createCarPos = true;
+          cElem.position.x = (mathRandom(cAmp));
+          cElem.position.z = -cPos;
+          cElem.rotation.y = 90 * Math.PI / 180;
+        
+          TweenMax.to(cElem.position, 5, {z:cPos, repeat:-1, yoyo:true, delay:mathRandom(3), ease:Power1.easeInOut});
+        };
+        cElem.receiveShadow = true;
+        cElem.castShadow = true;
+        cElem.position.y = Math.abs(mathRandom(5));
+        city.add(cElem);
+      };
+
+      var generateLines = function() {
+        for (var i = 0; i<60; i++) {
+          createCars(0.1, 20);
+        };
+      };
+      //----------------------------------------------------------------- CAMERA position
+
+      var cameraSet = function() {
+        createCars(0.1, 20, 0xFFFFFF);        
+      };      
 
       //Metodo para hacer 'responsive' nuestro canvas
       window.addEventListener( 'resize', function(){
@@ -603,7 +536,7 @@
         camera.updateProjectionMatrix( );
       } );
 
-      ////////// GAME lOGIC /////////////
+      //-------------------------------------------------------------- Text Comparison and string search
       var compareText = function(text){
         var str = text;
         var res = str.match(/those are/g);
@@ -622,7 +555,7 @@
         isSpeaking = false;               
       }
 
-      //Create boxes placed randomly             
+      //------------------------------------------------------------------------ Creating the car           
       var createGeometry = function(){ 
         carPos = carPosArray[Math.floor((Math.random() * 10))]; 
         var coeficient = 0;  
@@ -630,9 +563,10 @@
             case 1:
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayGreen[a].name = "car"+a;
-                    carArrayGreen[a].rotation.y = 0.1*Math.PI;
-                    carArrayGreen[a].position.x = 1.5 - a;
+                    carArrayGreen[a].rotation.y = -0.8*Math.PI;
+                    carArrayGreen[a].position.x = -1 + a;
                     carArrayGreen[a].position.z = carPos;
+                    carArrayGreen[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayGreen[a]); 
                     colorCanonical = "GREEN";           
                 }
@@ -640,9 +574,10 @@
             case 2:
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayYellow[a].name = "car"+a;
-                    carArrayYellow[a].rotation.y = 0.1*Math.PI;
-                    carArrayYellow[a].position.x = 1.5 - a;
+                    carArrayYellow[a].rotation.y = -0.8*Math.PI;
+                    carArrayYellow[a].position.x = -1 + a;
                     carArrayYellow[a].position.z = carPos;
+                    carArrayYellow[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayYellow[a]);  
                     colorCanonical = "YELLOW";          
                 }            
@@ -650,9 +585,10 @@
             case 3:
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayRed[a].name = "car"+a;
-                    carArrayRed[a].rotation.y = 0.1*Math.PI;
-                    carArrayRed[a].position.x = 1.5 - a;
+                    carArrayRed[a].rotation.y = -0.8*Math.PI;
+                    carArrayRed[a].position.x = -1 + a;
                     carArrayRed[a].position.z = carPos;
+                    carArrayRed[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayRed[a]); 
                     colorCanonical = "RED";           
                 }             
@@ -660,9 +596,10 @@
             case 4:
                 for (let a = 0; a <= totalGeometries; a++) {
                     carArrayWhite[a].name = "car"+a;
-                    carArrayWhite[a].rotation.y = 0.1*Math.PI;
-                    carArrayWhite[a].position.x = 1.5 - a;
+                    carArrayWhite[a].rotation.y = -0.8*Math.PI;
+                    carArrayWhite[a].position.x = -1 + a;
                     carArrayWhite[a].position.z = carPos;
+                    carArrayWhite[a].scale.set(0.5, 0.5, 0.5);
                     scene.add(carArrayWhite[a]);  
                     colorCanonical = "WHITE";          
                 }             
@@ -680,6 +617,42 @@
     
       //game logic
       var update = function(){
+
+        if( loadedCounter >= 8 ){          
+          redCarLoaded = true;
+          greenCarLoaded = true;          
+          whiteCarLoaded = true;
+          yellowCarLoaded = true;
+        }
+        
+        if( greenCarLoaded && yellowCarLoaded &&
+          redCarLoaded && whiteCarLoaded){            
+            yellowCarLoaded = false;
+            greenCarLoaded = false;
+            whiteCarLoaded = false;
+            redCarLoaded = false;
+            loadedCounter = 0;
+
+            gameStartTimer.innerHTML = "3";
+            var myTween = new TimelineMax();
+            myTween.to(gameStartTimer, 1, {css:{scale:5, opacity:0}, ease:Quad.easeInOut, repeat:2});
+            var id = setInterval(function(){ 
+              gameStartTimer.innerHTML = --this.gameStartCounter;           
+              if(this.gameStartCounter <= 0){
+                //When timer hits 0's then we are good to begin the game
+                clearInterval(id);               
+                timeBarID = starBarAnimation();                        
+                speachBox.style.visibility = "visible";
+                timeBarContainer.style.visibility = "visible";
+                timeBar.style.visibility = "visible";
+                createGeometry();
+                recognition.start();
+                //hide SmokeScreen
+                $("#smokeScreen").hide();
+              }
+            }, 1000);            
+        }
+        
         if(gameStartCounter <= 0){
           startGame = true;
           gameStartTimer.parentNode.removeChild(gameStartTimer);         
@@ -714,7 +687,7 @@
           var now = new Date().getTime();
           var distance = startDate - now;
           minutes = Math.floor((distance % (1000 * 120 * 120)) / (1000 * 120)); // Here we transform the amount of Minutes
-          seconds = Math.floor((distance % (1000 * 60)) / 1000); // TimerGame Time is the amount of seconds       
+          seconds = Math.floor((distance % (1000 * 50)) / 1000); // TimerGame Time is the amount of seconds       
           if(minutes == 0 && seconds == 0){
             levelClear = true;
           }
@@ -751,10 +724,18 @@
       };
 
       //draw scene
-      var render = function(){
-        if(startGame)
-          renderer.render( scene, camera );
-          // 
+      var render = function(){        
+        /*if(startGame){
+          
+        }*/          
+          //update something 
+        for ( let i = 0, l = town.children.length; i < l; i ++ ) {
+          var object = town.children[ i ];
+        }
+        
+        smoke.rotation.y += 0.01;
+        smoke.rotation.x += 0.01;  
+        renderer.render( scene, camera );         
       };
 
       var GameLoop = function(){
@@ -762,7 +743,8 @@
         update();
         render();
       };
-      
+      generateLines();
+      createBuildings();      
       GameLoop();
 
     //Here will be handle the time bar animation
@@ -873,17 +855,18 @@
     }    
     var SaveData = function(){
       var _data = {
-        UserID: $("#UserID").val(),
-        VideogameID: $("#VideogameID").val(),
-        CurrentLevel: $("#CurrentLevel").val(),
-        NextLevel: $("#NextLevel").val(),
-        Score: $("#Score").val()
+        UserID: parseInt($("#UserID").val()),
+        VideogameID: parseInt($("#VideogameID").val()),
+        CurrentLevel: parseInt($("#CurrentLevel").val()),
+        Pass: 1,
+        Score: score,
+        Estrellas: lives
       }
       console.log(_data);
       $.ajax({
         method: "POST",
         data: _data,
-        url: "../MagiSave.php"
+        url: "../../util/MagiSave.php"
       }).done(function(msg){
         console.log(msg);
         if(msg == -1){
