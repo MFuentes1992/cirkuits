@@ -163,6 +163,10 @@
         </div>
     </div>        
   </div>
+  <audio id="game-enter-audio">      
+      <source src="../../sounds/game_selected.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+  </audio>
   <script src="../js/three.js" charset="utf-8"></script>
   <script src="../js/TweenMax.min.js" charset="utf-8"></script>
   <script src="../js/MTLLoader.js" charset="utf-8"></script>
@@ -170,6 +174,8 @@
   <script src="../js/OrbitControls.js" charset="utf-8"></script>
   <script type="text/javascript">    
       $(document).ready( function(){
+        let enterGme = document.getElementById('game-enter-audio');
+        enterGme.play();
         $('#logModal').modal('show');
         responsiveEngine();
       });

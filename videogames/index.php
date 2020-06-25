@@ -118,7 +118,7 @@
                   </h1>
                 </div>
                 <div style="width:100%;">
-                <div data-url="<?= $videogames[$counter]['url'] ?>" class="nav-link white glow game"><h2><?= $videogames[$counter]['nombre'] ?></h2></div>
+                <a href="../<?= $videogames[$counter]['url'] ?>" class="nav-link white glow game"><h2><?= $videogames[$counter]['nombre'] ?></h2></a>
                 </div>
               </div>
             <?php }?>
@@ -157,13 +157,8 @@
         responsiveEngine();
         enterGame = document.getElementById('enter-game-audio');
         nextGameAudio = document.getElementById('game-select-audio');
-        gameSelect = document.getElementById('game-selected-audio');
+        //gameSelect = document.getElementById('game-selected-audio');
         enterGame.play();
-        gameSelect.addEventListener("ended", function(){
-          let _url = $('.game').data('url');
-          console.log(`http://localhost/Cirkuits/${_url}`);
-          //location.replace(`http://localhost/Cirkuits/${_url}`);
-        });
       });
 
     var commonResponsive = swidth => {
@@ -245,9 +240,9 @@
       nextGameAudio.play();
     });
 
-    $('.game').click(function(){
+    /*$('.game').click(function(){
       gameSelect.play();
-    });
+    });*/
 
 
   // Three JS Template
