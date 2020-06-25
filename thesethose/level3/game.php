@@ -155,9 +155,9 @@
     var timmerGameTimeSeconds = 500; // Variable for store the level count down  
     var timeBarWidth = 100; // Total lenght of the Time Bar
     var timeBarID = 0; // Sotored Id from the interval function
-    var speechTimmerTime = 40; // Single amount of the general Timeframe
+    var speechTimmerTime = 20; // Single amount of the general Timeframe
     var totalAmountOfTimeSpeeking = 0; //Timeframe for answering
-    var slideDuration = 4000; //Duration of the geometry in the screen
+    var slideDuration = 2000; //Duration of the geometry in the screen
     var startGame = false; //Flag that will be activated once the initial countdown is over
     var gameOver = false; //Flag that will be activate once the user lost all his lives
     var levelClear = false; // Flag that will be activated once the game timmer is over           
