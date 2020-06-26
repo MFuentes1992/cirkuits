@@ -99,7 +99,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>" style="margin-left: 10%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+          <a href="<?=$url;?>" style="margin-left: 1%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
         </div>
       </nav>
       <div class="collapse" id="navbarToggleExternalContent">
@@ -307,7 +307,10 @@
       if(SCREEN_WIDTH <= 425){
         mobileResponsive(SCREEN_WIDTH);
       }
-      if(SCREEN_WIDTH >= 1404){
+      if(SCREEN_WIDTH >= 1404 && SCREEN_WIDTH < 1900){
+        $("#logoContainer > a").css('margin-left','7%');
+      } 
+      if(SCREEN_WIDTH >= 1900){
         $("#logoContainer > a").css('margin-left','15%');
       } 
     }

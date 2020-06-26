@@ -300,15 +300,15 @@
       
       //---------------------------------------------------------------- MODEL OF CARS      
       var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/Cirkuits/3dlab/assets/');
-          mtlLoaderCar.setPath('/Cirkuits/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('/3dlab/assets/');
+          mtlLoaderCar.setPath('/3dlab/assets/');
           mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/Cirkuits/3dlab/assets/');
+              objLoader.setPath('/3dlab/assets/');
               objLoader.load('raceCarGreen.obj', function (object) {
                 object.name = "car";
                 object.rotation.y = -0.8*Math.PI;

@@ -2,7 +2,7 @@
   include("DAO.php");
   $url = "http://localhost/cirkuits/";
   //$url = "http://cirkuits.com.mx/";
-  //$url = "http://qa-cirkuits.000webhostapp.com/";
+  
   function write_console($strMsg)
   {
     echo '<script>console.log("'.$strMsg.'")</script>';

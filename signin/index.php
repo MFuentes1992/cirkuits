@@ -246,14 +246,17 @@ else {
         mobileResponsive(SCREEN_WIDTH);
       }
       if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','10%');
+        $("#logoContainer > a").css('margin-left','1%');
       } 
-      if(SCREEN_WIDTH >= 1404){
+      if(SCREEN_WIDTH >= 1404 && SCREEN_WIDTH < 1900){
+        $("#logoContainer > a").css('margin-left','7%');
+      } 
+      if(SCREEN_WIDTH >= 1900){
         $("#logoContainer > a").css('margin-left','15%');
       } 
-
+      console.log(SCREEN_WIDTH);
     }
-
+    
     var _submit = document.getElementById("passowrd");
     _submit.addEventListener("keyup", function(event){
         if(event.keyCode === 13){

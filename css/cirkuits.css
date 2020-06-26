@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'corbel';
-  src: url('../fonts/corbel/CORBEL.TTF');
+  src: url('../fonts/corbel/CORBEL.ttf');
 }
 
 @font-face {
   font-family: 'corbel bold';
-  src: url('../fonts/corbel/CORBELB.TTF');
+  src: url('../fonts/corbel/CORBELB.ttf');
 }
 @font-face{
   font-family: 'PressStart';
-  src: url('../fonts/Press_Start_2P/PressStart2P-Regular.TTF');
+  src: url('../fonts/Press_Start_2P/PressStart2P-Regular.ttf');
 }
 @font-face{
   font-family: 'Jokey';
@@ -733,7 +733,7 @@ h1, h2, h3 {
 
 #contactoFooter{
   text-align: justify;
-  width: 45%;
+  width: 40%;
   font-family: 'Play';
   padding-top: 3%;  
 }

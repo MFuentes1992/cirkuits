@@ -259,15 +259,15 @@
       let loadedCounter = 0;
       for(var greenCars = 0; greenCars <= totalGeometries; greenCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('/3dlab/assets/');
+          mtlLoaderCar.setPath('/3dlab/assets/');
           mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.setPath('/3dlab/assets/');
               objLoader.load('raceCarGreen.obj', function (object) {
                   carArrayGreen.push(object);
                   loadedCounter ++;
@@ -278,15 +278,15 @@
       const carArrayYellow = new Array();      
       for(var yellowCars = 0; yellowCars <= totalGeometries; yellowCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('/3dlab/assets/');
+          mtlLoaderCar.setPath('/3dlab/assets/');
           mtlLoaderCar.load('raceCarOrange.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.setPath('/3dlab/assets/');
               objLoader.load('raceCarOrange.obj', function (object) {
                   carArrayYellow.push(object);
                   loadedCounter ++;
@@ -297,15 +297,15 @@
       const carArrayRed = new Array();
       for(var redCars = 0; redCars <= totalGeometries; redCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('/3dlab/assets/');
+          mtlLoaderCar.setPath('/3dlab/assets/');
           mtlLoaderCar.load('raceCarRed.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.setPath('/3dlab/assets/');
               objLoader.load('raceCarRed.obj', function (object) {
                   carArrayRed.push(object);
                   loadedCounter ++;
@@ -316,15 +316,15 @@
       const carArrayWhite = new Array();
       for(var whiteCars = 0; whiteCars <= totalGeometries; whiteCars ++){
           var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/cirkuits/3dlab/assets/');
-          mtlLoaderCar.setPath('/cirkuits/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('/3dlab/assets/');
+          mtlLoaderCar.setPath('/3dlab/assets/');
           mtlLoaderCar.load('raceCarWhite.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/cirkuits/3dlab/assets/');
+              objLoader.setPath('/3dlab/assets/');
               objLoader.load('raceCarWhite.obj', function (object) {
                   carArrayWhite.push(object);
                   loadedCounter ++;
