@@ -161,7 +161,7 @@
                             <button onClick="goBack()" class="btn btn-outline-light" style="width: 200px;">GAME MENU</button>
                           </td>                        
                           <td>
-                            <button onClick="leaderBoard()" class="btn btn-outline-light" style="width: 200px;">LEADERBOARD</button>
+                            <button onClick="leaderBoard()" class="btn btn-outline-light" style="width: 200px;">TIER BOARD</button>
                           </td>
                           <td>
                             <button  onClick="reload(<?php echo $_SESSION["SpeechRecognitionLevels"]["levels"] ?>)" class="btn btn-outline-light" style="width: 200px;">CONTINUE</button>                          
