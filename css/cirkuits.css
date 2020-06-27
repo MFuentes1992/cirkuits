@@ -141,12 +141,12 @@ body
 
 h1, h2, h3 {
   color: #f2eee5;
-  font-family: 'Jura';
+  font-family: 'corbel bold';
 }
 
 .label{
   text-decoration: none;
-  font-family: 'Play';
+  font-family: 'corbel';
 }
 
 .label:hover{
@@ -279,7 +279,7 @@ h1, h2, h3 {
   width: 100%;
   margin-top:0px;
   overflow-x: hidden;
-  background: linear-gradient(to right, red, orange);
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%);	
 }
 #video video
 {
@@ -560,18 +560,22 @@ h1, h2, h3 {
 {
   position: relative;
   width: 100%;
-  font-family: 'Play';
+  font-family: 'corbel';
 }
-
+#btn-log:hover{
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%) !important; 
+}
 #btn-register
 {
   position: relative;
   margin: auto;
   text-align: center;
   width: 200px;
-  font-family: 'Play';
+  font-family: 'corbel';
 }
-
+#btn-register:hover{
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%) !important; 
+}
 .separator{
   background-image: url('../img/bg/separator.png');
   background-repeat: no-repeat;
@@ -586,9 +590,8 @@ h1, h2, h3 {
   padding-right: 5%;
   margin-top: 2%;
   margin-bottom: 5%;
-  font-size: 14pt;
-  font-family: 'Play';
-  
+  font-size: 15pt;
+  font-family: 'corbel';
 }
 
 #about-title{
@@ -598,7 +601,7 @@ h1, h2, h3 {
   height: 200px;
   padding-top: 50px;
   font-size: 18pt;
-  background-image: url('../img/bg/patternAbout.png');
+  /*background-image: url('../img/bg/patternAbout.png');*/
 }
 #contact-title{
   width: 100%;
@@ -617,7 +620,7 @@ h1, h2, h3 {
 #contact-title > h1{
   font-size: 3em;  
   margin-top: 60px;
-  background: linear-gradient(90deg,#ff8a00,#e52e71);
+  background: linear-gradient(90deg,rgb(32,199,215),rgb(5,164,225));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -676,7 +679,7 @@ h1, h2, h3 {
 .form-style-6 input[type=email]:focus,
 .form-style-6 input[type=email] :focus
 {
-  border-bottom: 1px dashed #D9FFA9;
+  border-bottom: 1px dashed rgb(141,124,207);
   color: #f2eee5;
 }
 
@@ -691,7 +694,7 @@ h1, h2, h3 {
   font-size: 18pt;
   background-color: #FFE53B;
   border-radius: 50px;
-  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);	
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%);	
 	border-top-style: none;
 	border-right-style: none;
 	border-left-style: none;	
@@ -726,7 +729,7 @@ h1, h2, h3 {
 }
 
 #logoAndSocial > p {
-  font-family: 'Jokey';
+  font-family: 'corbel';
   text-align: justify;
   margin-left: 15px;
 }
@@ -734,23 +737,23 @@ h1, h2, h3 {
 #contactoFooter{
   text-align: justify;
   width: 40%;
-  font-family: 'Play';
+  font-family: 'corbel';
   padding-top: 3%;  
 }
 
 #contactoFooter > h4{
-  font-family: 'Jokey';
+  font-family: 'corbel bold';
 }
 
 #supportFooter{
   width: 10%;
   text-align: justify;
-  font-family: 'Play';
+  font-family: 'corbel';
   padding-top: 3%;
 }
 
 #supportFooter > h4{
-  font-family: 'Jokey';
+  font-family: 'corbel bold';
 }
 
 #myBtn {
@@ -835,7 +838,7 @@ h1, h2, h3 {
   border-image: 
   linear-gradient(
     to bottom, 
-    red, 
+    rgb(5,164,225), 
     rgba(0, 0, 0, 0)
   ) 1 100%;
 }
@@ -907,10 +910,10 @@ h1, h2, h3 {
   position: relative;
   width: 100%;
   padding-bottom: 0.5px;
-  background: linear-gradient(to right, red, purple);
+  background: linear-gradient(to right, rgb(32,199,215), rgb(5,164,225));
 }
 .linear-gradient > h1{
-  background-color: #007EA7;
+  background: linear-gradient(to right, rgb(32,199,215), rgb(5,164,225));
   text-align: center;
   color: #FFF;
 }
@@ -1243,14 +1246,9 @@ video {
     display: block;
     border-width: 3px;
     border-style: solid;
-    border-image: 
-    linear-gradient(
-      to bottom, 
-      red, 
-      rgba(0, 0, 0, 0)
-    ) 1 100%;
+    border-image: linear-gradient(to right, rgb(32,199,215), rgba(5,164,225, 0)) 1 100%;
   }
-
+  
   .column{
     position: relative;
     width: 90%;  
@@ -1547,7 +1545,7 @@ video {
     border-image: 
     linear-gradient(
       to bottom, 
-      red, 
+      rgb(5,164,225), 
       rgba(0, 0, 0, 0)
     ) 1 100%;
   }

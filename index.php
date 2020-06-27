@@ -114,7 +114,7 @@
                   To become the global-standard in the language-learning sector by
                   charting the course for the first unconscious-competence training model.
                   <br>
-                  <strong>What is unconscious competence?</strong>
+                  <strong><span style="color: white;">What is unconscious competence?</span></strong>
                   <br>
                   Unconscious competence involves the ability to do something without needing
                   to think about it. Any speech pattern can be internalized and automated;
