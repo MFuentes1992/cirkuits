@@ -146,6 +146,12 @@
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/EffectComposer.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/RenderPass.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/ShaderPass.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/UnrealBloomPass.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/LuminosityHighPassShader.js" charset="utf-8"></script>
+  <script src="../js/games/postprocesing/CopyShader.js" charset="utf-8"></script>
   <script type="text/javascript">  
       //-------------------------------- Sound variables
       let enterGame = null;  
@@ -158,7 +164,7 @@
         enterGame = document.getElementById('enter-game-audio');
         nextGameAudio = document.getElementById('game-select-audio');
         //gameSelect = document.getElementById('game-selected-audio');
-        enterGame.play();
+        //enterGame.play();
       });
 
     var commonResponsive = swidth => {
@@ -269,6 +275,18 @@
   scene.background = new THREE.Color(setcolor)
   scene.fog = new THREE.Fog(setcolor, 2.5, 3.5);
 
+  //---------------------------------------------------------------- Post procesing
+  var renderScene = new THREE.RenderPass( scene, camera );
+
+  var bloomPass = new THREE.UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+  bloomPass.threshold = 0;
+  bloomPass.strength = 1.5; 
+  bloomPass.radius = 0;
+
+  var composer = new THREE.EffectComposer( renderer );
+  composer.addPass( renderScene );
+  composer.addPass( bloomPass );  
+
   //-------------------------------------------------------------- SCENE
 
   var sceneGruop = new THREE.Object3D();
@@ -304,6 +322,7 @@
 
   //------------------------------------------------------------- INIT
   let cubes = new Array();
+  let LinePoints = new Array();
   function init() {
     for (var i = 0; i<30; i++) {
       var geometry = new THREE.IcosahedronGeometry(1);
@@ -315,7 +334,8 @@
       cube.positionZ = mathRandom();
       cube.castShadow = true;
       cube.receiveShadow = true;
-      
+      //------------------------------------------------------------------------------- Adding points for lines to follow
+      LinePoints.push( new THREE.Vector3(cube.positionX, cube.positionY, cube.positionZ));        
       var newScaleValue = mathRandom(0.1);
       
       cube.scale.set(newScaleValue,newScaleValue,newScaleValue);
@@ -329,6 +349,11 @@
       scene.add(cube);
       cubes.push(cube);
     }
+    //------------------------------------------------------------- CREATE LINES
+    var LineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff } );
+    var LineGeometry = new THREE.BufferGeometry().setFromPoints( LinePoints );
+    var line = new THREE.Line( LineGeometry, LineMaterial );
+    scene.add(line);    
   }
 
   //------------------------------------------------------------- CAMERA
@@ -444,7 +469,8 @@
     particularGruop.rotation.y += 0.005;
     //---
     camera.lookAt(scene.position);
-    renderer.render( scene, camera );  
+    //renderer.render( scene, camera );  
+    composer.render();
   }
 
   animate();
