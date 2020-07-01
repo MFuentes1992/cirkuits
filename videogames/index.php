@@ -324,7 +324,7 @@
   let cubes = new Array();
   let LinePoints = new Array();
   function init() {
-    for (var i = 0; i<30; i++) {
+    for (var i = 0; i<15; i++) {
       var geometry = new THREE.IcosahedronGeometry(1);
       var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
       var cube = new THREE.Mesh(geometry, material);
