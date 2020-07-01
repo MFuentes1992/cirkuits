@@ -27,12 +27,7 @@
 
       document.body.appendChild( renderer.domElement );
 
-      window.addEventListener('resize', onWindowResize, false);
-      function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight );
-      };
+
 
       var camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 500 );
 
@@ -50,6 +45,12 @@
       var createCarPos = true;
       var uSpeed = 0.001;
       
+      window.addEventListener('resize', onWindowResize, false);
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+      };
       //---------------------------------------------------------------- MODEL OF CARS      
       var mtlLoaderCar = new THREE.MTLLoader();
           mtlLoaderCar.setResourcePath('/Cirkuits/3dlab/assets/');
@@ -99,6 +100,7 @@
         return setColor;
       };
 
+
       //----------------------------------------------------------------- CREATE City
 
       function init() {
@@ -139,10 +141,58 @@
           floor.position.set(cube.position.x, 0, cube.position.z)
           
           town.add(floor);
-          town.add(cube);
+          town.add(cube);       
         };
-        //----------------------------------------------------------------- Particular
         
+          let neurons = new Array();
+          let LinePoints = new Array();
+          let cloudStepX = 0;
+          let cloudStepZ = 0;
+          //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
+          for (var i = 0; i<15; i++) {
+            var geometry = new THREE.IcosahedronGeometry(1);
+            var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
+            var neuron = new THREE.Mesh(geometry, material);
+            neuron.speedRotation = Math.random() * 0.1;
+            neuron.positionX = -4 + cloudStepX;
+            neuron.positionY = 2;
+            neuron.positionZ = 0 + cloudStepZ;
+            neuron.castShadow = true;
+            neuron.receiveShadow = true;
+            
+            //------------------------------------------------------------------------------- Adding points for lines to follow
+            LinePoints.push( new THREE.Vector3(neuron.positionX, neuron.positionY, neuron.positionZ));      
+            //-------------------------------------------------------------- Scaling geometry
+            var newScaleValue = 0.3;      
+            neuron.scale.set(newScaleValue,newScaleValue,newScaleValue);
+
+            //---
+            //neuron.rotation.x = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.y = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.z = mathRandom(180 * Math.PI / 180);
+            //
+            neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
+            //neuron.layers.enable( 1 )
+            //modularGruop.add(cube);
+            //TODO: Fix this step process
+            if(cloudStepX > 10){
+              cloudStepX = 0;
+            }else{
+              cloudStepX = 2;
+            }
+            cloudStepX += cloudStepX;
+            cloudStepZ += mathRandom(3);
+            scene.add(neuron);
+            neurons.push(neuron);
+          }
+          //------------------------------------------------------------- CREATE LINES
+          var LineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff } );
+          var LineGeometry = new THREE.BufferGeometry().setFromPoints( LinePoints );
+          var line = new THREE.Line( LineGeometry, LineMaterial );
+          scene.add(line);           
+        
+                      
+        //----------------------------------------------------------------- Particular    
         var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
         var gparticular = new THREE.CircleGeometry(0.01, 3);
         var aparticular = 5;
@@ -193,7 +243,7 @@
       scene.add(lightBack);
       scene.add(city);
       city.add(smoke);
-      city.add(town);
+      city.add(town); 
 
       //----------------------------------------------------------------- GRID Helper
       var gridHelper = new THREE.GridHelper( 60, 120, 0xFF0000, 0x000000);
