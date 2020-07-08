@@ -25,10 +25,11 @@
 }
 body
 {
-  font-family: 'Comfortaa', cursive;
+  font-family: 'corbel';
   color: #989292;
   background-color: #343A40;
   overflow-x: hidden;
+  font-size: 14pt;
 }
 .icon{
   font-size: 18pt;
