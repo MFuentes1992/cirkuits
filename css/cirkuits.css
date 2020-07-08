@@ -31,6 +31,9 @@ body
   overflow-x: hidden;
   font-size: 14pt;
 }
+.sticky-top{
+  height: 200px !important;
+}
 .icon{
   font-size: 18pt;
 }

@@ -126,6 +126,7 @@ else {
          <!--<div class="text-center">
            <h1>Sign in</h1>
          </div>-->
+         <br>
          <div class="form-wrapper">
                   <div class="form">
                     <form action="" method="post" id="login_form">
