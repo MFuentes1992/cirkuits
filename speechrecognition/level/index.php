@@ -205,8 +205,6 @@
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.shadowMap.needsUpdate = true;
-        //renderer.toneMapping = THREE.ReinhardToneMapping;
-        //console.log(window.innerWidth);
       };
       //---
 
@@ -234,12 +232,8 @@
       //----------------------------------------------------------------- FOG background
 
       var setcolor = 0xF02050;
-      //var setcolor = 0xF2F111;
-      //var setcolor = 0xFF6347;
-
       scene.background = new THREE.Color(setcolor);
-      scene.fog = new THREE.Fog(setcolor, 10, 16);
-      //scene.fog = new THREE.FogExp2(setcolor, 0.05);
+      scene.fog = new THREE.Fog(setcolor, 10, 16);      
       //----------------------------------------------------------------- RANDOM Function
       function mathRandom(num = 8) {
         var numValue = - Math.random() * num + Math.random() * num;
@@ -254,8 +248,7 @@
         } else {
           setTintNum = true;
           var setColor = 0x000000;
-        };
-        //setColor = 0x222222;
+        };        
         return setColor;
       };
 
@@ -268,20 +261,14 @@
           var material = new THREE.MeshStandardMaterial({
             color:setTintColor(),
             wireframe:false,
-            //opacity:0.9,
-            //transparent:true,
-            //roughness: 0.3,
-            //metalness: 1,
-            shading: THREE.SmoothShading,
-            //shading:THREE.FlatShading,
+            shading: THREE.SmoothShading,            
             side:THREE.DoubleSide});
           var wmaterial = new THREE.MeshLambertMaterial({
             color:0xFFFFFF,
             wireframe:true,
             transparent:true,
             opacity: 0.03,
-            side:THREE.DoubleSide/*,
-            shading:THREE.FlatShading*/});
+            side:THREE.DoubleSide});
 
           var cube = new THREE.Mesh(geometry, material);
           var wire = new THREE.Mesh(geometry, wmaterial);
@@ -292,27 +279,88 @@
           cube.castShadow = true;
           cube.receiveShadow = true;
           cube.rotationValue = 0.1+Math.abs(mathRandom(8));
-          
-          //floor.scale.x = floor.scale.z = 1+mathRandom(0.33);
-          floor.scale.y = 0.05;//+mathRandom(0.5);
-          cube.scale.y = 0.1+Math.abs(mathRandom(8));
-          //TweenMax.to(cube.scale, 1, {y:cube.rotationValue, repeat:-1, yoyo:true, delay:i*0.005, ease:Power1.easeInOut});
-          /*cube.setScale = 0.1+Math.abs(mathRandom());
-          
-          TweenMax.to(cube.scale, 4, {y:cube.setScale, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});
-          TweenMax.to(cube.position, 4, {y:cube.setScale / 2, ease:Elastic.easeInOut, delay:0.2*i, yoyo:true, repeat:-1});*/
-          
+                  
+          floor.scale.y = 0.05;
+          cube.scale.y = Math.abs(mathRandom(2.5));          
           var cubeWidth = 0.9;
-          cube.scale.x = cube.scale.z = cubeWidth+mathRandom(1-cubeWidth);
-          //cube.position.y = cube.scale.y / 2;
+          cube.scale.x = cube.scale.z = cubeWidth+mathRandom(1-cubeWidth);          
           cube.position.x = Math.round(mathRandom());
           cube.position.z = Math.round(mathRandom());
           
-          floor.position.set(cube.position.x, 0/*floor.scale.y / 2*/, cube.position.z)
+          floor.position.set(cube.position.x, 0, cube.position.z)
           
           town.add(floor);
           town.add(cube);
         };
+          //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
+          let neurons = new Array();
+          let LinePoints = new Array();
+          let cloudStepX = 1.5;
+          let cloudStepZ = 1;          
+          for (var i = 0; i<15; i++) {
+            var geometry = new THREE.IcosahedronGeometry(1);
+            var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
+            var neuron = new THREE.Mesh(geometry, material);
+            neuron.speedRotation = Math.random() * 0.1;
+            neuron.positionX = -10 + cloudStepX;
+            neuron.positionY = 2;
+            neuron.positionZ = 0 + cloudStepZ;
+            neuron.castShadow = true;
+            neuron.receiveShadow = true;
+            
+            //------------------------------------------------------------------------------- Adding points for lines to follow
+            LinePoints.push( new THREE.Vector3(neuron.positionX, neuron.positionY, neuron.positionZ));      
+            //-------------------------------------------------------------- Scaling geometry
+            var newScaleValue = 0.3;      
+            neuron.scale.set(newScaleValue,newScaleValue,newScaleValue);
+
+            neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
+ 
+            cloudStepX += cloudStepX;
+            cloudStepZ += mathRandom(1.5);
+            scene.add(neuron);
+            neurons.push(neuron);
+          }
+          //------------------------------------------------------------- CREATE LINES
+          var LineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff } );
+          var LineGeometry = new THREE.BufferGeometry().setFromPoints( LinePoints );
+          var line = new THREE.Line( LineGeometry, LineMaterial );
+          scene.add(line);             
+          //------------------------------------------------------------- Double neuron lines
+          let neurons2 = new Array();
+          let LinePoints2 = new Array();
+          let cloudStepX2 = 1;
+          let cloudStepZ2 = 1;
+          //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
+          for (var i = 0; i<15; i++) {
+            var geometry = new THREE.IcosahedronGeometry(1);
+            var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
+            var neuron = new THREE.Mesh(geometry, material);
+            neuron.speedRotation = Math.random() * 0.1;
+            neuron.positionX = -4 + cloudStepX2;
+            neuron.positionY = 2;
+            neuron.positionZ = 0 + cloudStepZ2;
+            neuron.castShadow = true;
+            neuron.receiveShadow = true;
+            
+            //------------------------------------------------------------------------------- Adding points for lines to follow
+            LinePoints2.push( new THREE.Vector3(neuron.positionX, neuron.positionY, neuron.positionZ));      
+            //-------------------------------------------------------------- Scaling geometry
+            var newScaleValue = 0.3;      
+            neuron.scale.set(newScaleValue,newScaleValue,newScaleValue);
+
+            neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
+
+            cloudStepX2 += cloudStepX2;
+            cloudStepZ2 += mathRandom(4);
+            scene.add(neuron);
+            neurons2.push(neuron);
+          }          
+          //------------------------------------------------------------- CREATE LINES
+          var LineMaterial2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
+          var LineGeometry2 = new THREE.BufferGeometry().setFromPoints( LinePoints2 );
+          var line2 = new THREE.Line( LineGeometry2, LineMaterial2 );
+          scene.add(line2);         
         //----------------------------------------------------------------- Particular
         
         var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
@@ -337,47 +385,17 @@
         var pelement = new THREE.Mesh(pgeometry, pmaterial);
         pelement.rotation.x = -90 * Math.PI / 180;
         pelement.position.y = -0.001;
-        pelement.receiveShadow = true;
-        //pelement.material.emissive.setHex(0xFFFFFF + Math.random() * 100000);
+        pelement.receiveShadow = true;        
 
         city.add(pelement);
       };
-
-      //----------------------------------------------------------------- MOUSE function
-      var raycaster = new THREE.Raycaster();
-      var mouse = new THREE.Vector2(), INTERSECTED;
-      var intersected;
-
-      function onMouseMove(event) {
-        event.preventDefault();
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      };
-      function onDocumentTouchStart( event ) {
-        if ( event.touches.length == 1 ) {
-          event.preventDefault();
-          mouse.x = event.touches[ 0 ].pageX -  window.innerWidth / 2;
-          mouse.y = event.touches[ 0 ].pageY - window.innerHeight / 2;
-        };
-      };
-      function onDocumentTouchMove( event ) {
-        if ( event.touches.length == 1 ) {
-          event.preventDefault();
-          mouse.x = event.touches[ 0 ].pageX -  window.innerWidth / 2;
-          mouse.y = event.touches[ 0 ].pageY - window.innerHeight / 2;
-        }
-      }
-      window.addEventListener('mousemove', onMouseMove, false);
-      window.addEventListener('touchstart', onDocumentTouchStart, false );
-      window.addEventListener('touchmove', onDocumentTouchMove, false );
 
       //----------------------------------------------------------------- Lights
       var ambientLight = new THREE.AmbientLight(0xFFFFFF, 4);
       var lightFront = new THREE.SpotLight(0xFFFFFF, 20, 10);
       var lightBack = new THREE.PointLight(0xFFFFFF, 0.5);
 
-      var spotLightHelper = new THREE.SpotLightHelper( lightFront );
-      //scene.add( spotLightHelper );
+      var spotLightHelper = new THREE.SpotLightHelper( lightFront );      
 
       lightFront.rotation.x = 45 * Math.PI / 180;
       lightFront.rotation.z = -45 * Math.PI / 180;
@@ -442,31 +460,16 @@
       //----------------------------------------------------------------- CAMERA position
 
       var cameraSet = function() {
-        createCars(0.1, 20, 0xFFFFFF);
-        //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
+        createCars(0.1, 20, 0xFFFFFF);        
       };
 
       //----------------------------------------------------------------- ANIMATE
 
       var animate = function() {
         var time = Date.now() * 0.00005;
-        requestAnimationFrame(animate);
-        
-        /*city.rotation.y -= ((mouse.x * 8) - camera.rotation.y) * uSpeed;
-        city.rotation.x -= (-(mouse.y * 2) - camera.rotation.x) * uSpeed;
-        if (city.rotation.x < -0.05) city.rotation.x = -0.05;
-        else if (city.rotation.x>1) city.rotation.x = 1;
-        var cityRotation = Math.sin(Date.now() / 5000) * 13;*/
-        //city.rotation.x = cityRotation * Math.PI / 180;
-        
-        //console.log(city.rotation.x);
-        //camera.position.y -= (-(mouse.y * 20) - camera.rotation.y) * uSpeed;;
-        
+        requestAnimationFrame(animate);        
         for ( let i = 0, l = town.children.length; i < l; i ++ ) {
           var object = town.children[ i ];
-          //object.scale.y = Math.sin(time*50) * object.rotationValue;
-          //object.rotation.y = (Math.sin((time/object.rotationValue) * Math.PI / 180) * 180);
-          //object.rotation.z = (Math.cos((time/object.rotationValue) * Math.PI / 180) * 180);
         }
         
         smoke.rotation.y += 0.01;

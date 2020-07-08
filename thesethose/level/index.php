@@ -300,15 +300,15 @@
       
       //---------------------------------------------------------------- MODEL OF CARS      
       var mtlLoaderCar = new THREE.MTLLoader();
-          mtlLoaderCar.setResourcePath('/3dlab/assets/');
-          mtlLoaderCar.setPath('/3dlab/assets/');
+          mtlLoaderCar.setResourcePath('../../3dlab/assets/');
+          mtlLoaderCar.setPath('../../3dlab/assets/');
           mtlLoaderCar.load('raceCarGreen.mtl', function (materials) {
 
               materials.preload();
 
               var objLoader = new THREE.OBJLoader();
               objLoader.setMaterials(materials);
-              objLoader.setPath('/3dlab/assets/');
+              objLoader.setPath('../../3dlab/assets/');
               objLoader.load('raceCarGreen.obj', function (object) {
                 object.name = "car";
                 object.rotation.y = -0.8*Math.PI;
@@ -377,7 +377,7 @@
           cube.rotationValue = 0.1+Math.abs(mathRandom(8));
                     
           floor.scale.y = 0.05;
-          cube.scale.y = 0.1+Math.abs(mathRandom(8));
+          cube.scale.y = Math.abs(mathRandom(2.5));
           
           var cubeWidth = 0.9;
           cube.scale.x = cube.scale.z = cubeWidth+mathRandom(1-cubeWidth);          
@@ -389,6 +389,99 @@
           town.add(floor);
           town.add(cube);
         };
+        let neurons = new Array();
+          let LinePoints = new Array();
+          let cloudStepX = 1.5;
+          let cloudStepZ = 1;
+          //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
+          for (var i = 0; i<15; i++) {
+            var geometry = new THREE.IcosahedronGeometry(1);
+            var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
+            var neuron = new THREE.Mesh(geometry, material);
+            neuron.speedRotation = Math.random() * 0.1;
+            neuron.positionX = -10 + cloudStepX;
+            neuron.positionY = 2;
+            neuron.positionZ = 0 + cloudStepZ;
+            neuron.castShadow = true;
+            neuron.receiveShadow = true;
+            
+            //------------------------------------------------------------------------------- Adding points for lines to follow
+            LinePoints.push( new THREE.Vector3(neuron.positionX, neuron.positionY, neuron.positionZ));      
+            //-------------------------------------------------------------- Scaling geometry
+            var newScaleValue = 0.3;      
+            neuron.scale.set(newScaleValue,newScaleValue,newScaleValue);
+
+            //---
+            //neuron.rotation.x = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.y = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.z = mathRandom(180 * Math.PI / 180);
+            //
+            neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
+            //neuron.layers.enable( 1 )
+            //modularGruop.add(cube);
+            //TODO: Fix this step process
+            /*if(cloudStepX > 10){
+              cloudStepX = 0;
+            }else{
+              cloudStepX = 2;
+            }*/
+            cloudStepX += cloudStepX;
+            cloudStepZ += mathRandom(1.5);
+            scene.add(neuron);
+            neurons.push(neuron);
+          }
+          //------------------------------------------------------------- CREATE LINES
+          var LineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff } );
+          var LineGeometry = new THREE.BufferGeometry().setFromPoints( LinePoints );
+          var line = new THREE.Line( LineGeometry, LineMaterial );
+          scene.add(line);             
+          //------------------------------------------------------------- Double neuron lines
+          let neurons2 = new Array();
+          let LinePoints2 = new Array();
+          let cloudStepX2 = 0.5;
+          let cloudStepZ2 = 1;
+          //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
+          for (var i = 0; i<15; i++) {
+            var geometry = new THREE.IcosahedronGeometry(1);
+            var material = new THREE.MeshStandardMaterial({shading:THREE.FlatShading, color:0x111111, transparent:false, opacity:1, wireframe:false});
+            var neuron = new THREE.Mesh(geometry, material);
+            neuron.speedRotation = Math.random() * 0.1;
+            neuron.positionX = -4 + cloudStepX2;
+            neuron.positionY = 2;
+            neuron.positionZ = 0 + cloudStepZ2;
+            neuron.castShadow = true;
+            neuron.receiveShadow = true;
+            
+            //------------------------------------------------------------------------------- Adding points for lines to follow
+            LinePoints2.push( new THREE.Vector3(neuron.positionX, neuron.positionY, neuron.positionZ));      
+            //-------------------------------------------------------------- Scaling geometry
+            var newScaleValue = 0.3;      
+            neuron.scale.set(newScaleValue,newScaleValue,newScaleValue);
+
+            //---
+            //neuron.rotation.x = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.y = mathRandom(180 * Math.PI / 180);
+            //neuron.rotation.z = mathRandom(180 * Math.PI / 180);
+            //
+            neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
+            //neuron.layers.enable( 1 )
+            //modularGruop.add(cube);
+            //TODO: Fix this step process
+            /*if(cloudStepX > 10){
+              cloudStepX = 0;
+            }else{
+              cloudStepX = 2;
+            }*/
+            cloudStepX2 += cloudStepX2;
+            cloudStepZ2 += mathRandom(1.5);
+            scene.add(neuron);
+            neurons2.push(neuron);
+          }          
+          //------------------------------------------------------------- CREATE LINES
+          var LineMaterial2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
+          var LineGeometry2 = new THREE.BufferGeometry().setFromPoints( LinePoints2 );
+          var line2 = new THREE.Line( LineGeometry2, LineMaterial2 );
+          scene.add(line2);         
         //----------------------------------------------------------------- Particular
         
         var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
