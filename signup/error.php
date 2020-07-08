@@ -28,7 +28,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a href="../">
-        <img class="img_logo" src="../img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/>
+        <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
       </a>
       <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important; visibility:hidden;">Sign in</button>
     </nav>

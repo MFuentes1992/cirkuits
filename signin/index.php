@@ -81,20 +81,23 @@ else {
  </head>
  <body>
   <div class="pos-f-t">
-  <nav class="navbar sticky-top navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="col-md-8" id="logoContainer">
-          <a href="<?=$url;?>"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
-        </div>
-      </nav>
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark" style="padding-left: 1.5rem">
-          <h5 class="text-white label"><a class="text-white label" href="../">Home</a></h5>
-          <h5 class="text-white label"><a class="text-white label" href="../signup">Sign up</a></h5>
-        </div>
+    <nav class="navbar sticky-top navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="../">
+        <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
+      </a>
+      <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important; visibility:hidden;">Sign in</button>
+    </nav>
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark" style="padding-left: 1.5rem">
+        <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
+        <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
+        <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
+        <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
       </div>
+    </div>
   </div>
    <div class="container-fluid-signin">
 
@@ -120,11 +123,10 @@ else {
 
 
        <div class="contenido-singin">
-         <div class="text-center">
-           <br>
-           <br>
+         <!--<div class="text-center">
            <h1>Sign in</h1>
-              <div class="form-wrapper">
+         </div>-->
+         <div class="form-wrapper">
                   <div class="form">
                     <form action="" method="post" id="login_form">
                       <div class="form form-group">
@@ -155,8 +157,7 @@ else {
               <div id="regLogin">
                 <span>Not registred yet?</span><span style="margin-left:0.5%;"><a href="<?=$url?>signup" class="label">Sign up</a></span>
               </div>
-            </div>
-         </div>
+            </div>         
 
    </div>
          <!-- Footer -->

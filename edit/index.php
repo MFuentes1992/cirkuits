@@ -83,7 +83,7 @@ if(isset($_SESSION["user"]))
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="220" height="100"/></a>
+          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -305,7 +305,7 @@ if(isset($_SESSION["user"]))
         $("#logoContainer > a").css('margin-left','60%');
       }
       if(SCREEN_WIDTH > 1800 && SCREEN_WIDTH <= 3800){
-        $("#logoContainer > a").css('margin-left','55%');
+        $("#logoContainer > a").css('margin-left','45%');
       }
       if(SCREEN_WIDTH > 1024){
         $("#reslogout > a").remove();

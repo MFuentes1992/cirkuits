@@ -60,7 +60,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -164,7 +164,7 @@
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
       } else if(SCREEN_WIDTH >= 1404){
-        $("#logoContainer > a").css('margin-left','54%');
+        $("#logoContainer > a").css('margin-left','45%');
       }      
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
