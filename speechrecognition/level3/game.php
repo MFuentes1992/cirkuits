@@ -269,7 +269,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -4 + cloudStepX;
             neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ;
+            neuron.positionZ = -0.5;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             
@@ -304,7 +304,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -4 + cloudStepX2;
             neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ2;
+            neuron.positionZ = -0.8;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             

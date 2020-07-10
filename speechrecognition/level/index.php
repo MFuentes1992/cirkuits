@@ -303,8 +303,8 @@
             var neuron = new THREE.Mesh(geometry, material);
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -10 + cloudStepX;
-            neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ;
+            neuron.positionY = 2.5;
+            neuron.positionZ = -0.5;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             
@@ -338,8 +338,8 @@
             var neuron = new THREE.Mesh(geometry, material);
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -4 + cloudStepX2;
-            neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ2;
+            neuron.positionY = 2.4;
+            neuron.positionZ = -0.8;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             

@@ -268,8 +268,8 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
             var neuron = new THREE.Mesh(geometry, material);
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -10 + cloudStepX;
-            neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ;
+            neuron.positionY = 2.5;
+            neuron.positionZ = -0.5;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             
@@ -282,7 +282,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
             neuron.position.set(neuron.positionX, neuron.positionY, neuron.positionZ);
  
             cloudStepX += cloudStepX;
-            cloudStepZ += mathRandom(1.5);
+            cloudStepZ += 1.5;
             scene.add(neuron);
             neurons.push(neuron);
           }
@@ -303,8 +303,8 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
             var neuron = new THREE.Mesh(geometry, material);
             neuron.speedRotation = Math.random() * 0.1;
             neuron.positionX = -4 + cloudStepX2;
-            neuron.positionY = 2;
-            neuron.positionZ = 0 + cloudStepZ2;
+            neuron.positionY = 2.3;
+            neuron.positionZ = -0.8;
             neuron.castShadow = true;
             neuron.receiveShadow = true;
             
