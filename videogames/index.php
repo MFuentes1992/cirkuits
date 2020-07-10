@@ -294,7 +294,7 @@
   var modularGruop = new THREE.Object3D();
 
   function generateParticle(num, amp = 2) {
-    var gmaterial = new THREE.MeshPhysicalMaterial({color:0xFFFFFF, side:THREE.DoubleSide});
+    var gmaterial = new THREE.MeshPhysicalMaterial({color:0x111111, side:THREE.DoubleSide});
 
     var gparticular = new THREE.CircleGeometry(0.2,5);
 
