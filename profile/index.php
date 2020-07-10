@@ -268,7 +268,7 @@ if(isset($_SESSION["user"]))
         $("#logoContainer > a").css('margin-left','60%');
       }
       if(SCREEN_WIDTH > 1800 && SCREEN_WIDTH <= 3800){
-        $("#logoContainer > a").css('margin-left','45%');
+        $("#logoContainer > a").css('margin-left','60%');
       }
       if(SCREEN_WIDTH > 1024){
         $("#reslogout > a").remove();

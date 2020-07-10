@@ -162,7 +162,7 @@
       if(SCREEN_WIDTH <= 1404){
         $("#logoContainer > a").css('margin-left','45%');
       } else if(SCREEN_WIDTH >= 1404){
-        $("#logoContainer > a").css('margin-left','45%');
+        $("#logoContainer > a").css('margin-left','60%');
       }      
       /**//////////////// TABLET (800 - 425) ////////// */
       if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
