@@ -41,7 +41,50 @@
       </div>
     </div>
     <div class="row">
-
+    <div id="cloud-title">
+        <h1>CIRKUITS CLOUD</h1>
+      </div>
+      <div id="product-container">
+        <div class="product-item" id="product-1">
+          <div class="product-header">
+            <h1><i class="fas fa-dice-d6"></i></h1>
+          </div>
+          <div class="product-description">
+            <h1>Title</h1>
+            <div id="border-below-1"></div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet vero, 
+              aspernatur, optio nisi accusantium fugit eligendi alias quo iste dignissimos nulla voluptatibus, ipsam cumque expedita nobis dolores esse illo reiciendis.
+            </p>
+          </div>
+        </div>
+        <div Class="product-item" id="product-2">
+          <div class="product-header">
+            <h1><i class="fas fa-gamepad"></i></h1>
+          </div>
+          <div class="product-description">
+            <h1>Title</h1>
+            <div id="border-below-2"></div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Voluptatibus ex at quo nisi reprehenderit officia est, tenetur officiis ipsam quisquam magni, quae distinctio? Libero eius ipsa maiores culpa, nemo officia!
+            </p>
+          </div>
+        </div>
+        <div Class="product-item" id="product-3">
+          <div class="product-header">
+            <h1><i class="fas fa-dice-d20"></i></h1>
+          </div>
+          <div class="product-description">
+            <h1>Title</h1>
+            <div id="border-below-3"></div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, 
+              adipisicing elit. Nisi voluptatem quibusdam aut mollitia animi hic molestiae esse qui facere rem unde quaerat rerum fuga ipsum vero, provident possimus dolore explicabo.
+            </p>
+          </div>
+        </div>
+      </div>      
     <!-- /////// About Us ////// -->
       <!-- <div class="separator">
       </div> -->
@@ -203,6 +246,30 @@
     var sliderWidth = 0;
     $(document).ready(function(){
       insertBanner();
+      $("#product-1").hover(function(){
+        $('#border-below-1').removeClass("border-animation-back");
+        $('#border-below-1').addClass("border-animation");
+      },
+      function(){
+        $('#border-below-1').removeClass("border-animation");
+        $('#border-below-1').addClass("border-animation-back");
+      });
+      $("#product-2").hover(function(){
+        $('#border-below-2').removeClass("border-animation-back");
+        $('#border-below-2').addClass("border-animation");
+      },
+      function(){
+        $('#border-below-2').removeClass("border-animation");
+        $('#border-below-2').addClass("border-animation-back");
+      });
+      $("#product-3").hover(function(){
+        $('#border-below-3').removeClass("border-animation-back");
+        $('#border-below-3').addClass("border-animation");
+      },
+      function(){
+        $('#border-below-3').removeClass("border-animation");
+        $('#border-below-3').addClass("border-animation-back");
+      });
     });
     var mybutton = document.getElementById("myBtn");
     window.onscroll = () => {scrollFunction()};

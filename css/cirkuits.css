@@ -600,12 +600,23 @@ h1, h2, h3 {
 
 #about-title{
   width: 100%;
-  text-align: center;
+  text-align: justify;
   font-family: 'corbel bold';
   height: 200px;
   padding-top: 50px;
   font-size: 18pt;
+  padding-left: 4%;
+  margin-bottom: 2%;
   /*background-image: url('../img/bg/patternAbout.png');*/
+}
+#cloud-title{
+  width: 100%;
+  text-align: justify;
+  font-family: 'corbel bold';
+  height: 200px;
+  padding-left: 4%;
+  padding-top: 50px;
+  font-size: 3em !important;
 }
 #contact-title{
   width: 100%;
@@ -620,6 +631,9 @@ h1, h2, h3 {
 }
 #about-title > h1{
   font-size: 3em;
+}
+#cloud-title > h1 {
+  font-size: 1em;
 }
 #contact-title > h1{
   font-size: 3em;  
@@ -950,7 +964,86 @@ video {
   width: 100%;
   text-align: center;
 }
-
+.container-fluid {
+  padding-right: 0% !important;
+}
+#product-container{
+  position: relative;
+  width: 100%;
+  background-color: #343A40;
+  display: flex;
+}
+.product-item{
+  position: relative;
+  padding: 2%;
+  background-color: #FFF;
+  color: #343A40;
+}
+.product-item:hover{
+  cursor: pointer;
+  transform: translateY(-20px);
+  -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  transition: 0.4s ease-out;
+}
+.product-header{
+  position: relative;
+  text-align: center;
+  color: #343A40;
+  font-size: 36pt;
+}
+.product-header > h1 {
+  color: #343A40;
+  font-size: 1em;
+}
+.product-description > h1{
+  color: #343A40;
+}
+@keyframes AnimateProduct {
+  from{
+    width: 0%;
+  }
+  to{
+    width: 100%;
+  }
+}
+@keyframes AnimateProductBack{
+  from{
+    width: 100%;
+  }
+  to{
+    width: 0%;
+  }
+}
+.border-animation{
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  animation: AnimateProduct 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+.border-animation-back{
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  animation: AnimateProductBack 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+#border-below-1{
+  position: relative;
+  background-color: #21D4FD;
+  width: 0%;
+  height: 5px;
+}
+#border-below-2{
+  position: relative;
+  background-color: #21D4FD;
+  width: 0%;
+  height: 5px;
+}
+#border-below-3{
+  position: relative;
+  background-color: #21D4FD;
+  width: 0%;
+  height: 5px;
+}
 /*///////////////////// LAPTOPS ///////////////////////*/
 @media screen and (min-width: 1600px) and (max-width: 2400px)
 {
