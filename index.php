@@ -39,55 +39,8 @@
         <div id="video">
         </div>
       </div>
-    </div>
-    <div class="row">
-    <div id="cloud-title">
-        <h1>CIRKUITS CLOUD</h1>
-      </div>
-      <div id="product-container">
-        <div class="product-item" id="product-1">
-          <div class="product-header">
-            <h1><i class="fas fa-dice-d6"></i></h1>
-          </div>
-          <div class="product-description">
-            <h1>Title</h1>
-            <div id="border-below-1"></div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet vero, 
-              aspernatur, optio nisi accusantium fugit eligendi alias quo iste dignissimos nulla voluptatibus, ipsam cumque expedita nobis dolores esse illo reiciendis.
-            </p>
-          </div>
-        </div>
-        <div Class="product-item" id="product-2">
-          <div class="product-header">
-            <h1><i class="fas fa-gamepad"></i></h1>
-          </div>
-          <div class="product-description">
-            <h1>Title</h1>
-            <div id="border-below-2"></div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Voluptatibus ex at quo nisi reprehenderit officia est, tenetur officiis ipsam quisquam magni, quae distinctio? Libero eius ipsa maiores culpa, nemo officia!
-            </p>
-          </div>
-        </div>
-        <div Class="product-item" id="product-3">
-          <div class="product-header">
-            <h1><i class="fas fa-dice-d20"></i></h1>
-          </div>
-          <div class="product-description">
-            <h1>Title</h1>
-            <div id="border-below-3"></div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, 
-              adipisicing elit. Nisi voluptatem quibusdam aut mollitia animi hic molestiae esse qui facere rem unde quaerat rerum fuga ipsum vero, provident possimus dolore explicabo.
-            </p>
-          </div>
-        </div>
-      </div>      
-    <!-- /////// About Us ////// -->
-      <!-- <div class="separator">
-      </div> -->
+    </div>  
+    <!-- /////// About Us ////// -->      
       <div id="about-title">
         <h1>ABOUT</h1>
       </div>
@@ -131,68 +84,128 @@
                 </p>
               </div>              
             </div>
-            <div class="three-col-container">
-              <!-- MISION -->                                          
-              <div class="column">
-                <div class="circle-container">
-                  <div class="circle">
-                    <span class="primary-color"><i class="fas fa-users"></i></span>
-                  </div>
+            <div id="howitworks-container">
+              <div class="step">
+                <div class="arrow-step">
+                  <h1>1</h1>
                 </div>
-                <h1><strong>Mission</strong></h1>
-                <p>
-                  To provide our students with the most forward-thinking tools to help them
-                  learn a language as quickly as possible for as long as possible.
-                </p>
+                <div class="arrow-body">
+                  <h1>Register</h1>
+                  <p>Fill up our registration form, sign up for games, videos and more.</p>
+                  <div>
+                    <img src="img/form-icon.png" alt="Form-icon" width="100">
+                  </div>                  
+                </div>
               </div>
-              <!--  VISION --> 
-              <div class="column">
-                <div class="circle-container">
-                  <div class="circle">
-                    <span class="primary-color"><i class="fas fa-eye"></i></span>
-                  </div>
-                </div>                
-                <h1><strong>Vision </strong></h1>
-                <p>
-                  To become the global-standard in the language-learning sector by
-                  charting the course for the first unconscious-competence training model.
-                  <br>
-                  <strong><span style="color: white;">What is unconscious competence?</span></strong>
-                  <br>
-                  Unconscious competence involves the ability to do something without needing
-                  to think about it. Any speech pattern can be internalized and automated;
-                  we achieve this at Cirkuits with a structured series of games and activities
-                </p>                                                              
+              <div class="step">
+                <div class="arrow-step">
+                  <h1>2</h1>
+                </div>
+                <div class="arrow-body">
+                  <h1>Select a plan</h1>
+                  <p>Choose the plan that fits you better for what you are up to.</p>
+                  <div>
+                    <img src="img/billable.png" alt="Form-icon" width="120">
+                  </div> 
+                </div>
               </div>
-              <!-- VALUES -->
-              <div class="column">
-                <div class="circle-container">
-                  <div class="circle">
-                    <span class="primary-color"><i class="fas fa-star"></i></span>
-                  </div>
-                </div>                
-                <h1><strong>Values</strong></h1>
-                <p>
-                  When taking a decision within the company we always ask "does this help accelerate and improve the students’ end result?"
-                </p>
-              </div>                             
+              <div class="step">
+                <div class="arrow-step">
+                  <h1>3</h1>
+                </div>
+                <div class="arrow-body">
+                  <h1>Enjoy and Learn!</h1>
+                  <p>Play our videogames, earn points, and level up your rank position as you learn.</p>
+                  <div>
+                    <img src="img/videogames_step.png" alt="Form-icon" width="200">
+                  </div> 
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <!--////// Cloud /////// -->
+      <div class="row">
+        <div id="cloud-title">
+          <h1>Programs and Plans</h1>
+        </div>
+        <div id="product-container">
+          <div class="product-item" id="product-1">
+            <div class="product-header">
+              <h1><i class="fas fa-dice-d6"></i></h1>
+            </div>
+            <div class="product-description">
+              <h1>Title</h1>
+              <div id="border-below-1"></div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet vero.</p>
+              <p id="hidden-desc-1">              
+                aspernatur, optio nisi accusantium fugit eligendi alias quo iste dignissimos nulla voluptatibus, ipsam cumque expedita nobis dolores esse illo reiciendis.
+              </p>
+            </div>
+          </div>
+          <div Class="product-item" id="product-2">
+            <div class="product-header">
+              <h1><i class="fas fa-gamepad"></i></h1>
+            </div>
+            <div class="product-description">
+              <h1>Title</h1>
+              <div id="border-below-2"></div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p id="hidden-desc-2">              
+                Voluptatibus ex at quo nisi reprehenderit officia est, tenetur officiis ipsam quisquam magni, quae distinctio? Libero eius ipsa maiores culpa, nemo officia!
+              </p>
+            </div>
+          </div>
+          <div Class="product-item" id="product-3">
+            <div class="product-header">
+              <h1><i class="fas fa-dice-d20"></i></h1>
+            </div>
+            <div class="product-description">
+              <h1>Title</h1>
+              <div id="border-below-3"></div>
+              <p>Lorem ipsum dolor sit amet consectetur</p>
+              <p id="hidden-desc-3">              
+                adipisicing elit. Nisi voluptatem quibusdam aut mollitia animi hic molestiae esse qui facere rem unde quaerat rerum fuga ipsum vero, provident possimus dolore explicabo.
+              </p>
+            </div>
+        </div>
+      </div>          
     <!--/////// Contact ///// -->
-      <div id="contact-title">
-        <h1>CONTACT</h1>
-      </div>
-      <div class="form-style-6" id="contacto-index">        
+      <div class="contact" id="contacto-index">               
         <form>
-          <input type="text" name="field1" placeholder="Your Name" />
+          <div id="contact-title">
+            <h1>Want to enroll?</h1>
+            <h3>Send us a message with your questions, we are more than glad to help you in the process.</h3>
+          </div>           
+          <div class="form-group">
+            <label for="ContactName">Name</label>
+            <input type="text" class="form-control" name="name" id="ContactName" placeholder="Your Name" />
+          </div>
           <br>
-          <input type="email" name="field2" placeholder="Email Address" />
+          <div class="form-group">
+            <label for="ContactEmail">Email address</label>
+            <input type="email" name="email" class="form-control" id="ContactEmail" placeholder="Email Address" />
+          </div>
           <br>
-          <textarea name="field3" placeholder="Type your Message"></textarea>
+          <div class="form-group">
+            <label for="ContactProfile">Select your profile</label>
+            <select name="profile" id="ContactProfile" class="form-control">
+              <option value="">--Select--</option>
+              <option value="">Student</option>
+              <option value="">Professor</option>
+              <option value="">Business</option>
+              <option value="">Enthusiast</option>
+              <option value="">Language nerd</option>              
+            </select>
+          </div>
           <br>
-          <button><i class="fas fa-paper-plane"></i></button>
+          <div class="form-group">
+            <label for="ContactMessage">Comments / Doubts</label>
+            <textarea name="message" id="ContactMessage" class="form-control" placeholder="Type your Message"></textarea>            
+          </div>
+          <br>
+          <button id="contact-button"><i class="fas fa-paper-plane"></i></button>
         </form>
         </div>      
       <!-- Footer -->
@@ -249,26 +262,38 @@
       $("#product-1").hover(function(){
         $('#border-below-1').removeClass("border-animation-back");
         $('#border-below-1').addClass("border-animation");
+        $('#hidden-desc-1').removeClass("animate-product-text-back");
+        $('#hidden-desc-1').addClass("animate-product-text");
       },
       function(){
         $('#border-below-1').removeClass("border-animation");
         $('#border-below-1').addClass("border-animation-back");
+        $('#hidden-desc-1').addClass("animate-product-text-back");
+        $('#hidden-desc-1').removeClass("animate-product-text");
       });
       $("#product-2").hover(function(){
         $('#border-below-2').removeClass("border-animation-back");
-        $('#border-below-2').addClass("border-animation");
+        $('#border-below-2').addClass("border-animation"); 
+        $('#hidden-desc-2').removeClass("animate-product-text-back");
+        $('#hidden-desc-2').addClass("animate-product-text");       
       },
       function(){
         $('#border-below-2').removeClass("border-animation");
         $('#border-below-2').addClass("border-animation-back");
+        $('#hidden-desc-2').addClass("animate-product-text-back");
+        $('#hidden-desc-2').removeClass("animate-product-text");
       });
       $("#product-3").hover(function(){
         $('#border-below-3').removeClass("border-animation-back");
         $('#border-below-3').addClass("border-animation");
+        $('#hidden-desc-3').removeClass("animate-product-text-back");
+        $('#hidden-desc-3').addClass("animate-product-text");
       },
       function(){
         $('#border-below-3').removeClass("border-animation");
         $('#border-below-3').addClass("border-animation-back");
+        $('#hidden-desc-3').addClass("animate-product-text-back");
+        $('#hidden-desc-3').removeClass("animate-product-text");
       });
     });
     var mybutton = document.getElementById("myBtn");

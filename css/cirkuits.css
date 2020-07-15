@@ -620,14 +620,14 @@ h1, h2, h3 {
 }
 #contact-title{
   width: 100%;
-  text-align: center;
+  text-align: justify;
+  color: #000;
   font-family: 'corbel bold';
   font-size: 18pt;
   background-repeat: no-repeat;
   height: 200px;
   margin-top: 2%;
-  margin-bottom: 5%;
-  background-color: #343A40;    
+  background-color: #FFF;    
 }
 #about-title > h1{
   font-size: 3em;
@@ -638,12 +638,31 @@ h1, h2, h3 {
 #contact-title > h1{
   font-size: 3em;  
   margin-top: 60px;
-  background: linear-gradient(90deg,rgb(32,199,215),rgb(5,164,225));
+  color: #000;
+  /*background: linear-gradient(90deg,rgb(32,199,215),rgb(5,164,225));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background-clip: text;*/
 }
-
+#contact-title > h3{
+  color: #000;
+}
+#contact-button{
+  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+  width: 20%;
+  padding: 1%;
+  margin:auto;	
+  font-size: 18pt;
+  background-color: #FFE53B;
+  border-radius: 50px;
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%);	
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;	
+	color: #fff;
+}
 .form-style-6{
 	font: 95% Arial, Helvetica, sans-serif;
 	width: 100%;
@@ -972,19 +991,21 @@ video {
   width: 100%;
   background-color: #343A40;
   display: flex;
+  margin-bottom: 5%;
 }
 .product-item{
   position: relative;
   padding: 2%;
+  padding-left: 5%;
   background-color: #FFF;
   color: #343A40;
 }
 .product-item:hover{
   cursor: pointer;
   transform: translateY(-20px);
-  -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
+  box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
   transition: 0.4s ease-out;
 }
 .product-header{
@@ -999,6 +1020,22 @@ video {
 }
 .product-description > h1{
   color: #343A40;
+}
+.contact{
+  position: relative;
+  width: 50%;
+  margin: auto;
+  background-color: #FFF;
+  margin-bottom: 5%;
+  padding: 1%;  
+  -webkit-box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
+  box-shadow: 0px 3px 15px -1px rgba(0,0,0,1);
+}
+.contact > form{
+  position: relative;
+  width: 80%;
+  margin: auto;
 }
 @keyframes AnimateProduct {
   from{
@@ -1043,6 +1080,76 @@ video {
   background-color: #21D4FD;
   width: 0%;
   height: 5px;
+}
+#hidden-desc-1{
+  position: relative;
+  opacity: 0;
+  top: 50px;
+}
+#hidden-desc-2{
+  position: relative;
+  opacity: 0;
+  top: 50px;
+}
+#hidden-desc-3{
+  position: relative;
+  opacity: 0;
+  top: 50px;
+}
+@keyframes AnimateProductText{
+  from{
+    opacity: 0;
+    top: 50px;
+  }
+  to{
+    opacity: 1;
+    top: 0px
+  }
+}
+@keyframes AnimateProductTextBackwards{
+  from{
+    opacity: 1;
+    top: 0px;
+  }
+  to{
+    opacity: 0;
+    top: 50px
+  }
+}
+.animate-product-text{
+  animation: AnimateProductText 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+.animate-product-text-back{
+  animation: AnimateProductTextBackwards 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+#howitworks-container{
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.step{
+  flex-grow: 1;
+}
+.arrow-step{
+  position: relative;
+  width: 80%;
+  margin: auto;
+  border-radius: 20px;
+  background-image: linear-gradient(147deg, rgb(5,164,225) 0%, rgb(141,124,207) 74%);
+}
+.arrow-body{
+  position: relative;
+  width: 80%;
+  margin: auto;
+  border: 1px solid #EEEEEE;
+  border-radius: 10px;
+  height: 300px;
+  padding: 20px;
+}
+.arrow-step > h1 {
+  text-align: center;
 }
 /*///////////////////// LAPTOPS ///////////////////////*/
 @media screen and (min-width: 1600px) and (max-width: 2400px)
@@ -1097,6 +1204,15 @@ video {
   body
   {
     font-family: 'Comfortaa', cursive;
+  }
+  #product-container{
+    position: relative;
+    width: 100%;
+    background-color: #343A40;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: column;
   }
   .contenido-singin
   {
@@ -1402,6 +1518,15 @@ video {
   body
   {
     font-family: 'Comfortaa', cursive;
+  }
+  #product-container{
+    position: relative;
+    width: 100%;
+    background-color: #343A40;
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    flex-direction: column;
   }
   .contenido-singin
   {
