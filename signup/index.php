@@ -93,23 +93,19 @@
   <script src="<?=$url;?>js/reguser.js"></script>
 </head>
 <body>
-  <div class="pos-f-t">
-    <nav class="navbar sticky-top navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a href="../">
-        <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
-      </a>
-      <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important; visibility:hidden;">Sign in</button>
-    </nav>
-    <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark" style="padding-left: 1.5rem">
-        <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
-      </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
+    <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
+  </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark" style="padding-left: 1.5rem">
+      <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
     </div>
   </div>
   <div class="container-fluid">
@@ -285,8 +281,7 @@
         maxDate: "-4Y",
         minDate: "-100Y",
         yearRange: "-100:-4"
-      });
-      responsiveEngine();
+      });      
     } );
     var register = function()
     {
@@ -344,6 +339,12 @@
         }
       })
     }
+    $( '#login' ).click(function(){
+      document.location.href="../signin/"; 
+    });
+    $( '.img_logo' ).click(function(){
+      document.location.href="../"; 
+    });
   </script>
 </body>
 </html>

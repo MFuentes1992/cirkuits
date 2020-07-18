@@ -15,21 +15,19 @@
   <script src="js/dist/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="pos-f-t">
-    <nav class="navbar navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <img class="img_logo" src="img/bw_logo.png" alt="cirkuits logo"/>
-      <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
-    </nav>
-    <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark" style="padding-left: 1.5rem">
-        <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
-        <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
-      </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <img class="img_logo" src="img/bw_logo.png" alt="cirkuits logo"/>
+    <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
+  </nav>
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark" style="padding-left: 1.5rem">
+      <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
     </div>
   </div>
   <div class="main-container bg-black">
@@ -172,42 +170,47 @@
         </div>
       </div>          
     <!--/////// Contact ///// -->
-      <div class="contact" id="contacto-index">               
-        <form>
-          <div id="contact-title">
-            <h1>Want to enroll?</h1>
-            <h3>Send us a message with your questions, we are more than glad to help you in the process.</h3>
-          </div>           
-          <div class="form-group">
-            <label for="ContactName">Name</label>
-            <input type="text" class="form-control" name="name" id="ContactName" placeholder="Your Name" />
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="ContactEmail">Email address</label>
-            <input type="email" name="email" class="form-control" id="ContactEmail" placeholder="Email Address" />
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="ContactProfile">Select your profile</label>
-            <select name="profile" id="ContactProfile" class="form-control">
-              <option value="">--Select--</option>
-              <option value="">Student</option>
-              <option value="">Professor</option>
-              <option value="">Business</option>
-              <option value="">Enthusiast</option>
-              <option value="">Language nerd</option>              
-            </select>
-          </div>
-          <br>
-          <div class="form-group">
-            <label for="ContactMessage">Comments / Doubts</label>
-            <textarea name="message" id="ContactMessage" class="form-control" placeholder="Type your Message"></textarea>            
-          </div>
-          <br>
-          <button id="contact-button"><i class="fas fa-paper-plane"></i></button>
-        </form>
-        </div>      
+      <div id="contact-section">
+        <div class="contact" id="contacto-index">               
+          <form>
+            <div id="contact-title">
+              <h1>Want to enroll?</h1>
+              <h3>Send us a message with your questions, we are more than glad to help you in the process.</h3>
+            </div>           
+            <div class="form-group">
+              <label for="ContactName">Name</label>
+              <input type="text" class="form-control" name="name" id="ContactName" placeholder="Your Name" />
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="ContactEmail">Email address</label>
+              <input type="email" name="email" class="form-control" id="ContactEmail" placeholder="Email Address" />
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="ContactProfile">Select your profile</label>
+              <select name="profile" id="ContactProfile" class="form-control">
+                <option value="">--Select--</option>
+                <option value="">Student</option>
+                <option value="">Professor</option>
+                <option value="">Business</option>
+                <option value="">Enthusiast</option>
+                <option value="">Language nerd</option>              
+              </select>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="ContactMessage">Comments / Doubts</label>
+              <textarea name="message" id="ContactMessage" class="form-control" placeholder="Type your Message"></textarea>            
+            </div>
+            <br>
+            <button id="contact-button"><i class="fas fa-paper-plane"></i></button>
+          </form> 
+        </div>
+        <div id="contacto-background">
+            &nbsp;
+        </div>          
+      </div>   
       <!-- Footer -->
       <footer class="footer col-md-12" style="position:relative;">
         <div class="row">
