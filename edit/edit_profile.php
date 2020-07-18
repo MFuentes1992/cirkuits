@@ -85,7 +85,7 @@ if(isset($_SESSION["user"]))
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-         <a href="#" class="navbar-brand"><img src="img/bw_logo.png" alt="Logo Cirkuits" class="img-navbar"/></a>
+         <a href="#" class="navbar-brand"><img src="img/bw_logo.png" alt="Logo Cirkuits"/></a>
        </div>
        <div class="collapse navbar-collapse" id="cirkuitsNavbar">
          <ul class="nav navbar-nav navbar-right">

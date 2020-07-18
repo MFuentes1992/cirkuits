@@ -120,12 +120,7 @@ else {
       </div>
     </div>
     <?php } ?>
-
-
        <div class="contenido-singin">
-         <!--<div class="text-center">
-           <h1>Sign in</h1>
-         </div>-->
          <br>
          <div class="form-wrapper">
                   <div class="form">
@@ -144,11 +139,6 @@ else {
                         data-errormessage-value-missing="password is required"
                         placeholder="password" />
                       </div>
-                      <!--<input type="submit" name="submit" value="Sign" class="btn btn-success btn-lg">
-                      <br>
-                      <div class="" id="regLogin">
-                        <span>Not registred yet?</span><h3><a href="reguser.php" class="label label-success">Sign up</a></h3>
-                      </div>-->
                     </form>
                   </div>
                   <div id="btn-login">
@@ -214,51 +204,7 @@ else {
      var login = function()
      {
        $('#login_form').submit();
-     }
-
-     var commonResponsive = swidth => {
-        $('.separator').css('visibility', 'hidden');
-        
-    }
-
-    var tabletResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $("#logoContainer > a").css('margin-left','0%');
-    }
-   var mobileResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('.img_logo').css('width', '200');
-      $('.img_logo').css('height', '80');
-      $('#logoContainer').removeClass('col-md-8');
-      $("#logoContainer > a").css('margin-left','0%');      
-      $('#contactoFooter').css('width', '100%');
-    }
-
-    var responsiveEngine = () => {
-      var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
-      /** /////////////// RESPONSIVE ////////////// */
-
-      /**//////////////// TABLET (800 - 425) ////////// */
-      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
-        tabletResponsive(SCREEN_WIDTH);
-      }
-      /**//////////////// MOBILE (425 - 325) ////////// */
-      if(SCREEN_WIDTH <= 425){
-        mobileResponsive(SCREEN_WIDTH);
-      }
-      if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','1%');
-      } 
-      if(SCREEN_WIDTH >= 1404 && SCREEN_WIDTH < 1900){
-        $("#logoContainer > a").css('margin-left','7%');
-      } 
-      if(SCREEN_WIDTH >= 1900){
-        $("#logoContainer > a").css('margin-left','15%');
-      } 
-      console.log(SCREEN_WIDTH);
-    }
-    
+     }    
     var _submit = document.getElementById("passowrd");
     _submit.addEventListener("keyup", function(event){
         if(event.keyCode === 13){

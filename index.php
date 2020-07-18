@@ -16,7 +16,7 @@
 </head>
 <body>
   <div class="pos-f-t">
-    <nav class="navbar sticky-top navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -308,8 +308,6 @@
     }
 
     function topFunction() {
-      //document.body.scrollTop = 0;
-      //document.documentElement.scrollTop = 0;
       $('html,body').animate({ scrollTop: 0 }, 'slow');
     }
 
@@ -317,33 +315,6 @@
       insertBanner();
     });
 
-    var commonResponsive = swidth => {
-        $('.separator').css('visibility', 'hidden');
-        
-    }
-
-    var tabletResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('#about-title').css('height','300px');
-      $('#contact-title').css('height','300px');
-      $('#about-title > h1').css('font-size',`${swidth*0.1}pt`);
-      $('#contact-title > h1').css('font-size',`${swidth*0.1}pt`);
-      $('.text-about').css('padding-left', '10%');
-      $('.text-about').css('padding-right', '10%');
-      $('.text-about').css('margin-top', '5%');
-    }
-    var mobileResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('#about-title').css('height','150px');
-      $('#contact-title').css('height','150px');
-      $('#about-title').css('padding-top','50px');
-      $('#about-title > h1').css('font-size','2.5rem');
-      $('#contact-title > h1').css('font-size','2.5rem');
-      $('.img_logo').css('width', '200');
-      $('.img_logo').css('height', '80');
-      $('#login').remove();      
-      $('#contactoFooter').css('width', '100%');                  
-    }
     var insertBanner = function()
     {
       var SCREEN_WIDTH = $(window).width();
@@ -353,27 +324,10 @@
       bannerVideo    += '<source src ="img/videos/video_promo.mp4" type = "video/mp4" />Your browser does not suppor video tag</video>';
       $('#video').html(bannerVideo);      
       //Getting and changing the banner width
-      sliderWidth  = $('#video-teaser').width();
-      console.log(sliderWidth); //Debug !warning
-
+      sliderWidth  = $('#video-teaser').width();      
       $('.slider-container').width(sliderWidth*3+"px");
       $('.slide').width(sliderWidth+"px");
-
-      /** /////////////// RESPONSIVE ////////////// */
-
-      /**//////////////// TABLET (800 - 425) ////////// */
-      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
-        tabletResponsive(SCREEN_WIDTH);
-      }
-      /**//////////////// MOBILE (425 - 325) ////////// */
-      if(SCREEN_WIDTH <= 425){
-        mobileResponsive(SCREEN_WIDTH);
-      }
-
     }
-
-
-
 
     function scrollTo(id) {
       var aTag = $("p[id='"+id+"']");
@@ -388,18 +342,15 @@
     });
 
     $("#lnkHowItWorks").click(function() {
-      scrollTo('howItWorks');
-      //alert("howItWorks");
+      scrollTo('howItWorks');      
     });
 
     $("#lnkTenseMaster").click(function() {
-      scrollTo('cTenseMaster');
-      //alert("cTenseMaster")
+      scrollTo('cTenseMaster');      
     });
 
     $("#lnkReflex").click(function() {
-      scrollTo('reflexVideoGame');
-      //alert("reflexVideoGame");
+      scrollTo('reflexVideoGame');      
     });
 
     $( '#login' ).click(function(){
