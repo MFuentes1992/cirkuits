@@ -211,9 +211,7 @@
                 I accept terms and conditions.
               </label>
             </div>
-
             <br>
-
           </form>
         </div>
         <div id="btn-register">
@@ -278,46 +276,6 @@
 
   </div>
   <script type="text/javascript">
-    var commonResponsive = swidth => {
-        $('.separator').css('visibility', 'hidden');
-        
-    }
-
-   var tabletResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $("#logoContainer > a").css('margin-left','0%');
-    }
-    var mobileResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('.img_logo').css('width', '200');
-      $('.img_logo').css('height', '80');
-      $('#logoContainer').removeClass('col-md-8');
-      $("#logoContainer > a").css('margin-left','0%');      
-      $('#contactoFooter').css('width', '100%');
-    }
-
-    var responsiveEngine = () => {
-      var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
-      /** /////////////// RESPONSIVE ////////////// */
-
-      /**//////////////// TABLET (800 - 425) ////////// */
-      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
-        tabletResponsive(SCREEN_WIDTH);
-      }
-      /**//////////////// MOBILE (425 - 325) ////////// */
-      if(SCREEN_WIDTH <= 425){
-        mobileResponsive(SCREEN_WIDTH);
-      }
-      if(SCREEN_WIDTH >= 1404 && SCREEN_WIDTH < 1900){
-        $("#logoContainer > a").css('margin-left','7%');
-      } 
-      if(SCREEN_WIDTH >= 1900){
-        $("#logoContainer > a").css('margin-left','15%');
-      } 
-    }
-
-
     $(document).ready( function(){
       $('#reguser_form').validationEngine();
       $('#birthDate').datepicker({

@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid bg-black">
+  <div class="main-container bg-black">
     <div class="row">
       <!-- Video row -->
       <div class="video-container">
@@ -40,11 +40,11 @@
         </div>
       </div>
     </div>  
-    <!-- /////// About Us ////// -->      
-      <div id="about-title">
-        <h1>ABOUT</h1>
-      </div>
       <div class="row">
+        <!-- /////// About Us ////// -->      
+        <div id="about-title">
+          <h1>ABOUT</h1>
+        </div>
         <div>        
           <div class="text-about">                                
             <div class="two-col-container" id="twoColContainer">

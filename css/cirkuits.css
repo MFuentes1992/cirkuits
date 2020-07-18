@@ -135,6 +135,10 @@ h1, h2, h3 {
   color: #f2eee5;
   font-family: 'corbel bold';
 }
+.main-container{
+  position: relative;
+  width: 100%;
+}
 .press-start{
   font-family: 'PressStart';
   font-size: 32pt;
@@ -321,14 +325,18 @@ h1, h2, h3 {
   font-family: 'corbel';
 }
 #about-title{
+  position: relative;
   width: 100%;
   text-align: justify;
-  font-family: 'corbel bold';
+  font-family: 'corbel bold';  
   height: 200px;
   padding-top: 50px;
   font-size: 18pt;
-  padding-left: 4%;
-  margin-bottom: 2%;  
+  padding-left: 5%;
+  margin-bottom: 2%;
+  background-image: url("../img/bg/bg_about.png"); 
+  background-position: 5%; 
+  background-size: cover;   
 }
 #cloud-title{
   width: 100%;
@@ -342,7 +350,7 @@ h1, h2, h3 {
 #contact-title{
   width: 100%;
   text-align: justify;
-  color: #000;
+  color: #343A40;
   font-family: 'corbel bold';
   font-size: 18pt;
   background-repeat: no-repeat;
@@ -352,6 +360,7 @@ h1, h2, h3 {
 }
 #about-title > h1{
   font-size: 3em;
+  color: #343A40;
 }
 #cloud-title > h1 {
   font-size: 1em;
@@ -359,10 +368,10 @@ h1, h2, h3 {
 #contact-title > h1{
   font-size: 3em;  
   margin-top: 60px;
-  color: #000;
+  color: #343A40;
 }
 #contact-title > h3{
-  color: #000;
+  color: #343A40;
 }
 #contact-button{
   box-sizing: border-box;
@@ -919,8 +928,28 @@ video {
   {
     font-family: 'Comfortaa', cursive;
   }
+  #about-title {
+    width: 100%;
+    text-align: justify;
+    font-family: 'corbel bold';
+    height: fit-content;
+    padding-top: 50px;
+    font-size: 18pt;
+    padding-left: 10%;
+    margin-bottom: 0%;    
+  }
+  #cloud-title > h1{
+    font-size: 0.8em;
+    padding-left: 2%;    
+  }
   #contact-title{
-    height: 400px;
+    height: fit-content;
+  }
+  #contact-title > h1 {
+    font-size: 1.5em;
+  }
+  #contact-title > h3 {
+    font-size: 1em;
   }
   #product-container{
     position: relative;
@@ -1058,10 +1087,6 @@ video {
     padding-left: 50px;
     padding-right: 50px;
     margin-top: 5%;
-  }
-  .container-fluid{
-    padding-right: 0px !important;
-    padding-left: 0px !important;
   }
   #howitworks-container{
     position: relative;
