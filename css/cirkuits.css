@@ -124,6 +124,22 @@
     top: 50px
   }
 }
+@keyframes AnimateMenu {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 350px;
+  }
+}
+@keyframes AnimateMenuBackwards {
+  from {
+    height: 350px;
+  }
+  to {
+    height: 0px;
+  }
+}
 body
 {
   font-family: 'corbel';
@@ -134,6 +150,80 @@ body
 h1, h2, h3 {
   color: #f2eee5;
   font-family: 'corbel bold';
+}
+form {
+  color: #343A40;
+}
+#btn-menu{
+  position: relative;
+  color: #FFF;  
+  font-size: 18pt;
+}
+#btn-menu:hover{
+  color: #000;
+}
+#btn-menu{
+  position: relative;
+  left: 50px;
+}
+.AnimateMenu{
+  animation: AnimateMenu 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+.AnimateMenuBackwards{
+  animation: AnimateMenuBackwards 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+#menu-dropdown{
+  position: absolute;
+  width: 20%;
+  background-color: rgb(0,0,0,0.9);  
+  height: 0px;  
+  overflow-y: hidden;
+  top: 120px;
+  left: 60px;
+  z-index: 10002;
+}
+#menu-dropdown > div > h5{
+  display: block;
+  position: relative;
+  width: 100%;  
+  height: 50px;
+}
+#menu-dropdown > div > h5 > a{
+  position: relative;
+  width: 100%;
+  display: block;  
+  height: 50px;
+  padding-left: 20px;
+  padding-top: 10px;
+  font-weight: 400;
+  text-align: justify;
+}
+#menu-dropdown > div > h5 > a:hover{
+  position: relative;
+  width: 100%;
+  display: block;  
+  height: 50px;
+  background-color: #FFF;
+  color: #000 !important;  
+  transition: 0.3s ease-out;
+  padding-left: 20px;
+  text-align: justify;
+}
+#signin-link{
+  position: relative;
+  color: #FFF;
+  font-size: 18pt;
+  margin-right: 50px;
+}
+#signin-link:hover{
+text-decoration: none;
+}
+#how-works-container{
+  color: #FFF;
+  font-size: 3em;
+  height: 200px;
 }
 .main-container{
   position: relative;
@@ -375,7 +465,7 @@ h1, h2, h3 {
   color: #343A40;
 }
 #cloud-title > h1 {
-  font-size: 1em;
+  font-size: 1.3em;
 }
 #contact-title > h1{
   font-size: 3em;  

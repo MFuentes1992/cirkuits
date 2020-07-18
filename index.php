@@ -15,16 +15,18 @@
   <script src="js/dist/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <nav class="navbar bg-dark">
+    <button class="btn btn-outline-light" type="button" id="btn-menu">
+      <i class="fas fa-bars"></i>
     </button>
     <img class="img_logo" src="img/bw_logo.png" alt="cirkuits logo"/>
-    <button class="btn btn-lg btn-outline-secondary my-2 my-sm-0 label" id="login" type="submit" style="color:#FFF !important; border-color:#FFF !important;">Sign in</button>
+    <a href="signin/" id="signin-link">Sign in &nbsp;<i class="fas fa-sign-in-alt"></i></a> 
   </nav>
-  <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark" style="padding-left: 1.5rem">
+  <div id="menu-dropdown">
+    <div>
       <h5 class="text-white label"><a class="text-white label" href="#about-title">About</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="#how-works-container">How it works</a></h5>
+      <h5 class="text-white label"><a class="text-white label" href="#cloud-title">Programs and plans</a></h5>
       <h5 class="text-white label"><a class="text-white label" href="#contact-title">Contact</a></h5>
       <h5 class="text-white label"><a class="text-white label" href="signin/">Sign in</a></h5>
       <h5 class="text-white label"><a class="text-white label" href="signup/">Sign up</a></h5>
@@ -82,7 +84,8 @@
                 </p>
               </div>              
             </div>
-            <div id="howitworks-container">
+            <h1 id="how-works-container">How it works</h1>
+            <div id="howitworks-container">              
               <div class="step">
                 <div class="arrow-step">
                   <h1>1</h1>
@@ -297,6 +300,18 @@
         $('#border-below-3').addClass("border-animation-back");
         $('#hidden-desc-3').addClass("animate-product-text-back");
         $('#hidden-desc-3').removeClass("animate-product-text");
+      });
+      let menuStart = false;
+      $('#btn-menu').click(function(){
+          if(!menuStart){
+            $('#menu-dropdown').removeClass("AnimateMenuBackwards");
+            $('#menu-dropdown').addClass("AnimateMenu");
+            menuStart = true;
+          }else{
+            $('#menu-dropdown').removeClass("AnimateMenu");
+            $('#menu-dropdown').addClass("AnimateMenuBackwards");
+            menuStart = false;
+          }
       });
     });
     var mybutton = document.getElementById("myBtn");
