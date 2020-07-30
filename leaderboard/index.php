@@ -24,18 +24,58 @@
           $resultVideogame = mysqli_fetch_assoc($rawVideogame);
           $videogameName = $resultVideogame["nombre"]; 
 
-          $arrayLeaderboard = array();
-          $strQueryHScore = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
+          $arrayTierS = array();
+          $arrayTierA = array();
+          $arrayTierB = array();
+          $arrayTierC = array();
+          //----------------------------------- Tier S
+          $strQueryTierSupper = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
             INNER JOIN videogame_level 
             ON level_progress.id_videogame_level = videogame_level.id_videogame_level
             INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
-            WHERE id_videogame = %s AND id_level = %s ORDER BY high_score DESC LIMIT 10;",
+            WHERE id_videogame = %s AND id_level = %s AND high_score > 120 ORDER BY high_score DESC LIMIT 10;",
             GetSQLValueString($conexion, $_GET["game"], "int" ),
             GetSQLValueString($conexion, $_GET["level"], "int"));
-          $rawLeaderboard = mysqli_query($conexion, $strQueryHScore) or die(mysqli_error($conexion));
+          $rawLeaderboard = mysqli_query($conexion, $strQueryTierSupper) or die(mysqli_error($conexion));
           while($row = mysqli_fetch_assoc($rawLeaderboard)){
-            array_push($arrayLeaderboard, $row);
-          }          
+            array_push($arrayTierS, $row);
+          }  
+          //----------------------------------- Tier A 
+          $strQueryTierA = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
+            INNER JOIN videogame_level 
+            ON level_progress.id_videogame_level = videogame_level.id_videogame_level
+            INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
+            WHERE id_videogame = %s AND id_level = %s AND high_score > 70 AND high_score < 100 ORDER BY high_score DESC LIMIT 10;",
+            GetSQLValueString($conexion, $_GET["game"], "int" ),
+            GetSQLValueString($conexion, $_GET["level"], "int"));
+          $rawLeaderboard = mysqli_query($conexion, $strQueryTierA) or die(mysqli_error($conexion));
+          while($row = mysqli_fetch_assoc($rawLeaderboard)){
+            array_push($arrayTierA, $row);
+          }  
+          //--------------------------------- Tier B    
+          $strQueryTierB = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
+            INNER JOIN videogame_level 
+            ON level_progress.id_videogame_level = videogame_level.id_videogame_level
+            INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
+            WHERE id_videogame = %s AND id_level = %s AND high_score > 50 AND high_score < 70 ORDER BY high_score DESC LIMIT 10;",
+            GetSQLValueString($conexion, $_GET["game"], "int" ),
+            GetSQLValueString($conexion, $_GET["level"], "int"));
+          $rawLeaderboard = mysqli_query($conexion, $strQueryTierB) or die(mysqli_error($conexion));
+          while($row = mysqli_fetch_assoc($rawLeaderboard)){
+            array_push($arrayTierB, $row);
+          } 
+          //------------------------------- Tier C  
+          $strQueryTierC = sprintf("SELECT high_score, nombre_usuario, avatar_usuario FROM level_progress 
+            INNER JOIN videogame_level 
+            ON level_progress.id_videogame_level = videogame_level.id_videogame_level
+            INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
+            WHERE id_videogame = %s AND id_level = %s AND high_score > 0 AND high_score < 50 ORDER BY high_score DESC LIMIT 10;",
+            GetSQLValueString($conexion, $_GET["game"], "int" ),
+            GetSQLValueString($conexion, $_GET["level"], "int"));
+          $rawLeaderboard = mysqli_query($conexion, $strQueryTierC) or die(mysqli_error($conexion));
+          while($row = mysqli_fetch_assoc($rawLeaderboard)){
+            array_push($arrayTierC, $row);
+          } 
         }else{
           header("location:".$url."videogames");
         }
@@ -129,44 +169,90 @@
     <br>
     <div class="tierboard-container">
         <div class="tier">
-          <div class="tier-head">
+          <div class="tier-head gradient-orange">
             <h1>S Tier</h1>
           </div>
-          <div class="tier-body"></div>
+          <div class="tier-body">
+            <?php foreach($arrayTierS as $person){ ?>
+              <div class="leaderboard-item">
+                <div class="item-picture">
+                  <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
+                </div>
+                <div class="item-data">
+                  <div class="item-name">
+                    <?= $person["nombre_usuario"] ?>
+                  </div>
+                  <div class="item-hscore">
+                    <?=$person["high_score"]?>
+                  </div>
+                </div>
+              </div>
+            <?php }?>
+          </div>
         </div>
         <div class="tier">
-          <div class="tier-head">
+          <div class="tier-head gradient-yellow">
             <h1>A Tier</h1>
           </div>
-          <div class="tier-body"></div>
+          <div class="tier-body">
+            <?php foreach($arrayTierA as $person){ ?>
+              <div class="leaderboard-item">
+                <div class="item-picture">
+                  <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
+                </div>
+                <div class="item-data">
+                  <div class="item-name">
+                    <?= $person["nombre_usuario"] ?>
+                  </div>
+                  <div class="item-hscore">
+                    <?=$person["high_score"]?>
+                  </div>
+                </div>
+              </div>
+            <?php }?>
+          </div>
         </div>
         <div class="tier">
-          <div class="tier-head">
+          <div class="tier-head gradient-green">
             <h1>B Tier</h1>
           </div>
-          <div class="tier-body"></div>
+          <div class="tier-body">
+            <?php foreach($arrayTierB as $person){ ?>
+              <div class="leaderboard-item">
+                <div class="item-picture">
+                  <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
+                </div>
+                <div class="item-data">
+                  <div class="item-name">
+                    <?= $person["nombre_usuario"] ?>
+                  </div>
+                  <div class="item-hscore">
+                    <?=$person["high_score"]?>
+                  </div>
+                </div>
+              </div>
+            <?php }?>
+          </div>
         </div>
         <div class="tier">
-          <div class="tier-head">
+          <div class="tier-head gradient-blue">
             <h1>C Tier</h1>
           </div>
-          <div class="tier-body"></div>
-        </div>
-        <!--<?php foreach($arrayLeaderboard as $person){ ?>
-        <div class="leaderboard-item">
-          <div class="item-picture">
-            <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
+          <div class="tier-body">
+            <?php foreach($arrayTierC as $person){ ?>
+              <div class="leaderboard-item">
+                <div class="item-picture">
+                  <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
+                </div>
+                <div class="item-data">
+                  <div class="item-name">
+                   <strong><?= $person["nombre_usuario"] ?></strong>
+                  </div>
+                </div>
+              </div>
+            <?php }?>
           </div>
-          <div class="item-data">
-            <div class="item-name">
-              <?= $person["nombre_usuario"] ?>
-            </div>
-            <div class="item-hscore">
-              <?=$person["high_score"]?>
-            </div>
-          </div>
         </div>
-        <?php }?>-->
     </div>
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>

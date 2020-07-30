@@ -50,7 +50,7 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     select * from cat_videogames;
     select * from cat_levels;
     select * from videogame_level where id_usuario = 1 and id_videogame = 1;
-    select * from level_progress where id_videogame_level = 7;
+    select * from level_progress where id_videogame_level = 1;
     select count(*) as total from level_progress where id_videogame_level = 8;
     desc videogame_level;
     desc level_progress;
@@ -72,7 +72,7 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
 		INNER JOIN videogame_level 
 			ON level_progress.id_videogame_level = videogame_level.id_videogame_level
             INNER JOIN usuarios ON videogame_level.id_usuario = usuarios.id_usuario
-            WHERE id_videogame = 1 AND id_level = 1 ORDER BY high_score DESC LIMIT 1;
+            WHERE id_videogame = 1 AND id_level = 1 AND high_score > 100 ORDER BY high_score DESC LIMIT 1;
     ################## Get the Score and High Score from table #########################
     
     
@@ -84,4 +84,4 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     INSERT INTO level_progress (id_videogame_level, score, high_score, estrellas) VALUES (1, 30, 30, 3);
     
 INSERT INTO usuarios (nombre_usuario, apellido_usuario, alter_usuario, password_usuario,
-      email_usuario, nacimiento_usuario, estatus_usuario, isAdmin, tel_usuario, cel_usuario, fecha_registro, fecha_actualizacion, avatar_usuario)  VALUES ('Marco','Fuentes','mfuentes','des2tramp2dos2','markfuentes1992@hotmail.com','2015-04-02',1,1,'1777340','7775006083',NOW(), NOW(), 'creator')
+      email_usuario, nacimiento_usuario, estatus_usuario, isAdmin, tel_usuario, cel_usuario, fecha_registro, fecha_actualizacion, avatar_usuario)  VALUES ('Marco','Fuentes','mfuentes','des2tramp2dos2','markfuentes2991@gmail.com','2015-04-02',1,1,'1777340','7775006083',NOW(), NOW(), 'creator')
