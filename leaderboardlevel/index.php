@@ -76,7 +76,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+          <a href="<?=$url;?>dashboard" style="margin-left: 60%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo" /></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -116,87 +116,26 @@
         </div>
       </div>
     </div>
-  <div class="container-fluid leaderboard-section-container">
+  <div class="leaderboard-section-container">
     <br>
-    <h1 class="leaderboard-title">Leaderboard:&nbsp;Choose a level</h1>    
-    <br>    
-    <?php foreach($levelGameName as $levelName) {?>
+    <h1 class="leaderboard-title">Tierboard:&nbsp;Choose a level</h1>    
+    <br> 
     <div class="leaderboard-container">
-        <div class="leaderboard-item-level" onClick='gotoLeaderboard(<?=$levelName["id_level"]?>)'>
-            <h3><?=$levelName["nombre"]?></h3>
-            <input type="hidden" name="game" id="game" value="<?=$_game?>">
-        </div>
-    </div>
-    <?php } ?>
+      <?php foreach($levelGameName as $levelName) {?>
+      <div class="leaderboard-level-container">
+          <div class="leaderboard-level-item" onClick='gotoLeaderboard(<?=$levelName["id_level"]?>)'>
+              <h3><?=$levelName["nombre"]?></h3>
+              <input type="hidden" name="game" id="game" value="<?=$_game?>">
+          </div>
+      </div>
+      <?php } ?>
+    </div>   
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>
   <script type="text/javascript">    
       $(document).ready( function(){
         $('#logModal').modal('show');
-        responsiveEngine();
       });
-
-    var commonResponsive = swidth => {
-          $('.separator').css('visibility', 'hidden');    
-    }
-
-    var tabletResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('#toggle').removeClass('col-md-1');
-      $('#logoContainer').addClass('col-md-6');
-      $('#logoContainer').removeClass('col-md-4');
-      $('.img_logo').css('width', '256');
-      $('#avatarContainer').removeClass('col-md-3');
-      $('#avatarContainer').addClass('col-md-4');
-    }
-    var mobileResponsive = (swidth) =>{
-        commonResponsive(swidth);
-        $('.img_logo').css('width', '200');
-        $('.img_logo').css('height', '80');
-        $('#logoContainer').removeClass('col-md-6');
-        $("#logoContainer > a").css('margin-left','0%');
-        $('.contenido-dashboard').css('height', 'fit-content');
-        $('#toggle').removeClass('col-md-1');
-        $('#avatarContainer').remove();
-        $('#supportFooter').css('width','100%');
-        $('#contactoFooter').css('width', '100%');
-        $('#contactoFooter').css('margin-left','10%');
-        $('#supportFooter').css('text-align','justify');
-        $('#supportFooter').css('margin-left','10%');
-        $('#supportFooter').css('margin-top','5%');
-        $('#resavatar').css('visibility','visible');
-        $('#reslogout').css('visibility','visible');                                     
-        $('#menu').css('text-align', 'justify');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
-        $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
-        $('#resavatar').removeClass('hidden');
-        $('#reslogout').removeClass('hidden');
-        $('.text-center > h1').css('font-size', '1.5em');
-        $('.text-center > h1 > span').css('font-size', '1em');        
-      }
-      var responsiveEngine = () => {
-      var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
-      /** /////////////// RESPONSIVE ////////////// */
-      if(SCREEN_WIDTH > 1024){
-        $("#reslogout > a").remove();
-        $("#resavatar > a").remove();
-      }
-      if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','45%');
-      } else if(SCREEN_WIDTH >= 1404){
-        $("#logoContainer > a").css('margin-left','54%');
-      }      
-      /**//////////////// TABLET (800 - 425) ////////// */
-      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
-        tabletResponsive(SCREEN_WIDTH);
-      }
-      /**//////////////// MOBILE (425 - 325) ////////// */
-      if(SCREEN_WIDTH <= 425){
-        mobileResponsive(SCREEN_WIDTH);
-      }
-    }   
-
     const gotoLeaderboard = id_level => {
       let game = $('#game').val();
       window.location.replace(`http://localhost/Cirkuits/leaderboard/?game=${game}&level=${id_level}`);

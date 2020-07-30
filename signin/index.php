@@ -52,7 +52,39 @@ else {
         $logError = 1;
       }
     }else {
-      $logError = 1;
+      $strQuery = "SELECT nombre_usuario FROM usuarios WHERE alter_usuario = '".$email."'";
+      $result   = mysqli_query($GLOBALS["conexion"], $strQuery) or die(mysqli_error($GLOBALS["conexion"]));
+      if(mysqli_num_rows($result) > 0){
+        $strQuery = "SELECT * FROM usuarios WHERE password_usuario = '".$password."'";
+        $strQuery .= " and alter_usuario ='".$email."'";
+        $result = mysqli_query($GLOBALS["conexion"], $strQuery) or die(mysqli_error($GLOBALS["conexion"]));
+        if(mysqli_num_rows($result) > 0){
+          $row = mysqli_fetch_assoc($result);
+          $_SESSION["user"]       = $row;
+          $idUsuario = $_SESSION["user"]["id_usuario"];
+  
+          $strSpeechRecognition = sprintf("SELECT count(*) as levels FROM videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+          $idUsuario, 0, 1);
+          $strTheseThose = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+          $idUsuario, 0, 2);
+          $strToBe = sprintf("SELECT count(*) as levels FROM  videogame_level WHERE id_usuario = %s AND isLocked = %s AND id_videogame = %s",
+          $idUsuario, 0, 3);
+  
+          $resultSpeechRecognition = mysqli_query($conexion, $strSpeechRecognition)or die(mysqli_error($conexion));
+          $resultTheseThose = mysqli_query($conexion, $strTheseThose)or die(mysqli_error($conexion));
+          $resultToBe = mysqli_query($conexion, $strToBe)or die(mysqli_error($conexion));
+  
+          $_SESSION["SpeechRecognitionLevels"] = mysqli_fetch_assoc($resultSpeechRecognition);
+          $_SESSION["TheseThoseLevels"] = mysqli_fetch_assoc($resultTheseThose);
+          $_SESSION["ToBeLevels"] = mysqli_fetch_assoc($resultToBe);
+  
+          header("Location:".$url."dashboard");
+        }else{
+          $logError = 1;
+        }
+      }else{
+        $logError = 1;
+      }
     }
   }
 }
@@ -125,10 +157,10 @@ else {
                     <form action="" method="post" id="login_form">
                       <div class="form form-group">
                         <input type="email" class="form-control" name="email" id="email"
-                        data-validation-engine="validate[required, custom[email]]"
+                        data-validation-engine="validate[required]"
                         data-errormessage-value-missing="email is required"
                         data-errormessage-custom-error="Invalid, let me give you a hint: someone@nowhere.com"
-                        placeholder="e-mail" />
+                        placeholder="e-mail or Username" />
                       </div>
                       <div class="form form-group">
                         <input type="password" class="form-control" name="password" id="passowrd"

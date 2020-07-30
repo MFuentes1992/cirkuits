@@ -83,7 +83,7 @@
           </button>
         </div>
         <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/horizontal_alt.png" alt="cirkuits logo" width="240" height="100"/></a>
+          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo"/></a>
         </div>
         <div class="col-md-3" id="avatarContainer">
           <div class="line" style="margin-top:20px;">
@@ -125,10 +125,34 @@
     </div>
   <div class="container-fluid leaderboard-section-container">
     <br>
-    <h1 class="leaderboard-title">Leaderboard:&nbsp;<?=$videogameName?></h1>    
+    <h1 class="leaderboard-title">Tierboard:&nbsp;<?=$videogameName?></h1>    
     <br>
-    <div class="leaderboard-container">
-        <?php foreach($arrayLeaderboard as $person){ ?>
+    <div class="tierboard-container">
+        <div class="tier">
+          <div class="tier-head">
+            <h1>S Tier</h1>
+          </div>
+          <div class="tier-body"></div>
+        </div>
+        <div class="tier">
+          <div class="tier-head">
+            <h1>A Tier</h1>
+          </div>
+          <div class="tier-body"></div>
+        </div>
+        <div class="tier">
+          <div class="tier-head">
+            <h1>B Tier</h1>
+          </div>
+          <div class="tier-body"></div>
+        </div>
+        <div class="tier">
+          <div class="tier-head">
+            <h1>C Tier</h1>
+          </div>
+          <div class="tier-body"></div>
+        </div>
+        <!--<?php foreach($arrayLeaderboard as $person){ ?>
         <div class="leaderboard-item">
           <div class="item-picture">
             <img src="<?=$url;?>img/avatars/<?= $person["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="128px">
@@ -142,7 +166,7 @@
             </div>
           </div>
         </div>
-        <?php }?>
+        <?php }?>-->
     </div>
   </div>
   <script src="../js/games/three.js" charset="utf-8"></script>
