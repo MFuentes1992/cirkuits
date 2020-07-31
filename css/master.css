@@ -1,6 +1,4 @@
-p {
-  color: #808080 !important;
-}
+
 @font-face{
   font-family: 'Jokey';
   src: url('../fonts/Jokey/JockeyOne-Regular.ttf');
@@ -12,6 +10,100 @@ p {
 @font-face{
   font-family: 'Play';
   src: url('../fonts/Play/Play-Regular.ttf');
+}
+a{
+  color: #FFF;
+}
+a:hover{
+  text-decoration: none;
+  color: #FFF;
+}
+.container-fluid-dashboard{
+ position: relative;
+ width: 80%; 
+ margin-left: 20%;
+}
+.aside-menu{
+  position: fixed;
+  width: 20%;
+  background-color: #000;
+  height: 100%;
+}
+#aside-logo-container{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 10%;
+}
+#menu-container{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+#user-avatar-container{
+  position: relative;
+  width: 100%;
+  text-align: justify;
+  color: #FFF;
+  display: flex;
+  font-size: 18pt;
+  padding-left: 25px;
+  margin-bottom: 5%;
+}
+#avatar-usuario{
+  position: relative;
+  width: 60px;
+}
+#user-name{
+  position: relative;
+  padding-top: 10px;
+  margin-left: 40px;
+}
+.menu-item{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.c-badge-primary{
+  display: block;
+  position: relative;
+  width: 100px;
+  border: 1px solid;
+  border-image-source: linear-gradient(45deg, rgba(2,220,242,1) 0%, rgba(0,142,255,1) 100%);
+  border-image-slice: 1;
+  height: 50px;
+  padding-top: 10px;
+  color: #FFF;
+}
+.c-badge-red{
+  display: block;
+  position: relative;
+  width: 100px;
+  border: 1px solid;
+  border-image-source: linear-gradient(45deg, rgba(252,101,7,1) 0%, rgba(250,9,9,1) 100%);
+  border-image-slice: 1;
+  height: 50px;
+  padding-top: 10px;
+  color: #FFF;
+}
+.margin-5{
+  margin: 5px;
+}
+#dash-menu{
+  position: relative;
+  width: 100%;
+  display: flex;
+  background-color: blueviolet;
+}
+.menu-item-hex{
+  position: relative;
+  flex-grow: 1;
+  background-color: aqua;
+  background-image: url("../img/dashboard-bg.png");
+  justify-content: center;
+  text-align: center;
 }
 .contenido
 {
