@@ -160,7 +160,7 @@ else {
                         data-validation-engine="validate[required]"
                         data-errormessage-value-missing="email is required"
                         data-errormessage-custom-error="Invalid, let me give you a hint: someone@nowhere.com"
-                        placeholder="e-mail or Username" />
+                        placeholder="e-mail or username" />
                       </div>
                       <div class="form form-group">
                         <input type="password" class="form-control" name="password" id="passowrd"

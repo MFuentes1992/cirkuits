@@ -231,7 +231,7 @@
 
       //----------------------------------------------------------------- FOG background
 
-      var setcolor = 0xF02050;
+      var setcolor = 0x000080;
       scene.background = new THREE.Color(setcolor);
       scene.fog = new THREE.Fog(setcolor, 10, 16);      
       //----------------------------------------------------------------- RANDOM Function

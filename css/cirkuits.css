@@ -211,6 +211,9 @@ form {
   padding-left: 20px;
   text-align: justify;
 }
+.img_logo{
+  margin-left: 5%;
+}
 #signin-link{
   position: relative;
   color: #FFF;
