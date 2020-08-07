@@ -61,9 +61,9 @@
           <p id="user-name"><strong><?= $_SESSION["user"]["nombre_usuario"] ?></strong>&nbsp;<strong><?= $_SESSION["user"]["apellido_usuario"] ?></strong></p>
         </div>
         <div class="menu-item">
-            <a href="" class="c-badge-primary margin-5">Setings</a>
-            <a href="" class="c-badge-primary margin-5">Help</a>
-            <a href="" class="c-badge-red margin-5">logout</a>
+            <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Setings</a>
+            <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Help</a>
+            <a href="<?=$url;?>exit.php" class="c-badge-red margin-5">logout</a>
         </div>
       </div>
     </div>
@@ -99,26 +99,26 @@
             <div id="dash-menu">
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="#">
-                  <span class="dash-ico" style="font-size: 3em;"><i class="fas fa-film"></i></span> <br>
-                  <span class="">Videos</span>
+                  <span class="dash-ico" ><i class="fas fa-film"></i></span> <br>
+                  <span class="white">Videos</span>
                 </a>
               </div>
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
-                  <span class="dash-ico" style="font-size: 3em;"><i class="fas fa-gamepad"></i></span> <br>
-                  <span class="">Videogames</span>
+                  <span class="dash-ico" ><i class="fas fa-gamepad"></i></span> <br>
+                  <span class="white">Videogames</span>
                 </a>
               </div>
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="#">
-                  <span class="dash-ico" style="font-size: 3em;"><i class="far fa-file-pdf"></i></span> <br>
-                  <span class="">Materials</span>
+                  <span class="dash-ico" ><i class="far fa-file-pdf"></i></span> <br>
+                  <span class="white">Materials</span>
                 </a>
               </div>
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="#">
-                  <span class="dash-ico" style="font-size: 3em;"><i class="far fa-comments"></i></span> <br>
-                  <span class="">support</span>
+                  <span class="dash-ico" ><i class="far fa-comments"></i></span> <br>
+                  <span class="white">support</span>
                 </a>
               </div>
             </div>
