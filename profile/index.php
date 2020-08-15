@@ -59,55 +59,42 @@ if(isset($_SESSION["user"]))
   <script src="<?=$url;?>js/jquery.validationEngine.js"></script>
  </head>
  <body>
-    <div class="pos-f-t">
-      <nav class="navbar sticky-top navbar-dark bg-dark">
-        <div class="col-md-1" id="toggle">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+   <div class="aside-menu">
+      <div id="aside-logo-container">
+        <img src="../img/bw_logo.png" alt="Cirkuits logo">
+      </div>
+      <div id="menu-container">
+        <div id="user-avatar-container">
+          <img id="avatar-usuario" src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="<?= $_SESSION["user"]["avatar_usuario"] ?>" />
+          <p id="user-name"><strong><?= $_SESSION["user"]["nombre_usuario"] ?></strong>&nbsp;<strong><?= $_SESSION["user"]["apellido_usuario"] ?></strong></p>
         </div>
-        <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo"/></a>
+        <div class="menu-item">
+            <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Setings</a>
+            <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Help</a>
+            <a href="<?=$url;?>exit.php" class="c-badge-red margin-5">logout</a>
         </div>
-        <div class="col-md-3" id="avatarContainer">
-          <div class="line" style="margin-top:20px;">
-            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
-          </div>
-          <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-          </div>
-        </div>
-      </nav>
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark" style="padding-left:1.5rem;">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>dashboard"><i class="fas fa-window-maximize"></i>&nbsp;Dashboard</a>
+        <div class="menu-list-container">
+          <ul class="menu-list">
+            <li class="menu-list-item">
+              <a href="../dashboard"><i class="fas fa-home"></i>&nbsp;Dashboard</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>payment/"><i class="far fa-credit-card"></i>&nbsp;Payment and Subscription</a>
+            <li class="menu-list-item">
+              <a href="../videos"><i class="fas fa-film"></i>&nbsp;Videos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>videos/"><i class="fas fa-film"></i>&nbsp;Videos</a>
+            <li class="menu-list-item">
+              <a href="../videogames"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>videogames/"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
+            <li class="menu-list-item">
+              <a href="../materials"><i class="fas fa-file-pdf"></i>&nbsp;Materials</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>materials/"><i class="far fa-file-pdf"></i>&nbsp;Materials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>support/"><i class="far fa-comments"></i>&nbsp;support</a>
-            </li>
-            <li id="resavatar" class="hidden">              
-            </li>
-            <li id='reslogout' class="hidden">              
+            <li class="menu-list-item">
+              <a href="../support"><i class="fas fa-info-circle"></i>&nbsp;Support</a>
             </li>
           </ul>
         </div>
       </div>
-   </div>
-   <div class="container-fluid">
+   </div>   
+   <div class="container-fluid-profile">
      <div class="row">
        <div class="contenido">
          <br>
@@ -216,81 +203,6 @@ if(isset($_SESSION["user"]))
      </div>
    </div>
    <script>
-      $(document).ready( function(){
-        $('#logModal').modal('show');
-        responsiveEngine();
-        console.log($(window).width());
-      });
-
-    var commonResponsive = swidth => {
-          $('.separator').css('visibility', 'hidden');    
-    }
-
-    var tabletResponsive = (swidth) =>{
-      commonResponsive(swidth);
-      $('#toggle').removeClass('col-md-1');
-      $('#logoContainer').addClass('col-md-6');
-      $('#logoContainer').removeClass('col-md-4');
-      $('.img_logo').css('width', '256');
-      $('#avatarContainer').removeClass('col-md-3');
-      $('#avatarContainer').addClass('col-md-4');
-    }
-    var mobileResponsive = (swidth) =>{
-        commonResponsive(swidth);
-        $('.img_logo').css('width', '200');
-        $('.img_logo').css('height', '80');
-        $('#logoContainer').removeClass('col-md-6');
-        $("#logoContainer > a").css('margin-left','0%');
-        $('#toggle').removeClass('col-md-1');
-        $('.contenido-dashboard').css('height', 'fit-content');
-        $('#avatarContainer').remove();
-        $('#supportFooter').css('width','100%');
-        $('#contactoFooter').css('width', '100%');
-        $('#contactoFooter').css('margin-left','10%');
-        $('#supportFooter').css('text-align','justify');
-        $('#supportFooter').css('margin-left','10%');
-        $('#supportFooter').css('margin-top','5%');
-        $('#resavatar').append('<a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>');
-        $('#reslogout').append('<a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a> ');
-        $('#resavatar').removeClass('hidden');
-        $('#reslogout').removeClass('hidden');
-        $('#menu').css('text-align', 'justify');
-        $('.text-center > h1').css('font-size', '1.5em');
-        $('.text-center > h1 > span').css('font-size', '1em');
-        $('#userExtra > table').remove();
-        $("#responsive-body").removeClass("hide");        
-      }
-      var responsiveEngine = () => {
-      var SCREEN_WIDTH = $(window).width();
-      var SCREEN_HEIGHT = $(window).height();
-      /** /////////////// RESPONSIVE ////////////// */
-      if(SCREEN_WIDTH > 3800){
-        $("#logoContainer > a").css('margin-left','60%');
-      }
-      if(SCREEN_WIDTH > 1800 && SCREEN_WIDTH <= 3800){
-        $("#logoContainer > a").css('margin-left','60%');
-      }
-      if(SCREEN_WIDTH > 1024){
-        $("#reslogout > a").remove();
-        $("#resavatar > a").remove();
-      }
-      if(SCREEN_WIDTH <= 1404){
-        $("#logoContainer > a").css('margin-left','45%');
-      }
-
-      if(SCREEN_WIDTH > 700){
-        $("#responsive-body").addClass("hide"); 
-      }
-
-      /**//////////////// TABLET (800 - 425) ////////// */
-      if(SCREEN_WIDTH <= 800 && SCREEN_WIDTH > 425){
-        tabletResponsive(SCREEN_WIDTH);
-      }
-      /**//////////////// MOBILE (425 - 325) ////////// */
-      if(SCREEN_WIDTH <= 425){
-        mobileResponsive(SCREEN_WIDTH);
-      }
-    }
-    </script>
+   </script>
  </body>
  </html>

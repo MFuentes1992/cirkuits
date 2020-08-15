@@ -114,6 +114,36 @@ p, span, strong, a {
   text-align: center;
   padding-top: 100px;
 }
+.menu-list-container{
+  position: relative;
+  width: 100%;
+  margin-top: 25px;
+}
+.menu-list{
+  position: relative;
+  width: 100%;
+  text-align: justify;
+  list-style-type: none;
+}
+.menu-list-item{
+  margin-bottom: 15px;
+}
+.container-fluid-profile{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+}
+.container-fluid-edit{
+  position: relative;
+  width: 80%;
+  margin-left: 20%; 
+  padding-top: 5%;
+}
+.container-fluid-avatar{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+}
 .dash-ico{
   color: #FFF;
   font-size: 3em;
@@ -141,6 +171,9 @@ p, span, strong, a {
   width: 100%;
   text-align: center;
   font-family: 'corbel';
+}
+#editprofile-title{
+  text-align: center;
 }
 #regLogin
 {
