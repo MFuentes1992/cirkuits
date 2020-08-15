@@ -175,7 +175,7 @@
     <!--/////// Contact ///// -->
       <div id="contact-section">
         <div class="contact" id="contacto-index">               
-          <form>
+          <form onsubmit="return false;">
             <div id="contact-title">
               <h1>Want to enroll?</h1>
               <h3>Send us a message with your questions, we are more than glad to help you in the process.</h3>
@@ -194,13 +194,86 @@
               <label for="ContactProfile">Select your profile</label>
               <select name="profile" id="ContactProfile" class="form-control">
                 <option value="">--Select--</option>
-                <option value="">Student</option>
-                <option value="">Professor</option>
-                <option value="">Business</option>
-                <option value="">Enthusiast</option>
-                <option value="">Language nerd</option>              
+                <option value="Student">Student</option>
+                <option value="Professor">Professor</option>
+                <option value="Business">Business</option>
+                <option value="Enthusiast">Enthusiast</option>
+                <option value="Language nerd">Language nerd</option>              
               </select>
             </div>
+            <br>
+            <p>I want to learn English for (check all that apply) : </p>            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="Work" id="workCBX">
+              <label class="form-check-label" for="workCBX">
+                Work
+              </label>
+              <br>
+              <input class="form-check-input" type="checkbox" value="Studying abroad" id="studyCBX">
+              <label class="form-check-label" for="studyCBX">
+                Studying abroad
+              </label>
+              <br>
+              <input class="form-check-input" type="checkbox" value="Tourism/travel" id="turismCBX">
+              <label class="form-check-label" for="turismCBX">
+                Tourism/travel
+              </label>
+              <br>
+              <input class="form-check-input" type="checkbox" value="University/Post-graduate program" id="universityCBX">
+              <label class="form-check-label" for="universityCBX">
+                University/Post-graduate program
+              </label>
+              <br>
+              <input class="form-check-input" type="checkbox" value="Personal" id="personalCBX">
+              <label class="form-check-label" for="universityCBX">
+                Personal
+              </label>                   
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="ToplearningPriority">Top learning priority</label>
+              <select name="TopLearningPrior" id="ToplearningPriority" class="form-control">
+                <option value="">--Select--</option>
+                <option value="speaking">speaking</option>
+                <option value="reading">reading</option>
+                <option value="comprehension">comprehension</option>
+                <option value="writing">writing</option>
+                <option value="listening">listening comprehension</option>                             
+              </select>
+            </div> 
+            <div class="form-group">
+              <label for="SecondLearningPriority" id="SecondLearningPriorityLbl" class="hidden">Second learning priority</label>
+              <select name="SecondLearningPriority" id="SecondLearningPriority" class="form-control hidden">
+                <option value="">--Select--</option>
+                <option value="speaking">speaking</option>
+                <option value="reading">reading</option>
+                <option value="comprehension">comprehension</option>
+                <option value="writing">writing</option>
+                <option value="listening">listening comprehension</option>                              
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ThirdLearningPriority" id="ThirdLearningPriorityLbl" class="hidden">Third learning priority</label>
+              <select name="ThirdLearningPriority" id="ThirdLearningPriority" class="form-control hidden">
+                <option value="">--Select--</option>
+                <option value="speaking">speaking</option>
+                <option value="reading">reading</option>
+                <option value="comprehension">comprehension</option>
+                <option value="writing">writing</option>
+                <option value="listening">listening comprehension</option>                            
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="FourthLearningPriority" id="FourthLearningPriorityLbl" class="hidden">Fourth learning priority</label>
+              <select name="FourLearningPriority" id="FourthLearningPriority" class="form-control hidden">
+                <option value="">--Select--</option>
+                <option value="speaking">speaking</option>
+                <option value="reading">reading</option>
+                <option value="comprehension">comprehension</option>
+                <option value="writing">writing</option>
+                <option value="listening">listening comprehension</option>                             
+              </select>
+            </div>                
             <br>
             <div class="form-group">
               <label for="ContactMessage">Comments / Doubts</label>
@@ -261,6 +334,7 @@
     </div>
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-circle-up"></i></button>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>   
   <script type="text/javascript">
     var sliderWidth = 0;
     $(document).ready(function(){
@@ -373,6 +447,110 @@
 
     $( '#login' ).click(function(){
       document.location.href="signin/"; 
+    });
+
+    $( '#ToplearningPriority' ).change(function(){      
+      $( '#SecondLearningPriority' ).removeClass("hidden");
+      $( '#SecondLearningPriorityLbl' ).removeClass("hidden");
+    });
+    $( '#SecondLearningPriority' ).change(function(){      
+      $( '#ThirdLearningPriority' ).removeClass("hidden");
+      $( '#ThirdLearningPriorityLbl' ).removeClass("hidden");
+    });
+    $( '#ThirdLearningPriority' ).change(function(){      
+      $( '#FourthLearningPriority' ).removeClass("hidden");
+      $( '#FourthLearningPriorityLbl' ).removeClass("hidden");
+    });
+
+    $( '#contact-button' ).click(function(){
+      let name = $( '#ContactName' ).val();
+      let email = $( '#ContactEmail' ).val();
+      let message = $( '#ContactMessage' ).val();
+      let profile = $( '#ContactProfile' ).val();
+      let work = $( '#workCBX' ).val();
+      let study = $( '#studyCBX' ).val();
+      let tourism = $( '#turismCBX' ).val();
+      let university = $( '#universityCBX' ).val();
+      let personal = $( '#personalCBX' ).val();
+      let topLearningPriority = $( '#ToplearningPriority' ).val();
+      let secondLearningPriority = $( '#SecondLearningPriority' ).val();
+      let thirdLearningPriority = $( '#ThirdLearningPriority' ).val();
+      let fourthLearningPriority = $( '#FourthLearningPriority' ).val();
+      let validation = false;
+      let validationName = false;
+      let validationEmail = false;
+      let validationMessage = false;
+      if ( name === "" ){
+        $( '#ContactName' ).addClass("required-field");
+        $('body, html').animate({ scrollTop: $( '#ContactName' ).offset().top }, 500);
+        validationName = false;
+      }else{
+        $( '#ContactName' ).removeClass("required-failed");
+        $( '#ContactName' ).addClass("required-pass");
+        validationName = true;
+      }
+      if( email === "" ){
+        $( '#ContactEmail' ).addClass("required-field");
+        $('body, html').animate({ scrollTop: $( '#ContactEmail' ).offset().top }, 500); 
+        validationEmail = false;     
+      }else{
+        $( '#ContactEmail' ).removeClass("required-failed");
+        $( '#ContactEmail' ).addClass("required-pass");
+        validationEmail = true;
+      }
+      if ( message === "" ){
+        $( '#ContactMessage' ).addClass("required-field");
+        validationMessage = false;
+      }else{
+        $( '#ContactMessage' ).removeClass("required-failed");
+        $( '#ContactMessage' ).addClass("required-pass");
+        validationMessage = true;
+      }
+      if ( validationName && validationEmail && validationMessage ){
+        validation = true;
+      }
+      ContactData = {
+        Name: name,
+        Email: email,
+        Message: message,
+        Profile: profile,
+        Work: work,
+        Study: study,
+        Tourism: tourism,
+        University: university,
+        Personal: personal,
+        TopLearningPriority: topLearningPriority,
+        SecondLearningPriority: secondLearningPriority,
+        ThirdLearningPriority: thirdLearningPriority,
+        FourthLearningPriority: fourthLearningPriority
+      }
+      if(validation){
+          $.ajax({
+          url: "util/ContactMessage.php",
+          method: "POST",
+          data: ContactData,
+          success: function (res) {    
+            console.log(res);               
+            var obj = JSON.parse(res);
+            if (obj.status == 1){
+              Swal.fire(
+                'Sent.',
+                "We'll reach out to your email address very soon, Thank you!",
+                'success'
+              );
+            }else{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href>Why do I have this issue?</a>'
+              });
+            }
+          }
+        });
+      }
+
+      console.log(ContactData);
     });
 
   </script>

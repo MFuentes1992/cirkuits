@@ -228,6 +228,12 @@ text-decoration: none;
   font-size: 3em;
   height: 200px;
 }
+.required-field{
+  border: 1px solid red;
+}
+.required-pass{
+  border: 1px solid green;
+}
 .main-container{
   position: relative;
   width: 100%;
@@ -555,6 +561,7 @@ text-decoration: none;
 }
 .hidden{
   visibility: hidden;
+  display: none;
 }
 .videogame-body{
   position: relative;
