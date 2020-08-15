@@ -154,6 +154,11 @@ p, span, strong, a {
   width: 80%;
   margin-left: 20%;
 }
+.container-fluid-leaderboard{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+}
 .dash-ico{
   color: #FFF;
   font-size: 3em;

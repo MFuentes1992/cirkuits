@@ -800,8 +800,10 @@ video {
 }
 .leaderboard-section-container{
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin-left: 20%;
   text-align: center;
+  padding-top: 5%;
 }
 .leaderboard-container{
   position: relative;

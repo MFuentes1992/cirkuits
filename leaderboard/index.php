@@ -115,55 +115,42 @@
     <script src="<?=$url;?>js/swiper-5.3.6/package/js/swiper.min.js"></script>
 </head>
 <body class="leaderboard-section-body">
-    <div class="pos-f-t">
-      <nav class="navbar sticky-top navbar-dark bg-dark">
-        <div class="col-md-1" id="toggle">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <div class="col-md-6" id="logoContainer">
-          <a href="<?=$url;?>dashboard" style="margin-left: 45%;"><img class="img_logo" src="<?=$url; ?>img/bw_logo.png" alt="cirkuits logo"/></a>
-        </div>
-        <div class="col-md-3" id="avatarContainer">
-          <div class="line" style="margin-top:20px;">
-            <a class="nav-link" href="<?=$url;?>exit.php"><span class="badge badge-danger">Log out</span></a>    
-          </div>
-          <div class="line">
-            <a class="nav-link" href="<?=$url;?>profile"> <img src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="avatar.png" class="img img-rounded" width="64px" style="top:-10px" /> </a>
-          </div>
-        </div>
-      </nav>    
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark" style="padding-left:1.5rem;">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>dashboard"><i class="fas fa-window-maximize"></i>&nbsp;Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>payment/"><i class="far fa-credit-card"></i>&nbsp;Payment and Subscription</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>videos/"><i class="fas fa-film"></i>&nbsp;Videos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>videogames/"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>materials/"><i class="far fa-file-pdf"></i>&nbsp;Materials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link white" href="<?=$url;?>support/"><i class="far fa-comments"></i>&nbsp;support</a>
-            </li>
-            <li id="resavatar" class="hidden">              
-            </li>
-            <li id='reslogout' class="hidden">              
-            </li>
-          </ul>
-        </div>
+  <div class="aside-menu">
+    <div id="aside-logo-container">
+      <img src="../img/bw_logo.png" alt="Cirkuits logo">
+    </div>
+    <div id="menu-container">
+      <div id="user-avatar-container">
+        <img id="avatar-usuario" src="<?=$url;?>img/avatars/<?= $_SESSION["user"]["avatar_usuario"] ?>.png" alt="<?= $_SESSION["user"]["avatar_usuario"] ?>" />
+        <p id="user-name"><strong><?= $_SESSION["user"]["nombre_usuario"] ?></strong>&nbsp;<strong><?= $_SESSION["user"]["apellido_usuario"] ?></strong></p>
+      </div>
+      <div class="menu-item">
+          <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Setings</a>
+          <a href="<?=$url;?>profile" class="c-badge-primary margin-5">Help</a>
+          <a href="<?=$url;?>exit.php" class="c-badge-red margin-5">logout</a>
+      </div>
+      <div class="menu-list-container">
+        <ul class="menu-list">
+          <li class="menu-list-item">
+            <a href="../dashboard"><i class="fas fa-home"></i>&nbsp;Dashboard</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="../videos"><i class="fas fa-film"></i>&nbsp;Videos</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="../videogames"><i class="fas fa-gamepad"></i>&nbsp;Videogames</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="../materials"><i class="fas fa-file-pdf"></i>&nbsp;Materials</a>
+          </li>
+          <li class="menu-list-item">
+            <a href="../support"><i class="fas fa-info-circle"></i>&nbsp;Support</a>
+          </li>
+        </ul>
       </div>
     </div>
-  <div class="container-fluid leaderboard-section-container">
+  </div>
+  <div class="container-fluid-leaderboard leaderboard-section-container">
     <br>
     <h1 class="leaderboard-title">Tierboard:&nbsp;<?=$videogameName?></h1>    
     <br>
