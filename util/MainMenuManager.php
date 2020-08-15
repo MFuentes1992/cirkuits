@@ -6,14 +6,14 @@
     header("Pragma: no-cache");
     session_start();
     if(isset($_SESSION["user"])) {
-        $queryUsuario = sprintf("select * from videogame_progress vp 
+        /*$queryUsuario = sprintf("select * from videogame_progress vp 
         inner join  leaderboard lb on vp.id_progress = lb.id_progress where vp.id_usuario = %s; ", 
         GetSQLValueString($conexion, $_SESSION["user"]["id_usuario"], "int"));
         $resul = mysqli_query($conexion, $queryUsuario) or die(mysqli_error($conexion));
         if($resul > 0)
         {
             $_SESSION["uprogressv1"] =  mysqli_fetch_assoc($resul);
-        }
+        }*/
         header("Location:".$url."thesethose/level/");
     }
 ?>    

@@ -144,6 +144,16 @@ p, span, strong, a {
   width: 80%;
   margin-left: 20%;
 }
+.container-fluid-speech{
+  position: absolute;
+  width: 80%;
+  margin-left: 20%;
+}
+.container-fluid-thesethose{
+  position: absolute;
+  width: 80%;
+  margin-left: 20%;
+}
 .dash-ico{
   color: #FFF;
   font-size: 3em;
@@ -402,9 +412,9 @@ td{
 @media screen and (min-width: 1600px){
   .super-game-container{
     position: relative;
-    width: 80%;
-    height: 700px;
-    margin: auto;
+    width: 81%;
+    margin-left: 20%;
+    height: 700px;    
     background-color: #343A40;;
   } 
 }
