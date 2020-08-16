@@ -70,7 +70,7 @@
     <div class="container-fluid-dashboard">
       <!-- Modal for displaying message -->
         <?php if($payment == 1) { ?>
-        <div class="modal fade bs-example-modal-sm" id="logModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal fade bs-example-modal-sm" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -98,7 +98,7 @@
           <div class="container-fluid">
             <div id="dash-menu">
               <div class="menu-item-hex">
-                <a class="label txt-color-darkgray link-static" href="#">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videos">
                   <span class="dash-ico" ><i class="fas fa-film"></i></span> <br>
                   <span class="white">Videos</span>
                 </a>
@@ -129,7 +129,7 @@
     </div>
     <script>
       $(document).ready( function(){
-        $('#logModal').modal('show');
+        $('#paymentModal').modal('show');
         console.log($(window).width());
       });
     </script>

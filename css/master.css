@@ -159,6 +159,32 @@ p, span, strong, a {
   width: 80%;
   margin-left: 20%;
 }
+.container-fluid-videos{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+  text-align: center;
+  display: flex;
+  padding-top: 5%;
+}
+.video-wrapper{
+  position: relative;
+  width: 300px;  
+  background-color: #FFF;
+  margin: auto;
+  border-radius: 5px;
+  color: #343a40 !important;
+}
+.video-header{
+  position: relative;  
+}
+.video-body > a{
+  color: #343a40 !important;
+}
+.video-icon{  
+  font-size: 28pt;
+  text-align: center;
+}
 .dash-ico{
   color: #FFF;
   font-size: 3em;
