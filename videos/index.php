@@ -113,7 +113,7 @@ if(isset($_SESSION["user"]))
         <div class="video-wrapper">
             <div class="video-header">
                 <p class="video-icon">
-                    <i class="fas fa-film"></i>
+                    <a href="<?=$url;?>videos/<?=$file?>"><strong><i class="fas fa-film"></i></strong></a>
                 </p>              
             </div>
             <div class="video-body">

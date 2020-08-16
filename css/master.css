@@ -172,11 +172,10 @@ p, span, strong, a {
   width: 300px;  
   background-color: #FFF;
   margin: auto;
-  border-radius: 5px;
-  color: #343a40 !important;
+  border-radius: 5px;  
 }
-.video-header{
-  position: relative;  
+.video-header > .video-icon > a{
+  color: #343a40 !important;  
 }
 .video-body > a{
   color: #343a40 !important;
