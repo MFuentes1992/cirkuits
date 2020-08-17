@@ -110,7 +110,7 @@
                 </a>
               </div>
               <div class="menu-item-hex">
-                <a class="label txt-color-darkgray link-static" href="#">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>materials">
                   <span class="dash-ico" ><i class="far fa-file-pdf"></i></span> <br>
                   <span class="white">Materials</span>
                 </a>
