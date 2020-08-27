@@ -110,16 +110,18 @@ if(isset($_SESSION["user"]))
   </div>    
    <div class="container-fluid-videos">    
     <?php foreach($filelist as $file ) {?>
-        <div class="video-wrapper">
-            <div class="video-header">
-                <p class="video-icon">
-                    <a href="<?=$url;?>videos/<?=$file?>"><strong><i class="fas fa-file-pdf"></i></strong></a>
+        <div class="file-wrapper">
+            <div class="file-header">
+                <p class="file-icon">
+                    <a href="<?=$url;?>materials/<?=$file?>" target="_blank">
+                      <img src="<?=$url;?>img/pdf.png" alt="File" width=128>
+                    </a>
                 </p>              
             </div>
-            <div class="video-body">
-                <a href="<?=$url;?>materials/<?=$file?>"><strong>Download</strong></a>
+            <div class="file-body">
+                <a href="<?=$url;?>materials/<?=$file?>" target="_blank"><strong>Download</strong></a>
                 <br>
-                <a href="<?=$url;?>materials/<?=$file?>"><strong><?=$file?></strong></a>
+                <a href="<?=$url;?>materials/<?=$file?>" target="_blank"><strong><?=$file?></strong></a>
             </div>
         </div>
     <?php } ?>

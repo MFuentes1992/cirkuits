@@ -165,6 +165,7 @@ p, span, strong, a {
   margin-left: 20%;
   text-align: center;
   display: flex;
+  flex-wrap: wrap; 
   padding-top: 5%;
 }
 .video-wrapper{
@@ -203,6 +204,24 @@ p, span, strong, a {
 
 .video-header > img {
   border-radius: 4px 4px 0px 0px;
+}
+.file-wrapper{
+  position: relative;
+  width: 400px;
+  height: 400px;  
+  background-color: #FFF;
+  margin: auto;
+  margin-bottom: 2%;
+  border-radius: 5px; 
+}
+.file-header{
+  color: #343a40 !important;
+}
+.file-body{
+  position: relative;  
+}
+.file-body > a {
+  color: #343a40 !important;
 }
 .dash-ico{
   color: #FFF;
