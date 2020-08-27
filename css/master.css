@@ -169,20 +169,40 @@ p, span, strong, a {
 }
 .video-wrapper{
   position: relative;
-  width: 300px;  
+  width: 400px;
+  height: 400px;  
   background-color: #FFF;
   margin: auto;
   border-radius: 5px;  
 }
-.video-header > .video-icon > a{
-  color: #343a40 !important;  
+.video-body{
+  position: relative;
+  top: -70px;
+}
+.related-lectures{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #343a40 !important;
+}
+.related-lectures > div > a{
+  color: #343a40 !important;
+  font-size: 14pt;
 }
 .video-body > a{
   color: #343a40 !important;
+  font-size: 18pt;
 }
 .video-icon{  
+  position: relative;
   font-size: 28pt;
   text-align: center;
+  color: #FFF;
+  top: -100px;
+}
+
+.video-header > img {
+  border-radius: 4px 4px 0px 0px;
 }
 .dash-ico{
   color: #FFF;

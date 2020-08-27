@@ -134,20 +134,23 @@ if(isset($_SESSION["user"]))
     <?php foreach($filelist as $file ) {?>
         <div class="video-wrapper">
             <div class="video-header">
+                <img src="<?=$url;?>img/thumbNails/thumbnail_<?php echo substr($file, 0, strlen($file) - 4); ?>.jpg" alt="Thumbnail">              
                 <p class="video-icon">
-                    <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><i class="fas fa-play"></i></strong></a>
+                    <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><i class="fas fa-play white"></i></strong></a>
                 </p>              
             </div>
             <div class="video-body">
-                <a href="javascript:openVideoPlayer('<?=$file?>')"><strong>Play</strong></a>
+                <!--<a href="javascript:openVideoPlayer('<?=$file?>')"><strong>Play</strong></a>-->
                 <br>
                 <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><?=$file?></strong></a>
                 <input type="hidden" id="hidden-res<?=$file?>" value="<?=$url;?>videos/<?=$file?>">
-                <?php foreach($materialsArray as $material ) {?>
-                  <?php if ($file == $material['video']) { ?>                  
-                    <a href="<?=$url;?>materials/<?=$material['material']?>"><?=$material['material']?></a>
+                <div class="related-lectures">
+                  <?php foreach($materialsArray as $material ) {?>
+                    <?php if ($file == $material['video']) { ?>                  
+                      <div><a href="<?=$url;?>materials/<?=$material['material']?>" target="_blank"><i class="fas fa-file-pdf"></i>&nbsp;<?=$material['material']?></a></div>
+                    <?php } ?>
                   <?php } ?>
-                <?php } ?>
+                </div>
             </div>
         </div>
     <?php } ?>
