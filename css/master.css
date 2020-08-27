@@ -290,7 +290,29 @@ p, span, strong, a {
   width: 60%;
   margin: auto;
 }
-
+#video-player{
+  position: absolute;
+  width: 100%;
+  background-color: #000;
+  padding: 5%;
+  z-index: 10002;
+  visibility: hidden;
+}
+#player-title{
+  position: relative;
+  text-align: center;
+}
+#player-body > video {
+  width: 100% !important;
+}
+#close-player{
+  position: relative;
+  width: 100%;
+  text-align: right;
+}
+#close-player > img:hover{
+  cursor: pointer;
+}
 .full-width{
   width: 100%;
   text-align: center;

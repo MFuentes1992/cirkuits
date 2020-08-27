@@ -126,29 +126,6 @@ if(isset($_SESSION["user"]))
    </div>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>   
    <script>
-    var saveAvatar = ()=>{
-        $.ajax({
-        method: "POST",
-        url: "edit_avatar.php",
-        data: { avatar: $("input[name='avatar']:checked").val(), update: "true", idUsuario: $('#iduser').val() }
-        })
-        .done(function( msg ) {
-          if(msg == 1){
-            Swal.fire(
-              'Avatar Saved!',
-              'Please log out and back into the application to ensure you are seeing the latest configuration.',
-              'success'
-            );
-          }else{
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: '<a href>Why do I have this issue?</a>'
-            });
-          }
-        });
-    }
-    </script>
+   </script>
  </body>
  </html>

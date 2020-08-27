@@ -108,47 +108,47 @@ if(isset($_SESSION["user"]))
         </div>
       </div>
   </div>    
-   <div class="container-fluid-videos">    
+  <div id="video-player">
+    <div id="player-header">
+      <div id="close-player">
+        <img src="../img/close_btn.png" width="32" alt="Close Player" id="close-btn-player">
+      </div>
+      <div>
+        <h1 id="player-title"></h1>
+      </div>      
+    </div>
+    <div id="player-body">      
+    </div>
+  </div>
+  <div class="container-fluid-videos">    
     <?php foreach($filelist as $file ) {?>
         <div class="video-wrapper">
             <div class="video-header">
                 <p class="video-icon">
-                    <a href="<?=$url;?>videos/<?=$file?>"><strong><i class="fas fa-film"></i></strong></a>
+                    <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><i class="fas fa-play"></i></strong></a>
                 </p>              
             </div>
             <div class="video-body">
-                <a href="<?=$url;?>videos/<?=$file?>"><strong>Download</strong></a>
+                <a href="javascript:openVideoPlayer('<?=$file?>')"><strong>Play</strong></a>
                 <br>
-                <a href="<?=$url;?>videos/<?=$file?>"><strong><?=$file?></strong></a>
+                <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><?=$file?></strong></a>
+                <input type="hidden" id="hidden-res<?=$file?>" value="<?=$url;?>videos/<?=$file?>">
             </div>
         </div>
     <?php } ?>
-   </div>
+  </div>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>   
    <script>
-    var saveAvatar = ()=>{
-        $.ajax({
-        method: "POST",
-        url: "edit_avatar.php",
-        data: { avatar: $("input[name='avatar']:checked").val(), update: "true", idUsuario: $('#iduser').val() }
-        })
-        .done(function( msg ) {
-          if(msg == 1){
-            Swal.fire(
-              'Avatar Saved!',
-              'Please log out and back into the application to ensure you are seeing the latest configuration.',
-              'success'
-            );
-          }else{
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-              footer: '<a href>Why do I have this issue?</a>'
-            });
-          }
-        });
-    }
-    </script>
+     function openVideoPlayer(UID){
+      $('#video-player').css('visibility', 'visible');
+      $('#player-title').append('<span id="title-video-em">'+UID+'</span>'); 
+      $('#player-body').html( '<video id="player-video-em" src="'+UID+'" oncontextmenu="return false;" autoplay controls width=300 controlsList="nodownload"></video>' );
+     }
+     $('#close-btn-player').click(function(){
+      $('#video-player').css('visibility', 'hidden');
+      $('#title-video-em').remove(); 
+      $('#player-video-em').remove();
+     });
+   </script>
  </body>
  </html>
