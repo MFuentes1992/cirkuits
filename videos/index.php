@@ -38,7 +38,17 @@ if(isset($_SESSION["user"]))
                 }
             }
             closedir($handle);
-        }              
+        }
+        //----------------------------------------- Retrieving list of related materials        
+        $materialsArray = array();
+        foreach ($filelist as $file) {
+          $queryStr = sprintf("SELECT * FROM tbl_relatedMaterials WHERE video = %s ",
+          GetSQLValueString($conexion,$file, "text"));
+          $rawResult = mysqli_query($conexion, $queryStr) or die(mysqli_error($conexion));          
+          while( $row = mysqli_fetch_assoc( $rawResult ) ){
+            array_push( $materialsArray, $row );
+          }
+        }                 
     }
     else {
       header("location:".$url."singin");
@@ -133,6 +143,11 @@ if(isset($_SESSION["user"]))
                 <br>
                 <a href="javascript:openVideoPlayer('<?=$file?>')"><strong><?=$file?></strong></a>
                 <input type="hidden" id="hidden-res<?=$file?>" value="<?=$url;?>videos/<?=$file?>">
+                <?php foreach($materialsArray as $material ) {?>
+                  <?php if ($file == $material['video']) { ?>                  
+                    <a href="<?=$url;?>materials/<?=$material['material']?>"><?=$material['material']?></a>
+                  <?php } ?>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>
