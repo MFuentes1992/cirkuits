@@ -52,6 +52,9 @@
   </head>
   <body>
     <div class="aside-menu">
+      <div class="close-menu">
+        <img src="<?=$url;?>img/close_btn.png" alt="Close" width=32 id="close-btn-sm">
+      </div>
       <div id="aside-logo-container">
         <img src="../img/bw_logo.png" alt="Cirkuits logo">
       </div>
@@ -68,6 +71,9 @@
       </div>
     </div>
     <div class="container-fluid-dashboard">
+        <div class="hmbr-menu">
+          <i class="fas fa-bars white" id="menu-brg"></i>
+        </div>
       <!-- Modal for displaying message -->
         <?php if($payment == 1) { ?>
         <div class="modal fade bs-example-modal-sm" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -103,7 +109,7 @@
                   <span class="white">Videos</span>
                 </a>
               </div>
-              <div class="menu-item-hex">
+              <div class="menu-item-hex" id="videogames-menu-item">
                 <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
                   <span class="dash-ico" ><i class="fas fa-gamepad"></i></span> <br>
                   <span class="white">Videogames</span>
@@ -131,6 +137,16 @@
       $(document).ready( function(){
         $('#paymentModal').modal('show');
         console.log($(window).width());
+      });
+      $('#close-btn-sm').click(function(){
+        $('.aside-menu').animate({
+          left: "-450px"
+          }, 500, function(){});
+      });
+      $('#menu-brg').click(function(){
+        $('.aside-menu').animate({
+          left: "0px"
+        }, 500, function(){});
       });
     </script>
   </body>

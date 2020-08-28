@@ -35,6 +35,12 @@ p, span, strong, a {
   background-color: #000;
   height: 100%;
 }
+.close-menu{
+  display: none;
+}
+.hmbr-menu{
+  display: none;
+}
 #aside-logo-container{
   position: relative;
   width: 100%;
@@ -519,6 +525,12 @@ td{
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
   }
+  #user-name{
+    margin-left: 25px;
+  }
+  .aside-menu{  
+    left: 0px !important;            
+  }
 } 
 
 @media screen and (min-width:1024px) and (max-width: 1439px){
@@ -530,6 +542,33 @@ td{
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
   }
+  .menu-item-hex{
+    width: 200px;
+    height: 100px;
+    padding-top: 10px;
+  }
+  .dash-ico{
+    font-size: 18pt;
+  }
+  .aside-menu{  
+    width: 35%; 
+    left: 0px !important;            
+  }
+  .container-fluid-dashboard{
+    width: 65%;
+    margin-left: 35%;
+  }
+}
+
+@media (min-width: 750px) and (max-width: 800px){
+  .aside-menu{  
+    width: 40%;  
+    left: 0px;      
+  }
+  .container-fluid-dashboard{
+    width: 60%;
+    margin-left: 40%;
+  }
 }
 
 @media screen and (min-width: 450px) and (max-width: 800px){
@@ -538,11 +577,26 @@ td{
     width: 45%;
     margin: auto;
   }
+  #videogames-menu-item{
+    visibility: hidden;
+    display: none;
+  }
+  .menu-item-hex{
+    width: 200px;
+    height: 100px;
+    padding-top: 10px;
+  }
+  .dash-ico{
+    font-size: 18pt;
+  }
+  .aside-menu{  
+    width: 40%;  
+    left: 0px !important;      
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 450px)
 {
-
   .avatar-showcase{
     position: relative;
     width: 100%;
@@ -610,5 +664,47 @@ td{
   #userExtra > table{
     width: 100%;
     padding-left: 10%;
+  }
+
+  #videogames-menu-item{
+    visibility: hidden;
+    display: none;
+  }
+
+  .aside-menu{  
+    position: absolute;
+    width: 100%;
+    background-color: #000;
+    height: 100%;
+    z-index: 10002;
+    left: -450px;
+  }
+  .container-fluid-dashboard{
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+  }
+  .close-menu{
+    position: relative;
+    width: 100%;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 10px;
+    display: block;
+  }
+  #user-avatar-container{
+    padding-left: 50px;
+  }
+  .hmbr-menu{
+    position: relative;
+    width: 100%;
+    font-size: 28pt;
+    padding-right: 10px;
+    padding-top: 10px;
+    text-align: right;
+    display: block;
+  }
+  #dash-menu{
+    flex-direction: column;
   }
 }
