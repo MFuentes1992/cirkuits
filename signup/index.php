@@ -217,7 +217,7 @@
         </div>
       </div>  
       <div class="" id="regLogin">
-        <span>Already registred?</span><span style="margin-left:0.5%;"><a href="<?=$url;?>signin" class="label label-success">Sign in</a></span>
+        <span>Already registred?</span><span style="margin-left:0.5%;"><a href="<?=$url;?>signin" class="label label-blue">Sign in</a></span>
       </div>      
       </div>
       <br>

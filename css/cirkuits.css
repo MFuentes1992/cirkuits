@@ -222,9 +222,27 @@ form {
   color: #FFF;
   font-size: 18pt;
   margin-right: 50px;
+  font-family: corbel;
 }
 #signin-link:hover{
 text-decoration: none;
+}
+.label-blue{
+  color: #06b100;
+}
+.label-blue:hover{
+  color: #097006;
+}
+.modal-body, .modal-title{
+  color: #343A40;
+  font-size: 15pt;
+  font-family: corbel;
+}
+.popover-header{
+  background-color: red !important;
+  color: #FFF;
+  font-size: 15pt;
+  font-family: corbel;
 }
 #how-works-container{
   color: #FFF;

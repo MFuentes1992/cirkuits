@@ -144,7 +144,7 @@ else {
             Please check your username or password.
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-close-add">Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="btn-close-add">Continue</button>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@ else {
                   </div>
               </div>
               <div id="regLogin">
-                <span>Not registred yet?</span><span style="margin-left:0.5%;"><a href="<?=$url?>signup" class="label">Sign up</a></span>
+                <span>Not registred yet?</span><span style="margin-left:0.5%;"><a href="<?=$url?>signup" class="label label-blue">Sign up</a></span>
               </div>
             </div>         
 
