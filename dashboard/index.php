@@ -100,9 +100,8 @@
             <br>
             <h1>Welcome:<span style="margin-left:0.5%;" class="welcome-name" ><?php echo $_SESSION["user"]["alter_usuario"] ?></span> </h1>
           </div>
-
           <div class="container-fluid">
-            <div id="dash-menu">
+            <!--<div id="dash-menu">
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="<?=$url;?>videos">
                   <span class="dash-ico" ><i class="fas fa-film"></i></span> <br>
@@ -121,6 +120,36 @@
                   <span class="white">Materials</span>
                 </a>
               </div>
+              <div class="menu-item-hex">
+                <a class="label txt-color-darkgray link-static" href="#">
+                  <span class="dash-ico" ><i class="far fa-comments"></i></span> <br>
+                  <span class="white">support</span>
+                </a>
+              </div>
+            </div>-->
+            <div class="dash-circular-menu">
+              <div class="menu-item-hex">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videos">
+                  <span class="dash-ico" ><i class="fas fa-film"></i></span> <br>
+                  <span class="white">Videos</span>
+                </a>
+              </div>
+            </div>
+            <div class="dash-circular-menu-2">
+              <div class="menu-item-hex-2" id="videogames-menu-item">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
+                  <span class="dash-ico" ><i class="fas fa-gamepad"></i></span> <br>
+                  <span class="white">Videogames</span>
+                </a>
+              </div>
+              <div class="menu-item-hex-2">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>materials">
+                  <span class="dash-ico" ><i class="far fa-file-pdf"></i></span> <br>
+                  <span class="white">Materials</span>
+                </a>
+              </div>
+            </div>
+            <div class="dash-circular-menu">
               <div class="menu-item-hex">
                 <a class="label txt-color-darkgray link-static" href="#">
                   <span class="dash-ico" ><i class="far fa-comments"></i></span> <br>

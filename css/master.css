@@ -108,17 +108,42 @@ p, span, strong, a {
   width: 100%;
   display: flex;  
 }
+.dash-circular-menu{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
 .menu-item-hex{
   position: relative;
-  flex-grow: 1;
-  height: 300px;   
+  /*flex-grow: 1;*/
+  width: 150px;
+  height: 250px;   
   background-image: url("../img/dashboard-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   justify-content: center;
   text-align: center;
-  padding-top: 100px;
+  padding-top: 75px;
+  margin: auto;
+}
+.dash-circular-menu-2{
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.menu-item-hex-2{
+  position: relative;
+  width: 150px;
+  height: 250px;
+  margin: auto;
+  background-image: url("../img/dashboard-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  justify-content: center;
+  text-align: center; 
+  padding-top: 75px;
 }
 .menu-list-container{
   position: relative;
