@@ -280,7 +280,7 @@
           town.add(cube);
         };
           //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
-          let neurons = new Array();
+         /* let neurons = new Array();
           let LinePoints = new Array();
           let cloudStepX = 1.5;
           let cloudStepZ = 1;          
@@ -347,7 +347,7 @@
           var LineMaterial2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
           var LineGeometry2 = new THREE.BufferGeometry().setFromPoints( LinePoints2 );
           var line2 = new THREE.Line( LineGeometry2, LineMaterial2 );
-          scene.add(line2);         
+          scene.add(line2);*/       
         //----------------------------------------------------------------- Particular
         
         var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});

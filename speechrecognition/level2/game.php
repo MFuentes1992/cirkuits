@@ -177,7 +177,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
 
       //----------------------------------------------------------------- FOG background
 
-      var setcolor = 0xF02050;
+      var setcolor = 0x000080;
       //var setcolor = 0xF2F111;
       //var setcolor = 0xFF6347;
 
@@ -258,7 +258,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
           town.add(cube);
         };
           //----------------------------------------------------------------- CREATE CLOUD OF NEURONS
-          let neurons = new Array();
+          /*let neurons = new Array();
           let LinePoints = new Array();
           let cloudStepX = 0.5;
           let cloudStepZ = 1;          
@@ -325,7 +325,7 @@ var renderer = new THREE.WebGLRenderer({antialias:true});
           var LineMaterial2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
           var LineGeometry2 = new THREE.BufferGeometry().setFromPoints( LinePoints2 );
           var line2 = new THREE.Line( LineGeometry2, LineMaterial2 );
-          scene.add(line2);          
+          scene.add(line2);   */       
         //----------------------------------------------------------------- Particular
         
         var gmaterial = new THREE.MeshToonMaterial({color:0xFFFF00, side:THREE.DoubleSide});
