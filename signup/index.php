@@ -98,7 +98,7 @@
       <i class="fas fa-bars"></i>
     </button>
     <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
-    <a href="../signin" id="signin-link">Sign in &nbsp;<i class="fas fa-sign-in-alt"></i></a> 
+    <a href="../signin" id="signin-link">Sign in &nbsp;&nbsp;<i class="fas fa-sign-in-alt" style="font-size: 12pt"></i></a> 
   </nav>
   <div id="menu-dropdown">
     <div>

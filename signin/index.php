@@ -117,7 +117,7 @@ else {
         <i class="fas fa-bars"></i>
       </button>
       <img class="img_logo" src="../img/bw_logo.png" alt="cirkuits logo"/>
-      <a href="../signup" id="signin-link">Sign up &nbsp;<i class="fas fa-user-plus"></i></a> 
+      <a href="../signup" id="signin-link">Sign up &nbsp;&nbsp;<i class="fas fa-user-plus" style="font-size: 10pt"></i></a> 
     </nav>
     <div id="menu-dropdown">
       <div>
