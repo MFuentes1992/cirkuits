@@ -89,9 +89,23 @@
       </div>
       <div class="form-card">
         <div id="header-img">
-          <img src="../img/credit_cards.png" width="128" alt="Visa, Master Card">
+          <img src="../img/credit_cards.png" width="200" alt="Visa, Master Card">
         </div>
-        <form action="" method="post" id="form-payment">
+        <form action="" method="post" id="form-payment" name="FormPayment">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="PaymentPlan1" name="PaymentPlan1" class="custom-control-input" value="100" checked>
+            <label class="custom-control-label" for="PaymentPlan1">Plan 1</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="PaymentPlan2" name="PaymentPlan1" class="custom-control-input" value="150">
+            <label class="custom-control-label" for="PaymentPlan2">Plan 2</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="PaymentPlan3" name="PaymentPlan1" class="custom-control-input" value="200">
+            <label class="custom-control-label" for="PaymentPlan3">Plan 3</label>
+          </div> 
+          <br /> 
+          <br />          
           <p><strong>Amount to pay</strong></p>
           <div class="form-row">
             <div class="form-group col-md-10">              
@@ -114,7 +128,8 @@
           </div> 
           <div class="form-row">
             <div class="form-group col-md-6">              
-              <input type="text" class="form-control" id="PaymentExpiry" name="PaymentExpiry" aria-describedby="PaymentExpiry" placeholder="MM/YY">            
+              <input type="text" class="form-control" id="PaymentExpiry" name="PaymentExpiry"
+                 aria-describedby="PaymentExpiry" placeholder="MM/YY" onkeydown="checkExpiry(event)" maxlength="5">            
             </div>
             <div class="form-group col-md-6">            
               <input type="number" class="form-control" id="PaymentCVC" name="PaymentCVC" aria-describedby="PaymentCVC" placeholder="CVC">
@@ -131,6 +146,31 @@
     </div>
   </body>
   <script>
+
+    $(document).ready(function(){
+      checkPlan();
+      $('#form-payment').change(function(){
+        checkPlan();
+      })
+    });
+
+    const checkPlan = () => {
+      var value = $("input[name='PaymentPlan1']:checked").val();
+      $("#PaymentAmount").val(value);
+    }
+
+    const checkExpiry = (event) => {
+      var key = event.keyCode;
+      console.log(key);
+      if( key != 8 && key != 111){
+        var length = $('#PaymentExpiry').val().length;
+        var value = $('#PaymentExpiry').val();
+        if(length === 2){
+          value += "/";
+          $('#PaymentExpiry').val(value);
+        }
+      }
+    }
 
   </script>
   </html>
