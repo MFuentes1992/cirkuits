@@ -11,7 +11,7 @@
       if($_SESSION["user"]["estatus_usuario"] == 1)
       {
         /*Disabeling user payment*/
-        //header("Location:".$url."payment");
+        header("Location:".$url."payment");
         $payment = 1;
       }
       else if($_SESSION["user"]["estatus_usuario"] == 2){

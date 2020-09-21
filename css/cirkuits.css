@@ -271,6 +271,18 @@ text-decoration: none;
 .videogame-section-body{
   background: rgba(0, 0, 0, 1) !important;
 }
+.payment-section-container{
+  position: absolute;
+  height: 100%;
+  z-index: 100002;
+  float: right;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+.container-fluid-payment{
+  position: absolute;
+  width: 80%;
+  margin-left: 20%;
+}
 .videogame-section-container{
   position: absolute;
   height: 100%;

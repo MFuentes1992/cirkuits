@@ -25,7 +25,7 @@
 
     if(check_user($email) <= 0)
     {
-      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 2, $isAdmin, $avatar);
+      $result = insert_user($name, $lstName, $userName, $password, $email, $telUsuario, $celUsuario,$birthDate, 1, $isAdmin, $avatar);
       $id_usuario = mysqli_insert_id($conexion);
       if($result > 0)
       {        

@@ -416,6 +416,36 @@ p, span, strong, a {
   margin-top: 2%;
 }
 
+.payment-title{
+  position: relative;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.form-card{
+  position: relative;
+  width: 60%;
+  margin: auto;
+  background-color: #FFF;
+  color : #343A40;
+  padding-bottom: 5%;
+}
+#header-img{
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+#form-payment{
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+#PaymentCurrency{
+  position: relative;
+  width: 100%;
+}
 @media screen and (min-width: 540px) and (max-width:768px){
   .photo{
     position: relative;
