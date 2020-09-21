@@ -4,7 +4,8 @@ use cirkuits;
 
 CREATE TABLE usuarios (id_usuario INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre_usuario text, apellido_usuario text, alter_usuario text, password_usuario text, 
-    email_usuario text, tel_usuario text, cel_usuario text, nacimiento_usuario date, estatus_usuario integer, isAdmin integer, fecha_registro date, fecha_actualizacion date, avatar_usuario text);
+    email_usuario text, tel_usuario text, cel_usuario text, nacimiento_usuario date, 
+    estatus_usuario integer, isAdmin integer, fecha_registro date, fecha_actualizacion date, avatar_usuario text);
     
 /*CREATE TABLE plastic (id_tarjeta INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre_tarjeta text, ap_tarjeta text, numero_tarjeta text, mes_tarjeta text,
@@ -31,7 +32,9 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
 
 	CREATE TABLE level_progress(id_progress INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	id_videogame_level INTEGER, score INTEGER, high_score INTEGER, estrellas INTEGER, FOREIGN KEY(id_videogame_level) REFERENCES videogame_level);
-	#////////////////////////////// GAME LOGIC /////////////////////////////////////    
+	
+    CREATE TABLE tbl_relatedMaterials (id_relatedmateria INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, video text, material text);
+    #////////////////////////////// GAME LOGIC /////////////////////////////////////    
     
     show tables;
     #////////////////////////////////////////////// FINISH BUILDING DATABASE //////////////////////////////////////////////////////////////////////////
@@ -45,7 +48,12 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,2,1,1);
     insert into videogame_level (id_videogame, id_level, id_usuario, isLocked) values (1,3,1,1);
     INSERT INTO leaderboard (id_progress, high_score) values (1,0);
+    insert into tbl_relatedMaterials (video, material) values ('video_8162020.mp4', 'lecture_001.pdf');
+    insert into tbl_relatedMaterials (video, material) values ('video_8162020.mp4', 'lecture_002.pdf');
+    insert into tbl_relatedMaterials (video, material) values ('video_8172020.mp4', 'lecture_003.pdf');
+    insert into tbl_relatedMaterials (video, material) values ('video_8182020.mp4', 'lecture_004.pdf');
     
+    select * from tbl_relatedMaterials where video = 'video_8162020.mp4';
     select * from usuarios;
     select * from cat_videogames;
     select * from cat_levels;
@@ -54,7 +62,7 @@ CREATE TABLE cat_videogames(id_videogame INTEGER NOT NULL PRIMARY KEY AUTO_INCRE
     select count(*) as total from level_progress where id_videogame_level = 8;
     desc videogame_level;
     desc level_progress;
-    SELECT count(*) as levels FROM videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 1;
+    SELECT count(*) as levels FROM videogame_level WHERE id_usuario = 1 AND isLocked = 0 AND id_videogame = 2;
     update cat_videogames set icono = 'fas fa-street-view' where id_videogame = 10;
 
     update usuarios set estatus_usuario = 2 where id_usuario = 1;
