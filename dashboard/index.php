@@ -92,8 +92,7 @@
           </div>
         </div>
       </div>
-      <?php } ?>
-      <div>
+      <?php } ?>      
         <div class="contenido-dashboard">
           <div class="text-center" style="margin-bottom:2%;">
             <br>
@@ -103,39 +102,86 @@
           <div class="container-fluid">
             <div class="dash-circular-menu">
               <div class="menu-item-hex">
-                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videos">
-                  <span class="dash-ico" ><i class="fas fa-film"></i></span> <br>
-                  <span class="white">Videos</span>
-                </a>
+                <div id="wrapper">    
+                  <div class="profile-main-loader" id="circle-videos">
+                    <div class="loader">
+                      <svg class="circular-loader"viewBox="25 25 50 50" >
+                        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                      </svg>
+                    </div>
+                  </div>                    
+                </div>                
               </div>
+            </div>
+            <div id="dash-circular-menu-hover-videos">
+              <a class="label txt-color-darkgray link-static" href="<?=$url;?>videos">
+                  <span class="dash-ico" id="dash-videos" ><i class="fas fa-film"></i></span> <br />                  
+              </a>
+              <a href="">
+                <span class="white btn-label">Videos</span> 
+              </a>
             </div>
             <div class="dash-circular-menu-2">
               <div class="menu-item-hex-2" id="videogames-menu-item">
-                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
-                  <span class="dash-ico" ><i class="fas fa-gamepad"></i></span> <br>
-                  <span class="white">Videogames</span>
-                </a>
+                <div id="wrapper">    
+                  <div class="profile-main-loader" id="circle-videogames">
+                    <div class="loader">
+                      <svg class="circular-loader"viewBox="25 25 50 50" >
+                        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                      </svg>
+                    </div>
+                  </div>                    
+                </div> 
               </div>
               <div class="menu-item-hex-2">
+                <div id="wrapper">    
+                  <div class="profile-main-loader" id="circle-materials">
+                    <div class="loader">
+                      <svg class="circular-loader"viewBox="25 25 50 50" >
+                        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                      </svg>
+                    </div>
+                  </div>                    
+                </div> 
+              </div>
+            </div>
+            <div id="circular-menu-hover">
+              <div class="hover-menu-item">
+                <a class="label txt-color-darkgray link-static" href="<?=$url;?>videogames">
+                    <span class="dash-ico" id="dash-videogames"><i class="fas fa-gamepad"></i></span> <br>
+                    <span class="white btn-label">Videogames</span>
+                </a>
+              </div>
+              <div class="hover-menu-item">
                 <a class="label txt-color-darkgray link-static" href="<?=$url;?>materials">
-                  <span class="dash-ico" ><i class="far fa-file-pdf"></i></span> <br>
-                  <span class="white">Materials</span>
+                    <span class="dash-ico" id="dash-materials"><i class="far fa-file-pdf"></i></span> <br>
+                    <span class="white btn-label">Materials</span>
                 </a>
               </div>
             </div>
             <div class="dash-circular-menu">
               <div class="menu-item-hex">
-                <a class="label txt-color-darkgray link-static" href="#">
-                  <span class="dash-ico" ><i class="far fa-comments"></i></span> <br>
-                  <span class="white">support</span>
-                </a>
+                <div id="wrapper">    
+                  <div class="profile-main-loader" id="circle-support">
+                    <div class="loader">
+                      <svg class="circular-loader"viewBox="25 25 50 50" >
+                        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#70c542" stroke-width="2" />
+                      </svg>
+                    </div>
+                  </div>                    
+                </div> 
               </div>
             </div>
+            <div id="circular-menu-support">
+              <a class="label txt-color-darkgray link-static" href="#">
+                  <span class="dash-ico" id="dash-support" ><i class="far fa-comments"></i></span> <br>
+                  <span class="white btn-label">support</span>
+              </a>
+            </div>
+            </div>
           </div>
-          </div>
-        </div>
+        </div>      
       </div>
-    </div>
     <script>
       $(document).ready( function(){
         $('#paymentModal').modal('show');
@@ -151,6 +197,18 @@
           left: "0px"
         }, 500, function(){});
       });
+      $('#dash-videos').hover(function(){
+        $('#circle-videos').css('visibility', 'visible');
+      }, () => {  $('#circle-videos').css('visibility', 'hidden'); });
+      $('#dash-videogames').hover(function(){
+        $('#circle-videogames').css('visibility', 'visible');
+      }, () => {  $('#circle-videogames').css('visibility', 'hidden'); });
+      $('#dash-materials').hover(function(){
+        $('#circle-materials').css('visibility', 'visible');
+      }, () => {  $('#circle-materials').css('visibility', 'hidden'); });
+      $('#dash-support').hover(function(){
+        $('#circle-support').css('visibility', 'visible');
+      }, () => {  $('#circle-support').css('visibility', 'hidden'); });
     </script>
   </body>
   </html>

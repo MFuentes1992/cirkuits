@@ -103,6 +103,36 @@ p, span, strong, a {
 .margin-5{
   margin: 5px;
 }
+#circular-menu-hover{
+  position: absolute;  
+  width: 100%;
+  display: flex;
+  top: 0px;
+  margin-top: 18%;
+}
+#dash-circular-menu-hover-videos{
+  position: absolute;  
+  width: 100%;
+  top: 0px;
+  margin-top: 10%;
+  text-align: center;
+}
+#circular-menu-support{
+  position: absolute;  
+  width: 100%;
+  top: 0px;
+  margin-top: 39%;
+  text-align: center;
+}
+.hover-menu-item{
+  position: relative;
+  width: 150px;
+  height: 200px;
+  margin: auto;
+  justify-content: center;
+  text-align: center; 
+  padding-top: 75px;
+}
 #dash-menu{
   position: relative;
   width: 100%;
@@ -114,14 +144,9 @@ p, span, strong, a {
   text-align: center;
 }
 .menu-item-hex{
-  position: relative;
-  /*flex-grow: 1;*/
+  position: relative;  
   width: 150px;
-  height: 250px;   
-  background-image: url("../img/dashboard-bg.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 200px;   
   justify-content: center;
   text-align: center;
   padding-top: 75px;
@@ -137,10 +162,6 @@ p, span, strong, a {
   width: 150px;
   height: 250px;
   margin: auto;
-  background-image: url("../img/dashboard-bg.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   justify-content: center;
   text-align: center; 
   padding-top: 75px;
@@ -255,8 +276,15 @@ p, span, strong, a {
   color: #343a40 !important;
 }
 .dash-ico{
+  position: relative;
   color: #FFF;
   font-size: 3em;
+  transition: all 0.25s ease-out;
+}
+.btn-label{
+  position: relative;
+  color: #FFF;
+  font-size: 14pt;
   transition: all 0.25s ease-out;
 }
 .dash-ico:hover{
@@ -446,6 +474,133 @@ p, span, strong, a {
   position: relative;
   width: 100%;
 }
+
+/* --------------------- Animation Dashboard */
+#wrapper{
+  position:relative;
+  /*background:#333;*/
+  height:100%;
+}
+
+.profile-main-loader{
+  margin-top: -85px;  
+  margin-left: -15px;
+}
+#circle-videos{
+  visibility: hidden;
+}
+#circle-videogames{
+  visibility: hidden;
+}
+#circle-materials{
+  visibility: hidden;
+}
+#circle-support{
+  visibility: hidden;
+}
+.profile-main-loader .loader {
+position: relative;
+margin: 0px auto;
+width: 200px;
+height:200px;
+}
+.profile-main-loader .loader:before {
+content: '';
+display: block;
+padding-top: 100%;
+}
+
+.circular-loader {
+-webkit-animation: rotate 2s linear infinite;
+        animation: rotate 2s linear infinite;
+height: 100%;
+-webkit-transform-origin: center center;
+    -ms-transform-origin: center center;
+        transform-origin: center center;
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+margin: auto;
+}
+
+.loader-path {
+stroke-dasharray: 150,200;
+stroke-dashoffset: -10;
+-webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+        animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+}
+
+@keyframes rotate {
+100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+}
+@-webkit-keyframes dash {
+0% {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+}
+50% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -35;
+}
+100% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -124;
+}
+}
+@keyframes dash {
+0% {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+}
+50% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -35;
+}
+100% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -124;
+}
+}
+@-webkit-keyframes color {
+0% {
+  stroke: rgb(32,199,215);
+}
+40% {
+  stroke: rgb(5,164,225);
+}
+66% {
+  stroke: rgb(141,124,207);
+}
+80%, 90% {
+  stroke: rgb(184,119,193);
+}
+}
+@keyframes color {
+  0% {
+    stroke: rgb(32,199,215);
+  }
+  40% {
+    stroke: rgb(5,164,225);
+  }
+  66% {
+    stroke: rgb(141,124,207);
+  }
+  80%, 90% {
+    stroke: rgb(184,119,193);
+  }
+}
 @media screen and (min-width: 540px) and (max-width:768px){
   .photo{
     position: relative;
@@ -600,7 +755,7 @@ td{
   .menu-item-hex{
     width: 200px;
     height: 100px;
-    padding-top: 10px;
+    background-color: blue;
   }
   .dash-ico{
     font-size: 18pt;
