@@ -2,8 +2,8 @@ AmIHappy.png
 AreTheyHappy.png
 AreWeHappy.png
 AreYouHappy.png
-HeIsHappy|He'sHappy.png
-HeIsn'tHappy|HeIsNotHappy|He'sNotHappy.png
+HeIsHappy_He'sHappy.png
+HeIsn'tHappy_HeIsNotHappy_He'sNotHappy.png
 IAmHappy.png
 IAmNotHappy.png
 IsHeHappy.png

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race game</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+<script src="js/three.js" charset="utf-8"></script>
+<script src="js/MTLLoader.js" charset="utf-8"></script>
+<script src="js/OBJLoader.js" charset="utf-8"></script>
+<script src="js/Detector.js" charset="utf-8"></script>
+<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/postprocesing/EffectComposer.js" charset="utf-8"></script>
+<script src="js/postprocesing/RenderPass.js" charset="utf-8"></script>
+<script src="js/postprocesing/ShaderPass.js" charset="utf-8"></script>
+<script src="js/postprocesing/UnrealBloomPass.js" charset="utf-8"></script>
+<script src="js/postprocesing/LuminosityHighPassShader.js" charset="utf-8"></script>
+<script src="js/postprocesing/CopyShader.js" charset="utf-8"></script>
+<script>
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    var keyboard = new THREEx.KeyboardState();
+    var clock = new THREE.Clock;
+    var car, moveDistance;
+
+    var scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(45, screenWidth / screenHeight, 1, 20000);
+    camera.position.set(0, 170, 2000);    
+
+    // Renderer
+    if (Detector.webgl) {
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+    } else {
+        renderer = new THREE.CanvasRenderer();
+    }    
+
+    //Background color de la escena.
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild(renderer.domElement);
+
+    //---------------------------------------------------------------- Post procesing
+    var renderScene = new THREE.RenderPass( scene, camera );
+
+    var bloomPass = new THREE.UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
+    bloomPass.threshold = 0;
+    bloomPass.strength = 0.5; 
+    bloomPass.radius = 0;
+
+    var composer = new THREE.EffectComposer( renderer );
+    composer.addPass( renderScene );
+    composer.addPass( bloomPass );  
+
+
+    //-- Lights and plane
+    ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(ambientLight);
+    
+    //---------------------------------------------------------------- LOADING MODEL OF CARS      
+    var mtlLoaderCar = new THREE.MTLLoader();
+        mtlLoaderCar.setResourcePath('/Cirkuits/3dlab/assets/');
+        mtlLoaderCar.setPath('/Cirkuits/3dlab/assets/');
+        mtlLoaderCar.load('raceCarWhite.mtl', function (materials) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('/Cirkuits/3dlab/assets/');
+        objLoader.load('raceCarWhite.obj', function (object) {
+        object.name = "car";
+        object.position.set(0, 25, 1600);
+        //object.rotation.y = -0.8*Math.PI;
+        object.scale.set(100, 100, 100); //-------------------- Scaling object
+        car = object;
+        scene.add(object);                                                          
+        });
+    });    
+    
+        //---------------------------------------------------------------- LOADING MODEL OF CHECKPOINTS      
+    var mtlLoaderFlag = new THREE.MTLLoader();
+        mtlLoaderFlag.setResourcePath('/Cirkuits/3dlab/assets/');
+        mtlLoaderFlag.setPath('/Cirkuits/3dlab/assets/');
+        mtlLoaderFlag.load('flagCheckers.mtl', function (materials) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('/Cirkuits/3dlab/assets/');
+        objLoader.load('flagCheckers.obj', function (object) {        
+        object.name = "flagChecker";        
+        object.position.set(-120, 25, 1500);                
+        object.scale.set(100, 100, 100); //-------------------- Scaling object        
+        scene.add(object);               
+        });
+    }); 
+
+    //---------------------------------------------------------------- LOADING MODEL OF CHECKPOINTS      
+    var mtlLoaderFlag2 = new THREE.MTLLoader();
+        mtlLoaderFlag2.setResourcePath('/Cirkuits/3dlab/assets/');
+        mtlLoaderFlag2.setPath('/Cirkuits/3dlab/assets/');
+        mtlLoaderFlag2.load('flagCheckers.mtl', function (materials) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath('/Cirkuits/3dlab/assets/');
+        objLoader.load('flagCheckers.obj', function (object) {        
+        object.name = "flagChecker";        
+        object.position.set(120, 25, 1500);                
+        object.scale.set(100, 100, 100); //-------------------- Scaling object        
+        scene.add(object);               
+        });
+    }); 
+
+    //-- Creating the race track
+    var geometryRaceTrack = new THREE.PlaneGeometry( 300, 20000, 32 );
+    //var materialGradient = new THREE.MeshBasicMaterial( {color: 0x228B22, side: THREE.DoubleSide} );
+    var material = new THREE.ShaderMaterial({
+    uniforms: {
+        color1: {
+        value: new THREE.Color("red")
+        },
+        color2: {
+        value: new THREE.Color("purple")
+        }
+    },
+    vertexShader: `
+        varying vec2 vUv;
+
+        void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform vec3 color1;
+        uniform vec3 color2;
+    
+        varying vec2 vUv;
+        
+        void main() {
+        
+        gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
+        }
+    `,
+    wireframe: true
+    });
+    var raceTrack = new THREE.Mesh( geometryRaceTrack, material );
+    raceTrack.rotation.x = 0.5*Math.PI;
+    scene.add( raceTrack );   
+
+    //-- Gameloop functions
+    var update = function(){        	
+        var delta = clock.getDelta();        
+        if (keyboard.pressed("w")) {
+            moveDistance = 200 * delta;
+        }else{
+            moveDistance = 0;
+        }
+
+        car.position.z -= moveDistance;
+        camera.position.z -= moveDistance;
+    };
+    var render = function(){
+       // renderer.render( scene, camera );
+       composer.render();
+    };
+    var GameLoop = function(){
+        requestAnimationFrame( GameLoop );
+        update();
+        render();
+    };
+    GameLoop();
+
+</script>
+</html>
