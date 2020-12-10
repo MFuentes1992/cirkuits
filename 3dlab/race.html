@@ -71,7 +71,7 @@
         objLoader.setPath('/Cirkuits/3dlab/assets/');
         objLoader.load('raceCarWhite.obj', function (object) {
         object.name = "car";
-        object.position.set(0, 25, 1600);
+        object.position.set(0, 25, 1550);
         //object.rotation.y = -0.8*Math.PI;
         object.scale.set(100, 100, 100); //-------------------- Scaling object
         car = object;
@@ -152,7 +152,35 @@
     });
     var raceTrack = new THREE.Mesh( geometryRaceTrack, material );
     raceTrack.rotation.x = 0.5*Math.PI;
-    scene.add( raceTrack );   
+    scene.add( raceTrack );  
+    
+    //---------------------------------------------------------  CHECKPOINTS
+    var cubeGeometry = new THREE.CubeGeometry(25, 200, 20, 5, 5, 5);
+    var wireMaterial = new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+        wireframe: true
+    });
+    //--  Right Side
+    supportMaterialR = new THREE.Mesh(cubeGeometry, wireMaterial);
+    supportMaterialR.position.set(140, 100, 1000);
+    scene.add(supportMaterialR);
+    //--  Left Side
+    supportMaterialL = new THREE.Mesh(cubeGeometry, wireMaterial);
+    supportMaterialL.position.set(-140, 100, 1000);
+    scene.add(supportMaterialL);
+    //--  Top Side
+    var cubeGeometryT = new THREE.CubeGeometry(25, 400, 20, 5, 5, 5);
+    supportMaterialT = new THREE.Mesh(cubeGeometryT, wireMaterial);
+    supportMaterialT.position.set(0, 200, 1000);
+    supportMaterialT.rotation.z = 0.5*Math.PI;
+    scene.add(supportMaterialT);
+    //-- IMG sprite
+    var map = new THREE.TextureLoader().load( "assets/AmIHappy.png" );
+    var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff } );
+    var sprite = new THREE.Sprite( material );
+    sprite.scale.set(256,128,1);
+    sprite.position.set(0, 200, 1200);
+    scene.add( sprite );
 
     //-- Gameloop functions
     var update = function(){        	
@@ -167,8 +195,8 @@
         camera.position.z -= moveDistance;
     };
     var render = function(){
-       // renderer.render( scene, camera );
-       composer.render();
+        renderer.render( scene, camera );
+       //composer.render();
     };
     var GameLoop = function(){
         requestAnimationFrame( GameLoop );
